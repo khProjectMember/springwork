@@ -1,0 +1,122 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<jsp:include page="common/header.jsp" />
+
+<div id="wrap">
+     <div id="content">
+          <div class="inner">
+			<form id="" method="" action="" enctype="multipart/form-data">
+				 <div class="product-list">
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>
+		            </a>
+		            
+		            <a href="#" class="product">
+		                <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225" height="225px">
+		                <div class="product-name">
+		                    Sunglasses
+		                </div>
+		                <div class="product-price">
+		                    49,000
+		                </div>          
+		            </a>
+		            <div class="clearfix"></div>
+		        </div>
+			</form>
+          </div>
+     </div>
+</div>
+
+
+<jsp:include page="common/footer.jsp" />
+</body>
+</html>

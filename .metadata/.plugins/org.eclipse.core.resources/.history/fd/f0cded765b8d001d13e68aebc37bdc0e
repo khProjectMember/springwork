@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- header -->
+	<jsp:include page="common/header.jsp" />
+	
+	<!-- 본문 -->
+	<div class="content">
+        <br><br>
+        <div class="innerOuter" style="padding: 5% 10%;">
+            <h2>게시판Top5</h2>
+            <br>
+            <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼 -->
+           		<a class="btn btn-secondary" style="float:right" href="enrollForm.bo"">글쓰기</a>
+            	<br>
+            <br>
+            <table id="boardList" class="table table-hover" align="center">
+                <thead>
+                    <tr>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>작성일</th>
+                        <th>첨부파일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<!-- 현재 조회수가 가장 높은 상위 5개를 조회하여 보여주기(ajax) -->
+                </tbody>
+            </table>
+         </div>
+    </div>
+	
+	<script type="text/javascript">
+		$(function(){
+			
+		});
+		
+		function topBoardList(){
+			
+		}
+	</script>
+	
+	<!-- footer -->
+	<jsp:include page="common/footer.jsp" />
+</body>
+</html>

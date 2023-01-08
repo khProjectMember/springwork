@@ -1,0 +1,28 @@
+body {
+  min-height: 100vh;
+}
+
+.input-form {
+  max-width: 680px;
+
+  margin-top: 80px;
+  padding: 32px;
+
+  background: #fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+ 
+}
+
+.field.tel-number div {
+  display: flex;
+}
+
+.field.tel-number div input:nth-child(1){
+  flex:2;
+}
+
+.field.tel-number div input:nth-child(2){
+  flex:1;
+}

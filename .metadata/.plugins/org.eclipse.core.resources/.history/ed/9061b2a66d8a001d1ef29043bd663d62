@@ -1,0 +1,10 @@
+package com.kh.spring.member.model.dao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class MemberDao {
+	@Autowired
+	private MemberDao mDao;
+	
+	private SqlSessionTemplate sqlSession;
+}

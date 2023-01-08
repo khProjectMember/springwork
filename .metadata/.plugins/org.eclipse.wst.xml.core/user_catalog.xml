@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <public publicId="-//mybatis.org//DTD Config 3.0//EN" uri="https://mybatis.org/dtd/mybatis-3-config.dtd"/>
+  <public publicId="-//mybatis.org//DTD Mapper 3.0//EN" uri="https://mybatis.org/dtd/mybatis-3-mapper.dtd"/>
+</catalog>

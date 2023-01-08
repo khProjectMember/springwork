@@ -1,0 +1,15 @@
+package com.kh.spring.member.model.vo;
+
+public class Member {
+	private String userId;
+	private String userPwd;
+	private String userName;
+	private String email;
+	private String gender;
+	private int age;
+	private String phone;
+	private String address;
+	private String enrollDate;
+	private String modifyDate;
+	private String status;
+}

@@ -1,0 +1,22 @@
+package com.kh.spring.board.model.vo;
+
+public class Board {
+	BOARD_NO
+	BOARD_TITLE
+	BOARD_WRITER
+	BOARD_CONTENT
+	ORIGIN_NAME
+	CHANGE_NAME
+	COUNT
+	CREATE_DATE
+	STATUS
+	private int boardNo;
+	private String boardTitle;
+	private String boardWriter;
+	private String boardContent;
+	private String originName;
+	private String changeName;
+	private int count;
+	private Date createDate;
+	private String status;
+}

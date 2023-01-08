@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>강좌목록</title>
+<link rel="stylesheet" href="resources/css/lect_list3.css">
+</head>
+<body>
+<jsp:include page="common/header.jsp" />
+
+<form id="" method="" action="" enctype="multipart/form-data">
+	<div id="wrap">
+	     <div id="content">
+	          <div class="inner">
+				<article class="movie_art">
+					  <h4 class="sr-only">영화 상세 정보</h4>
+					  <figure class="movie_fig">
+					    <img src="./img/영화목록페이지/포스터_위니브월드.png" 
+					         alt="위니브월드_poster" class="movie_poster">
+					    <figcaption class="movie_name">위니브 월드: 새로운 시대</figcaption>
+					  </figure>
+					
+					  <div class="information">
+					    <div class="genre_star">
+					      <div class="genre_div">
+					        <span class="genre">개요</span>
+					        <span class="genre_name">판타지</span>
+					      </div>
+					      <div class="star_div">
+					        <span class="star">평점</span>
+					        <img src="./img/별점/별점이미지.png" alt="star" class="star_img">
+					        <span class="star_num">9.05</span>
+					      </div>
+					    </div>
+					    <div class="release_div">
+					      <span class="release">개봉</span>
+					      <span class="release_num">2021.03.27</span>
+					    </div>
+					    <div class="actor_div">
+					      <span class="actor">출연</span>
+					      <span class="actor_name">라이캣, 소울곰, 개리씨</span>
+					    </div>
+					    <div class="atc_btn">                       
+					      <a href="#" class="reservation">예매하기</a>
+					      <a href="#" class="trailer">
+					        <img src="./img/영화목록페이지/아이콘_재생.png" alt="play" class="play_icon">
+					        예고편</a>
+					    </div>
+					  </div>
+					</article>
+	          </div>
+	     </div>
+	</div>
+</form>
+
+<jsp:include page="common/footer.jsp" />
+</body>
+</html>

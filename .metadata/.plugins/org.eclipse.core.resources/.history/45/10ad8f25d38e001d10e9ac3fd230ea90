@@ -1,0 +1,76 @@
+@charset "UTF-8";
+.navbar{
+    height: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+
+.hero-header{
+    height: 450px;
+    background-image: url("https://bakey-api.codeit.kr/files/629/images/hero_header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    }
+      
+.navbar #logo{
+    line-height: 60px;
+}
+
+.navbar img{
+    vertical-align: top;
+    border: blanchedalmond 5px solid;
+}
+
+.navbar #menu{
+    float: right;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar #menu li{
+    float: left;
+    margin-left: 50px;
+    line-height: 60px;
+}
+
+.navbar #menu li a{
+    color: #545454;
+    font-size: 13px;
+    text-decoration: none;
+}
+.lecture-list{
+    width: 735px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.lecture h3{
+    font-size: 24px;
+    color: #545454;
+    margin-top:60px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.lecture{
+    display: block;
+    width: 225px;
+    text-align: center;
+    text-decoration:none;
+    color: black;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.lecture-name{
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.clearfix{
+    clear: both;
+}

@@ -1,0 +1,7 @@
+package com.kh.spring.board.model.service;
+
+public interface BoardService {
+	//1.게시판 리스트 페이지
+	int selectListCount();
+	
+}

@@ -1,0 +1,10 @@
+package com.kh.spring.member.model.dao;
+
+import com.kh.spring.member.model.vo.Member;
+
+public class MemberDao {
+	public Member loginMember(SqlSessionTemplate sqlsession, Member m) {
+		
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.kh.spring.common.interceptor;
+
+public class LoginInterceptor {
+	/*
+	 	Interceptor(HandlerInterceptor)
+	 	해당 Controller가 실행되기전, 실행된 후에 낚아채서 실행할 내용 작성
+	 	로그인 유무판단, 회원권한 체크
+	 */
+}
