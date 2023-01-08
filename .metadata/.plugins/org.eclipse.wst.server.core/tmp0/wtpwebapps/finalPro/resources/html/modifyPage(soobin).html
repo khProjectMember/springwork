@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>樂受文化 악수문화센터</title>
+    
+        <!-- css -->
+        <link rel="stylesheet" href="../css/main.css">
+    
+        <!-- js -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    
+    
+    
+        <!-- 폰트 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    </head>
+<body>
+    <!--header--> 
+    <jsp:include page=""/>
+
+    <!--본문-->
+    <div class="content">
+        <br><br>
+        <div class="innerOuter">
+            <h2>마이페이지 수정하기</h2>
+            <br>
+
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="mem_id">* ID :</label><br>
+                    <input type="text" name="mem_id" ><br>
+
+                    <label for="mem_name">* Name :</label><br>
+                    <input type="text" name="mem_name" ><br>
+
+                    <label for="mem_email">&nbsp;Email :</label><br>
+                    <input type="text" name="mem_email" ><br>
+
+                    <label for="mem_age">&nbsp;Age :</label><br>
+                    <input type="text" name="mem_age" ><br>
+
+                    <label for="mem_phone">&nbsp;Phone :</label><br>
+                    <input type="text" name="mem_phone" ><br>
+
+                    <label for="mem_address">&nbsp;Address :</label><br>
+                    <input type="text" name="mem_address" ><br><br>
+
+                    &nbsp; Gender : &emsp;
+                    <input type="radio" name="gender" id="Male" value="M">
+                    <label for="Male">남자</label>&emsp;
+                    <input type="radio" name="gender" id="Female" value="F">
+                    <label for="Female">여자</label><br>
+                </div>
+                <br>
+                <div class="btns">
+                    <button type="submit">수정하기</button>
+                    <button type="button">회원탈퇴</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--footer-->
+    <jsp:include page=""/>
+</body>
+</html>

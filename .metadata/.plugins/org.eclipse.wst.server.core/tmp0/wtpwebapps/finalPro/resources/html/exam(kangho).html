@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="../css/exam.css">
+    <link rel="stylesheet" href="../css/exam(kangho).css">
+      
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="../js/exam(kangho).js"></script>
+
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">            
+            <div class="header">
+                <div class="header-top">
+                    <div class="user-info">
+                        <ul class="user">
+                            <li><a href="#">장바구니</a></li>
+                            <li><a href="#">마이페이지</a></li>
+                            <li><a href="#">로그인</a></li>
+                            <li><a href="#">회원가입</a></li>
+                        </ul>
+                    </div>
+                </div>                                 
+            </div>            
+        </div>
+    </div>
+        
+        <div id="main">
+        <h1><a href="#"><img src="../img/sejong logo.png" alt="세종문화회관"></a></h1>
+        <main>
+            <form action="#" method="post" id="loginFrm">
+                <fieldset style="border:0;">
+                    <legend class="skip">로그인양식</legend>
+                    <ul>
+                        <li>
+                            <span class="id_bg"> <!-- 배경이미지(메일) --></span>
+                            <span><input type="text" name="user_id" placeholder="아이디(이메일)"></span>
+                        </li>
+                        <li class="error id_error">아이디(이메일)는 이메일 형식으로 입력해주세요.</li>
+                        <li>
+                            <span class="pw_bg"><!-- 배경이미지(비밀번호) --></span>
+                            <span><input type="password" name="user_pw" placeholder="비밀번호"></span>
+                            <span class="pw_show_hide" title="문자보이기"></span>
+                        </li>
+                        <li class="error pw_error">비밀번호를 입력해주세요</li>
+                    </ul>
+                    <div class="btm">
+                        <p>
+                            <label>
+                                <input type="checkbox" name="login_y" id="login_y">
+                                <span>자동로그인</span>
+                            </label>
+                        </p>
+                        <a href="#" class="idpw_search">아이디(이메일)/비밀번호 찾기</a>
+                    </div>
+                    <button type="submit" id="login_btn">로그인</button>
+                </fieldset>
+            </form>
+            <a href="#" class="join_link">회원가입</a>
+        </main>
+        </div>
+        <footer>
+            All rights reserved.
+        </footer>      
+</body>
+</html>

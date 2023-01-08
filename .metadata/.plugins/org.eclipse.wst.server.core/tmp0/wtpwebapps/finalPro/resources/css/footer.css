@@ -1,0 +1,51 @@
+/* 초기화 */
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* 폰트 */
+
+body, input, textarea, select, button a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 레이아웃 초기화 */
+
+#wrap {width: 100%;}
+#header{width: 100%; height: 200px;}
+#banner {width: 100%; height: 500px;}
+#content {width: 100%; height: 1400px; position: relative;}
+#footer{width: 100%; height: 300px; margin-top: 200px; background-color: #f1f1f1;}
+
+.inner {margin: 0 200px 0 200px; height: inherit;}
+
+.all {width: 1700px; height: 100%;}
+
+/* 푸터 */
+
+.footer {width: 100%; height: inherit; display: flex; flex-direction: column;}
+.footer .footer_info {width: 100%; height: 70px;}
+.footer .footer_info ul {display: flex; margin-top: 20px;}
+.footer .footer_info ul li {padding:0 20px; border-right: 1px solid #222;}
+.footer .footer_info ul li:last-child {border-right: none;}
+.footer .footer_info ul li a {color: #222; text-decoration: none; font-size: 14px; font-weight: 400; overflow: hidden; white-space: nowrap;}
+.footer .footer_content {display: flex; flex-direction: column; width: 100%; height: 230px;}
+.footer .footer_content .mediabox {display: flex; margin-left: auto;}
+.footer .footer_content .mediabox .socialmedia {margin-right: 20px;}
+.footer .footer_content .mediabox .socialmedia a img {width: 45px; height: 45px; overflow: hidden; white-space: nowrap;}
+.footer .footer_content .footer_txt {display: flex; flex-direction: column;}
+.footer .footer_content .footer_txt span {color: #222; font-size: 14px; font-weight: 400; padding: 1px 0; overflow: hidden; white-space: nowrap;}
+.footer .footer_content .footer_txt .f_textbox {display: flex;}
+.footer .footer_content .footer_txt .f_textbox .span_index {margin-left: auto;}
+
+@media only screen and (max-width: 1700px) {
+    #header {width: 1700px;}
+    #banner {width: 1700px;}
+    #content {width: 1700px;}
+    #footer {width: 1700px;}
+    .header .nav_bar {width: 1700px;}
+}
