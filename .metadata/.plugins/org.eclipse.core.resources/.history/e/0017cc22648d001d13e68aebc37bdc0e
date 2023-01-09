@@ -1,5 +1,0 @@
-package com.kh.spring.common.interceptor;
-
-public class LoginInterceptor {
-
-}

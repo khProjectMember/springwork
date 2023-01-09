@@ -1,5 +1,2 @@
 #Tomcat publish data
-#Mon Jan 09 15:04:11 KST 2023
->>>>>>>=Stashed changes
-=\=\=\=\=\=\=
-<<<<<<<=Updated upstream
+#Mon Jan 09 15:24:05 KST 2023
