@@ -1,0 +1,104 @@
+
+
+/* 수강신청 */
+#content.prodView .tagArea{margin-bottom:15px;display:block;margin-left:0;margin-top:0;z-index:1;height:33px;font-size:0;table-layout:fixed;display:table;}
+#content.prodView .tagArea > span.icoTag{display:inline-block;color:#fff;font-size:13px;font-family: 'Noto Sans KR';font-weight: 400;height:34px;line-height:34px;}
+#content.prodView .tagArea .data{display:inline-block;vertical-align:top;height:34px;}
+#content.prodView .tagArea .data span{display:inline-block;padding:0 12px;height:34px;color:#fff;font-size:13px;font-family: 'Noto Sans KR';font-weight: 400;vertical-align:top;background:#000;line-height:34px;}
+#content.prodView .tagArea .data span:first-child::after{display:none;}
+#content.prodView .tagArea .data span:first-of-type{margin-left:0;}
+#content.prodView .tagArea .data span.m_groub{margin-left:5px;border:1px solid #222;background:#fff;color:#222;line-height:31px;}
+
+.prodViewTitArea{position:relative;padding:21px 220px 46px 0;text-align:left;border-bottom:3px solid #000;}
+.prodViewTitArea .tit{font-family: 'Noto Sans KR';font-weight: 500;font-size:48px;color:#222;margin-bottom:20px;line-height:1.2;word-break:keep-all;}
+.prodViewTitArea .txt{font-size:18px;color:#222;}
+.prodViewTitArea .btnArea{position:absolute;right:0;top:0;}
+.prodViewTitArea .btnCart{padding-top:102px;display:inline-block;width:92px;text-align:center;background:url("/resources/img/ex1.jpg") no-repeat 0 0;}
+.prodViewTitArea .btnCart span{font-size:14px;color:#222;}
+.prodViewTitArea .btnPayment{margin-left:20px;padding-top:102px;display:inline-block;width:92px;text-align:center;background:url("/resources/img/btn_pay_big.png") no-repeat 0 0;}
+.prodViewTitArea .btnPayment span{font-size:14px;color:#222;}
+.prodViewTitArea .btnReady{margin-left:20px;padding-top:102px;display:inline-block;width:92px;text-align:center;background:url("/resources/img/ex1.jpg") no-repeat 0 0;}
+.prodViewTitArea .btnReady span{font-size:14px;color:#222;}
+
+#content.prodView .detailArea{position:relative;padding:60px 20px 40px 20px;margin:0 0 30px 0;border-bottom:1px solid #999;}
+#content.prodView .detailArea:after{display:block;content:"";clear:both}
+#content.prodView .detailArea .snsArea{position:absolute;right:20px;top:19px;}
+#content.prodView .detailArea .snsArea > a{display:inline-block;width:23px;height:23px;text-indent:-9999px;background:url("/resources/img/ico_share.png") no-repeat left top;}
+#content.prodView .detailArea .snsArea div{display:none;position:absolute;top:35px;left:-35px;background:#fff;border:1px solid #ccc;padding:25px;width:97px;}
+#content.prodView .detailArea .snsArea div:before{display:block;content:"";width:13px;height:9px;position:absolute;top:-9px;left:50%;margin-left:-6px;background:url("/resources/img/bg_arr.png") no-repeat left top;}
+#content.prodView .detailArea .snsArea div > a{display:block;font-size:12px;padding-top:46px;text-align:center;margin-bottom:15px;}
+#content.prodView .detailArea .snsArea div > a.btnKakao{background:url("/resources/img/ico_kakao.png") no-repeat center top;}
+#content.prodView .detailArea .snsArea div > a.btnFacebook{background:url("/resources/img/ico_facebook.png") no-repeat center top;}
+#content.prodView .detailArea .snsArea div > a.btnTwitter{background:url("/resources/img/ico_twitter.png") no-repeat center top;margin-bottom:0px;}
+#content.prodView .detailArea .snsArea.open div{display:block}
+#content.prodView .detailBox{width:100%;display:table;table-layout:fixed;}
+#content.prodView .detailBox .leftArea img{max-width:100%;}
+#content.prodView .detailBox .leftArea{display:table-cell;width:770px;padding-right:40px;vertical-align:top}
+#content.prodView .detailBox .leftArea .tit{line-height:1.0;margin:0 0 30px 0;font-size:24px;color:#222;font-family: 'Noto Sans KR';font-weight: 500;}
+#content.prodView .detailBox .leftArea .tit + .mb60{line-height:22px;}
+#content.prodView .detailBox .leftArea .imgBox{margin-bottom:40px;}
+#content.prodView .detailBox .leftArea dl{margin-bottom:40px;}
+#content.prodView .detailBox .leftArea dt{margin-bottom:20px;font-size:18px;color:#222;font-family: 'Noto Sans KR';font-weight: 500;}
+#content.prodView .detailBox .leftArea dd{font-size:16px;line-height:28px;word-break:keep-all;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;}
+#content.prodView .detailBox .leftArea dd li{position:relative;padding-left:10px;font-size:16px;color:#666;vertical-align:top;}
+#content.prodView .detailBox .leftArea dd li:after{position:absolute;left:0;top:13px;display:block;content:"";width:6px;height:1px;background:#666;}
+#content.prodView .detailBox .leftArea .subTit{font-size:18px;color:#222;font-family: 'Noto Sans KR';font-weight: 500;margin-bottom:20px;}
+#content.prodView .detailBox .leftArea .imgBox .txt{margin-top:15px;font-size:16px;color:#666;}
+#content.prodView .scheduleList li:first-child{margin-top:0;}
+#content.prodView .scheduleList li{position:relative;padding-left:40px;margin:15px 0 0 0;vertical-align:top;font-size:16px;color:#666;}
+#content.prodView .scheduleList li strong{position:absolute;left:0;display:inline-block;vertical-align:top;font-size:16px;color:#333;}
+#content.prodView .scheduleList.type01 li{padding-left:0}
+#content.prodView .detailBox .rightArea{display:table-cell;;width:350px;padding-left:40px;border-left:1px solid #ddd;}
+#content.prodView .thumbnailImg{width:310px;height:310px;overflow:hidden;margin-bottom:20px;background:url("/LDCS/resources/normal/img/default/") center center no-repeat;background-size:100% 100%;}
+#content.prodView .thumbnailImg img{width:100%;height:100%;}
+#content.prodView .requestInfoList{border-top:1px solid #000;margin-bottom:30px;}
+#content.prodView .requestInfoList li{border-bottom:1px solid #ccc;overflow:hidden;min-height:45px;padding:0 5px 0 10px;}
+#content.prodView .requestInfoList li dl{position:relative;display:table;table-layout:fixed;width:100%;vertical-align:middle;}
+#content.prodView .requestInfoList li dl dt{display:table-cell;width:100px;height:45px;vertical-align:middle;font-size:14px;color:#222;font-family: 'Noto Sans KR';font-weight: 500;}
+#content.prodView .requestInfoList li dl dd{display:table-cell;width:198px;vertical-align:middle;font-size:14px;color:#666;}
+#content.prodView .requestInfoList li dl dd strong{font-family: 'Noto Sans KR';font-weight: 500;}
+#content.prodView .requestInfoList li dl dd strong.sale:before{margin:-2px 5px 0 5px;display:inline-block;content:"";width:13px;height:9px;background:url("/resources/img/ex1.jpg") no-repeat 0 0;vertical-align:middle;}
+#content.prodView .requestInfoList li dl dd .btn{position:absolute;right:5px;top:50%;margin-top:-15px;}
+#content.prodView .requestInfoList li dl dd .time{display:block;padding:7px 60px 7px 0;line-height:22px;word-break:keep-all;word-wrap:break-word;}
+#content.prodView .inner > .btnArea{margin-bottom:60px;font-size:0;display:table;table-layout:fixed;width:100%;}
+#content.prodView .inner > .btnArea a{margin-left:15px;}
+#content.prodView .inner > .btnArea a:first-child{margin-left:0;}
+#content.prodView .btn.icoCart{width:225px;}
+#content.prodView .btn.icoCart span:before{vertical-align:middle;margin-top:-10px;margin-right:12px;display:inline-block;content:"";width:23px;height:29px;background:url("/resources/img/ex1.jpg") no-repeat left top;}
+#content.prodView .btn.icoPay{width:192px;}
+#content.prodView .btn.icoPay span:before{vertical-align:middle;margin-top:-5px;margin-right:12px;display:inline-block;content:"";width:29px;height:23px;background:url("/resources/img/ex1.jpg") no-repeat left top;}
+#content.prodView .btn.icoReady{width:226px;}
+#content.prodView .btn.icoReady span:before{vertical-align:middle;margin-top:-5px;margin-right:12px;display:inline-block;content:"";width:29px;height:27px;background:url("/resources/img/ex1.jpg") no-repeat left top;}
+#content.prodView .searchWord{overflow:hidden;margin-top:55px;}
+#content.prodView .searchWord strong{float:left;display:block;width:49px;height:49px;line-height:49px;color:#fff;text-align:center;background:url("/resources/img/ex1.jpg") no-repeat center top}
+#content.prodView .searchWord > div{padding-left:20px;display:table;min-height:48px;}
+#content.prodView .searchWord div div{display:table-cell;vertical-align:middle}
+#content.prodView .searchWord div div span{display:inline-block;margin-right:15px;line-height:22px;}
+#content.prodView .rightArea > .btnArea{position:absolute;bottom:25px;right:0;}
+
+
+/* 수강 목록 카드형*/
+.prodList ul{margin:-17px 0 0 -24px;}
+.prodList ul:after{display:block;content:"";clear:both;height:1px;}
+.prodList ul li{width:272px;height:430px;background:#fff;margin:50px 0 0 24px;float:left;overflow:hidden;transition:all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); -webkit-transition:all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);}
+.prodList ul li:nth-child(-n+4){margin-top:0;}
+.prodList ul li .prodItem{transition:all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1); -webkit-transition:all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);}
+.prodList ul li:hover{-webkit-box-shadow: 0px 30px 50px -20px rgba(128,128,128,1);-moz-box-shadow:  0px 30px 50px -20px rgba(128,128,128,1);box-shadow:  0px 30px 50px -20px rgba(128,128,128,1);}
+.prodList ul li:hover .prodItem{margin-top:-98px;}
+.prodList ul li .prodItem .thum{width:272px;height:272px;background:url("/resources/img/ex1.jpg") center center no-repeat;background-size:100% 100%;}
+.prodList ul li .prodItem .thum img{width:100%;height:100%;}
+.prodList ul li .prodItem .btnProd{padding:25px 0 30px 0}
+.prodList ul .noData, .prodList.listType ul .noData{background:none;height:280px;display:table;}
+.prodList ul .noData > div{border-top:1px solid #222;border-bottom:1px solid #ccc;text-align:center;display:table-cell;vertical-align:middle}
+.prodList ul .noData > div p{font-size:22px;color:#222}
+.prodList ul .noData > div em{color:#e12a29;}
+.prodItem{position:relative;}
+.prodItem span.thum{width:272px;height:272px;}
+.prodItem span.thum img{width:100%;height:100%;}
+
+
+
+
+
+
+
