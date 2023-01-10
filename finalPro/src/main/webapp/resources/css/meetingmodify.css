@@ -1,0 +1,126 @@
+/* 초기화 */
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* 폰트 */
+
+body, input, textarea, select, button a {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 레이아웃 초기화 */
+
+#wrap {width: 100%;}
+#header{width: 100%; height: 200px;}
+#content {width: 100%; height: 1200px; position: relative;}
+#footer{width: 100%; height: 300px; margin-top: 200px; background-color: #f1f1f1;}
+
+.inner {margin: 0 200px 0 200px; height: inherit;}
+
+.all {width: 1700px; height: 100%;}
+
+
+/* 헤더 */
+
+.header {width: 100%; height: inherit; display: flex; flex-direction: column;}
+.header .header-top {width: 100%; background-color: #f1f1f1; display: flex; height: 50px; }
+.header .header-top .user-info {display: flex; margin-left: auto;}
+.header .header-top .user-info ul {display: flex;}
+.header .header-top .user-info ul li {margin: 10px 20px 0px 0px;}
+.header .header-top .user-info ul li a {color: #222; text-decoration: none; font-size: 14px; font-weight: 500; overflow: hidden; white-space: nowrap;}
+.header .header-top .user-info ul li a:hover {color: #999;}
+.header .header-mid {display: flex; height: 150px; margin: 0 50px 0 50px; border-bottom: 1px solid #bdbdbd;}
+.header .header-mid .mid-f {flex: 1; margin: auto;}
+.header .header-mid .mid-f h1 {margin: auto; text-align: center; font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 60px; }
+.header .header-mid .mid-f h1 a {color: #222; overflow: hidden; white-space: nowrap;}
+.header .header-mid .mid-m {flex: 2; margin: auto;}
+.header .header-mid .mid-m .category {display: flex;}
+.header .header-mid .mid-m .category ul {display: flex; margin: auto;}
+.header .header-mid .mid-m .category ul li {padding: 10px 35px 10px 35px;}
+.header .header-mid .mid-m .category ul li a {text-decoration: none; color: #222; font-size: 25px; font-weight: 500; overflow: hidden; white-space: nowrap;}
+.header .header-mid .mid-b {flex: 1; display: flex; justify-content: flex-end;}
+.header .header-mid .mid-b .button_box {margin: auto 0 auto 0;}
+.header .header-mid .mid-b .button_img {display: flex; margin-right: auto;}
+.header .header-mid .mid-b .button_img button {margin-right: 20px; background-color: #fff; border: none; cursor: pointer;}
+.header .header-mid .mid-b .button_img button:last-child {margin-right: 60px; }
+.header .header-mid .mid-b .button_img button img {width: 35px; height: 35px; overflow: hidden; white-space: nowrap;}
+.header .nav_bar {display: none; position: absolute; width: 100%; height: 200px; background-color: #fff; margin-top: 200px; z-index: 10;}
+.header .nav_bar .inner {display: flex; flex-wrap: wrap; margin: 0 400px;}
+.header .nav_bar .inner .nav_info {flex: 1; display: flex; flex-direction: column; align-items: center;}
+.header .nav_bar .inner .nav_info h4 {margin: 10px 0; overflow: hidden; white-space: nowrap;}
+.header .nav_bar .inner .nav_info ul {display: flex; flex-direction: column; width: 100%; border-top: 1px solid #555;}
+.header .nav_bar .inner .nav_info ul li {margin-bottom: 5px; }
+.header .nav_bar .inner .nav_info ul li:first-child {margin-top: 5px;}
+.header .nav_bar .inner .nav_info ul li a {color: #222; font-size: 15px; font-weight: 400; overflow: hidden; white-space: nowrap;}
+.header .nav_bar .inner .nav_info ul li a:hover {color: rgb(130, 130, 130);}
+
+
+
+.header .h_form {width: 100%; height: 150px; position: absolute; margin-top: 25px; display: none;}
+.header .h_form .search_hide {width: 100%; height: 150px; display: block;}
+.header .h_form .search_hide .search_bar {width: 600px; height: 60px; background-color: #fff; border-radius: 40px; margin: 0 auto; display: flex; border: 5px solid #7d7d7d;}
+.header .h_form .search_hide .search_bar .search_array {margin: auto; display: flex;}
+.header .h_form .search_hide .search_bar .search_array .search_select {margin: auto;}
+.header .h_form .search_hide .search_bar .search_array .search_select select {width: 100px; height: 30px; outline: none; border: 1px solid #dfdfdf; padding: 0 3px;}
+.header .h_form .search_hide .search_bar .search_array .search_inp {display: flex;}
+.header .h_form .search_hide .search_bar .search_array .search_inp input {border: none; width: 300px; height: 30px; padding-left: 15px; outline: none; }
+.header .h_form .search_hide .search_bar .search_array .search_inp button {width: 30px; height: 30px; margin: 0 10px; background-color: #fff; border: none; cursor: pointer;}
+.header .h_form .search_hide .search_bar .search_array .search_inp button img{width: 25px; height: 25px;}
+
+/* 컨텐츠 */
+
+.content_fir {width: 100%; display: flex; justify-content: flex-end;}
+.content_fir .nav_box {margin: 50px 0;}
+.content_fir .nav_box ul {display: flex;}
+.content_fir .nav_box ul li a {font-size: 14px; color: #666; font-weight: 400; padding: 0 7px; overflow: hidden; white-space: nowrap;}
+.content_fir .nav_box ul li .nav_a {border-right: 1px solid #bdbdbd;}
+.content_fir .nav_box ul li a img {width: 20px; height: 20px; vertical-align: bottom; overflow: hidden; white-space: nowrap;}
+.content_sec {display: flex; flex-direction: column; }
+.content_sec h1 {margin: auto; margin-top: 50px; margin-bottom: 50px; font-size: 50px;}
+.content_sec .textbox {width: 100%; margin-top: 75px; border-top: 1px solid #000;}
+.content_sec .textbox form {width: 100%; display: flex; flex-direction: column;}
+.content_sec .textbox form table {width: 100%; border-collapse: collapse;}
+.content_sec .textbox form table tbody tr {height: 80px;}
+.content_sec .textbox form table tbody .th_textarea {height: 500px;}
+.content_sec .textbox form table tbody tr th {padding: 20px 10px; border-bottom: 1px solid #bdbdbd; background-color: #f1f1f1;}
+.content_sec .textbox form table tbody tr td {padding: 20px 15px; border-bottom: 1px solid #bdbdbd;}
+.content_sec .textbox form table tbody tr td .title_input {width: 100%; height: 40px; padding: 0 10px; font-size: 15px; font-weight: 500; box-sizing: border-box;}
+.content_sec .textbox form table tbody tr td select {padding: 0 10px; width: 100%; height: 40px; font-size: 15px;}
+.content_sec .textbox form table tbody tr td .nick_input {width: 100%; height: 40px; padding: 0 10px; font-size: 15px; font-weight: 500; box-sizing: border-box; background-color: aliceblue; border: 0.1px solid #000;}
+.content_sec .textbox form table tbody tr td .text_content {border: none;}
+.content_sec .postbox {display: flex; width: 100%; height: 100px;}
+.content_sec .postbox .homebox {flex: 1; margin: auto 0;}
+.content_sec .postbox .homebox button {width: 100px; height: 50px; color: #000; background-color: #fff; cursor: pointer; font-size: 16px; font-weight: 500; border: 0.1px solid #000;}
+.content_sec .postbox .modifybox {flex: 1; margin: auto 0; display: flex; justify-content: flex-end;}
+.content_sec .postbox .modifybox button {width: 100px; height: 50px; margin-right: 10px; color: #fff; background-color: #000; cursor: pointer; font-size: 16px; font-weight: 500; border: 0.1px solid #000;}
+.content_sec .postbox .modifybox button:last-child {margin-right: 20px; color: #000; background-color: rgba(255, 0, 0, 0.587);}
+
+/* 푸터 */
+
+.footer {width: 100%; height: inherit; display: flex; flex-direction: column;}
+.footer .footer_info {width: 100%; height: 70px;}
+.footer .footer_info ul {display: flex; margin-top: 20px;}
+.footer .footer_info ul li {padding:0 20px; border-right: 1px solid #222;}
+.footer .footer_info ul li:last-child {border-right: none;}
+.footer .footer_info ul li a {color: #222; text-decoration: none; font-size: 14px; font-weight: 400; overflow: hidden; white-space: nowrap;}
+.footer .footer_content {display: flex; flex-direction: column; width: 100%; height: 230px;}
+.footer .footer_content .mediabox {display: flex; margin-left: auto;}
+.footer .footer_content .mediabox .socialmedia {margin-right: 20px;}
+.footer .footer_content .mediabox .socialmedia a img {width: 45px; height: 45px; overflow: hidden; white-space: nowrap;}
+.footer .footer_content .footer_txt {display: flex; flex-direction: column;}
+.footer .footer_content .footer_txt span {color: #222; font-size: 14px; font-weight: 400; padding: 1px 0; overflow: hidden; white-space: nowrap;}
+.footer .footer_content .footer_txt .f_textbox {display: flex;}
+.footer .footer_content .footer_txt .f_textbox .span_index {margin-left: auto;}
+
+@media only screen and (max-width: 1700px) {
+    #header {width: 1700px;}
+    #banner {width: 1700px;}
+    #content {width: 1700px;}
+    #footer {width: 1700px;}
+    .header .nav_bar {width: 1700px;}
+}

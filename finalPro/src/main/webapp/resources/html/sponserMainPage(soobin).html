@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>樂受文化 악수문화센터</title>
+    
+        <!-- css -->
+        <link rel="stylesheet" href="../css/main.css">
+    
+        <!-- js -->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    
+    
+    
+        <!-- 폰트 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    </head>
+<body>
+     <!--header--> 
+     <jsp:include page=""/>
+
+    <!--본문-->
+    <div>
+        <h2>기부금 신청하기</h2>
+        <hr>
+    </div>
+
+    <div>
+        <img src="" alt="기부금종류 선택">
+        <img src="" alt="화살표">
+        <img src="" alt="기부자 정보 입력">
+        <img src="" alt="화살표">
+        <img src="" alt="기부금 납입방법">
+        <img src="" alt="화살표">
+        <img src="" alt="기부완료">
+    </div>
+
+    <div>
+        <h4>기부금 종류 선택</h4>
+        <h4>기부자 정보 입력</h4>
+        <h4>기부금 납입방법</h4>
+        <h4>기부완료</h4>
+    </div><br><br>
+
+    <form action="" method="">
+        <div>
+            <h3>기부금 방식</h3>
+            <hr>
+            <table>
+                <th>후원방식</th>
+                <td>&emsp;<span><input type="radio" value=""><label for="">정기후원</label>
+                    &emsp;<input type="radio" value=""><label for="">일시후원</label></span>
+                </td>
+            </table><br>
+        </div>
+        <hr>
+
+        <div>
+            <h3>사업후원 방식</h3>
+            <table>
+                <th>후원방식</th>
+                <td>
+                    <div>
+                        <input type="checkbox" value=""><label for="">국내사업후원(국내 취약계층 아동의 영양지원, 위기지원, 꿈 지원을 위한 사업을 합니다.)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value=""><label for="">긴급구호사업후원(국내 취약계층 아동의 영양지원, 위기지원, 꿈 지원을 위한 사업을 합니다.)</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value=""><label for="">전체사업후원(국내 취약계층 아동의 영양지원, 위기지원, 꿈 지원을 위한 사업을 합니다.)</label>
+                    </div>
+            </table>
+        </div>
+
+        <div>
+            <h3>기부금액</h3>
+            <div>
+                <ul>
+                    <li>
+                        <strong>긴급구호사업후원</strong>
+                            <span>
+                                <select name="" id="">
+                                    <option value="">10,000</option>
+                                    <option value="">20,000</option>
+                                    <option value="">30,000</option>
+                                    <option value="">50,000</option>
+                                    <option value="">100,000</option>
+                                    <option value="">직접입력</option>
+                                </select>
+                            </span>
+                            <input type="text">
+                            <span>
+                                원
+                            </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit">기부하기</button>
+        </div>
+
+    </form>
+    <!--footer-->
+    <jsp:include page=""/>
+</body>
+</html>
