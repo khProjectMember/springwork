@@ -11,8 +11,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="resources/css/header.css">
-    <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/.css">
+    
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -91,7 +90,7 @@
                         <div class="nav_info">
                             <h4>커뮤니티</h4>
                             <ul>
-                                <li><a href="">공지사항/이벤트</a></li>
+                                <li><a href="notice.bo">공지사항/이벤트</a></li>
                                 <li><a href="">모임게시판</a></li>
                                 <li><a href="">수강생 후기</a></li>
                                 
