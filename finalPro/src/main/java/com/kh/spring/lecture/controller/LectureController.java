@@ -15,6 +15,9 @@ public class LectureController {
 	private LectureService lService;
 
 	@RequestMapping("detail.le")
+	public String detailView() {
+		return "lecture/lectureDetailView";
+	}
 	/*public ModelAndView selectBoard(int lno, ModelAndView mv) {
 		int result = lService.increaseCount(lno);
 		if(result > 0) {
@@ -27,8 +30,4 @@ public class LectureController {
 		}
 		return mv;
 	}*/
-	public String selectBoard() {
-		return "lecture/lectureDetailView";
-	}
-	
 }

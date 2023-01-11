@@ -4,6 +4,4 @@ import com.kh.spring.lecture.model.vo.Lecture;
 
 public interface LectureService {
 
-	Lecture selectLecture(int lno);
-
 }
