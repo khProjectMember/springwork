@@ -101,7 +101,7 @@
                         <div class="reco">
                             <ul class="reco_ul">
                                 <li>
-                                    <a href="#" class="over_mouse">
+                                    <a href="detail.le" class="over_mouse">
                                         <div class="img_box">
                                             <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
                                         </div>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="lectureMapper">
+	<resultMap type="Lecture" id="lectureResult">
+		<result column="lec_no" property="lecNo"/>
+		<result column="lec_name" property="lecName"/>
+		<result column="lec_sdate" property="lecSdate"/>
+		<result column="lec_edate" property="lecEdate"/>
+		<result column="lec_info" property="lecInfo"/>
+		<result column="lec_stime" property="lecStime"/>
+		<result column="lec_etime" property="lecEtime"/>
+		<result column="lec_count" property="lecCount"/>
+		<result column="lec_file" property="lecFile"/>
+		<result column="lec_bcatg" property="lecBcatg"/>
+		<result column="lec_scatg" property="lecScatg"/>
+		<result column="lec_price" property="lecPrice"/>
+		<result column="lec_grade" property="lecGrade"/>
+		<result column="lec_jnum" property="lecJnum"/>
+		<result column="lec_cnum" property="lecCnum"/>
+		<result column="member_no" property="memberNo"/>
+		<result column="tea_no" property="teaNo"/>
+		<result column="loc_no" property="locNo"/>
+	</resultMap>
+	<resultMap type="Apply" id="applyResult">
+		<result column="signup_no" property="signupNo" />
+		<result column="mem_no" property="memNo" />
+		<result column="lec_no" property="lecNo" />
+		<result column="signup_status" property="signupStatus" />
+	</resultMap>
+	<resultMap type="Wish" id="wishResult">
+		<result column="wish_no" property="wishNo" />
+		<result column="mem_no" property="memNo" />
+		<result column="lec_no" property="lecNo" />
+	</resultMap>
+	<select id="selectListCount" resultType="_int">
+		select count(*)
+			from board
+		where status = 'Y'
+	</select>
+	<select id="selectList" resultMap="boardResult">
+		select board_no
+			 , board_title
+			 , board_writer
+			 , count
+			 , to_char(create_date,'YYYY-MM-DD') as create_date
+			 , origin_name
+			from board
+		where status = 'Y'
+		order by board_no desc
+	</select>
+	
+	<update id="increaseCount">
+		update board
+			set count = count + 1
+		where board_no = #{ boardNo } and status = 'Y'
+	</update>
+	
+	<select id="selectBoard" resultMap="boardResult">
+		select board_no
+			 , board_title
+			 , board_writer
+			 , board_content
+			 , count
+			 , to_char(create_date,'YYYY-MM-DD') as "create_date"
+			 , origin_name
+			 , change_name
+			from board
+		where board_no = #{ boardNo }
+	</select>
+	<insert id="insertBoard">
+		insert into board(board_no, board_title, board_writer, board_content, origin_name, change_name)
+			values(seq_bno.nextval, #{boardTitle}, #{boardWriter}, #{boardContent}, #{originName}, #{changeName})
+	</insert>
+
+</mapper>
