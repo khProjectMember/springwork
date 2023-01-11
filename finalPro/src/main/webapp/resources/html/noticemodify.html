@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+     <!-- css -->
+    <link rel="stylesheet" href="../css/noticemodify.css">
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    
+
+
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+
+    <!-- 서머노트Api -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">            
+            <div class="header">
+                <div class="header-top">
+                    <div class="user-info">
+                        <ul class="user">
+                            <li><a href="#">장바구니</a></li>
+                            <li><a href="#">마이페이지</a></li>
+                            <li><a href="#">로그인</a></li>
+                            <li><a href="#">회원가입</a></li>
+                        </ul>
+                    </div>
+                </div>                
+                <div class="header-mid">
+                    <div class="mid-f">
+                        <h1>
+                            <a href="#">樂受文化</a>
+                        </h1>
+                    </div>
+                    <div class="mid-m">
+                        <div class="category">
+                            <ul class="nav_category">
+                                <li><a href="">수강안내</a></li>
+                                <li><a href="">시설안내</a></li>
+                                <li><a href="">커뮤니티</a></li>
+                                <li><a href="">고객센터</a></li>                            
+                            </ul>
+                        </div>
+                    </div>                    
+                    <div class="mid-b">
+                        <div class="button_box">
+                            <div class="button_img">                            
+                                <button type="button"><img src="../img/icons8-달력-32.png" alt="달력"></button>
+                                <button type="button"><img src="../img/icons8-하트-50.png" alt="찜"></button>
+                                <button type="button" class="main_btn"><img src="../img/icons8-수색-30.png" alt="검색"></button>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="nav_bar">
+                    <div class="inner">
+                        <div class="nav_info">
+                            <h4>강좌안내</h4>
+                            <ul>
+                                <li><a href="">수강신청</a></li>
+                                <li><a href="">강좌목록</a></li>
+                                <li><a href="">강좌스케줄</a></li>
+                                <li><a href="">신청방법</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_info">
+                            <h4>시설안내</h4>
+                            <ul>
+                                <li><a href="">개요 및 시설</a></li>
+                                <li><a href="">시설현황</a></li>
+                                <li><a href="">이용안내</a></li>
+                                <li><a href="">오시는 길</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_info">
+                            <h4>커뮤니티</h4>
+                            <ul>
+                                <li><a href="">공지사항/이벤트</a></li>
+                                <li><a href="">모임게시판</a></li>
+                                <li><a href="">수강생 후기</a></li>
+                                
+                            </ul>
+                        </div>
+                        <div class="nav_info">
+                            <h4>고객센터</h4>
+                            <ul>
+                                <li><a href="">1:1문의</a></li>
+                                <li><a href="">자주하는문의</a></li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+                <form action="" method="" class="h_form">
+                    <div class="search_hide">
+                        <div class="search_bar">
+                            <div class="search_array">
+                                <div class="search_select">
+                                    <select name="" id="">
+                                        <option value="0">전체검색</option>
+                                        <option value="강좌">강좌</option>
+                                        <option value="시설">시설</option>
+                                        <option value="커뮤니티">커뮤니티</option>                                    
+                                    </select>
+                                </div>                        
+                                <div class="search_inp">
+                                    <input type="text" id="" name="">
+                                    <button type="submit"><img src="../img/icons8-수색-30.png" alt="찾기"></button>
+                                    <button type="button" class="search_cancle"><img src="../img/icons8-지우다-24.png" alt="취소"></button>
+                                    <input type="hidden">
+                                </div>       
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>    
+                </div>
+            </div>            
+        </div>
+    </div>
+
+    <div id="wrap">
+        <div id="content">
+            <div class="inner">
+                <div class="content_fir">
+                    <div class="nav_box">
+                        <ul>
+                            <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="#" class="nav_a">커뮤니티</a></li>
+                            <li><a href="#">공지사항/이벤트</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content_sec">
+                    <h1>공지사항/이벤트 수정</h1>
+                    <div class="textbox">
+                        <form action="" method="post">
+                            <table>
+                                <colgroup>
+                                    <col style="width: 15%;">
+                                    <col style="width: 35%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 35%;">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">제목</th>
+                                        <td colspan="3"><input type="text" name="" id="" class="title_input" placeholder="제목을 입력해주세요."></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">카테고리</th>
+                                        <td>
+                                            <select name="" id="">
+                                                <option value="체육">체육</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="요리">요리</option>
+                                                <option value="예능">예능</option>
+                                            </select>
+                                        </td>
+                                        <th scope="row">작성자</th>
+                                        <td><input type="text" placeholder="작성자 닉네임" class="nick_input" readonly></td>
+                                    </tr>
+                                    <tr class="th_textarea">
+                                        <th scope="row">내용</th>
+                                        <td colspan="3">
+                                            <textarea id="summernote" name="editordata" class="text_content"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="postbox">
+                                <div class="homebox">
+                                    <button onclick="location.href=#">목록</button>
+                                </div>
+                                <div class="modifybox">
+                                    <button type="submit">수정</button>
+                                    <button type="reset" class="cancle">취소</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <div id="wrap">
+        <div id="footer">
+            <div class="inner">
+                <div class="footer">
+                    <div class="footer_info">
+                        <ul>
+                            <li><a href="">회사소개</a></li>
+                            <li><a href="">이용약관</a></li>
+                            <li><a href="">개인정보처리방침</a></li>
+                            <li><a href="">영상정보처리운영관리방침</a></li>
+                            <li><a href="">이메일무단수집거부</a></li>
+                        </ul>                                                
+                    </div>
+                    <div class="footer_content">
+                        <div class="mediabox">
+                            <div class="socialmedia">
+                                <a href=""><img src="../img/icons8-인스-타-그램-48.png" alt="인스타그램"></a>
+                                <a href=""><img src="../img/icons8-youtube-squared-48.png" alt="유튜브"></a><br>
+                            </div>
+                        </div>
+                        <div class="footer_txt">                            
+                            <span>상호명: {사업자명}</span>
+                            <span>대표자: {대표자 성} {대표자 이름}</span>
+                            <span>사업자등록번호: {사업자 등록 번호}</span>
+                            <span>주소: {주소}</span>
+                            <span>이메일:</span>
+                            <span>호스팅서비스제공자(커머스오픈시): (주)비마이프렌즈</span>
+                            <div class="f_textbox">
+                                <span>Ⓒ {해당년도}. {사업자명} Inc. All right reserved.</span>
+                                <span class="span_index"> * 아이콘의 저작권은 icons8.kr 에 있습니다. </span>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // 검색 버튼 fade
+        $(function() {
+            $('.main_btn').on('click', function(e) {
+                $('.h_form').fadeIn(300)
+                
+                $('.search_cancle').on('click', function() {
+                    $('.h_form').fadeOut(300)
+                })
+            })
+        })
+
+        // 강좌 이미지 설명 hover
+        $(function() {
+            $('.over_mouse').mouseover(function() {
+                $(this).find('.img_info').stop().fadeIn(400);
+            }).mouseleave(function() {
+                $(this).find('.img_info').stop().fadeOut(400);
+            })
+        })
+
+        // 헤더 카데고리 바 숨겨진 div
+        $(function() {
+            $('.nav_category').mouseover(function() {
+                $('.nav_bar').stop().fadeIn(1);
+            })
+            $($('.nav_bar')).mouseleave(function() {
+                $(this).fadeOut(1);
+            })
+            
+            
+        })
+
+        // 서머노트
+      
+    
+        $('#summernote').summernote({
+            height: 400,                 // 에디터 높이
+            minHeight: 400,             // 최소 높이
+            maxHeight: 400,             // 최대 높이
+            focus: true,
+            toolbar: [
+                // 글꼴 설정
+                ['fontname', ['fontname']],
+                // 글자 크기 설정
+                ['fontsize', ['fontsize']],
+                // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+                ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                // 글자색
+                ['color', ['forecolor','color']],
+                // 표만들기
+                ['table', ['table']],
+                // 글머리 기호, 번호매기기, 문단정렬
+                ['para', ['ul', 'ol', 'paragraph']],
+                // 줄간격
+                ['height', ['height']],
+                // 그림첨부, 링크만들기, 동영상첨부
+                ['insert',['picture','link','video']],
+                // 코드보기, 확대해서보기, 도움말
+                ['view', ['codeview','fullscreen', 'help']]
+            ],
+            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+        });
+
+        $('.cancle').on('click', function() {
+            $('#summernote').summernote('reset');
+        })
+
+        $(window).scroll(function( ){  //스크롤이 움직일때마다 이벤트 발생 
+            
+            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+            if(position < 1500) {
+                $('.quickmenu').stop().animate({top:position+"px"}, 1000); //해당 오브젝트 위치값 재설정
+            }
+        });
+            
+        const swiper = new Swiper('.swiper', {
+            
+            loop: true,
+            // speed: 10000,
+            // loopedSlides: 5,
+            // observer:true,
+            // observeParents:true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            autoplay: {
+                delay: 3000,
+                // stopOnLastSlide: false,
+                // disableOnInteraction: true,
+            }
+
+            // freeMode: {
+            //     enabled: true,
+            //     sticky: true,
+            // },
+
+        });
+          
+    </script>
+</body>
+</html>

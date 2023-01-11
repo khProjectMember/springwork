@@ -17,13 +17,13 @@ body, input, textarea, select, button a {
 
 #wrap {width: 100%;}
 #header{width: 100%; height: 200px;}
-#banner {width: 100%; height: 500px;}
-#content {width: 100%; height: 1400px; position: relative;}
+#content {width: 100%; height: 1200px; position: relative;}
 #footer{width: 100%; height: 300px; margin-top: 200px; background-color: #f1f1f1;}
 
 .inner {margin: 0 200px 0 200px; height: inherit;}
 
 .all {width: 1700px; height: 100%;}
+
 
 /* 헤더 */
 
@@ -59,7 +59,7 @@ body, input, textarea, select, button a {
 .header .nav_bar .inner .nav_info ul li a {color: #222; font-size: 15px; font-weight: 400; overflow: hidden; white-space: nowrap;}
 .header .nav_bar .inner .nav_info ul li a:hover {color: rgb(130, 130, 130);}
 
-/* 헤더 - 검색창 */
+
 
 .header .h_form {width: 100%; height: 150px; position: absolute; margin-top: 25px; display: none;}
 .header .h_form .search_hide {width: 100%; height: 150px; display: block;}
@@ -71,3 +71,57 @@ body, input, textarea, select, button a {
 .header .h_form .search_hide .search_bar .search_array .search_inp input {border: none; width: 300px; height: 30px; padding-left: 15px; outline: none; }
 .header .h_form .search_hide .search_bar .search_array .search_inp button {width: 30px; height: 30px; margin: 0 10px; background-color: #fff; border: none; cursor: pointer;}
 .header .h_form .search_hide .search_bar .search_array .search_inp button img{width: 25px; height: 25px;}
+
+/* 컨텐츠 */
+
+.content_fir {width: 100%; display: flex; justify-content: flex-end;}
+.content_fir .nav_box {margin: 50px 0;}
+.content_fir .nav_box ul {display: flex;}
+.content_fir .nav_box ul li a {font-size: 14px; color: #666; font-weight: 400; padding: 0 7px; overflow: hidden; white-space: nowrap;}
+.content_fir .nav_box ul li .nav_a {border-right: 1px solid #bdbdbd;}
+.content_fir .nav_box ul li a img {width: 20px; height: 20px; vertical-align: bottom; overflow: hidden; white-space: nowrap;}
+.content_sec {display: flex; flex-direction: column; }
+.content_sec h1 {margin: auto; margin-top: 50px; margin-bottom: 50px; font-size: 50px;}
+.content_sec .textbox {width: 100%; margin-top: 75px; border-top: 1px solid #000;}
+.content_sec .textbox form {width: 100%; display: flex; flex-direction: column;}
+.content_sec .textbox form table {width: 100%; border-collapse: collapse;}
+.content_sec .textbox form table tbody {}
+.content_sec .textbox form table tbody tr {height: 80px;}
+.content_sec .textbox form table tbody .th_textarea {height: 500px;}
+.content_sec .textbox form table tbody tr th {padding: 20px 10px; border-bottom: 1px solid #bdbdbd; background-color: #f1f1f1;}
+.content_sec .textbox form table tbody tr td {padding: 20px 15px; border-bottom: 1px solid #bdbdbd;}
+.content_sec .textbox form table tbody tr td .title_input {width: 100%; height: 40px; padding: 0 10px; font-size: 15px; font-weight: 500; box-sizing: border-box;}
+.content_sec .textbox form table tbody tr td select {padding: 0 10px; width: 100%; height: 40px; font-size: 15px;}
+.content_sec .textbox form table tbody tr td .nick_input {width: 100%; height: 40px; padding: 0 10px; font-size: 15px; font-weight: 500; box-sizing: border-box; background-color: aliceblue; border: 0.1px solid #000;}
+.content_sec .textbox form table tbody tr td .text_content {border: none;}
+.content_sec .postbox {display: flex; width: 100%; height: 100px;}
+.content_sec .postbox .homebox {flex: 1; margin: auto 0;}
+.content_sec .postbox .homebox button {width: 100px; height: 50px; color: #000; background-color: #fff; cursor: pointer; font-size: 16px; font-weight: 500; border: 0.1px solid #000;}
+.content_sec .postbox .modifybox {flex: 1; margin: auto 0; display: flex; justify-content: flex-end;}
+.content_sec .postbox .modifybox button {width: 100px; height: 50px; margin-right: 10px; color: #fff; background-color: #000; cursor: pointer; font-size: 16px; font-weight: 500; border: 0.1px solid #000;}
+.content_sec .postbox .modifybox button:last-child {margin-right: 20px; color: #000; background-color: rgba(255, 0, 0, 0.587);}
+
+/* 푸터 */
+
+.footer {width: 100%; height: inherit; display: flex; flex-direction: column;}
+.footer .footer_info {width: 100%; height: 70px;}
+.footer .footer_info ul {display: flex; margin-top: 20px;}
+.footer .footer_info ul li {padding:0 20px; border-right: 1px solid #222;}
+.footer .footer_info ul li:last-child {border-right: none;}
+.footer .footer_info ul li a {color: #222; text-decoration: none; font-size: 14px; font-weight: 400; overflow: hidden; white-space: nowrap;}
+.footer .footer_content {display: flex; flex-direction: column; width: 100%; height: 230px;}
+.footer .footer_content .mediabox {display: flex; margin-left: auto;}
+.footer .footer_content .mediabox .socialmedia {margin-right: 20px;}
+.footer .footer_content .mediabox .socialmedia a img {width: 45px; height: 45px; overflow: hidden; white-space: nowrap;}
+.footer .footer_content .footer_txt {display: flex; flex-direction: column;}
+.footer .footer_content .footer_txt span {color: #222; font-size: 14px; font-weight: 400; padding: 1px 0; overflow: hidden; white-space: nowrap;}
+.footer .footer_content .footer_txt .f_textbox {display: flex;}
+.footer .footer_content .footer_txt .f_textbox .span_index {margin-left: auto;}
+
+@media only screen and (max-width: 1700px) {
+    #header {width: 1700px;}
+    #banner {width: 1700px;}
+    #content {width: 1700px;}
+    #footer {width: 1700px;}
+    .header .nav_bar {width: 1700px;}
+}

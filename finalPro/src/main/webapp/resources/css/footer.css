@@ -41,11 +41,3 @@ body, input, textarea, select, button a {
 .footer .footer_content .footer_txt span {color: #222; font-size: 14px; font-weight: 400; padding: 1px 0; overflow: hidden; white-space: nowrap;}
 .footer .footer_content .footer_txt .f_textbox {display: flex;}
 .footer .footer_content .footer_txt .f_textbox .span_index {margin-left: auto;}
-
-@media only screen and (max-width: 1700px) {
-    #header {width: 1700px;}
-    #banner {width: 1700px;}
-    #content {width: 1700px;}
-    #footer {width: 1700px;}
-    .header .nav_bar {width: 1700px;}
-}
