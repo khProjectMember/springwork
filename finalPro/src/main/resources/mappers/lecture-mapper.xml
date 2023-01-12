@@ -1,51 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="lectureMapper">
-	<resultMap type="Lecture" id="lectureResult">
-		<result column="lec_no" property="lecNo"/>
-		<result column="lec_name" property="lecName"/>
-		<result column="lec_sdate" property="lecSdate"/>
-		<result column="lec_edate" property="lecEdate"/>
-		<result column="lec_info" property="lecInfo"/>
-		<result column="lec_stime" property="lecStime"/>
-		<result column="lec_etime" property="lecEtime"/>
-		<result column="lec_count" property="lecCount"/>
-		<result column="lec_filename" property="lecFile"/>
-		<result column="lec_bcatg" property="lecBcatg"/>
-		<result column="lec_scatg" property="lecScatg"/>
-		<result column="lec_price" property="lecPrice"/>
-		<result column="lec_grade" property="lecGrade"/>
-		<result column="lec_jnum" property="lecJnum"/>
-		<result column="lec_cnum" property="lecCnum"/>
-		<result column="member_no" property="memberNo"/>
-		<result column="tea_no" property="teaNo"/>
-		<result column="loc_no" property="locNo"/>
-  		<collection property="teacher" resultMap="Teacher"/>
-	</resultMap>
-	<resultMap type="Apply" id="applyResult">
-		<result column="signup_no" property="signupNo" />
-		<result column="mem_no" property="memNo" />
-		<result column="lec_no" property="lecNo" />
-		<result column="signup_status" property="signupStatus" />
-	</resultMap>
-	<resultMap type="Wish" id="wishResult">
-		<result column="wish_no" property="wishNo" />
-		<result column="mem_no" property="memNo" />
-		<result column="lec_no" property="lecNo" />
-	</resultMap>
-	<resultMap type="Teacher" id="Teacher">
+  
+  <resultMap type="Lecture" id="lectureResult">
+  	<result column="lec_no" property="lecNo" />
+  	<result column="lec_name" property="lecName" />
+  	<result column="lec_sdate" property="lecSdate" />
+  	<result column="lec_edate" property="lecEdate" />
+  	<result column="lec_info" property="lecInfo" />
+  	<result column="lec_stime" property="lecStime" />
+  	<result column="lec_etime" property="lecEtime" />
+  	<result column="lec_count" property="lecCount" />
+  	<result column="lec_filename" property="lecFilename" />
+  	<result column="lec_bcatg" property="lecBcatg" />
+  	<result column="lec_scatg" property="lecScatg" />
+  	<result column="lec_price" property="lecPrice" />
+  	<result column="lec_grade" property="lecGrade" />
+  	<result column="lec_jnum" property="lecJnum" />
+  	<result column="lec_cnum" property="lecCnum" />
+  	<result column="mem_no" property="memNo" />
+  	<result column="tea_no" property="teaNo" />
+  	<result column="loc_no" property="locNo" />
+  	<collection property="teacher" resultMap="Teacher"/>
+  </resultMap>
+  <resultMap type="Teacher" id="Teacher">
   		<result column="tea_no" property="teaNo" />
 	  	<result column="tea_name" property="teaName" />
 	  	<result column="tea_age" property="teaAge" />
 	  	<result column="tea_info" property="teaInfo" />
 	  	<result column="tea_edate" property="teaEdate" />
 	  	<result column="tea_status" property="teaStatus" />
- 	 </resultMap>
+  </resultMap>
   	
   <select id="lectureList" resultMap="lectureResult">
-		select l.lec_no, l.lec_name, TO_CHAR(l.lec_sdate,'YY.MM.DD') as "lec_sdate", TO_CHAR(l.lec_edate,'YY.MM.DD') as "lec_edate", l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, l.lec_price, t.tea_name
-		from lecture l
-		join Teacher t on (l.tea_no = t.tea_no)
-  </select>
-
+		select l.lec_no, l.lec_name, TO_CHAR(l.lec_sdate,'YY.MM.DD') as "lec_sdate",TO_CHAR(l.lec_edate,'YY.MM.DD') as "lec_edate", l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, 
+		 l.lec_price, t.tea_name
+		 from lecture l
+		 join teacher t 
+		 on (l.tea_no = t.tea_no)
+		 
+	</select>
+  
 </mapper>

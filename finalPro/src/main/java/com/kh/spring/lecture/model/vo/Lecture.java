@@ -1,19 +1,17 @@
 package com.kh.spring.lecture.model.vo;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 @ToString
-public class Lecture {
+public class Lecture{
 	private int lecNo;
 	private String lecName;
 	private String lecSdate;
@@ -24,6 +22,7 @@ public class Lecture {
 	private int lecCount;
 	private String lecFilename;
 	private String lecBcatg;
+	
 	private String lecScatg;
 	private int lecPrice;
 	private int lecGrade;
@@ -32,6 +31,8 @@ public class Lecture {
 	private int memNo;
 	private int teaNo;
 	private int locNo;
-
+	
 	private Teacher teacher;
+	
+	
 }
