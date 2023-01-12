@@ -10,7 +10,7 @@
 		<result column="lec_stime" property="lecStime"/>
 		<result column="lec_etime" property="lecEtime"/>
 		<result column="lec_count" property="lecCount"/>
-		<result column="lec_file" property="lecFile"/>
+		<result column="lec_filename" property="lecFile"/>
 		<result column="lec_bcatg" property="lecBcatg"/>
 		<result column="lec_scatg" property="lecScatg"/>
 		<result column="lec_price" property="lecPrice"/>
@@ -20,6 +20,7 @@
 		<result column="member_no" property="memberNo"/>
 		<result column="tea_no" property="teaNo"/>
 		<result column="loc_no" property="locNo"/>
+  		<collection property="teacher" resultMap="Teacher"/>
 	</resultMap>
 	<resultMap type="Apply" id="applyResult">
 		<result column="signup_no" property="signupNo" />
@@ -32,44 +33,19 @@
 		<result column="mem_no" property="memNo" />
 		<result column="lec_no" property="lecNo" />
 	</resultMap>
-	<select id="selectListCount" resultType="_int">
-		select count(*)
-			from board
-		where status = 'Y'
-	</select>
-	<select id="selectList" resultMap="boardResult">
-		select board_no
-			 , board_title
-			 , board_writer
-			 , count
-			 , to_char(create_date,'YYYY-MM-DD') as create_date
-			 , origin_name
-			from board
-		where status = 'Y'
-		order by board_no desc
-	</select>
-	
-	<update id="increaseCount">
-		update board
-			set count = count + 1
-		where board_no = #{ boardNo } and status = 'Y'
-	</update>
-	
-	<select id="selectBoard" resultMap="boardResult">
-		select board_no
-			 , board_title
-			 , board_writer
-			 , board_content
-			 , count
-			 , to_char(create_date,'YYYY-MM-DD') as "create_date"
-			 , origin_name
-			 , change_name
-			from board
-		where board_no = #{ boardNo }
-	</select>
-	<insert id="insertBoard">
-		insert into board(board_no, board_title, board_writer, board_content, origin_name, change_name)
-			values(seq_bno.nextval, #{boardTitle}, #{boardWriter}, #{boardContent}, #{originName}, #{changeName})
-	</insert>
+	<resultMap type="Teacher" id="Teacher">
+  		<result column="tea_no" property="teaNo" />
+	  	<result column="tea_name" property="teaName" />
+	  	<result column="tea_age" property="teaAge" />
+	  	<result column="tea_info" property="teaInfo" />
+	  	<result column="tea_edate" property="teaEdate" />
+	  	<result column="tea_status" property="teaStatus" />
+ 	 </resultMap>
+  	
+  <select id="lectureList" resultMap="lectureResult">
+		select l.lec_no, l.lec_name, TO_CHAR(l.lec_sdate,'YY.MM.DD') as "lec_sdate", TO_CHAR(l.lec_edate,'YY.MM.DD') as "lec_edate", l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, l.lec_price, t.tea_name
+		from lecture l
+		join Teacher t on (l.tea_no = t.tea_no)
+  </select>
 
 </mapper>

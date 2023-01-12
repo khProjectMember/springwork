@@ -8,7 +8,7 @@
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="spring"/>
+		<property name="username" value="fnpj"/>
 		<property name="password" value="1234"/>
 		</bean>
 		
