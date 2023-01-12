@@ -33,8 +33,8 @@ public class finalNoticeServiceImpl implements finalNoticeService {
 
 	@Override
 	public int insertNotice(Notice n) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return nDao.insertNotice(sqlSession, n);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class finalNoticeServiceImpl implements finalNoticeService {
 	@Override
 	public int updateNotice(Notice n) {
 		// TODO Auto-generated method stub
-		return 0;
+		return nDao.updateNotice(sqlSession, n);
 	}
 
 }

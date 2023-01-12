@@ -70,3 +70,11 @@ body, input, textarea, select, button a {
 .header .h_form .search_hide .search_bar .search_array .search_inp input {border: none; width: 300px; height: 30px; padding-left: 15px; outline: none; }
 .header .h_form .search_hide .search_bar .search_array .search_inp button {width: 30px; height: 30px; margin: 0 10px; background-color: #fff; border: none; cursor: pointer;}
 .header .h_form .search_hide .search_bar .search_array .search_inp button img{width: 25px; height: 25px;}
+
+@media only screen and (max-width: 1700px) {
+    #header {width: 1700px;}
+    #banner {width: 1700px;}
+    #content {width: 1700px;}
+    #footer {width: 1700px;}
+    .header .nav_bar {width: 1700px;}
+}

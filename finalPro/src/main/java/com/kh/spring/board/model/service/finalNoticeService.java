@@ -11,7 +11,7 @@ public interface finalNoticeService {
 	int selectListCount();
 	ArrayList<Notice> selectList(PageInfo pi);
 	
-	// 공지사항 작성 (관리자만)
+	// 게시글 작성 (관리자만)
 	
 	int insertNotice(Notice n);
 	
@@ -22,4 +22,7 @@ public interface finalNoticeService {
 	// 공지사항 수정
 	
 	int updateNotice(Notice n);
+	
+	
+	
 }

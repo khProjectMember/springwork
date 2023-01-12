@@ -105,7 +105,7 @@ body, input, textarea, select, button a {
 .content_sec .pagin .pagin_box .pagin_box_sec ul li a {font-size: 20px; color: #000;}
 .content_sec .pagin .pagin_box .pagin_box_sec ul li a:hover {color: #7d7d7d;}
 .content_sec .pagin .pagin_box .pagin_box_thi {flex: 1; margin: auto;}
-.content_sec .pagin .pagin_box .pagin_box_thi button {display: none; width: 100px; height: 40px; border: none; background-color: #000; color: #fff; cursor: pointer;}
+.content_sec .pagin .pagin_box .pagin_box_thi button {width: 100px; height: 40px; border: none; background-color: #000; color: #fff; cursor: pointer;}
 
 
 

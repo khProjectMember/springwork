@@ -26,9 +26,18 @@
 	</select>
 	
 	<select id="selectNotice" resultMap="noticeResult">
-		select n.notice_catg, n.notice_title, m.mem_nickname, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, n.notice_content   
+		select n.notice_no, n.notice_catg, n.notice_title, m.mem_nickname, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, n.notice_content   
 		from notice n, member m 
 		where n.mem_no = m.mem_no and 
 		n.notice_no = #{noticeNo}
 	</select>
+	<insert id="insertNotice">
+		insert into notice(notice_no, notice_catg, notice_title, notice_content, notice_edate, mem_no) 
+		values (SEQ_NNO.NEXTVAL, #{noticeCatg}, #{noticeTitle}, #{noticeContent}, sysdate, 1)
+	</insert>
+	<update id="updateNotice">
+		update notice set notice_catg = #{noticeCatg}, notice_title = #{noticeTitle}, notice_content = #{noticeContent}, notice_edate = sysdate, mem_no = 1 
+		where notice_no = #{noticeNo}
+	</update>
+	
 </mapper>

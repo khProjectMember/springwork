@@ -99,9 +99,8 @@
                                 </ul>
                             </div>
                             <div class="pagin_box_thi">
-                                <button>게시글 작성</button>
+                                <button class="text_box_button">게시글 작성</button>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -109,5 +108,14 @@
         </div>
     </div>
     <jsp:include page="../common/footer.jsp" />
+    
+    <script type="text/javascript">
+    	$('.text_box_button').click(function() {
+    		console.log("안눌려용");
+    		location.href='enroll.bo';
+    	})
+    </script>
+    
+    
 </body>
 </html>

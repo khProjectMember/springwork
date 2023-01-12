@@ -12,6 +12,7 @@
 
 	<!-- js -->
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+	
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -54,8 +55,8 @@
                     <div class="home_box">
                         <div class="home_btn">
                             <button class="btn_notice">목록</button>
-                            <button class="btn_re" onclick="">수정</button>
-                            <button class="btn_delete" onclick="">삭제</button>
+                            <button class="btn_re">수정</button>
+                            <button class="btn_delete">삭제</button>
                         </div>
                     </div>
                 </div>
@@ -63,13 +64,22 @@
         </div>
     </div>
     
+    <form method="post" class="postFrm">
+    	<input type="hidden" name="nNo" value="${ notice.noticeNo }">
+    </form>
+    
     <script type="text/javascript">
     	
-    		$('.btn_notice').click(function() {
-    			console.log('안눌려요');
-    			location.href='notice.bo';
-    		})
-    	
+    	$('.btn_notice').click(function() {
+    		console.log('안눌려요');
+    		location.href='notice.bo';
+    	})
+    	$('.btn_re').click(function() {
+    		console.log('안눌려요!');
+    		$('.postFrm').attr('action', 'updateFrm.bo').submit();
+    	})
+    		
+    		
     </script>
        
     <jsp:include page="../common/footer.jsp" />
