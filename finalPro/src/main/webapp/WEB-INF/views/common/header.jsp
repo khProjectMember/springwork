@@ -81,7 +81,7 @@
                         <div class="nav_info">
                             <h4>시설안내</h4>
                             <ul>
-                                <li><a href="">개요 및 시</a></li>
+                                <li><a href="">개요 및 시설</a></li>
                                 <li><a href="">시설현황</a></li>
                                 <li><a href="">이용안내</a></li>
                                 <li><a href="">오시는 길</a></li>
