@@ -8,7 +8,7 @@
 		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="fnpj"/>
+		<property name="username" value="spring"/>
 		<property name="password" value="1234"/>
 		</bean>
 		
@@ -22,7 +22,7 @@
 
 		<!-- mybatis에서는 template.java에 기술 -->
 		<bean class="org.mybatis.spring.SqlSessionTemplate" id="SqlSession">
-			<constructor-arg ref="SqlSessionFactory" />
+			<constructor-arg ref="sqlSessionFactory" />
 		</bean>
 	
 		<!-- 파일 업로드 관련 bean -->
