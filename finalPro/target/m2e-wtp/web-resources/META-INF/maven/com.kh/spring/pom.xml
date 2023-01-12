@@ -155,10 +155,11 @@
 		</dependency>
 		
 		<!-- 커넥션 풀을 사용하기 위한 라이브러리 -->
+		<!-- HikariCP -->
 		<dependency>
-		    <groupId>commons-dbcp</groupId>
-		    <artifactId>commons-dbcp</artifactId>
-		    <version>1.4</version>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>3.4.5</version>
 		</dependency>
 		
 		<!-- 스프링 시큐리티 모듈 라이브러리 -->

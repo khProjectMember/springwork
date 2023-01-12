@@ -4,26 +4,30 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="spring" />
-		<property name="password" value="1234" />
-	</bean>
-	
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
-		<property name="configLocation" value="classpath:mybatis-config.xml" />
-		<property name="dataSource" ref="dataSource" />
-	</bean>
+	<!-- HikariCP configuration -->
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="spring"/>
+		<property name="password" value="1234"/>
+		</bean>
 		
-	<!-- mybatis에서는 template.java에 기술 -->
-	<bean class="org.mybatis.spring.SqlSessionTemplate" id="SqlSession">
-		<constructor-arg ref="SqlSessionFactory" />
-	</bean>
+		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+		</bean>
+
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		</bean>
+
+		<!-- mybatis에서는 template.java에 기술 -->
+		<bean class="org.mybatis.spring.SqlSessionTemplate" id="SqlSession">
+			<constructor-arg ref="sqlSessionFactory" />
+		</bean>
 	
-	<!-- 파일 업로드 관련 bean -->
-	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
-		<property name="maxUploadSize" value="100000000" />	
-		<property name="maxInMemorySize" value="100000000" />	
-	</bean>
+		<!-- 파일 업로드 관련 bean -->
+		<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+			<property name="maxUploadSize" value="100000000" />	
+			<property name="maxInMemorySize" value="100000000" />	
+		</bean>
 </beans>
