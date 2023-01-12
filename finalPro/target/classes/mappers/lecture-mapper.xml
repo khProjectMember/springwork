@@ -33,7 +33,7 @@
   </resultMap>
   	
   <select id="lectureList" resultMap="lectureResult">
-		select l.lec_no, l.lec_name, l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, 
+		select l.lec_no, l.lec_name, TO_CHAR(l.lec_sdate,'YY.MM.DD') as "lec_sdate",TO_CHAR(l.lec_edate,'YY.MM.DD') as "lec_edate", l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, 
 		 l.lec_price, t.tea_name
 		 from lecture l
 		 join teacher t 
