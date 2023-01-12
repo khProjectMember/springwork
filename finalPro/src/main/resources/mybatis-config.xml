@@ -9,10 +9,14 @@
 		<typeAlias type="com.kh.spring.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/>		
+		<typeAlias type="com.kh.spring.lecture.model.vo.Apply" alias="Apply"/>		
+		<typeAlias type="com.kh.spring.lecture.model.vo.Lecture" alias="Lecture"/>		
+		<typeAlias type="com.kh.spring.lecture.model.vo.Wish" alias="Wish"/>		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
 		<mapper resource="/mappers/board-mapper.xml" />
+		<mapper resource="/mappers/lecture-mapper.xml" />
 	</mappers>
 </configuration>
