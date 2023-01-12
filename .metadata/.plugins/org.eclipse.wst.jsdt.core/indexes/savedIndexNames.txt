@@ -1,9 +1,3 @@
-INDEX VERSION 1.4+C:\springwork\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3011414976.index
-1627830548.index
-970500548.index
-1197519833.index
-3941972543.index
-4049029760.index
+INDEX VERSION 1.4+C:\gitex\springwork\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 824260519.index
-3763753375.index
+1197519833.index

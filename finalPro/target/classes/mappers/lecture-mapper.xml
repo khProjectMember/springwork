@@ -21,14 +21,24 @@
   	<result column="mem_no" property="memNo" />
   	<result column="tea_no" property="teaNo" />
   	<result column="loc_no" property="locNo" />
+  	<collection property="teacher" resultMap="Teacher"/>
   </resultMap>
-
+  <resultMap type="Teacher" id="Teacher">
+  		<result column="tea_no" property="teaNo" />
+	  	<result column="tea_name" property="teaName" />
+	  	<result column="tea_age" property="teaAge" />
+	  	<result column="tea_info" property="teaInfo" />
+	  	<result column="tea_edate" property="teaEdate" />
+	  	<result column="tea_status" property="teaStatus" />
+  </resultMap>
+  	
   <select id="lectureList" resultMap="lectureResult">
-		select lec_no, lec_name, lec_stime, lec_etime, lec_count, lec_filename, lec_bcatg, lec_scatg, 
-		 lec_price, lec_grade, lec_jnum, lec_cnum
+		select l.lec_no, l.lec_name, l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, 
+		 l.lec_price, t.tea_name
+		 from lecture l
+		 join teacher t 
+		 on (l.tea_no = t.tea_no)
 		 
-		 from lecture
-		 order by lec_no desc
 	</select>
   
 </mapper>

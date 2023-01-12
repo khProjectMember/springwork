@@ -18,12 +18,12 @@
 	          <form id="" method="post" action="list.le">
 		          <div class="prodList">
 					<ul>
-					<c:forEach var="l" items="${list }">
+					<c:forEach var="l" items="${ list }">
 					   <li>
 			              <div class="prodItem">
 			                 <a href="" class="" >
 			                        <div class="thum">
-			                            <img src="resources/uploadFiles/ex1.jpg"
+			                            <img src="resources/uploadFiles/${l.lecFilename}.jpg"
 			                                alt="예시1">
 			                        </div>
 			                        <div class="info">
@@ -31,20 +31,20 @@
 			                                <span class="icoTag type02">접수중</span>
 			                                <span class="data">
 			                                    <span>아동강좌 </span>
-			                                    <span class="icoTag typeBlack">${l.lecBcatg }</span>
+			                                    <span class="icoTag typeBlack">${l.lecBcatg}</span>
 			                                </span>
 			                            </div>
 			                            <div class="txtBox">
-			                                <span class="subject" title="예시1">${l.lecName }</span>
+			                                <span class="subject" title="예시1">${l.lecName}</span>
 			                                <div class="subTxt">
-			                                    <span class="name">베토벤</span>
+			                                    <span class="name">${l.teacher.teaName}</span>
 			                                    <span class="semester">겨울</span>
 			                                    <span class="time">(일) ${l.lecStime} ~ ${l.lecEtime}</span>
 			                                </div>
 			                                <div class="price">
 			                                    <span class="blind">가격</span>
-			                                    <em>${l.lecPrice }</em>원
-			                                    <span>(총 ${l.lecCount }회)</span>
+			                                    <em>${l.lecPrice}</em>원
+			                                    <span>(총 ${l.lecCount}회)</span>
 			                                </div>
 			                            </div>
 			                        </div>

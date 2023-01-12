@@ -22,6 +22,7 @@ public class Lecture{
 	private int lecCount;
 	private String lecFilename;
 	private String lecBcatg;
+	
 	private String lecScatg;
 	private int lecPrice;
 	private int lecGrade;
@@ -31,6 +32,7 @@ public class Lecture{
 	private int teaNo;
 	private int locNo;
 	
+	private Teacher teacher;
 	
 	
 }

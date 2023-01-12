@@ -11,6 +11,7 @@
 		<typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/>	
 
 		<typeAlias type="com.kh.spring.lecture.model.vo.Lecture" alias="Lecture"/>	
+		<typeAlias type="com.kh.spring.lecture.model.vo.Teacher" alias="Teacher"/>	
 			
 	</typeAliases>
 	
