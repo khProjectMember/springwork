@@ -23,4 +23,8 @@ public class LectureServiceImpl implements LectureService{
 	public ArrayList<Lecture> lectureList(Lecture l){
 		return lDao.lectureList(sqlSession, l);
 	}
+	
+	public Lecture lectureDetail(int lecNo) {
+		return lDao.lectureDetail(sqlSession, lecNo);
+	}
 }

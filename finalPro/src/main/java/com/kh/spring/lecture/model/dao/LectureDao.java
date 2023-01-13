@@ -12,6 +12,12 @@ public class LectureDao {
 	public ArrayList<Lecture> lectureList(SqlSessionTemplate sqlSession, Lecture l){
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureList",l);
 	}
+
+	public Lecture lectureDetail(SqlSessionTemplate sqlSession, int LecNo) {
+		return (Lecture)sqlSession.selectOne("lectureMapper.lectureDetail", LecNo);
+	}
+	
+	
 	/*
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("lectureMapper.selectListCount");

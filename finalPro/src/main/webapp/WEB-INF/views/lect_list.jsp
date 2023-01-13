@@ -21,7 +21,7 @@
 					<c:forEach var="l" items="${ list }">
 					   <li>
 			              <div class="prodItem">
-			                 <a href="" class="" >
+			                 <a href="detail.le?lecNo=${l.lecNo}" class="" >
 			                        <div class="thum">
 			                            <img src="resources/uploadFiles/${l.lecFilename}.jpg"
 			                                alt="예시1">
@@ -50,10 +50,10 @@
 			                        </div>
 			                    </a>
 			                    <div class="btnProd">
-			                        <a href="" 
+			                        <a href="wishList.le" 
 			                        class="btnCart dCartBtn" data-strcd="0006" data-status="2" data-kisuno="101" data-classcd="7130"data-clsfee="10000">
 			                        <span><img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/common/btn_cart_w.png">장바구니 담기</span></a>
-                        			<a href=""
+                        			<a href="applyList.le"
                             		class="btnPayment dPaymentBtn" data-strcd="0006" data-status="2" data-kisuno="101"data-classcd="7130" data-ismember="false">
                             		<span><img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/common/btn_pay_w.png">결제하기</span></a>
 			                   </div>

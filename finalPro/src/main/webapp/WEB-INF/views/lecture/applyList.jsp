@@ -9,7 +9,7 @@
     <title>Document</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="../../../resources/css/applyListView.css">
+    <link rel="stylesheet" href="resources/css/applyListView.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
         <div id="content">
             <div class="inner">
                 <div class="class_util">
-                    <a href="">홈으로&emsp;|&emsp;</a>
-                    <a href="">수강신청&emsp;|&emsp;</a>
-                    <a href="">강좌검색</a>
+                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
+                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
+                    <a href="list.le">강좌검색</a>
                 </div>
                 <div class="class_join">
                     <h1>신청목록</h1>
@@ -104,9 +104,9 @@
                 </form>
                 <div class="class_regi">
                     <hr>
-                    <a href="">강좌목록</a>
-                    <a href="">홈으로</a>
-                    <a href="">찜목록</a>
+                    <a href="list.le">강좌목록</a>
+                    <a href="goHome.le">홈으로</a>
+                    <a href="wishList.le">찜목록</a>
                 </div>
             </div>
         </div>

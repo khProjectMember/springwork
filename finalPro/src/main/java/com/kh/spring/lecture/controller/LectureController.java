@@ -18,14 +18,36 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.spring.lecture.model.service.LectureService;
 import com.kh.spring.lecture.model.vo.Lecture;
 
+
 @Controller
 public class LectureController {
 	@Autowired
 	private LectureService lService;
 
 	@RequestMapping("detail.le")
-	public String detailView() {
-		return "lecture/lectureDetailView";
+	public String lectureDetail(int lecNo, Model model) {
+		Lecture l = lService.lectureDetail(lecNo);
+		model.addAttribute("lecture", l);
+		return "lecture/lectureDetail";
+	}
+	
+	@RequestMapping("wishList.le")
+	public String wishList() {
+		return "lecture/wishList";
+	}
+	
+	@RequestMapping("goHome.le")
+	public String goHome() {
+		return "list";
+	}
+	
+	@RequestMapping("applyList.le")
+	public String applyList() {
+		return "lecture/applyList";
+	}
+	@RequestMapping("applyForm.le")
+	public String applyForm() {
+		return "lecture/applyForm";
 	}
 	
 	@RequestMapping("list.le")

@@ -9,7 +9,7 @@
     <title>Document</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="../../../resources/css/basketListView.css">
+    <link rel="stylesheet" href="resources/css/wishListView.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
