@@ -3,7 +3,7 @@ package com.kh.spring.member.model.service;
 import com.kh.spring.member.model.vo.Member;
 
 public interface MemberService {
-	// 로그인서비스
+	// 로그인 서비스
 	Member loginMember(Member m);
 	
 	// 회원가입 서비스
@@ -13,8 +13,11 @@ public interface MemberService {
 	int updateMember(Member m);
 	
 	// 회원탈퇴 서비스
-	int deleteMember(String userId);
+	int deleteMember(String userId); //userId만 넘겨주기
 	
-	// 아이디 중복체크 서비스(ajax) - 나중
+	// 아이디 중복 서비스(ajax) - 나중
 	int idCheck(String checkId);
+	
+	// 닉네임 중복 서비스(ajax)
+	int nicknameCheck(String checkNickname);
 }
