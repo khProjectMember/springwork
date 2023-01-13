@@ -34,7 +34,7 @@
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                            <li><a href="detail.le">찜목록</a></li>
+                            <li><a href="#">찜목록</a></li>
                             <li><a href="#">마이페이지</a></li>
                             <li><a href="#">로그인</a></li>
                             <li><a href="#">회원가입</a></li>
