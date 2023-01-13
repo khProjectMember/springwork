@@ -30,14 +30,15 @@
                     <h1>공지사항 / 이벤트</h1>
                     <div class="search_box">
                         <div class="search">
-                            <form class="search_arr" action="" method="">
-                                <select name="" id="" class="search_sel">
-                                    <option value="전체">전체</option>
-                                    <option value="공지사항">공지사항</option>
-                                    <option value="이벤트">이벤트</option>
+                            <form class="search_arr" action="search.bo" method="get">
+                                <select name="keyvalue" class="search_sel">
+                                    <option value="search_all">전체</option>
+                                    <option value="search_title">제목</option>
+                                    <option value="search_content">내용</option>                            
                                 </select>
-                                <input type="text" name="" class="search_input" placeholder="검색할 내용을 입력하세요.">
+                                <input type="text" name="keyword" class="search_input" placeholder="검색할 내용을 입력하세요.">
                                 <button type="submit" class="search_btn" >검색</button>
+                                
                             </form>                            
                         </div>
                     </div>
@@ -60,14 +61,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach var="notice" items="${ list }">                                
-	                                <tr>
-	                                    <td class="noticeNo" >${ notice.noticeNo }</td>
+                            	<c:forEach var="notice" varStatus = "status" items="${ list }">
+                           	                            	                           	                            	                            		                                
+	                                <tr>	                                	                    		                   
+	                                    <%-- <td class="noticeNo" >${ (nlist.size() -status.index) - ((pi.nowPage - 1) * 10) }</td> --%>
+										<td class="noticeNo" >${ notice.noticeNo }</td>	                                    	                                                           
 	                                    <td>${ notice.noticeCatg }</td>
 	                                    <td class="subject"><a href="detail.bo?noticeNo=${ notice.noticeNo }">${ notice.noticeTitle }</a></td>
 	                                    <td>${ notice.m.memNickname }</td>
-	                                    <td>${ notice.edate }</td>
+	                                    <td>${ notice.edate }</td>                        
 	                                </tr>
+	                                
                                 </c:forEach>                                
                             </tbody>
                         </table>
@@ -79,21 +83,21 @@
                                 <ul>
                                 	<c:choose>
 	                                	<c:when test="${ pi.nowPage eq 1 }">
-	                                    	<li class="pageitem disabled"><a href="#">이전</a></li>
+	                                    	<li><a href="#">이전</a></li>
 	                                    </c:when>
 	                                    <c:otherwise>
-	                                    	<li class="pageitem"><a href="notice.bo?cpage=${ pi.nowPage-1 }">이전</a></li>
+	                                    	<li><a href="notice.bo?cpage=${ pi.nowPage-1 }">이전</a></li>
 	                                    </c:otherwise>
 	                                </c:choose>   
 	                                    <c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endpage }">
-	                                    	<li class="pageitem" ><a href="notice.bo?cpage=${ page }">${ page }</a></li>
+	                                    	<li><a href="notice.bo?cpage=${ page }">${ page }</a></li>
 	                                    </c:forEach>
 	                                <c:choose>
 	                                    <c:when test="${ pi.nowPage eq pi.maxPage }">                                                            
-	                                    	<li class="pageitem disabled"><a href="#">다음</a></li>
+	                                    	<li><a href="#">다음</a></li>
 	                                    </c:when>
 	                                    <c:otherwise>
-	                                    	<li class="pageitem"><a href="notice.bo?cpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    	<li><a href="notice.bo?cpage=${ pi.nowPage+1 }">다음</a></li>
 	                                    </c:otherwise>
 	                                </c:choose>                                                                                           
                                 </ul>
@@ -114,6 +118,7 @@
     		console.log("안눌려용");
     		location.href='enroll.bo';
     	})
+    	$()
     </script>
     
     

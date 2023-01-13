@@ -32,14 +32,34 @@ public class finalBoardController {
 	private finalNoticeService nService;
 	
 	@RequestMapping("notice.bo")
-	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Model model) {
+	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Notice n, Model model) {
 		int listCount = nService.selectListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
 		ArrayList<Notice> list = nService.selectList(pi);
+		ArrayList<Notice> nlist = nService.selectListVersion(n);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
+		model.addAttribute("nlist", nlist);
+		return "board/finalBoardNoticeView";
+		
+	}
+	
+	@RequestMapping("search.bo")
+	public String searchNotice(@RequestParam(value="keyvalue") String keyvalue, @RequestParam(value="keyword") String keyword, @RequestParam(value="cpage", defaultValue="1") int nowPage, Model model) {
+		int listCount = nService.searchCount(keyvalue, keyword);
+		
+
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
+		ArrayList<Notice> list = nService.selectSearchList(pi, keyvalue, keyword);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		System.out.println(keyvalue);
+		System.out.println(keyword);
+		System.out.println(nowPage);
 		
 		return "board/finalBoardNoticeView";
 		
@@ -49,8 +69,7 @@ public class finalBoardController {
 	public String selectNotice(int noticeNo, Model model) {
 		Notice notice = nService.selectNotice(noticeNo);
 		
-		model.addAttribute("notice", notice);
-		
+		model.addAttribute("notice", notice);		
 		return "board/finalBoardNoticeDetailView";
 	}
 	
@@ -152,6 +171,21 @@ public class finalBoardController {
 		model.addAttribute("notice", nService.selectNotice(nNo));
 		return "board/finalBoardNoticeModifyView";
 	}
+	
+	@RequestMapping("deleteFrm.bo")
+	public String deleteNotice(@RequestParam(value="nNo") int nNo) {
+		System.out.println(nNo);
+		int result = nService.deleteNotice(nNo);
+		System.out.println(result);
+		
+		if(result > 0 ) {
+			return "redirect:notice.bo";
+		} else {
+			return "common/errorPage";
+		}
+	}
+	
+	
 	
 	
 	

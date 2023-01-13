@@ -23,6 +23,17 @@ public interface finalNoticeService {
 	
 	int updateNotice(Notice n);
 	
+	// 공지사항 삭제
 	
+	int deleteNotice(int noticeNo);
+	
+	// 게시판 조회 리스트 가져오기
+	
+	ArrayList<Notice> selectListVersion(Notice n);
+	
+	// 검색 한 것 조회하는거
+	
+	int searchCount(String keyvalue, String keyword);
+	ArrayList<Notice> selectSearchList(PageInfo pi, String keyvalue, String keyword);
 	
 }

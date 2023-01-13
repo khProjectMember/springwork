@@ -42,11 +42,11 @@
                             <div class="detail_nick">
                                 <span>${ notice.m.memNickname }</span>
                             </div>
-                            <div class="detail_date">
+                            <div class="detail_date">                                
                                 <span>${ notice.edate }</span>
                             </div>
                         </div>
-                        <div class=detail_content>
+                        <div class="detail_content">
                             <p>
                                 ${ notice.noticeContent }
                             </p>
@@ -64,7 +64,10 @@
         </div>
     </div>
     
-    <form method="post" class="postFrm">
+    <form method="post" class="postFrm_re">
+    	<input type="hidden" name="nNo" value="${ notice.noticeNo }">
+    </form>
+     <form method="get" class="postFrm_de">
     	<input type="hidden" name="nNo" value="${ notice.noticeNo }">
     </form>
     
@@ -74,9 +77,15 @@
     		console.log('안눌려요');
     		location.href='notice.bo';
     	})
+    	
     	$('.btn_re').click(function() {
     		console.log('안눌려요!');
-    		$('.postFrm').attr('action', 'updateFrm.bo').submit();
+    		$('.postFrm_re').attr('action', 'updateFrm.bo').submit();
+    	})
+    	
+    	$('.btn_delete').click(function() {
+    		console.log('안눌려요!!');
+    		$('.postFrm_de').attr('action', 'deleteFrm.bo').submit();
     	})
     		
     		

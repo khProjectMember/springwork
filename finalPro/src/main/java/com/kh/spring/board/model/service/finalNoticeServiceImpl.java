@@ -1,6 +1,8 @@
 package com.kh.spring.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,29 @@ public class finalNoticeServiceImpl implements finalNoticeService {
 	public int updateNotice(Notice n) {
 		// TODO Auto-generated method stub
 		return nDao.updateNotice(sqlSession, n);
+	}
+
+	@Override
+	public int deleteNotice(int noticeNo) {
+		return nDao.deleteNotice(sqlSession, noticeNo);
+	}
+
+	@Override
+	public ArrayList<Notice> selectListVersion(Notice n) {
+		// TODO Auto-generated method stub
+		return nDao.selectListVersion(sqlSession, n);
+	}
+
+	@Override
+	public int searchCount(String keyvalue, String keyword) {
+		
+		return  nDao.searchCount(sqlSession, keyvalue, keyword);
+	}
+
+	@Override
+	public ArrayList<Notice> selectSearchList(PageInfo pi, String keyvalue, String keyword) {
+		
+		return nDao.selectSearchList(sqlSession, pi, keyvalue, keyword);
 	}
 
 }

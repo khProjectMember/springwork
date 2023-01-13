@@ -1,6 +1,8 @@
 package com.kh.spring.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -36,4 +38,31 @@ public class NoticeDao {
 		return sqlSession.update("noticeMapper.updateNotice", n);
 	}
 	
+	public int deleteNotice(SqlSessionTemplate sqlSession, int noticeNo) {
+		return sqlSession.delete("noticeMapper.deleteNotice", noticeNo);
+	}
+	
+	public ArrayList<Notice> selectListVersion(SqlSessionTemplate sqlSession, Notice n) {
+		return (ArrayList) sqlSession.selectList("noticeMapper.selectListVersion", n);
+	}
+
+	public int searchCount(SqlSessionTemplate sqlSession, String keyvalue, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyvalue", keyvalue);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("noticeMapper.searchCount", map);
+	}
+	
+	public ArrayList<Notice> selectSearchList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword, String keyvalue) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyvalue", keyvalue);
+		map.put("keyword", keyword);
+		
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		
+		return (ArrayList) sqlSession.selectList("noticeMapper.selectSearchList", map, rowBounds);
+	}
 }
