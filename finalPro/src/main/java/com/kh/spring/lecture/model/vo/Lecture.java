@@ -33,6 +33,7 @@ public class Lecture{
 	private int locNo;
 	
 	private Teacher teacher;
+	private LectureLocation lectureLocation;
 	
 	
 }

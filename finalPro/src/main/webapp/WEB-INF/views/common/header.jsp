@@ -98,7 +98,7 @@
                             <h4>강좌안내</h4>
                             <ul>
                                 <li><a href="">수강신청</a></li>
-                                <li><a href="">강좌목록</a></li>
+                                <li><a href="list.le">강좌목록</a></li>
                                 <li><a href="">강좌스케줄</a></li>
                                 <li><a href="">신청방법</a></li>
                             </ul>

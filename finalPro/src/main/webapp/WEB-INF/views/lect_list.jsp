@@ -23,7 +23,7 @@
 			              <div class="prodItem">
 			                 <a href="" class="" >
 			                        <div class="thum">
-			                            <img src="resources/uploadFiles/${l.lecFilename}.jpg"
+			                            <img src="${l.lecFilename}"
 			                                alt="예시1">
 			                        </div>
 			                        <div class="info">
