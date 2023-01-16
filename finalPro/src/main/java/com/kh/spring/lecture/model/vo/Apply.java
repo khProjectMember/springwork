@@ -12,8 +12,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Apply {
-	private int signup_no;
-	private int mem_no;
-	private int lec_no;
-	private String signup_status;
+	private int signupNo;
+	private int memNo;
+	private int lecNo;
+	private String signupStatus;
 }

@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Wish{
-	private int wish_no;
-	private int mem_no;
-	private int lec_no;
+	private int wishNo;
+	private int memNo;
+	private int lecNo;
 }
