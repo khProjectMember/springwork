@@ -9,7 +9,7 @@
     <title>Document</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="resources/css/applyForm.css">
+    <link rel="stylesheet" href="resources/css/wishList.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -22,61 +22,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <jsp:include page="../common/header.jsp" />
-
-	<div id="wrap">
+	<jsp:include page="../common/header.jsp"/>
+    <div id="wrap">
         <div id="content">
             <div class="inner">
-                <div class="class_util">
-                    <a href="">홈으로&emsp;|&emsp;</a>
-                    <a href="">수강신청&emsp;|&emsp;</a>
-                    <a href="">강좌검색</a>
+                <div class="lecture_util">
+                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
+                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
+                    <a href="list.le">강좌검색</a>
                 </div>
-                <div class="class_join">
-                    <h1>수강신청</h1>
+                <div class="lecture_join">
+                    <h1>찜목록</h1>
                 </div>
                 <form action="" method="post">
                     <table class="join_form">
                         <thead>
                             <th>
-                                <td width="10%">강좌구분</td>
-                                <td width="10%">수강자명</td>
-                                <td width="35%">강좌정보</td>
-                                <td width="10%">강사정보</td>
+                                <td width="15%">강좌구분</td>
+                                <td width="30%">강좌명</td>
+                                <td width="15%">강사정보</td>
                                 <td width="10%">강의실</td>
-                                <td width="15%">수강료</td>
-                                <td width="10%">접수상태</td>
+                                <td width="10%">수강료</td>
+                                <td width="20%">접수상태</td>
                             </th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td>체육/수영</td>  
+                                <td><input type="checkbox"></td>
+                                <td><a href="detail.le?="${lecNo }>체육/수영</td>  
+                                <td>기초수영</td>
                                 <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>
-                                <td>물에 뜨는법, 호흡법, 영법 등 수영에 필요한 기초부터 완벽하게 잡아나가는 강좌 입니다.</td>
-                                <td>허준</td>
                                 <td>수영장</td>
                                 <td>50000</td>
-                                <td>접수중</td>
+                                <td>대기중<br>대기인원 : 0명</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td width="15%">
+                                    <input type="button" value="선택강좌 삭제">
+                                </td>
+                                <td width="15%">
+                                    <input type="button" value="찜목록 비우기">
+                                </td>
+                                <td width="15%"></td>
+                                <td width="10%"></td>
+                                <td width="15%">선택    강좌</td>
+                                <td width="10%">0</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="join_move">
-                        <input type="hidden" name="classNum">
+                        <input type="hidden" name="lectureNum">
                         <input type="hidden" name="userNum">
                         <input type="submit" value="신청하기">
                     </div>
                 </form>
-                <div class="class_regi">
+                <div class="lecture_regi">
                     <hr>
-                    <a href="">강좌목록</a>
-                    <a href="">홈으로</a>
-                    <a href="">찜목록</a>
+                    <a href="list.le">강좌목록</a>
+                    <a href="goHome.le">홈으로</a>
+                    <a href="applyList.le">신청목록</a>
                 </div>
             </div>
         </div>
     </div>
-	
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

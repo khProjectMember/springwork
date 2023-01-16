@@ -11,7 +11,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Apply {
-	private int memNo;
-	private String applyList;
+public class LectureLocation {
+	private int locNo;
+	private String locManager;
+	private String locLoc;
+	private String locName;
+	private int locNumber;
+	private String locInfo;
 }

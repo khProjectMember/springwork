@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <title>Document</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="../../../resources/css/lectureDetailView.css">
+    <link rel="stylesheet" href="resources/css/lectureDetailView.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -27,35 +28,31 @@
         <div id="content">
             <div class="inner">
                 <div class="class_util">
-                    <a href="">홈으로&emsp;|&emsp;</a>
-                    <a href="">수강신청&emsp;|&emsp;</a>
-                    <a href="">강좌검색</a>
+                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
+                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
+                    <a href="list.le">강좌검색</a>
                 </div>
                 <div class="class_status">
                     <ul>
                         <li>접수중</li>
-                        <li>성인강좌</li>
-                        <li>어학/인문</li>
+                        <li>${ lecture.lecBcatg }</li>
+                        <li>${lecture.lecScatg }</li>
                     </ul>
                 </div>
                 <div class="class_name">
                     <table>
                         <tr>
-                            <td><h1>제목</h1></td>
+                            <td><h1>${lecture.lecName }</h1></td>
                             <td rowspan="2"><a href="">장바구니</a></td>
                             <td rowspan="2"><a href="">신청하기</a></td>
                         </tr>
-                        <tr>
-                            <td>부제</td>
-                        </tr>
-                        <tr><td colspan="3"></td></tr>
                     </table>
                 </div>
                 <div class="class_info">
                     <table class="info_table">
                         <tr>
                             <td>
-                                <h1>강좌소개</h1>
+                                <h1>${lecture.lecInfo }</h1>
                             </td>
                             <td class="class_info2">
                             <h1>등록정보</h1>
@@ -65,28 +62,28 @@
                                 </tr>
                                 <tr>
                                     <td>강좌정보</td>
-                                    <td>체육/수영</td>
+                                    <td>${ lecture.lecBcatg }/${lecture.lecScatg }</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                 </tr>
                                 <tr>
                                     <td>강사명</td>
-                                    <td>홍길동&ensp;<a href="" class="teacher_info">강사소개</a></td>
+                                    <td>${lecture.teacher.teaName }&ensp;<a href="" class="teacher_info">강사소개</a></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                 </tr>
                                 <tr>
                                     <td>수강기간</td>
-                                    <td>2</td>
+                                    <td>${lecture.lecSdate} ~ ${lecture.lecEdate}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                 </tr>
                                 <tr>
-                                    <td>강의횟수/정원</td>
-                                    <td>2</td>
+                                    <td>접수인원</td>
+                                    <td>${lecture.lecJnum }/${lecture.lecCnum }</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
@@ -100,21 +97,21 @@
                                 </tr>
                                 <tr>
                                     <td>수강료</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>재료비</td>
-                                    <td>2</td>
+                                    <td>${lecture.lecPrice }</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
                                 </tr>
                                 <tr>
                                     <td>접수기간</td>
-                                    <td>2</td>
+                                    <td>${lecture.lecStime} ~ ${lecture.lecEtime}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>강의시간</td>
+                                    <td>${lecture.lecStime} ~ ${lecture.lecEtime}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"></td>
@@ -126,9 +123,9 @@
                 </div>
                 <div class="class_regi">
                     <hr>
-                    <a href="">목록</a>
-                    <a href="">신청하기</a>
-                    <a href="">장바구니</a>
+                    <a href="list.le">목록</a>
+                    <a href="applyForm.le">신청하기</a>
+                    <a href="wishList.le">찜하기</a>
                 </div>
                 <div class="class_review">
                     <h1>수강후기(0)</h1>
