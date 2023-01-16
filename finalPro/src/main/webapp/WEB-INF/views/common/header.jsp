@@ -96,7 +96,7 @@
                             <h4>커뮤니티</h4>
                             <ul>
                                 <li><a href="notice.bo">공지사항/이벤트</a></li>
-                                <li><a href="">모임게시판</a></li>
+                                <li><a href="meeting.bo">모임게시판</a></li>
                                 <li><a href="">수강생 후기</a></li>
                                 
                             </ul>

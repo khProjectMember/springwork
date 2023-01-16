@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 
 	<!-- css -->
-	<link rel="stylesheet" href="resources/css/noticewrite.css">
+	<link rel="stylesheet" href="resources/css/meetingmodify.css">
+	
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -19,14 +20,14 @@
                         <ul>
                             <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">커뮤니티</a></li>
-                            <li><a href="#">공지사항/이벤트</a></li>
+                            <li><a href="#">모임 게시판</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="content_sec">
-                    <h1>공지사항/이벤트</h1>
+                    <h1>모임 게시판 수정</h1>
                     <div class="textbox">
-                        <form action="insert.bo" method="post">
+                        <form action="meetingmodify.wr" method="post">
                             <table>
                                 <colgroup>
                                     <col style="width: 15%;">
@@ -37,38 +38,95 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">제목</th>
-                                        <td colspan="3"><input type="text" name="noticeTitle" class="title_input" placeholder="제목을 입력해주세요."></td>
+                                        <td colspan="3"><input type="text" name="hangoutTitle" value="${ meeting.hangoutTitle }" class="title_input" placeholder="제목을 입력해주세요."></td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">카테고리</th>
+                                        <th scope="row">작성자</th>
+                                        <td><input type="text" class="nick_input" value="${ meeting.m.memNickname }" placeholder="작성자 닉네임" readonly></td>
+                                        <th scope="row">모집인원</th>
                                         <td>
-                                            <select name="noticeCatg" id="">
-                                                <option value="공지사항">공지사항</option>
-                                                <option value="이벤트">이벤트</option>                                                
+                                            <select name="hangoutJoinCount">
+                                                <option value="전체">전체</option>
+                                                <option value="2">2명</option>
+                                                <option value="3">3명</option>
+                                                <option value="4">4명</option>
+                                                <option value="5">5명</option>
+                                                <option value="6">6명</option>
+                                                <option value="7">7명</option>
+                                                <option value="8">8명</option>                                     
                                             </select>
                                         </td>
-                                        <th scope="row">작성자</th>
-                                        <td><input type="text" placeholder="작성자 닉네임" class="nick_input" readonly></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th scope="row">지역</th>
+                                        <td>
+                                            <select name="hangoutLocal">
+                                                <option value="전체">전체</option>
+                                                <option value="서울">서울</option>
+                                                <option value="경기">경기</option>
+                                                <option value="강원">강원</option>
+                                                <option value="충청">충청</option>
+                                                <option value="전라">전라</option>
+                                                <option value="경상">경상</option>                                                
+                                            </select>
+                                        </td>
+                                        <th scope="row">성별</th>
+                                        <td>
+                                            <select name="hangoutGender">
+                                                <option value="전체">전체</option>
+                                                <option value="남성">남성</option>
+                                                <option value="여성">여성</option>                                                
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">연령</th>
+                                        <td>
+                                            <select name="hangoutAge">
+                                                <option value="청소년">전체</option>
+                                                <option value="청소년">청소년</option>
+                                                <option value="20대">20대</option>
+                                                <option value="30대">30대</option>
+                                                <option value="40대">40대</option>
+                                                <option value="50대">50대</option>
+                                                <option value="60대 이상">60대 이상</option>
+                                            </select>
+                                        </td>
+                                        <th scope="row">카테고리</th>
+                                        <td>
+                                            <select name="hangoutCatg">
+                                                <option value="체육">체육</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="요리">요리</option>
+                                                <option value="예능">예능</option>
+                                            </select>
+                                        </td>
+                                        
                                     </tr>
                                     <tr class="th_textarea">
                                         <th scope="row">내용</th>
                                         <td colspan="3">
-                                            <textarea id="summernote" name="noticeContent" class="text_content"></textarea>
+                                            <textarea id="summernote" name="hangoutContent" class="text_content">
+                                            	${ meeting.hangoutContent }
+                                            </textarea>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="postbox">
                                 <div class="homebox">
-                                    <button class="noticeList_box">목록</button>
+                                    <button type="button" class="meetingList_box">목록</button>
                                 </div>
                                 <div class="modifybox">
-                                    <button type="submit">작성</button>                                   
+                                    <button type="submit">수정</button>
                                     <button type="reset" class="cancle">취소</button>
                                 </div>
                             </div>
+                            <input type="hidden" name="hangoutNo" value="${ meeting.hangoutNo }" > 
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -177,11 +235,6 @@
         $('.cancle').on('click', function() {
             $('#summernote').summernote('reset');
         })
-        
-        $('.noticeList_box').click(function() {
-        	location.href='notice.bo';
-        });
-        
 
         $(window).scroll(function( ){  //스크롤이 움직일때마다 이벤트 발생 
             

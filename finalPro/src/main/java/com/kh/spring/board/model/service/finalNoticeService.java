@@ -36,4 +36,7 @@ public interface finalNoticeService {
 	int searchCount(String keyvalue, String keyword);
 	ArrayList<Notice> selectSearchList(PageInfo pi, String keyvalue, String keyword);
 	
+	// 게시판 조회 리스트 검색한 것 가져오기
+	
+	ArrayList<Notice> selectSearchListVersion(String keyvalue, String keyword);	
 }

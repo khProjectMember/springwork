@@ -46,25 +46,6 @@ public class finalBoardController {
 		
 	}
 	
-	@RequestMapping("search.bo")
-	public String searchNotice(@RequestParam(value="keyvalue") String keyvalue, @RequestParam(value="keyword") String keyword, @RequestParam(value="cpage", defaultValue="1") int nowPage, Model model) {
-		int listCount = nService.searchCount(keyvalue, keyword);
-		
-
-		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
-		ArrayList<Notice> list = nService.selectSearchList(pi, keyvalue, keyword);
-		
-		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
-		
-		System.out.println(keyvalue);
-		System.out.println(keyword);
-		System.out.println(nowPage);
-		
-		return "board/finalBoardNoticeView";
-		
-	}
-	
 	@RequestMapping("detail.bo")
 	public String selectNotice(int noticeNo, Model model) {
 		Notice notice = nService.selectNotice(noticeNo);
@@ -174,9 +155,9 @@ public class finalBoardController {
 	
 	@RequestMapping("deleteFrm.bo")
 	public String deleteNotice(@RequestParam(value="nNo") int nNo) {
-		System.out.println(nNo);
+		
 		int result = nService.deleteNotice(nNo);
-		System.out.println(result);
+		
 		
 		if(result > 0 ) {
 			return "redirect:notice.bo";
@@ -185,6 +166,31 @@ public class finalBoardController {
 		}
 	}
 	
+	
+	@RequestMapping("search.bo")
+	public String searchNotice(@RequestParam(value="keyvalue") String keyvalue,
+			@RequestParam(value="keyword") String keyword,
+			@RequestParam(value="cpage", defaultValue="1") int nowPage, 
+			Notice n,
+			Model model) {
+		int listCount = nService.searchCount(keyvalue, keyword);
+		
+
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
+		ArrayList<Notice> list = nService.selectSearchList(pi, keyvalue, keyword);
+		ArrayList<Notice> nlist = nService.selectSearchListVersion(keyvalue, keyword);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		model.addAttribute("nlist", nlist);
+		
+		
+		
+		return "board/finalBoardNoticeView";
+		
+	}
+	
+
 	
 	
 	

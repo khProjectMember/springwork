@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="meetingMapper">
+
+	<resultMap type="Meeting" id="resultMeeting">
+		<result column="hangout_no" property="hangoutNo" />
+		<result column="hangout_title" property="hangoutTitle" />
+		<result column="hangout_content" property="hangoutContent" />
+		<result column="hangout_local" property="hangoutLocal" />
+		<result column="hangout_gender" property="hangoutGender" />
+		<result column="hangout_age" property="hangoutAge" />
+		<result column="hangout_catg" property="hangoutCatg" />
+		<result column="hangout_edate" property="hangoutEdate" />
+		<result column="hangout_status" property="hangoutStatus" />
+		<result column="hangout_joincount" property="hangoutJoinCount" />
+		<result column="hangout_nowcount" property="hangoutNowCount" />
+		<result column="hangout_viewcount" property="hangoutViewCount" />
+		<result column="mem_no" property="memNo" />
+		<association property="m" javaType="finalMember">
+			<result column="mem_nickname" property="memNickname" />
+		</association>
+	</resultMap>
+	<select id="selectMeetingCount" resultType="_int">
+		select count(*) from hangout	
+	</select>
+	<select id="selectMeetingList" resultMap="resultMeeting">
+		select h.hangout_no, h.hangout_title, h.hangout_content, h.hangout_local, h.hangout_gender, h.hangout_age, h.hangout_catg, to_char(h.hangout_edate, 'YYYY-MM-DD') as hangout_edate, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, m.mem_nickname 
+		from hangout h, member m 
+		where h.mem_no = m.mem_no 
+		order by h.hangout_no desc
+	</select>
+	<insert id="insertMeeting">
+		<selectKey keyProperty="hangoutNo" resultType="_int" order="AFTER" >
+			select SEQ_HNO.CURRVAL as hangoutNo from dual
+		</selectKey>
+		insert into hangout(hangout_no, hangout_title, hangout_content, hangout_local, hangout_gender, hangout_age, hangout_catg, hangout_edate, hangout_status, hangout_joincount, hangout_nowcount, hangout_viewcount, mem_no) 
+		values (SEQ_HNO.NEXTVAL, #{hangoutTitle}, #{hangoutContent}, #{hangoutLocal}, #{hangoutGender}, #{hangoutAge}, #{hangoutCatg}, sysdate, 'Y', #{hangoutJoinCount}, 1, 0, 1)
+	</insert>
+	<insert id="insertjoin">
+		insert into join (hangout_no, mem_no) 
+		values (#{hangoutNo}, 1)
+	</insert>	
+	<update id="incCount">
+		update hangout set hangout_viewcount = hangout_viewcount + 1 
+		where hangout_no = #{hangoutNo}  
+	</update>
+	<select id="selectMeetingDetail" resultMap="resultMeeting">
+		select h.hangout_no, h.hangout_title, h.hangout_content, h.hangout_local, h.hangout_gender, h.hangout_age, h.hangout_catg, to_char(h.hangout_edate, 'YYYY-MM-DD') as hangout_edate, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, m.mem_nickname 
+		from hangout h, member m 
+		where h.mem_no = m.mem_no and
+		h.hangout_no = #{hangoutNo} 
+	</select>
+	<update id="updateMeeting">
+		update hangout set hangout_title = #{hangoutTitle}, hangout_content = #{hangoutContent}, hangout_local = #{hangoutLocal}, hangout_gender = #{hangoutGender}, hangout_age = #{hangoutAge}, hangout_catg = #{hangoutCatg}, hangout_edate = sysdate 
+		where hangout_no = #{hangoutNo} 
+	</update>
+	<delete id="deleteMeeting">
+		delete from hangout where hangout_no = #{hangoutNo}
+	</delete>
+</mapper>

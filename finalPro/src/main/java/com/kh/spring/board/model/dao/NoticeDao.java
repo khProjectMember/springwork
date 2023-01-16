@@ -45,16 +45,17 @@ public class NoticeDao {
 	public ArrayList<Notice> selectListVersion(SqlSessionTemplate sqlSession, Notice n) {
 		return (ArrayList) sqlSession.selectList("noticeMapper.selectListVersion", n);
 	}
-
+	
 	public int searchCount(SqlSessionTemplate sqlSession, String keyvalue, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("keyvalue", keyvalue);
 		map.put("keyword", keyword);
-		
-		return sqlSession.selectOne("noticeMapper.searchCount", map);
+		int a = sqlSession.selectOne("noticeMapper.searchCount", map);
+		System.out.println(a);
+		return a;
 	}
 	
-	public ArrayList<Notice> selectSearchList(SqlSessionTemplate sqlSession, PageInfo pi, String keyword, String keyvalue) {
+	public ArrayList<Notice> selectSearchList(SqlSessionTemplate sqlSession, PageInfo pi, String keyvalue, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("keyvalue", keyvalue);
 		map.put("keyword", keyword);
@@ -65,4 +66,13 @@ public class NoticeDao {
 		
 		return (ArrayList) sqlSession.selectList("noticeMapper.selectSearchList", map, rowBounds);
 	}
+	
+	public ArrayList<Notice> selectSearchListVersion(SqlSessionTemplate sqlSession, String keyvalue, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyvalue", keyvalue);
+		map.put("keyword", keyword);
+		
+		return (ArrayList) sqlSession.selectList("noticeMapper.selectSearchListVersion", map);
+	}
+	
 }
