@@ -104,10 +104,28 @@
                    		<th><label for="title">강의설명</label></th>       
                         <td><textarea class="form-control" name="lecInfo" rows="10" cols="50" style="resize:none" required ></textarea></th>
                     </tr>
-                    <!-- <tr>
+                    <tr>
+                        <th><label for="title">강사이름</label></th>
+                        	<td><select id="select3" name="teaNo">
+                        			<option value="1">이연복</option>
+                        			<option value="2">정연복</option>
+                        			<option value="3">정성하</option>
+                        			<option value="4">정대하</option>
+                        			<option value="5">빌게이츠</option>
+                        	</select></td>
+                    </tr>
+                    <tr>
                         <th><label for="title">강의실</label></th>
-                        <td><input class="form-control" name="boardTitle" ></td>
-                    </tr> -->
+                        <td><select id="select4" name="locNo">
+                        		<option value="1">다목적강의반</option>
+                        		<option value="2">무궁화관</option>
+							    <option value="3">진달래관</option>
+							    <option value="4">개나리관</option>
+							    <option value="5">장미관</option>
+							    <option value="6">튤립관</option>
+							    <option value="7">들국화관</option>
+                        	 </select></td>
+                    </tr>
                 </table>
                 <br>
 

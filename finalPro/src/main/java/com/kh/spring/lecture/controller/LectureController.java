@@ -2,7 +2,7 @@ package com.kh.spring.lecture.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 import com.kh.spring.lecture.model.service.LectureService;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.Teacher;
 
 @Controller
 public class LectureController {
@@ -32,11 +33,17 @@ public class LectureController {
 		return "lecture/lectureDetailView";
 	}
 	
-	@RequestMapping("list.le")
+	@RequestMapping("list.le" )
 	public String lectureList(Lecture l, Model model) {
 		ArrayList<Lecture> list = lService.lectureList(l);
 		model.addAttribute("list", list);
 		return "lect_list";
+	}
+	@RequestMapping("list.te")
+	public String teacherList(Teacher t, Model model) {
+		ArrayList<Teacher> list = lService.teacherList(t);
+		model.addAttribute("list", list);
+		return "admin/enroll_Lecture";
 	}
 	@RequestMapping("list2.le")
 	public ModelAndView selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
@@ -56,16 +63,15 @@ public class LectureController {
 	
 	
 	@RequestMapping("lecinsert.le")
-	public String insertBoard(Lecture l, MultipartFile upfile, HttpSession session, Model model) {
+	public String insertLecture(Lecture l, Teacher t, MultipartFile upfile, HttpSession session, Model model) {
 		// System.out.println(b);
 		// System.out.println(upfile);
 		// MultipartFile은 파일을 등록하지 않아도 객체가 생성이 됨. 다만 filename= 비어서 들어온다
 		
-		
 		if(!upfile.getOriginalFilename().equals("")) { 
 			  String changeName = changeFilename(upfile, session);
 			  l.setLecFilename(upfile.getOriginalFilename());
-			  l.setLecFilename("resuorces/uploadFiles/"+changeName); 
+			  l.setLecFilename("resources/uploadFiles/"+changeName); 
 		}
 		 
 		//넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로까지 있는 바뀐이름
@@ -82,8 +88,10 @@ public class LectureController {
 	
 	public String changeFilename(MultipartFile upfile, HttpSession session) {
 			String originName = upfile.getOriginalFilename();
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			int ranNum = (int)(Math.random() * 90000 + 10000 );
 			String ext = originName.substring(originName.lastIndexOf("."));
-			String changeName = originName;
+			String changeName = currentTime + ranNum + ext;
 			
 			//업로드 시키고자 하는 폴더의 물리적인 경로 알아오기
 			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");

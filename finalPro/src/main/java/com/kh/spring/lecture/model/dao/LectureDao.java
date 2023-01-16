@@ -8,11 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.Teacher;
 
 @Repository
 public class LectureDao {
 	public ArrayList<Lecture> lectureList(SqlSessionTemplate sqlSession, Lecture l){
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureList",l);
+	}
+	public ArrayList<Teacher> teacherList(SqlSessionTemplate sqlSession, Teacher t) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.teacherList",t);
 	}
 	
 	public int insertLecture(SqlSessionTemplate sqlSession, Lecture l) {
@@ -28,6 +32,8 @@ public class LectureDao {
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		return (ArrayList)sqlSession.selectList("lectureMapper.selectList",null,rowBounds);
 	}
+
+	
 	
 	
 	/*

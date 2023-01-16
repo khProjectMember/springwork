@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.Teacher;
 
 public interface LectureService {
 	public ArrayList<Lecture> lectureList(Lecture l);
@@ -15,7 +16,7 @@ public interface LectureService {
 	//2.게시글 작성
 	int insertLecture(Lecture l);
 		
-
+	public ArrayList<Teacher> teacherList(Teacher t);
 	/*
 	//3.게시글 상세보기
 	int increaseCount(int lecNo);

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.dao.LectureDao;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.Teacher;
 
 @Service
 public class LectureServiceImpl implements LectureService {
@@ -28,6 +29,11 @@ public class LectureServiceImpl implements LectureService {
 	public int insertLecture(Lecture l) {
 		return lDao.insertLecture(sqlSession, l);
 	}
+	@Override
+	public ArrayList<Teacher> teacherList(Teacher t) {
+		return lDao.teacherList(sqlSession, t);
+	}
+	
 	
 	@Override
 	public int selectListCount() {
@@ -38,6 +44,8 @@ public class LectureServiceImpl implements LectureService {
 	public ArrayList<Lecture> selecList(PageInfo pi) {
 		return lDao.selectList(sqlSession, pi);
 	}
+
+	
 
 	
 	/*
