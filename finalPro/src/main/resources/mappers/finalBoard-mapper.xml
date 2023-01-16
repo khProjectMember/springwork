@@ -10,7 +10,7 @@
 		<result column="notice_filename" property="filename" />
 		<result column="notice_changename" property="changename" />
 		<result column="mem_no" property="memNo" />
-		<association property="m" javaType="finalMember">
+		<association property="m" javaType="Member">
 			<result column="mem_nickname" property="memNickname" />
 		</association>
 	</resultMap>

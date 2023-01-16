@@ -1,6 +1,7 @@
 package com.kh.spring.board.model.vo;
 
-import com.kh.spring.member.model.vo.finalMember;
+import com.kh.spring.member.model.vo.Member;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,5 +28,5 @@ public class Meeting {
 	private int hangoutNowCount;
 	private int hangoutViewCount;
 	private int memNo;
-	private finalMember m;
+	private Member m;
 }
