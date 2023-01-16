@@ -67,7 +67,13 @@ public class finalMeetingServiceImpl implements finalMeetingService {
 	@Override
 	public int insertJoinMeeting(int hangoutNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return mDao.insertJoinMeeting(sqlSession, hangoutNo);
+	}
+	
+	@Override
+	public int updateMeetingCount(int hangoutNo) {
+		// TODO Auto-generated method stub
+		return mDao.updateMeetingCount(sqlSession, hangoutNo);
 	}
 
 	@Override
@@ -75,6 +81,8 @@ public class finalMeetingServiceImpl implements finalMeetingService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 	
 

@@ -135,6 +135,8 @@
     	$('.btn_join').click(function() {
     		$('.modifyFrm').attr('action', 'meetingjoin.bo').submit();
     	})
+    	
+    	
     </script>
 	<jsp:include page="../common/footer.jsp" />
 </body>

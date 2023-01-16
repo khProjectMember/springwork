@@ -57,4 +57,12 @@
 	<delete id="deleteMeeting">
 		delete from hangout where hangout_no = #{hangoutNo}
 	</delete>
+	<insert id="insertJoinMeeting">
+		insert into join (hangout_no, mem_no) 
+		values (#{hangoutNo}, 2)
+	</insert>
+	<update id="updateMeetingCount">
+		update hangout set hangout_nowcount = hangout_nowcount + 1
+		where hangout_no = #{hangoutNo} 
+	</update>
 </mapper>

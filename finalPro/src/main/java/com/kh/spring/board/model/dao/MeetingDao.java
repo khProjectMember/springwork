@@ -48,4 +48,12 @@ public class MeetingDao {
 	public int deleteMeeting(SqlSessionTemplate sqlSession, int hangoutNo) {
 		return sqlSession.delete("meetingMapper.deleteMeeting", hangoutNo);
 	}
+	
+	public int insertJoinMeeting(SqlSessionTemplate sqlSession, int hangoutNo) {
+		return sqlSession.insert("meetingMapper.insertJoinMeeting", hangoutNo);
+	}
+	
+	public int updateMeetingCount(SqlSessionTemplate sqlSession, int hangoutNo) {
+		return sqlSession.update("meetingMapper.updateMeetingCount", hangoutNo);
+	}
 }

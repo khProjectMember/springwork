@@ -93,10 +93,17 @@ public class finalMeetingController {
 			return "board/errorPage";
 		}
 	}
-	/*
+	
 	@RequestMapping("meetingjoin.bo")
-	public String insertJoinMeeting(@RequestParam(value="hangoutNo") int hangoutNo, Model m) {
+	public String insertJoinMeeting(@RequestParam(value="hangoutNo") int hangoutNo) {
 		int result = mService.insertJoinMeeting(hangoutNo);
+		int updateNowCount = mService.updateMeetingCount(hangoutNo);
+		
+		if((result+updateNowCount) > 1) {
+			return "redirect:meeting.bo";
+		} else {
+			return "board/errorPage";
+		}
 	}
-	*/
+	
 }

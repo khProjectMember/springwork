@@ -30,6 +30,7 @@ public interface finalMeetingService {
 	// 모임 참여
 	
 	int insertJoinMeeting(int hangoutNo);
+	int updateMeetingCount(int hangoutNo);
 	
 	// 모임 참여 취소
 	
