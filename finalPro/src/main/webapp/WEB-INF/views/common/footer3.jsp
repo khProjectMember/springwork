@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
+</head>
+<body>
+	<style>
     /* div{border:1px solid red;} */
     #footer {
         width: 80%;
@@ -56,6 +58,5 @@
             <p id="p2">Copyright ⓒ 1998-2023 KH Information Educational Institute All Right Reserved</p>
         </div>
     </div>
-
 </body>
 </html>
