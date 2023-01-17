@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<!-- css -->
-	<link rel="stylesheet" href="resources/css/meetingdetail.css">
+	<link rel="stylesheet" href="resources/css/reviewdetail.css">
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -18,45 +19,36 @@
                         <ul>
                             <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">커뮤니티</a></li>
-                            <li><a href="#">모임 게시판</a></li>
+                            <li><a href="#">수강생 후기</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="content_sec">
-                    <h1>모임 게시판</h1>
+                    <h1>수강생 후기</h1>
                     <div class="detailbox">
                         <div class="detail_info">
+                            <div class="detail_cate">
+                                <span>수영</span>
+                            </div>
+                            <div class="detail_starpoint">
+                                <span>별점 4</span>
+                            </div>
                             <div class="detail_title">
-                                <span>${ meeting.hangoutTitle }</span>
+                                <span>수영 종일반</span>
                             </div>
                             <div class="detail_nick">
-                                <span>${ meeting.m.memNickname }</span>
+                                <span>쿄보이</span>
                             </div>
                             <div class="detail_date">
-                                <span>${ meeting.hangoutEdate }</span>
-                            </div>
-                            <div class="detail_count">
-                                <span>조회수 ${ meeting.hangoutViewCount }</span>
+                                <span>2023-01-01</span>
                             </div>
                         </div>
                         <div class=detail_content>
-                            <div class="con_box">
-                                <p>
-                                    ${ meeting.hangoutContent }
-                                </p>
-                            </div>
-                            <div class="info_box">
-                                <span>🌎${ meeting.hangoutLocal }</span>
-                                <span>💑${ meeting.hangoutGender }</span>
-                                <span>🔞${ meeting.hangoutAge }</span>
-                                <span>🎨${ meeting.hangoutCatg }</span>
-                                <span>🎣현재 ${ meeting.hangoutNowCount }명 / 최대 ${ meeting.hangoutJoinCount }명</span>
-                            </div>                            
+                            <p>
+                                
+                            </p>
                         </div>
                     </div>
-                    <form method="post" class="modifyFrm">
-                    	<input type="hidden" name="hangoutNo" value="${ meeting.hangoutNo }">                    	
-                    </form>
                     <h3>댓글</h3>
                     <div class="review">
                         <div class="review_text">
@@ -66,13 +58,11 @@
                             <div class="review_btn">
                                 <button onclick="#">등록</button>
                             </div>
-                            
                             <div class="home_btn">
-                                <button class="meetingList_btn">목록</button>
-                                <button class="btn_re">수정</button>
-                                <button class="btn_delete">삭제</button>
-                                <button class="btn_join">참여</button>
-                            </div>                            
+                                <button onclick="#">목록</button>
+                                <button class="btn_re" onclick="">수정</button>
+                                <button class="btn_delete" onclick="">삭제</button>
+                            </div>
                         </div>
                         <div class="review_show">
                             <div class="review_count">
@@ -117,31 +107,12 @@
                                 </div>
                             </div>                            
                         </div>
-                    </div> 
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-    	$('.meetingList_btn').click(function() {
-    		location.href='meeting.bo';
-    	});
-    	$('.btn_re').click(function() {
-    		$('.modifyFrm').attr('action', 'meetingmodifyfrm.bo').submit();
-    	})
-    	$('.btn_delete').click(function() {
-    		$('.modifyFrm').attr('action', 'meetingdelete.bo').submit();
-    	})
-    	$('.btn_join').click(function() {
-    		$('.modifyFrm').attr('action', 'meetingjoin.bo').submit();
-    	})
-    	
-    	
-    	$(function() {
-    		
-    	})
-    	
-    </script>
-	<jsp:include page="../common/footer.jsp" />
+    <jsp:include page="../common/footer.jsp" />
 </body>
 </html>

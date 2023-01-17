@@ -56,4 +56,8 @@ public class MeetingDao {
 	public int updateMeetingCount(SqlSessionTemplate sqlSession, int hangoutNo) {
 		return sqlSession.update("meetingMapper.updateMeetingCount", hangoutNo);
 	}
+	
+	public ArrayList<Meeting> selectViewCountMeetingList(SqlSessionTemplate sqlSession, Meeting m) {
+		return (ArrayList) sqlSession.selectList("meetingMapper.selectViewCountMeetingList", m);
+	}
 }

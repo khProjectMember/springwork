@@ -82,6 +82,12 @@ public class finalMeetingServiceImpl implements finalMeetingService {
 		return 0;
 	}
 
+	@Override
+	public ArrayList<Meeting> selectViewCountMeetingList(Meeting m) {
+		// TODO Auto-generated method stub
+		return mDao.selectViewCountMeetingList(sqlSession, m);
+	}
+
 	
 
 	

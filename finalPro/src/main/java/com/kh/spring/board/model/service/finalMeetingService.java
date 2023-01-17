@@ -35,4 +35,8 @@ public interface finalMeetingService {
 	// 모임 참여 취소
 	
 	int deleteJoinOutMeeting(int hangoutNo);
+	
+	// 조회순
+	
+	ArrayList<Meeting> selectViewCountMeetingList(Meeting m);
 }

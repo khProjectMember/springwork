@@ -46,7 +46,7 @@
                                         <th scope="row">모집인원</th>
                                         <td>
                                             <select name="hangoutJoinCount" id="">
-                                                <option value="전체">전체</option>
+                                                <option value="100">전체</option>
                                                 <option value="2">2명</option>
                                                 <option value="3">3명</option>
                                                 <option value="4">4명</option>
@@ -84,13 +84,13 @@
                                         <th scope="row">연령</th>
                                         <td>
                                             <select name="hangoutAge" id="">
-                                                <option value="청소년">전체</option>
+                                                <option value="전체">전체</option>
                                                 <option value="청소년">청소년</option>
                                                 <option value="20대">20대</option>
                                                 <option value="30대">30대</option>
                                                 <option value="40대">40대</option>
                                                 <option value="50대">50대</option>
-                                                <option value="60대 이상">60대 이상</option>
+                                                <option value="60대이상">60대 이상</option>
                                             </select>
                                         </td>
                                         <th scope="row">카테고리</th>

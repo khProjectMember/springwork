@@ -65,4 +65,10 @@
 		update hangout set hangout_nowcount = hangout_nowcount + 1
 		where hangout_no = #{hangoutNo} 
 	</update>
+	<select id="selectViewCountMeetingList" resultMap="resultMeeting"> 
+		select h.hangout_no, h.hangout_title, h.hangout_content, h.hangout_local, h.hangout_gender, h.hangout_age, h.hangout_catg, to_char(h.hangout_edate, 'YYYY-MM-DD') as hangout_edate, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, m.mem_nickname 
+		from hangout h, member m 
+		where h.mem_no = m.mem_no 
+		order by h.hangout_viewcount
+	</select>
 </mapper>

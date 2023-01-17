@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kh.spring.board.model.service.finalMeetingService;
 import com.kh.spring.board.model.vo.Meeting;
@@ -104,6 +105,13 @@ public class finalMeetingController {
 		} else {
 			return "board/errorPage";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="viewCountAlign.bo", produces="application/json; charset=utf-8")
+	public String selectViewCountMeetingList(Meeting m) {
+		ArrayList<Meeting> list = mService.selectViewCountMeetingList(m);
+		return new Gson().toJson(list);
 	}
 	
 }
