@@ -1,5 +1,8 @@
 package com.kh.spring.member.model.service;
 
+import java.util.HashMap;
+
+import com.kh.spring.member.model.vo.Email;
 import com.kh.spring.member.model.vo.Member;
 
 public interface MemberService {
@@ -20,4 +23,16 @@ public interface MemberService {
 	
 	// 닉네임 중복 서비스(ajax)
 	int nicknameCheck(String checkNickname);
+	
+	// 아이디 찾기 서비스
+	int checkMember(Email email);
+	
+	// 이메일 얻어오기
+	String getMemId(Email email);
+	
+	// 임시 비밀번호
+	int updateTempPwd(HashMap<String, String> param);
+	
+	// 비밀번호 변경 업데이트
+	int updatePwd(HashMap<String, String> map);
 }

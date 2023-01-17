@@ -20,7 +20,7 @@ public class Member {
 	private String memPw;
 	private String memNickname;
 	private String memGender;
-	private int memBirthday;
+	private String memBirthday;
 	private String memPhone;
 	private String memEmail;
 	private String memZipcode;

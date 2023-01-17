@@ -49,20 +49,21 @@
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                            <li><a href="wishList.le">찜목록</a></li>                        
+                         <li><a href="#">장바구니</a></li>
+                            
                             <c:choose>
            					<c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
-	                            <li><a data-toggle="modal" data-target="#loginModal">로그인</a></li>
+	                            <li><a href="loginEnroll.me">로그인</a></li>
 	                            <li><a href="enrollForm.me">회원가입</a></li>
 	                        </c:when>
             				<c:otherwise>
             					<!-- 로그인 후 -->
-            					<label>${ loginUser.memName }님 환영합니다</label>&emsp;
+            					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
 					                <li><a href="myPage.me">마이페이지</a></li>
-					                <a href="logout.me">로그아웃</a>
-				                </c:otherwise>
-				                </c:choose>
+					                <li><a href="logout.me">로그아웃</a><li>
+				             </c:otherwise>
+				            </c:choose>
                         </ul>
                     </div>
                 </div>                
@@ -98,7 +99,7 @@
                             <h4>강좌안내</h4>
                             <ul>
                                 <li><a href="">수강신청</a></li>
-                                <li><a href="list.le">강좌목록</a></li>
+                                <li><a href="">강좌목록</a></li>
                                 <li><a href="">강좌스케줄</a></li>
                                 <li><a href="">신청방법</a></li>
                             </ul>
@@ -157,19 +158,19 @@
         </div>            
  </div>
     
-	<!-- 로그인 클릭 시 뜨는 모달 (기존에는 안보이다가 위의 a 클릭시 보임) -->
+	<!-- 로그인 클릭 시 뜨는 모달 (기존에는 안보이다가 위의 a 클릭시 보임) 
     <div class="modal fade" id="loginModal">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
             
-                <!-- Modal Header -->
+                 Modal Header 
                 <div class="modal-header">
                     <h4 class="modal-title">로그인</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <form action="login.me" method="post">
                 
-                    <!-- Modal Body -->
+                     Modal Body 
                     <div class="modal-body">
                         <label for="memId" class="mr-sm-2">아이디 :</label>
                         <input class="form-control mb-2 mr-sm-2" placeholder="아이디를  입력해주세요" id="memId" name="memId"><br>
@@ -177,7 +178,7 @@
                         <input type="password" class="form-control mb-2 mr-sm-2" placeholder="비밀번호를 입력해주세요" id="memPw" name="memPw">
                     </div>
                     
-                    <!-- Modal footer -->
+                     Modal footer 
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">로그인</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
@@ -186,6 +187,7 @@
             </div>
         </div>
     </div>
+    -->
     
     <script>
         // 검색 버튼 fade

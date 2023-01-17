@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="../js/exam research(kangho).js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-
+    
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,12 +79,12 @@
 						success: function(result){
 							if(result == "NNN"){
 								$("#checkResult").show();
-								$("#checkResult").css("color","red").text("중복된 아이디가 존재합니다. 다시 입력해 주세요");
-								$("#enrollForm :submit").attr("disabled",true);
+								$("#checkResult").css("color","#f82a2aa3").text("중복된 아이디가 존재합니다. 다시 입력해 주세요");
+								$("#enrollForm :submit()").attr("disabled",true);
 							} else {
 								$("#checkResult").show();
-								$("#checkResult").css("color","blue").text("사용가능한 아이디입니다.");
-								$("#enrollForm :submit").attr("disabled",false);
+								$("#checkResult").css("color","#199894b3").text("사용가능한 아이디입니다.");
+								$("#enrollForm :submit()").attr("disabled",false);
 							}
 						},
 						error:function(){
@@ -101,24 +100,23 @@
     	})
     	
     	// 닉네임 중복체크
-    	
     	$(function(){
     		const $nickNameInput = $("#enrollForm input[name=memNickname]");
     		$nickNameInput.keyup(function(){
-    			// 최소 5글자 이상 입력되었을때만 ajax요청하도록 함
-				if($nickNameInput.val().length >= 3) {
+    			// 최소 2글자 이상 입력되었을때만 ajax요청하도록 함
+				if($nickNameInput.val().length >= 2) {
 					$.ajax({
 						url:"nicknameCheck.me",
 						data: {checkNickname:$nickNameInput.val()}, //key: checkId, value: $nickNameInput.val()
 						success: function(result){
 							if(result == "NNN"){
 								$("#checkNickResult").show();
-								$("#checkNickResult").css("color","red").text("중복된 닉네임이 존재합니다. 다시 입력해 주세요");
-								$("#enrollForm :submit").attr("disabled",true);
+								$("#checkNickResult").css("color","#f82a2aa3").text("중복된 닉네임이 존재합니다. 다시 입력해 주세요");
+								$("#enrollForm :submit()").attr("disabled",true);
 							} else {
 								$("#checkNickResult").show();
-								$("#checkNickResult").css("color","blue").text("사용가능한 닉네임입니다.");
-								$("#enrollForm :submit").attr("disabled",false);
+								$("#checkNickResult").css("color","#199894b3").text("사용가능한 닉네임입니다.");
+								$("#enrollForm :submit()").attr("disabled",false);
 							}
 						},
 						error:function(){
@@ -133,6 +131,45 @@
     			
     		})
     	})
+    	
+    	//비밀번호 유효성 검사
+    	$(function() {
+    		$('#memPw').on('focus', function() {
+    			$('#pwdMsg').html('최소 8 자 이상, 하나 이상의 문자와 숫자를 포함해 주세요.<br>');
+    		});
+    		
+    		$('#memPw').focusout(function() {
+    			var pwd = $('#memPw').val();
+          var reg = /^[a-z\d!@#$%^&*]{8,15}$/i;
+        		if(!reg.test(pwd)) {
+    				$('#pwdMsg').attr('color', '#f82a2aa3');
+        			return false;
+        		} else {
+        			$('#pwdMsg').html('');
+        		}
+    		});
+    	});
+
+
+      //비밀번호 일치검사
+      $(function() {
+    		$('#memPw').keyup(function() {
+    			$('#pwdError').html('');
+    		});
+    		$('#memRpw').keyup(function() {
+    			if($('#memPw').val() != $('#memRpw').val()) {
+    				$('#pwdError').html('비밀번호 불일치<br>');
+    				$('#pwdError').attr('color', '#f82a2aa3');
+    				$('#memRpw').css('outline', 'red');
+    				return false;
+    			} else {
+    				$('#pwdError').html('비밀번호 일치<br>');
+    				$('#pwdError').attr('color', '#199894b3');
+    			}
+    		});
+    		
+    		
+    	});
     </script>
 
 </head>
@@ -159,7 +196,8 @@
               <label for="memId">* 아이디</label>
               <input type="text" name="memId" id="memId" class="form-control" style="width:315px" placeholder="최소 5글자 이상 입력해주세요." maxlength="12" required>
               <!--  <input type="button" value="ID중복확인"  class="form-control" style="width:115px; margin-top: -38px; margin-left:320px";>-->
-              <div id="checkResult" style="font-size:0.8em; display:none"></div>
+              <font id="checkResult" style="font-size:0.8em; display:none"></font>
+              
             </div> 
 
             <!--유효성 검사-->
@@ -176,8 +214,9 @@
             <!-- 닉네임 -->
             <div class="mb-3">
               <label for="memNickname">* 닉네임</label>
-              <input class="form-control" id="memNickname" name="memNickname" style="width:315px" required>
-              <div id="checkNickResult" style="font-size:0.8em; display:none"></div>
+              <input class="form-control" id="memNickname" name="memNickname" style="width:315px" placeholder="최소 2글자 이상 입력하세요." required>
+              <font id="checkNickResult" style="font-size:0.8em; display:none"></font>
+              
               
               <!-- <input type="button" value="중복확인"  class="form-control" style="width:115px; margin-top: -38px; margin-left:320px";>-->
               <input type="hidden" name="idbtncheck" value="idUncheck"> 
@@ -187,21 +226,24 @@
             <div class="mb-3">
               <label for="memPw">* 비밀번호</label>
               <input type="password" id="memPw" name="memPw" class="form-control" placeholder="영문자, 숫자, 특수문자로 총 8~15자로 입력해주세요." style="width:435px" required>
+              <font id = "pwdMsg" size = "2"></font>
             </div>
 
             <!-- 비밀번호 확인-->
             <div class="mb-3">
               <label for="memRpw">* 비밀번호 확인</label>
               <input type="password" id="memRpw" name="memRpw" class="form-control" placehoder="위의 비밀번호와 일치하게 입력하시오." style="width:435px" required>
+              <font id = "pwdError" size = "2"></font>
             </div>
 
             <!-- 이메일 -->
             <div class="mb-3">
               <label for="memEmail">* 이메일</label>
-              <input type="email" class="form-control" id="memEmail" name="memEmail" placeholder="test1234@gmail.com" style="width:300px"required>
+              <input type="email" class="form-control" id="memEmail" name="memEmail" placeholder="aksumoonwha@moonwha.com" style="width:300px"required>
               
-              <input type="button" value="이메일 인증"  class="form-control" style="width:130px; margin-top: -38px; margin-left:305px";>
-              <input type="hidden" name="idbtncheck" value="idUncheck">
+              
+              <!--<input type="button" value="이메일 인증"  class="form-control" style="width:130px; margin-top: -38px; margin-left:305px";>
+              <input type="hidden" name="idbtncheck" value="idUncheck">-->
             </div> <!--class="mb-3"-->
 
             <!--유효성 검사-->
@@ -233,6 +275,12 @@
               <input type="text" class="form-control" id="memDetailaddress" name="memDetailAddress" placeholder="상세주소를 입력해주세요." style="width:438px">
             </div>
 
+            <!-- 생년월일 -->
+            <div class="mb-3"> 
+              <label for="memBirthday">생년월일<span class="text-muted">&nbsp;</span></label>
+              <input type="text" class="form-control" id="memBirthday" name="memBirthday" placeholder="주민번호 앞자리 여섯자리를  입력해주세요." style="width:438px">
+            </div>
+
             <!-- 휴대전화 -->
             <div class="mb-3">
               <label for="memPhone">휴대전화</label>
@@ -250,13 +298,30 @@
 
             <!-- 서류첨부 -->
             <div class="mb-3">
-                <label for="memPaper">* 서류첨부(필요시)</label>
-                <input type="file" name="memPaper" id="memPaper">
+                <label for="memPaper">* 취약계층 유형(필요시)</label><br>
+                <select name="memPaper" id="memPaper">
+                  <option value="1">해당없음</option>
+                  <option value="2">65세 이상 고령자</option>
+                  <option value="3">장애인</option>
+                  <option value="4">한부모가정 보호대상자</option>
+                  <option value="5">저소득자</option>
+                  <option value="6">고용촉진장려금 지급대상 청년</option>
+                  <option value="7">범죄구조피해자</option>
+                  <option value="8">그밖에 고용노동부장관이 인정한 자</option>
+                </select>
+                <!--<input type="file" name="memPaper" id="memPaper">-->
                 <!-- <input type="button" value="서류첨부"  class="form-control" style="width:440px;"> -->
             </div>
 
         </div> <!--class="input-form col-md-12 mx-auto"-->
       </div> <!--class="input-form-backgroud row"-->
+
+      <!--hidden 부분-->
+      <input type="hidden" name="memStatus" value="Y">
+      <!--<input type="hidden" name="memCdate">-->
+      <!-- <input type="hidden" name="memDdate">-->
+      <input type="hidden" name="isAdmin" value="N">
+      <!-- <input type="hidden" name="memCarno">-->
 
 
             <hr style="width:435px;">
@@ -266,8 +331,8 @@
             </div> -->
             
             <!-- 가입완료 버튼 -->
-            <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color: #434950; border-color : #d9dcdf; width:438px;">가입 완료</button>
-          
+            <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="EnrollFormChk();" style="background-color: #434950; border-color : #d9dcdf; width:438px;">가입 완료</button>
+            <button class="btn btn-primary btn-lg btn-block" type="reset" style="background-color: #434950; border-color : #d9dcdf; width:438px;">다시 쓰기</button>
             </form> <!--form class="enrollForm"-->
             
     </div> <!--class="container"-->

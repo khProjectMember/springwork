@@ -1,5 +1,9 @@
 package com.kh.spring.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,103 +11,49 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.service.MemberService;
+import com.kh.spring.member.model.exception.MemberException;
+import com.kh.spring.member.model.service.EmailAuthService;
+import com.kh.spring.member.model.vo.Email;
 import com.kh.spring.member.model.vo.Member;
 
 @Controller	// 빈 스캐닝을 통해 자동으로 빈에 등록
 public class MemberController {
-	/* 기본 사용
-	@RequestMapping(value="login.me") // HandlerMapping등록
-	public void loginMember() {		  // 여러개의 매핑이 있으면 key와 value의 값으로 등록
-		
-	}
 	
-	public void insertMember() {
-		
-	}
-	*/
-	// 1. 파라이터를 받는 방법
-	/*
-	 * 	1.1 HttpServletRequest를 이용해서 전달받는 방법(기존의 jsp/servlet때의 방식)
-	 * 		해당 메소드의 매개변수로 HttpServletRequest를 작성하고
-	 * 		스프링 컨테이너가 해당 메소드 호출시 자동으로 해당 객체를 생성해서 인자로 주입해줌
-	 */
-	/*
-	@RequestMapping("login.me") 
-	public void loginMember(HttpServletRequest request) {
-		String userId = request.getParameter("id");
-		String userPwd = request.getParameter("pwd");
-		
-		System.out.println("ID : " + userId);
-		System.out.println("PW : " + userPwd);		
-	}
-	*/
-	/*
-	 * 	1.2 @RequestParam 어노테이션을 사용하는 방법
-	 * 		request.getParameter("키") : value의 역할을 대신해주는 어노테이션 
-	 */
-	/*
-	@RequestMapping("login.me") 
-	public void loginMember(@RequestParam(value="id", defaultValue="aaa") String userId,
-							@RequestParam("pwd") String userPwd) {
-		
-		System.out.println("ID : " + userId);
-		System.out.println("PW : " + userPwd);		
-	}
-	*/
-	/*
-	 * 	1.3 @RequestParam 어노테이션을 생략하는 방법
-	 * 		단, 매개변수명과 name값(요청시 전달되는 키값)과 동일하게  
-	 */
-	/*
-	@RequestMapping("login.me") 
-	public void loginMember(String id, String pwd) {
-		
-		System.out.println("ID : " + id);
-		System.out.println("PW : " + pwd);
-		
-		Member m = new Member();
-		m.setUserId(id);
-		m.setUserPwd(pwd);
-	}
-	*/
-	
-	// 어노테이션을 달아서 스프링이 알아서 객체를 생성하고 이를 재활용하여 관리
-	/*
 	@Autowired
 	private MemberService mService;
 	
-	@RequestMapping("login.me") 
-	public void loginMember(Member m) {
-		
-		System.out.println("ID : " + m.getUserId());
-		System.out.println("PW : " + m.getUserPwd());
-		
-		Member loginUser = mService.loginMember(m);
-		
-		if(loginUser == null) { //로그인 실패 에러페이지로 포워딩
-			System.out.println("로그인 실패");
-		} else {	//로그인 성공 sessionScope에 담고 메인페이로 url요청
-			System.out.println("로그인 성공");
-		}	
-	}
-	*/
+	@Autowired
+	private EmailAuthService emailAuthService;
 	
-	// 2. 응답페이지로 포워딩 또는 url재요청 보내는 응답데이터를 담는 방법
-	/*
-	 * 	2.1 스프링에서 제공 Model 객체를 사용하는 방법
-	 * 		포워딩할 뷰로 전달하고자 하는 데이터를 맵형태(key-value)로 담을 수 있는 영역
-	 * 		Model객체는 requestScope이다.
-	 * 		값을 넣을때는 setAttribute가 아닌 addAttribute메소드를 사용
-	 * 
-	 *
-	*/
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	
+	// 로그인 페이지로
+	@RequestMapping("loginEnroll.me")
+	public String loginEnroll() {
+		return "member/login";
+	}
+	 /*
+	 * 	2.2 스프링에서 제공 ModelAndView 객체를 사용하는 방법
+	 * 		Model객체 포워딩할 뷰로 전달하고자 하는 데이터를 맵형태(key-value)로 담을 수 있는 영역
+	 * 		View는 응답뷰에 대한 정보를 담을 수 있는공간
+	
+	
 	@Autowired
 	private MemberService mService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	*/
+	
+	/*
+	// 로그인
 	@RequestMapping("login.me") 
 	public String loginMember(Member m, Model model, HttpSession session) {
 		
@@ -117,25 +67,13 @@ public class MemberController {
 			return "redirect:/"; //redirect: mainPage로 간다는 의미
 		}	
 	}
-	
-	 /*
-	 * 	2.2 스프링에서 제공 ModelAndView 객체를 사용하는 방법
-	 * 		Model객체 포워딩할 뷰로 전달하고자 하는 데이터를 맵형태(key-value)로 담을 수 있는 영역
-	 * 		View는 응답뷰에 대한 정보를 담을 수 있는공간
-	
-	
-	@Autowired
-	private MemberService mService;
-	
-	@Autowired
-	private BCryptPasswordEncoder bcryptPasswordEncoder;
-	
+	*/
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
 		Member loginUser = mService.loginMember(m);
 		
-		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemId(), loginUser.getMemPw())) {//m.getUserPwd(): 사용자가 입력한 비번, loginUser.getUserPwd(): DB에 저장된 값
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPw(), loginUser.getMemPw())) {//m.getUserPwd(): 사용자가 입력한 비번, loginUser.getUserPwd(): DB에 저장된 값
 			session.setAttribute("loginUser", loginUser); //로그인 성공 sessionScope에 담고 메인페이지로 url요청
 			mv.setViewName("redirect:/"); //redirect: mainPage로 간다는 의미			
 		} else {	
@@ -144,13 +82,15 @@ public class MemberController {
 		}
 		return mv;
 	}
-	*/
+	
+	
+	//로그아웃
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
-	
+	//회원가입페이지로 이동
 	@RequestMapping("enrollForm.me")
 	public String enrollForm() {
 		return "member/memberEnrollForm";
@@ -183,14 +123,15 @@ public class MemberController {
 		 * 3. web.xml에 
 		 * 
 		 */
-		//System.out.println("평문 : " + m.getUserPwd());
-		//String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		System.out.println("평문 : " + m.getMemPw());
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPw());
+		m.setMemPw(encPwd);
 		//m.setUserPwd(encPwd);
 		
-		//System.out.println("암호문 : "+encPwd);
+		System.out.println("암호문 : "+encPwd);
 		
 		int result = mService.insertMember(m);
-		if(result >0) {
+		if(result > 0) {
 			session.setAttribute("alertMsg", "성공적으로 회원가입이 되었습니다.");
 			return "redirect:/";
 		} else {
@@ -198,10 +139,168 @@ public class MemberController {
 			return "common/errorPage";
 		}
 		}
+	//아이디 찾기 페이지로
+	@RequestMapping("findId.me")
+	public String findId() {
+		
+		return "member/findId";
+	}
 	
+	//아이디 찾기
+	@RequestMapping("findMyId.me")
+	public String findMyId(Email email, Model model){
+		//		System.out.println(email.getMemEmail());
+		//		System.out.println(email.getMemName());
+		int check = mService.checkMember(email); //유효한 멤버인지 확인
+		//		System.out.println("체크값" + check);
+		if(check == 1) {
+			Map<String, Object> map = emailAuthService.getEmailAuth(email.getMemEmail());
+			String memId = mService.getMemId(email); //아이디 얻어옴
+			
+			model.addAttribute("memId", memId);
+			model.addAttribute("authCode", map.get("emailAuthCode"));
+			return "member/findId";
+		} else {
+			model.addAttribute("errorMsg","회원정보가 일치하지 않습니다.");
+			return "common/errorPage";
+		}
+	}
+	
+	//비밀번호 찾기 페이지로
+	@RequestMapping("findPwd.me")
+	public String findPwd() {
+		return "member/findPwd";
+	}
+	
+	
+	//비밀번호 찾기
+	@RequestMapping("updateTempPwd.me")
+	public String findPwd(Email email, Model model, Member m) {
+		int check = mService.checkMember(email); //유효한 멤버인지 확인
+		int result = 0;
+		String tempPwd = "";
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(check == 1) {
+			map = emailAuthService.getEmailAuth(email.getMemEmail());
+			tempPwd = makeTempPwd();
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("encTempPwd", bcryptPasswordEncoder.encode(tempPwd));
+			param.put("memEmail", email.getMemEmail());
+			
+			result = mService.updateTempPwd(param);
+			} else {
+				throw new MemberException("회원 정보가 일치하지 않습니다.");
+		}
+		if(result > 0) {
+			model.addAttribute("authCode", map.get("emailAuthCode"));
+			model.addAttribute("tempPwd", tempPwd);
+			System.out.println("평문 : " + m.getMemPw());
+			return "member/findPwd";
+		} else {
+			throw new MemberException("비밀번호 발급에 실패하였습니다.");
+		}
+	}
+	
+	//임시 비밀번호 생성
+	private String makeTempPwd() {
+		int leftLimit = 48;
+		int rightLimit = 122;
+		int targetStringLength = 10;
+		Random random = new Random();
+		String generatedString = random.ints(leftLimit, rightLimit + 1)
+	            .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+	            .limit(targetStringLength)
+	            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+	            .toString();
+		return generatedString;
+	}
+	
+	// 비밀변호 변경 수정 페이지로
+	@RequestMapping("updateMyPwd.me")
+	public String updateMyPwd() {
+		return "member/updateMyPwd";
+	}
+	
+	// 비밀변호 변경 수정
+	@RequestMapping("updateMyPwdInfo.me")
+	public String updateMyPwdInfo(Member m, Model model, HttpSession session, @RequestParam("currentPwd") String pwd, @RequestParam("newPwd") String newPwd) {
+		int result = 0;
+		m = (Member)model.getAttribute("loginUser");
+		if(bcryptPasswordEncoder.matches(pwd, m.getMemPw())) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("mem_id", m.getMemId());
+			map.put("newPwd", bcryptPasswordEncoder.encode(newPwd));
+			
+			result += mService.updatePwd(map);
+		}
+		
+		if(result ==2) {
+			model.addAttribute("loginUser", mService.loginMember(m));
+			System.out.println("비밀번호가 성공적으로 수정되었습니다.");
+			return "redirect:myPage.me";
+
+		} else {
+			model.addAttribute("errorMsg","비밀번호 변경 실패");
+			return "common/errorPage";			
+		}
+		
+}
+	
+	/*
+	m.getMemPw(), loginUser.getMemPw())) {//m.getUserPwd(): 사용자가 입력한 비번, loginUser.getUserPwd(): DB에 저장된 값
+	
+	public String update(@ModelAttribute Member m, Model model, @RequestParam("year") int year, @RequestParam("month") int month, @RequestParam("day") int day, @RequestParam("currentPwd") String pwd, @RequestParam("newPwd") String newPwd) {
+		
+		int result = mService.updateMember(m); //여기서 result값 1 됨
+		//update 처리
+		m = (Member)model.getAttribute("loginUser");
+		if(bcrypt.matches(pwd, m.getPwd())) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("id", m.getId());
+			map.put("newPwd", bcrypt.encode(newPwd));
+			
+			result += mService.updatePwd(map);
+		}
+		
+		if(result == 2) {
+			model.addAttribute("loginUser", mService.login(m));
+			return "redirect:/";
+		} else {
+			throw new MemberException("회원수정에 실패하였습니다.");
+		}
+	}	
+	
+	
+	@RequestMapping("update.me")
+	public String updateMember(Member m, HttpSession session, Model model) { //Member의 객체로 데이터 받아오기
+		int result = mService.updateMember(m);
+		if(result > 0) {
+			Member updateM = mService.loginMember(m);
+			session.setAttribute("loginUser", updateM);
+			System.out.println("성공적으로 수정되었습니다.");
+			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			return "redirect:myPage.me"; //myPage.me로 가면 jsp가도록 위에 설정해놓음
+		} else {
+			model.addAttribute("errorMsg","회원정보 변경 실패");
+			return "common/errorPage";			
+		}
+	}
+	*/
+	
+	
+	
+	
+	//마이페이지로 이동
 	@RequestMapping("myPage.me")
 	public String myPage() {
 		return "member/myPage";
+	}
+	
+	//최근작성목록으로 이동
+	@RequestMapping("recentPage.me")
+	public String recentPage() {
+		return "member/recentPage";
 	}
 	
 	@RequestMapping("update.me")
@@ -210,6 +309,7 @@ public class MemberController {
 		if(result > 0) {
 			Member updateM = mService.loginMember(m);
 			session.setAttribute("loginUser", updateM);
+			System.out.println("성공적으로 수정되었습니다.");
 			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 			return "redirect:myPage.me"; //myPage.me로 가면 jsp가도록 위에 설정해놓음
 		} else {
@@ -237,6 +337,8 @@ public class MemberController {
 		}
 	}
 	*/
+	
+	// 아이디 중복체크 ajax
 	@ResponseBody // ajax로 되돌려주는 어노테이션
 	@RequestMapping("idCheck.me")
 	public String idCheck(String checkId) {
@@ -251,7 +353,7 @@ public class MemberController {
 		return count > 0 ? "NNN" : "YYY";
 	}
 	
-	// 닉네임 중복 ajax
+	// 닉네임 중복체크 ajax
 	@ResponseBody
 	@RequestMapping("nicknameCheck.me")
 	public String nicknameCheck(String checkNickname) {
