@@ -1,7 +1,5 @@
 package com.kh.spring.lecture.model.vo;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -20,7 +18,6 @@ public class Teacher {
 	private String teaName;
 	private int teaAge;
 	private String teaInfo;
-	private Date teaEdate;
+	private String teaEdate;
 	private String teaStatus;
-	private int lecNo;
 }

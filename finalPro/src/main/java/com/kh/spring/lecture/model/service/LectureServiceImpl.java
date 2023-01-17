@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.dao.LectureDao;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.Teacher;
 
 @Service
 public class LectureServiceImpl implements LectureService{
@@ -28,19 +29,36 @@ public class LectureServiceImpl implements LectureService{
 	public Lecture lectureDetail(int lecNo) {
 		return lDao.lectureDetail(sqlSession, lecNo);
 	}
+	
+	
 	@Override
-	public int selectListCount() {
-		return lDao.selectListCount(sqlSession);
+	public int selectListCount_Lecture() {
+		return lDao.selectListCount_Lecture(sqlSession);
 	}
+	@Override
+	public int selectListCount_Teacher() {
+		return lDao.selectListCount_Teacher(sqlSession);
+	}
+	
+	
 
 	@Override
-	public ArrayList<Lecture> selecList(PageInfo pi) {
-		return lDao.selectList(sqlSession, pi);
+	public ArrayList<Lecture> selectLectureList(PageInfo pi) {
+		return lDao.selectLectureList(sqlSession, pi);
+	}
+	@Override
+	public ArrayList<Teacher> selectTeacherList(PageInfo pi) {
+		return lDao.selectTeacherList(sqlSession, pi);
 	}
 
 	@Override
 	public int insertLecture(Lecture l) {
 		return lDao.insertLecture(sqlSession, l);
 	}
+	@Override
+	public int insertTeacher(Teacher t) {
+		return lDao.insertTeacher(sqlSession, t);
+	}
+
 
 }

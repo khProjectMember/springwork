@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.Teacher;
 
 @Repository
 public class LectureDao {
@@ -22,16 +23,33 @@ public class LectureDao {
 	public int insertLecture(SqlSessionTemplate sqlSession, Lecture l) {
 		return sqlSession.insert("lectureMapper.insertLecture",l);
 	}
-	public int selectListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("lectureMapper.selectListCount");
+	public int insertTeacher(SqlSessionTemplate sqlSession, Teacher t) {
+		return sqlSession.insert("lectureMapper.insertTeacher",t);
 	}
 	
-	public ArrayList<Lecture> selectList(SqlSessionTemplate sqlSession, PageInfo pi){
+	
+	public int selectListCount_Lecture(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("lectureMapper.selectListCount_Lecture");
+	}
+	public int selectListCount_Teacher(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("lectureMapper.selectListCount_Teacher");
+	}
+	
+	public ArrayList<Lecture> selectLectureList(SqlSessionTemplate sqlSession, PageInfo pi){
 		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
 		int limit = pi.getBoardLimit(); 
 		RowBounds rowBounds = new RowBounds(startNo, limit);
-		return (ArrayList)sqlSession.selectList("lectureMapper.selectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("lectureMapper.selectLectureList",null,rowBounds);
 	}
+	public ArrayList<Teacher> selectTeacherList(SqlSessionTemplate sqlSession, PageInfo pi){
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		return (ArrayList)sqlSession.selectList("lectureMapper.selectTeacherList",null,rowBounds);
+	}
+	
+	
+	
 	/*
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("lectureMapper.selectListCount");

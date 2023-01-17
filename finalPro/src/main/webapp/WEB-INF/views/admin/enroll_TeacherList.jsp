@@ -9,18 +9,18 @@
 <style>
   	 
     .content2{
-        width: 100%;
+        width: 80%;
         margin: auto;
     }
     .innerOuter{
     	align: center;
-        width: 100%;
+        width: 80%;
         margin: auto;
-        padding: 5% 5%;
+        padding: 5% 10%;
         background:white;
     }
-   		#lectureList{text-align: center;}
-        #lectureList>tbody>tr:hover{cursor: pointer;}
+   		#TeacherList{text-align: center;}
+        #TeacherList>tbody>tr:hover{cursor: pointer;}
         #pagingArea{width:fit-content; margin: auto;}       
         #searchForm{
             width: 80%;
@@ -46,37 +46,24 @@
 						<h2>강좌목록 관리</h2>
 						<br>
 
-						<table id="LectureList" class="table table-hover" align="center">
+						<table id="TeacherList" class="table table-hover" align="center">
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>강의명</th>
 									<th>강사이름</th>
-									<th>강의기간</th>
-									<th>강의시간</th>
-									<th>강의횟수</th>
-									<th>강의 분류</th>
-									<th>강의가격</th>
-									<th>평점</th>
-									<th>인원현황</th>
-									<th>강의실</th>
-									
+									<th>나이</th>
+									<th>등록일자</th>
+									<th>상태</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="l" items="${ list }">
+								<c:forEach var="t" items="${ list }">
 									<tr>
-										<td class="lno">${ l.lecNo }</td>
-										<td>${l.lecName}</td>
-										<td>${l.teacher.teaName }</td>
-										<td>${l.lecSdate} ~ ${l.lecEdate}</td>
-										<td>${l.lecStime} ~ ${l.lecEtime}</td>
-										<td>${l.lecCount}</td>
-										<td>${l.lecBcatg}  -${l.lecScatg}</td>
-										<td>${l.lecPrice}</td>
-										<td>${l.lecGrade}</td>
-										<td>${l.lecCnum}</td>
-										<td>여기에 접수인원 카운트/${l.lectureLocation.locName}</td>
+										<td class="tno">${ t.teaNo }</td>
+										<td>${ t.teaName }</td>
+										<td>${ t.teaAge }</td>
+										<td>${ t.teaEdate}</td>
+										<td>${ t.teaStatus}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -85,10 +72,10 @@
 						<!-- 상세페이지 -->
 						<script>
 							$(function() {
-								$("#LectureList>tbody>tr").click(
+								$("#TeacherList>tbody>tr").click(
 										function() {
-											location.href = 'detail.le?lno='
-													+ $(this).children(".lno")
+											location.href = 'detail2.le?tno='
+													+ $(this).children(".tno")
 															.text();
 										})
 							})
@@ -102,13 +89,13 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="list2.le?cpage=${ pi.nowPage-1 }">Previous</a></li>
+											href="list.te?cpage=${ pi.nowPage-1 }">Previous</a></li>
 									</c:otherwise>
 								</c:choose>
 								<c:forEach var="p" begin="${ pi.startPage }"
 									end="${ pi.endpage }">
 									<li class="page-item"><a class="page-link"
-										href="list2.le?cpage=${ p }">${ p }</a></li>
+										href="list.te?cpage=${ p }">${ p }</a></li>
 								</c:forEach>
 								<c:choose>
 									<c:when test="${ pi.nowPage eq pi.maxPage }">
@@ -117,7 +104,7 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="list2.le?cpage=${ pi.nowPage+1 }">Next</a></li>
+											href="list.te?cpage=${ pi.nowPage+1 }">Next</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -128,8 +115,8 @@
 						<form id="searchForm" action="" method="Get" align="center">
 							<div class="select">
 								<select class="custom-select" name="condition">
-									<option value="writer">작성자</option>
-									<option value="title">제목</option>
+									<option value="writer">강사이름</option>
+									<option value="title">상태</option>
 								</select>
 							</div>
 							<div class="text">
