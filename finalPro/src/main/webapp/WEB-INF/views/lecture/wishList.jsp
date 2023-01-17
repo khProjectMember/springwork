@@ -46,14 +46,15 @@
                                 <td width="20%">접수상태</td>
                             </th>
                         </thead>
+                        <c:forEach var="l" items="${ list }">
                         <tbody>
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td><a href="detail.le?="${lecNo }>체육/수영</td>  
-                                <td>기초수영</td>
-                                <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>
-                                <td>수영장</td>
-                                <td>50000</td>
+                                <td><a href="detail.le?="${l.lecNo }>${l.lecBcatg}/${l.lecScatg}</td>  
+                                <td>${l.lecName }</td>
+                                <td>${t.teaName }<br><a href="" class="teacher_info">강사소개</a></td>
+                                <td>${l.locNo }</td>
+                                <td>${l.lecPrice }</td>
                                 <td>대기중<br>대기인원 : 0명</td>
                             </tr>
                             <tr>
@@ -70,6 +71,7 @@
                                 <td width="10%">0</td>
                             </tr>
                         </tbody>
+                        </c:forEach>
                     </table>
                     <div class="join_move">
                         <input type="hidden" name="lectureNum">

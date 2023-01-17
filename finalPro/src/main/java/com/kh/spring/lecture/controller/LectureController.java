@@ -32,7 +32,9 @@ public class LectureController {
 	}
 	
 	@RequestMapping("wishList.le")
-	public String wishList() {
+	public String wishList(int memNo, Model model) {
+		ArrayList<Lecture> list = lService.wishList(memNo);
+		model.addAttribute("list", list);
 		return "lecture/wishList";
 	}
 	

@@ -6,12 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Setter
 @Getter
-@ToString
-public class Lecture{
+public class LecWishDTO {
 	private int lecNo;
 	private String lecName;
 	private String lecSdate;
@@ -30,9 +30,5 @@ public class Lecture{
 	private String lecMlist;
 	private int teaNo;
 	private int locNo;
-	
-	private Teacher teacher;
-	private LectureLocation lectureLocation;
-	
-	
 }
+

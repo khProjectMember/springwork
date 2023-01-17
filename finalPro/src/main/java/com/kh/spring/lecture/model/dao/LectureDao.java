@@ -16,6 +16,10 @@ public class LectureDao {
 	public Lecture lectureDetail(SqlSessionTemplate sqlSession, int LecNo) {
 		return (Lecture)sqlSession.selectOne("lectureMapper.lectureDetail", LecNo);
 	}
+
+	public ArrayList<Lecture> wishList(SqlSessionTemplate sqlSession, int memNo) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.wishList", memNo);
+	}
 	
 	
 	/*

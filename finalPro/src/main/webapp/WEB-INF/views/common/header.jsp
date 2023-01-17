@@ -49,7 +49,6 @@
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                            <li><a href="wishList.le">찜목록</a></li>                        
                             <c:choose>
            					<c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
@@ -59,6 +58,7 @@
             				<c:otherwise>
             					<!-- 로그인 후 -->
             					<label>${ loginUser.memName }님 환영합니다</label>&emsp;
+		                            <li><a href="wishList.le">찜목록</a></li>                        
 					                <li><a href="myPage.me">마이페이지</a></li>
 					                <a href="logout.me">로그아웃</a>
 				                </c:otherwise>

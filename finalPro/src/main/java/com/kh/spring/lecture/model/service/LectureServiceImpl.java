@@ -27,4 +27,9 @@ public class LectureServiceImpl implements LectureService{
 	public Lecture lectureDetail(int lecNo) {
 		return lDao.lectureDetail(sqlSession, lecNo);
 	}
+
+	@Override
+	public ArrayList<Lecture> wishList(int memNo) {
+		return lDao.wishList(sqlSession, memNo);
+	}
 }
