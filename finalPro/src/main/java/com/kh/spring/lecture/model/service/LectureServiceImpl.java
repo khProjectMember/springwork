@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.dao.LectureDao;
 import com.kh.spring.lecture.model.vo.Lecture;
 
@@ -27,4 +28,19 @@ public class LectureServiceImpl implements LectureService{
 	public Lecture lectureDetail(int lecNo) {
 		return lDao.lectureDetail(sqlSession, lecNo);
 	}
+	@Override
+	public int selectListCount() {
+		return lDao.selectListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Lecture> selecList(PageInfo pi) {
+		return lDao.selectList(sqlSession, pi);
+	}
+
+	@Override
+	public int insertLecture(Lecture l) {
+		return lDao.insertLecture(sqlSession, l);
+	}
+
 }
