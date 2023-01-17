@@ -90,10 +90,10 @@
                         <td><input class="form-control" name="lecGrade" ></td>
                     </tr>
                     
-                     <tr>
+                   <!--   <tr>
                         <th><label for="title">접수인원</label></th>
                         <td><input class="form-control" name="lecJnum" required></td>
-                    </tr>
+                    </tr> -->
                     
                      <tr>
                         <th><label for="title">수강인원</label></th>
@@ -105,7 +105,7 @@
                         <td><textarea class="form-control" name="lecInfo" rows="10" cols="50" style="resize:none" required ></textarea></th>
                     </tr>
                     <tr>
-                        <th><label for="title">강사이름</label></th>
+                        <th><label for="title">강사</label></th>
                         	<td><select id="select3" name="teaNo">
                         			<option value="1">이연복</option>
                         			<option value="2">정연복</option>

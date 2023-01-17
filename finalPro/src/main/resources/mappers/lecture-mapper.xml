@@ -48,7 +48,15 @@
   	<result column="loc_number" property="locNumber"/>
   	<result column="loc_info" property="locInfo"/>
   </resultMap>
-  	
+  	<select id="selectListCount_Lecture" resultType="_int">
+		select count(*)
+			from lecture
+	</select>
+	<select id="selectListCount_Teacher" resultType="_int">
+		select count(*)
+			from teacher
+		where tea_status = 'Y'
+	</select>
   <select id="lectureList" resultMap="lectureResult">
 		select l.lec_no, l.lec_name, TO_CHAR(l.lec_sdate,'YY.MM.DD') as "lec_sdate",TO_CHAR(l.lec_edate,'YY.MM.DD') as "lec_edate", l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, 
 		 l.lec_price, t.tea_name
@@ -65,7 +73,7 @@
 		 where l.lec_no = ${lecNo}
 		
 	</select>
-	<insert id="insertLecture">
+	<insert id="insertLecture" >
 		insert into lecture(lec_no, lec_name, lec_sdate, lec_edate,
 							 lec_info, lec_stime, lec_etime, lec_count, lec_filename,
 							  lec_bcatg, lec_scatg, lec_price, lec_grade, lec_jnum, lec_cnum,
@@ -74,13 +82,24 @@
 			#{lecInfo}, #{lecStime}, #{lecEtime}, #{lecCount}, #{lecFilename}, 
 			#{lecBcatg}, #{lecScatg}, #{lecPrice}, #{lecGrade}, #{lecJnum}, #{lecCnum},
 			#{teaNo}, #{locNo})
-  </insert>
-  <select id="selectList" resultMap="lectureResult">
-		select l.lec_no, l.lec_name, t.tea_name
+ 	 </insert>
+  <select id="selectLectureList" resultMap="lectureResult">
+		select l.lec_no, l.lec_name, t.tea_name, l.lec_sdate, l.lec_edate, l.lec_stime, l.lec_etime, l.lec_count,
+						 l.lec_bcatg, l.lec_scatg, l.lec_price, l.lec_grade, l.lec_cnum, ll.loc_name
 			from lecture l
 			join Teacher t on (l.tea_no = t.tea_no)
 			join LectureLocation ll on (l.loc_no = ll.loc_no)
 		order by lec_no desc
+	</select>
+
+	<insert id="insertTeacher">
+		insert into teacher (tea_no, tea_name, tea_age, tea_info, tea_edate)
+		values((seq_tno.nextval), #{teaName}, #{teaAge}, #{teaInfo}, sysdate)
+	</insert>
+  	<select id="selectTeacherList" resultMap="Teacher">
+		select tea_no, tea_name, tea_age, TO_CHAR(tea_edate,'YY.MM.DD') as "tea_edate", tea_status
+			from teacher
+		order by tea_no desc
 	</select>
   
 </mapper>
