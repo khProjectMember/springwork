@@ -8,21 +8,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor //기본생성자
-@AllArgsConstructor //매개변수가 있는 생성자
+@NoArgsConstructor  // 기본 생성자 생성
+@AllArgsConstructor // 매개변수가 있는 생성자
 @Setter
 @Getter
 @ToString
 public class Member {
-	private String userId;
-	private String userPwd;
-	private String userName;
-	private String email;
-	private String gender;
-	private String age;
-	private String phone;
-	private String address;
-	private Date enrollDate;
-	private Date modifyDate;
-	private String status;
+	private int memNo;
+	private String memName;
+	private String memId;
+	private String memPw;
+	private String memNickname;
+	private String memGender;
+	private String memBirthday;
+	private String memPhone;
+	private String memEmail;
+	private String memZipcode;
+	private String memAddress;
+	private String memDetailAddress;
+	private Date memCdate;
+	private Date memDdate;
+	private String memPaper;
+	private String isAdmin;
+	private String memCarno;
+	private String memStatus;
 }
+

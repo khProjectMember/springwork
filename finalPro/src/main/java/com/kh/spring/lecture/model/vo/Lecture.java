@@ -28,11 +28,12 @@ public class Lecture{
 	private int lecGrade;
 	private int lecJnum;
 	private int lecCnum;
-	private int memNo;
+	private String lecMlist;
 	private int teaNo;
 	private int locNo;
 	
 	private Teacher teacher;
+	private LectureLocation lectureLocation;
 	
 	
 }
