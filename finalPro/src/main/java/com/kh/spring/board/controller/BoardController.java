@@ -21,15 +21,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
-import com.kh.spring.board.model.service.finalNoticeService;
+import com.kh.spring.board.model.service.NoticeService;
 import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 
 @Controller
-public class finalBoardController {
+public class BoardController {
 	@Autowired
-	private finalNoticeService nService;
+	private NoticeService nService;
 	
 	@RequestMapping("notice.bo")
 	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Notice n, Model model) {
@@ -42,7 +42,7 @@ public class finalBoardController {
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
 		model.addAttribute("nlist", nlist);
-		return "board/finalBoardNoticeView";
+		return "board/NoticeView";
 		
 	}
 	
@@ -51,12 +51,12 @@ public class finalBoardController {
 		Notice notice = nService.selectNotice(noticeNo);
 		
 		model.addAttribute("notice", notice);		
-		return "board/finalBoardNoticeDetailView";
+		return "board/NoticeDetailView";
 	}
 	
 	@RequestMapping("enroll.bo")
 	public String enroll() {
-		return "board/finalBoardNoticeWriteView";
+		return "board/NoticeWriteView";
 	}
 	/*
 	@RequestMapping("insert.bo")
@@ -104,7 +104,7 @@ public class finalBoardController {
 	public JsonObject SummerNoteImageFile(@RequestParam("file") MultipartFile file) {
 		JsonObject jsonObject = new JsonObject();
 		
-		String fileRoot = "C:\\summernoteImg\\";
+		String fileRoot = "C:\\FinalSpring\\finalPro\\src\\main\\webapp\\WEB-INF\\summernote_Image\\";
 		String originalFileName = file.getOriginalFilename();
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 		
@@ -150,7 +150,7 @@ public class finalBoardController {
 	@RequestMapping("updateFrm.bo")
 	public String updateFrm(@RequestParam(value="nNo") int nNo, Model model) {
 		model.addAttribute("notice", nService.selectNotice(nNo));
-		return "board/finalBoardNoticeModifyView";
+		return "board/NoticeModifyView";
 	}
 	
 	@RequestMapping("deleteFrm.bo")
@@ -186,7 +186,7 @@ public class finalBoardController {
 		
 		
 		
-		return "board/finalBoardNoticeView";
+		return "board/NoticeView";
 		
 	}
 }

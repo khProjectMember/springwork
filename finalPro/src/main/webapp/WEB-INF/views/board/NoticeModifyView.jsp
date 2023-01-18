@@ -42,10 +42,8 @@
                                         <th scope="row">카테고리</th>
                                         <td>
                                             <select name="noticeCatg" id="">
-                                                <option value="체육">체육</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="요리">요리</option>
-                                                <option value="예능">예능</option>
+                                                <option value="공지사항">공지사항</option>
+                                                <option value="이벤트">이벤트</option>                                                
                                             </select>
                                         </td>
                                         <th scope="row">작성자</th>

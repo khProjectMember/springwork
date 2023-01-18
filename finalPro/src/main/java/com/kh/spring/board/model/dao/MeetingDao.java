@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.board.model.vo.Meeting;
-import com.kh.spring.member.model.vo.finalMember;
+import com.kh.spring.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

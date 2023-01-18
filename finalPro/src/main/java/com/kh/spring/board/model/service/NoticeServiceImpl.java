@@ -12,7 +12,7 @@ import com.kh.spring.common.model.vo.PageInfo;
 
 
 @Service
-public class finalNoticeServiceImpl implements finalNoticeService {
+public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
 	private NoticeDao nDao;

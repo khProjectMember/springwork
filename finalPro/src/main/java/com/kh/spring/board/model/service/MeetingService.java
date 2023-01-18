@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring.board.model.vo.Meeting;
 
-public interface finalMeetingService {
+public interface MeetingService {
 	// 모임 리스트 페이지
 	
 	int selectMeetingCount();

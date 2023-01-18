@@ -10,7 +10,7 @@ import com.kh.spring.board.model.dao.MeetingDao;
 import com.kh.spring.board.model.vo.Meeting;
 
 @Service
-public class finalMeetingServiceImpl implements finalMeetingService {
+public class MeetingServiceImpl implements MeetingService {
 
 	@Autowired
 	private MeetingDao mDao;

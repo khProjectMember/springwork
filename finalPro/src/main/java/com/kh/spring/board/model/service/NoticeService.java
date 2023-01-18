@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.common.model.vo.PageInfo;
 
-public interface finalNoticeService {
+public interface NoticeService {
 	// 게시판 리스트 페이지
 	
 	int selectListCount();

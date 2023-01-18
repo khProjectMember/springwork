@@ -17,13 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.kh.spring.board.model.service.finalMeetingService;
+import com.kh.spring.board.model.service.MeetingService;
 import com.kh.spring.board.model.vo.Meeting;
 
 @Controller
-public class finalMeetingController {
+public class MeetingController {
 	@Autowired
-	private finalMeetingService mService;
+	private MeetingService mService;
 	
 	@RequestMapping("meeting.bo")
 	public String selectMeeting(Meeting m, Model model) {
@@ -33,12 +33,12 @@ public class finalMeetingController {
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("list", list);
 		
-		return "board/finalBoardMeetingView";	
+		return "board/MeetingView";	
 	}
 	
 	@RequestMapping("meetingEnroll.bo")
 	public String meetingEnroll() {
-		return "board/finalBoardMeetingWriteView";
+		return "board/MeetingWriteView";
 	}
 	
 	@RequestMapping("meetingInsert.bo")
@@ -62,14 +62,14 @@ public class finalMeetingController {
 	
 		model.addAttribute("meeting", meeting);
 		
-		return "board/finalBoardMeetingDetailView";
+		return "board/MeetingDetailView";
 	}
 	
 	@RequestMapping("meetingmodifyfrm.bo")
 	public String modifyfrm(@RequestParam(value="hangoutNo") int hangoutNo, Model model) {
 		model.addAttribute("meeting", mService.selectMeetingDetail(hangoutNo));
 		
-		return "board/finalBoardMeetingModifyView";
+		return "board/MeetingModifyView";
 	}
 	
 	@RequestMapping("meetingmodify.wr")

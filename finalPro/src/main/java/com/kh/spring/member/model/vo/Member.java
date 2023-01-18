@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class finalMember {
+public class Member {
 	private int memNo;
 	private String memName;
 	private String memId;

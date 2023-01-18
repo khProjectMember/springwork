@@ -1,6 +1,6 @@
 package com.kh.spring.board.model.vo;
 
-import com.kh.spring.member.model.vo.finalMember;
+import com.kh.spring.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +21,6 @@ public class Notice {
 	private String edate;
 	private String filename;
 	private String changename;
-	private finalMember m;
+	private Member m;
 	
 }
