@@ -75,8 +75,8 @@
 										<td>${l.lecBcatg}  -${l.lecScatg}</td>
 										<td>${l.lecPrice}</td>
 										<td>${l.lecGrade}</td>
-										<td>${l.lecCnum}</td>
-										<td>여기에 접수인원 카운트/${l.lectureLocation.locName}</td>
+										<td>여기에 접수인원 카운트/${l.lecCnum}</td>
+										<td>${l.lectureLocation.locName}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

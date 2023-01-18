@@ -31,7 +31,7 @@ public class LectureController {
 	private LectureService lService;
 
 	@RequestMapping("detail.le")
-	public String lectureDetail(int lecNo, Model model) {
+	public String lectureDetail(Integer lecNo, Model model) {
 		Lecture l = lService.lectureDetail(lecNo);
 		model.addAttribute("lecture", l);
 		return "lecture/lectureDetail";

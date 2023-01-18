@@ -21,7 +21,7 @@
 					<c:forEach var="l" items="${ list }">
 					   <li>
 			              <div class="prodItem">
-			                 <a href="" class="" >
+			                 <a href="detail.le?lecNo=${l.lecNo}" class="" >
 			                        <div class="thum">
 			                            <img src="${l.lecFilename}"
 			                                alt="예시1">

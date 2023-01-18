@@ -8,7 +8,7 @@ import com.kh.spring.lecture.model.vo.Teacher;
 
 public interface LectureService {
 	public ArrayList<Lecture> lectureList(Lecture l);
-	public Lecture lectureDetail(int lecNo);
+	public Lecture lectureDetail(Integer lecNo);
 	//1.게시판 리스트 페이지
 		int selectListCount_Lecture();
 		int selectListCount_Teacher();
