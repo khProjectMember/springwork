@@ -16,7 +16,7 @@ public interface MemberService {
 	int updateMember(Member m);
 	
 	// 회원탈퇴 서비스
-	int deleteMember(String userId); //userId만 넘겨주기
+	int deleteMember(String memId); //userId만 넘겨주기
 	
 	// 아이디 중복 서비스(ajax) - 나중
 	int idCheck(String checkId);

@@ -105,20 +105,20 @@
             <!-- 이전 비밀번호 -->
             <div class="mb-3">
               <label for="currentPwd">이전 비밀번호</label>
-              <input type="password" id="currentPwd" name="currentPwd" class="form-control" placeholder="영문자, 숫자, 특수문자로 총 8~15자로 입력해주세요." style="width:435px" required>
+              <input type="password" id="currentPwd" name="currentPwd" class="form-control" placeholder="비밀번호 찾기에서 발급받은 임시비밀번호를 입력해주세요." style="width:435px" required>
               
             </div>
 
             <!-- 새 비밀번호 -->
             <div class="mb-3">
               <label for="memPw">새 비밀번호</label>
-              <input type="password" id="memPw" name="newPwd" class="form-control" placehoder="위의 비밀번호와 일치하게 입력하시오." style="width:435px" required>
+              <input type="password" id="memPw" name="newPwd" class="form-control" placeholder="영문자, 숫자, 특수문자로 총 8~15자로 입력해주세요." style="width:435px;" required>
               <font id = "pwdMsg" size = "2"></font>
             </div>
             
 			      <div class="mb-3">
               <label for="memRpw">비밀번호 확인</label>
-              <input type="password" id="memRpw" name="memRpw" class="form-control" placehoder="위의 비밀번호와 일치하게 입력하시오." style="width:435px" required>
+              <input type="password" id="memRpw" name="memRpw" class="form-control" placeholder="위의 비밀번호와 일치하게 입력하시오." style="width:435px;" required>
               <font id = "pwdError" size = "2"></font>
             </div>
             
