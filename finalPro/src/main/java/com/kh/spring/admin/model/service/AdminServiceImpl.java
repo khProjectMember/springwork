@@ -10,6 +10,7 @@ import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
+import com.kh.spring.member.model.vo.Member;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -27,6 +28,10 @@ public class AdminServiceImpl implements AdminService{
 	public int selectListCount_Teacher() {
 		return aDao.selectListCount_Teacher(sqlSession);
 	}
+	@Override
+	public int selectListCount_Member() {
+		return aDao.selectListCount_Member(sqlSession);
+	}
 	
 	
 
@@ -38,6 +43,11 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<Teacher> selectTeacherList(PageInfo pi) {
 		return aDao.selectTeacherList(sqlSession, pi);
 	}
+	@Override
+	public ArrayList<Member> selectMemberList(PageInfo pi) {
+		return aDao.selectMemberList(sqlSession, pi);
+	}
+	
 
 	@Override
 	public int insertLecture(Lecture l) {

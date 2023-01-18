@@ -21,6 +21,7 @@ import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
+import com.kh.spring.member.model.vo.Member;
 
 @Controller
 public class AdminController {
@@ -50,7 +51,17 @@ public class AdminController {
 		  .setViewName("admin/enroll_TeacherList");
 		return mv;
 	}
-	
+	@RequestMapping("alist.me")
+	public ModelAndView selectMemberList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
+		int listCount = aService.selectListCount_Member();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 10);
+		ArrayList<Member> list = aService.selectMemberList(pi);
+		mv.addObject("pi",pi)
+		  .addObject("list",list)
+		  .setViewName("admin/manageMember");
+		return mv;
+	}
 	
 	
 	@RequestMapping("enrollForm.le")
