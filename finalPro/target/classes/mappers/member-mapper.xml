@@ -37,7 +37,7 @@
   
   <update id="updateMember">
   	update member
-  		set mem_name=#{memName}, mem_email=#{memEmail}
+  		set mem_nickname=#{memNickname}, mem_birthday=#{memBirthday}, mem_phone = #{memPhone}, mem_email=#{memEmail} , mem_address=#{memAddress}, mem_detailaddress=#{memDetailAddress}, mem_paper = #{memPaper}
   	  where mem_id=#{memId}
   </update>
   
@@ -58,4 +58,29 @@
   		from member
   	   where mem_nickname= #{memNickname}
   </select>
+  
+  <select id="checkMember" resultType="_int" parameterType="com.kh.spring.member.model.vo.Email">
+  	select count(*)
+  		from member
+  	   where mem_name=#{memName} and mem_email=#{memEmail}
+  </select>
+  
+  <select id="getMemId" resultType="String" parameterType="com.kh.spring.member.model.vo.Email">
+  	select mem_id
+  		from member
+  	  where mem_name=#{memName}
+  </select>
+  
+  <update id="updateTempPwd" parameterType="HashMap">
+  	update member
+  		set mem_pw = #{encTempPwd}
+  	  where mem_email = #{memEmail}
+  	  	and mem_status = 'Y'
+  </update>
+  
+  <update id="updatePwd" parameterType="HashMap">
+  	update member
+  		set mem_pw = #{newPwd}
+  	  where mem_id = #{memId}
+  </update>
 </mapper>
