@@ -14,12 +14,11 @@
 		<typeAlias type="com.kh.spring.lecture.model.vo.Teacher" alias="Teacher" />
 		<typeAlias type="com.kh.spring.board.model.vo.Notice" alias="Notice" />
 		<typeAlias type="com.kh.spring.board.model.vo.Meeting" alias="Meeting" />
-		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />
+		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />	
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml" />
-		<mapper resource="/mappers/board-mapper.xml" />
 		<mapper resource="/mappers/lecture-mapper.xml" />
 		<mapper resource="/mappers/admin-mapper.xml" />
 		<mapper resource="/mappers/Board-mapper.xml" />
