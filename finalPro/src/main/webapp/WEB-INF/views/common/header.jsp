@@ -11,7 +11,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="resources/css/header.css">
-    <link rel="stylesheet" href="resources/css/main.css">
+    
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -27,14 +27,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
+    <!-- 서머노트Api -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
  	<!-- 부트스트랩에서 제공하고 있는 스타일 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-	*{
-	font-family: "Noto Sans KR", sans-serif;}
-</style>
 </head>
 <body>
 <c:if test="${ not empty alertMsg }">
@@ -116,8 +117,8 @@
                         <div class="nav_info">
                             <h4>커뮤니티</h4>
                             <ul>
-                                <li><a href="">공지사항/이벤트</a></li>
-                                <li><a href="">모임게시판</a></li>
+                                <li><a href="notice.bo">공지사항/이벤트</a></li>
+                                <li><a href="meeting.bo">모임게시판</a></li>
                                 <li><a href="">수강생 후기</a></li>
                                 
                             </ul>
