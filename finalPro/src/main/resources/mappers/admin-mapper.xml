@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="adminMapper">
-	
+	<!-- lecture테이블 관리 -->
 	<insert id="insertLecture" >
 		insert into lecture(lec_no, lec_name, lec_sdate, lec_edate,
 							 lec_info, lec_stime, lec_etime, lec_count, lec_filename,
@@ -27,6 +27,7 @@
 			from lecture
 	</select>
 
+	<!-- Teacher테이불 관리 -->
 	<insert id="insertTeacher">
 		insert into teacher (tea_no, tea_name, tea_age, tea_info, tea_edate)
 		values((seq_tno.nextval), #{teaName}, #{teaAge}, #{teaInfo}, sysdate)
@@ -44,4 +45,15 @@
 		where tea_status = 'Y'
 	</select>
 	
+	<!-- Member 테이블 관리 -->
+	<select id="selectMemberList" resultMap="memberMapper.memberResult">
+		select mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_birthday, TO_CHAR(mem_cdate,'YY.MM.DD') as "mem_cdate", mem_carno 
+			from member
+		order by mem_no desc
+	</select>
+	<select id="selectListCount_Member" resultType="_int">
+		select count(*)
+			from member
+		where mem_status = 'Y'
+	</select>
 </mapper>
