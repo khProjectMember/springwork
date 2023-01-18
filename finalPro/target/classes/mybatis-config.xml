@@ -12,12 +12,15 @@
 		<typeAlias type="com.kh.spring.lecture.model.vo.Apply" alias="Apply"/>		
 		<typeAlias type="com.kh.spring.lecture.model.vo.Lecture" alias="Lecture"/>		
 		<typeAlias type="com.kh.spring.lecture.model.vo.Wish" alias="Wish"/>
-		<typeAlias alias="Teacher" type="com.kh.spring.lecture.model.vo.Teacher"/>		
+		<typeAlias type="com.kh.spring.lecture.model.vo.LectureLocation" alias="LectureLocation"/>
+		<typeAlias type="com.kh.spring.lecture.model.vo.Teacher" alias="Teacher" />	
 	</typeAliases>
 	
 	<mappers>
+		
 		<mapper resource="/mappers/member-mapper.xml" />
 		<mapper resource="/mappers/board-mapper.xml" />
 		<mapper resource="/mappers/lecture-mapper.xml" />
+		<mapper resource="/mappers/admin-mapper.xml" />
 	</mappers>
 </configuration>
