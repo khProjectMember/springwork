@@ -25,7 +25,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-    
+    	
+		<!-- jQuery 라이브러리 -->
+		<script src="https://code.jquery.com/jquery-3.6.1.js" ></script>
+		<!-- 부트스트랩에서 제공하고 있는 스타일 -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+		<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>    	
+    	
     <style>
         
         .content_fir {width: 100%; display: flex; justify-content: flex-end;}
@@ -363,12 +370,39 @@
                     
                 </div><!--class=inner4-->
                 <div class="memberExit">
-                    <a href="#">악수문화센터 탈퇴하기</a>
+                    <button type="button" data-toggle="modal" data-target="#deleteForm" style="color:black; padding:5px;">악수문화센터 탈퇴하기</button>
                 </div>
             </div><!--inner-->
         </div> <!-- id=content-->
     </div>
+	
+	<!-- - 회원탈퇴 버튼 클릭시 보여질 - Modal. -->
+    <div class="modal" id="deleteForm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal-Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">회원탈퇴</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times; </button>
+                </div>
 
+                <!-- Modal body --->
+                <div class="modal-body" align="center">
+                    <p><b>
+			                        탈퇴 후 복구가 불가능합니다. <br>
+			                        정말로 탈퇴 하시겠습니까?
+                    </b></p>
+
+                    <form action="delete.me" method="post">
+                 		비밀번호 : <input type="password" name="memPw" required>
+              			<input type="hidden" name="memId" value="${loginUser.memId}">
+                        <button type="submit" style="color: black; padding-right: 3px; padding-left: 3px;">탈퇴하기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	
      <!--footer-->
      <jsp:include page="../common/footer.jsp"/>
 </body>

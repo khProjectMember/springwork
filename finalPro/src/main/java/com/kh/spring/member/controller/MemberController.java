@@ -39,6 +39,15 @@ public class MemberController {
 	public String loginEnroll() {
 		return "member/login";
 	}
+	
+	/*
+	// 카카오 로그인 페이지로
+	@RequestMapping("kakaoEnroll.me")
+	public String kakaoEnroll() {
+		return "member/kakao";
+	}
+	*/
+	
 	 /*
 	 * 	2.2 스프링에서 제공 ModelAndView 객체를 사용하는 방법
 	 * 		Model객체 포워딩할 뷰로 전달하고자 하는 데이터를 맵형태(key-value)로 담을 수 있는 영역
@@ -221,31 +230,123 @@ public class MemberController {
 	public String updateMyPwd() {
 		return "member/updateMyPwd";
 	}
+	/*
+	// 마이페이지 탈퇴
+		@RequestMapping("delete.me")
+		public String deleteMember(String memId, String memPw, HttpSession session, Model model) {
+			String encPwd = ((Member)session.getAttribute("loginUser")).getMemPw(); //DB에 저장된 password(암호화된)
+			if(bcryptPasswordEncoder.matches(memPw, encPwd)) {
+			
+				int result = mService.deleteMember(memId);
+				if(result > 0) {
+					session.removeAttribute("loginUser");
+					session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다.<br> 그동안 이용해 주셔서 감사합니다.");
+					return "redirect:/";
+				} else {
+					model.addAttribute("errorMsg","회원 탈퇴 실패입니다.");
+					return "common/errorPage";
+				}
+			} else {
+				session.setAttribute("alertMsg", "비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.");
+				return "redirect:myPage.me";
+			}
+		}
+		
+		
+		
+		//비밀번호 찾기
+	@RequestMapping("updateTempPwd.me")
+	public String findPwd(Email email, Model model, Member m) {
+		int check = mService.checkMember(email); //유효한 멤버인지 확인
+		int result = 0;
+		String tempPwd = "";
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(check == 1) {
+			map = emailAuthService.getEmailAuth(email.getMemEmail());
+			tempPwd = makeTempPwd();
+			
+			HashMap<String, String> param = new HashMap<String, String>();
+			param.put("encTempPwd", bcryptPasswordEncoder.encode(tempPwd));
+			param.put("memEmail", email.getMemEmail());
+			
+			result = mService.updateTempPwd(param);
+			} else {
+				throw new MemberException("회원 정보가 일치하지 않습니다.");
+		}
+		if(result > 0) {
+			model.addAttribute("authCode", map.get("emailAuthCode"));
+			model.addAttribute("tempPwd", tempPwd);
+			System.out.println("평문 : " + m.getMemPw());
+			return "member/findPwd";
+		} else {
+			throw new MemberException("비밀번호 발급에 실패하였습니다.");
+		}
+	}
+	
 	
 	// 비밀변호 변경 수정
 	@RequestMapping("updateMyPwdInfo.me")
 	public String updateMyPwdInfo(Member m, Model model, HttpSession session, @RequestParam("currentPwd") String pwd, @RequestParam("newPwd") String newPwd) {
-		int result = 0;
-		m = (Member)model.getAttribute("loginUser");
-		if(bcryptPasswordEncoder.matches(pwd, m.getMemPw())) {
+		int result=0;
+		//m = (Member)model.getAttribute("loginUser");
+		m =(Member)session.getAttribute("loginUser");
+		
+		String encPwd = ((Member)session.getAttribute("loginUser")).getMemPw();
+		if(bcryptPasswordEncoder.matches(pwd, encPwd)) { //pwd: 랜덤비밀번호, encPwd: DB에 저장된 암호화된 랜덤비밀번호
+		
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("mem_id", m.getMemId());
 			map.put("newPwd", bcryptPasswordEncoder.encode(newPwd));
+			result = mService.updatePwd(map);
+		}
+			else {
+			System.out.println("비번변경실패");	
+			model.addAttribute("errorMsg","비번변경실패");
+			return "common/errorPage";
 			
-			result += mService.updatePwd(map);
-		}
-		
-		if(result ==2) {
-			model.addAttribute("loginUser", mService.loginMember(m));
-			System.out.println("비밀번호가 성공적으로 수정되었습니다.");
+		}	if(result ==1) {
+				model.addAttribute("loginUser", mService.loginMember(m));
+				System.out.println("비밀번호가 성공적으로 수정되었습니다.");
+				return "redirect:myPage.me";
+		}	else {
+			System.out.println("333");
+			session.setAttribute("alertMsg", "비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.");
 			return "redirect:myPage.me";
-
-		} else {
-			model.addAttribute("errorMsg","비밀번호 변경 실패");
-			return "common/errorPage";			
 		}
-		
 }
+	*/
+		// 비밀변호 변경 수정
+		@RequestMapping("updateMyPwdInfo.me")
+		public String updateMyPwdInfo(Member m, HttpSession session, Model model,@RequestParam("currentPwd") String currentPwd, @RequestParam("newPwd") String newPwd ) {
+			m =((Member)session.getAttribute("loginUser"));
+			String encPwd = ((Member)session.getAttribute("loginUser")).getMemPw();
+			
+			if(bcryptPasswordEncoder.matches(currentPwd, encPwd)) { //currentPwd: 랜덤비밀번호, encPwd: DB에 저장된 암호화된 랜덤비밀번호
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("memId", ((Member)session.getAttribute("loginUser")).getMemId());
+				map.put("newPwd", bcryptPasswordEncoder.encode(newPwd));
+				
+				int result = mService.updatePwd(map);
+				//System.out.println(currentPwd);
+				//System.out.println(loginUser.getMemPw());
+				//System.out.println(encPwd);
+				//System.out.println(newPwd);
+				
+				if(result>0) {
+					model.addAttribute("loginUser", mService.loginMember(m));
+					System.out.println("비밀번호가 성공적으로 수정되었습니다.");
+					return "redirect:/";
+				}  else {
+					System.out.println("비번변경실패");
+					return "redirect:/";
+				}
+				
+			} else {
+				System.out.println("비번변경실패22");
+				return "redirect:/";
+			}
+			
+		}
 	
 	/*
 	m.getMemPw(), loginUser.getMemPw())) {//m.getUserPwd(): 사용자가 입력한 비번, loginUser.getUserPwd(): DB에 저장된 값
@@ -287,22 +388,21 @@ public class MemberController {
 		}
 	}
 	*/
+
 	
-	
-	
-	
-	//마이페이지로 이동
+	// 마이페이지로 이동
 	@RequestMapping("myPage.me")
 	public String myPage() {
 		return "member/myPage";
 	}
 	
-	//최근작성목록으로 이동
+	// 최근작성목록으로 이동
 	@RequestMapping("recentPage.me")
 	public String recentPage() {
 		return "member/recentPage";
 	}
 	
+	// 마이페이지-회원정보수정
 	@RequestMapping("update.me")
 	public String updateMember(Member m, HttpSession session, Model model) { //Member의 객체로 데이터 받아오기
 		int result = mService.updateMember(m);
@@ -317,12 +417,13 @@ public class MemberController {
 			return "common/errorPage";			
 		}
 	}
-	/*
+	
+	// 마이페이지 탈퇴
 	@RequestMapping("delete.me")
-	public String deleteMember(String userId, String userPwd, HttpSession session, Model model) {
+	public String deleteMember(String memId, String memPw, HttpSession session, Model model) {
 		String encPwd = ((Member)session.getAttribute("loginUser")).getMemPw(); //DB에 저장된 password(암호화된)
-		if(bcryptPasswordEncoder.matches(userPwd, encPwd)) {
-			int result = mService.deleteMember(userId);
+		if(bcryptPasswordEncoder.matches(memPw, encPwd)) {
+			int result = mService.deleteMember(memId);
 			if(result > 0) {
 				session.removeAttribute("loginUser");
 				session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다.<br> 그동안 이용해 주셔서 감사합니다.");
@@ -336,7 +437,6 @@ public class MemberController {
 			return "redirect:myPage.me";
 		}
 	}
-	*/
 	
 	// 아이디 중복체크 ajax
 	@ResponseBody // ajax로 되돌려주는 어노테이션

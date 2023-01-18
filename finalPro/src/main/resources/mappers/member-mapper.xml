@@ -43,7 +43,7 @@
   
   <update id="deleteMember">
   	update member
-  		set status = 'N'
+  		set mem_status = 'N'
   	  where mem_id = #{memId}
   </update>
   

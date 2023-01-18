@@ -89,7 +89,7 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>runtime</scope>
+				<scope>runtime</scope>
 		</dependency>
 
 		<!-- @Inject -->
@@ -234,7 +234,8 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
 		</dependency>
-				
+		
+		
 	</dependencies>
     <build>
         <plugins>
