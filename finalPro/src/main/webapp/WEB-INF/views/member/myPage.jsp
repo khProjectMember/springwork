@@ -27,23 +27,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        .content_fir {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .content_fir .nav_box ul li .nav_a {
-            border-right: 1px solid #bdbdbd;
-        }
-        .content_fir .nav_box ul li a {
-            font-size: 14px;
-            color: #666;
-            font-weight: 400;
-            padding: 0 7px;
-            overflow: hidden;
-            white-space: nowrap;
-            
-        }
+        
+        .content_fir {width: 100%; display: flex; justify-content: flex-end;}
+        .content_fir .nav_box {margin: 50px 0;}
+        .content_fir .nav_box ul {display: flex;}
+        .content_fir .nav_box ul li a {font-size: 14px; color: #666; font-weight: 400; padding: 0 7px; overflow: hidden; white-space: nowrap;}
+        .content_fir .nav_box ul li .nav_a {border-right: 1px solid #bdbdbd;}
+        .content_fir .nav_box ul li a img {width: 20px; height: 20px; vertical-align: bottom; overflow: hidden; white-space: nowrap;}
         /* .location{
             position: relative; 
             text-align: right;
@@ -99,6 +89,8 @@
             text-indent: -9999em;
         }
         .btnArea{
+        	display: flex;
+        	justify-content: flex-end;
             text-align: right;
         }
         
@@ -143,7 +135,7 @@
             border-bottom: 1px solid #000;
         }
         .parkingDetail .txt{
-            margin-top: 20px;
+            margin-top: -10px;
         }
         .inner4-1{
             display: flex;
@@ -158,6 +150,12 @@
     <jsp:include page="../common/header.jsp"/>
 
     <!--body-->
+<c:if test="${ not empty alertMsg }">
+		<script>
+			alertify.alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+</c:if>
     <div id="wrap">
         <div id="content">
             <div class="inner">
@@ -166,7 +164,7 @@
                         <div class="nav_box">
                             <ul>
                                 <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
-                                <li><a href="#" class="nav_a">마이페이지</a></li>
+                                <li><a href="myPage.me" class="nav_a">마이페이지</a></li>
                                 <li><a href="#">회원정보변경</a></li>
                             </ul>
                         </div>
@@ -225,7 +223,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"><img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/contents/icon_my_class_info02.png">
+                                    <a href="recentPage.me"><img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/contents/icon_my_class_info02.png">
                                     <span class="txt">최근작성목록</span>
                                     <span class="num">0</span>
                                     </a>
@@ -239,43 +237,79 @@
                     <div class="title">
                         <h3>회원정보</h3>
                     </div>
-                    <div class="memberInfoTable">
-                        <table style="border-spacing: 0;">
-                            <caption>회원정보</caption>
-                            <colgroup>
-                                <col style="width:170px;">
-                                <col style="width:auto;">
-                                <col style="width:170px;">
-                                <col style="width:auto;">
-                            </colgroup>
-                            <tr>
-                                <th>성명</th>
-                                <td style="padding-right: 554px;">${loginUser.memName }</td>
-                                <th>생년월일</th>
-                                <td>${loginUser.memBirthday }</td>
-                            </tr>
-                            <tr>
-                                <th>휴대전화</th>
-                                <td>${loginUser.memPhone }</td>
-                                <th>E-mail</th>
-                                <td>${loginUser.memEmail }</td>
-                            </tr>
-                            <tr>
-                                <th>주소</th>
-                                <td colspan="3">${loginUser.memAddress } ${loginUser.memDetailAddress }</td>
-                            </tr>
-                            <tr>
-                                <th>문화센터 마케팅 수신동의</th>
-                                <td><span class="bxCheck"><input type="checkbox"><label>E-mail</label></span>
-                                <span class="bxCheck"><input type="checkbox"><label>SMS</label></span></td>
-                                <td colspan="2"></td>
-                            </tr>
-                        </table>
-                    </div> <!--class=memberInfo-->
-
+                    <form action="update.me" method="post">
+	                    <div class="memberInfoTable">
+	                        <table style="border-spacing: 0;">
+	                            <caption>회원정보</caption>
+	                            <colgroup>
+	                                <col style="width:170px;">
+	                                <col style="width:auto;">
+	                                <col style="width:170px;">
+	                                <col style="width:auto;">
+	                            </colgroup>
+	                            <tr>
+	                                <th>이름</th>
+	                                <td style="padding-right: 554px;"><input id="memName" name="memName" value="${loginUser.memName }" readonly></td>
+	                                <th>아이디</th>
+	                                <td><input id="memId" name="memId" value="${loginUser.memId}" readonly></td>
+	                            </tr>
+	                            <tr>
+	                                <th>닉네임</th>
+	                                <td style="padding-right: 554px;"><input id="memNickname" name="memNickname" value="${loginUser.memNickname }"></td>
+	                                <th>생년월일</th>
+	                                <td><input id="memBirthday" name="memBirthday" value="${loginUser.memBirthday }"></td>
+	                            </tr>
+	                            <tr>
+	                                <th>휴대전화</th>
+	                                <td><input id="memPhone" name="memPhone" value="${loginUser.memPhone }"></td>
+	                                <th>E-mail</th>
+	                                <td><input id="memEmail" name="memEmail" value="${loginUser.memEmail }"></td>
+	                            </tr>
+	                            <tr>
+	                                <th>주소</th>
+	                                <td colspan="3"><input id="memAddress" name="memAddress" value="${loginUser.memAddress }" size="25"> <input id="memDetailAddress" name="memDetailAddress" value="${loginUser.memDetailAddress }" size="30"></td>
+	                            </tr>
+	                            <tr>
+	                                <th>취약계층 유형
+	                                    <!--<td>
+                                            <c:choose>
+	                                             <c:when test="${loginUser.memPaper eq 1 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="1">해당없음</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 2 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="2">65세 이상 고령자</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 3 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="3">장애인</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 4 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="4">한부모가정 보호대상자</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 5 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="5">저소득자</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 6 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="6">고용촉진장려금 지급대상 청년</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 7 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="7">범죄구조피해자</option></select></c:when>
+	                                             <c:when test="${loginUser.memPaper eq 8 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="8">그밖에 고용노동부장관이 인정한 자</option></select></c:when>
+                                            </c:choose>
+                                        </td>
+                                        -->
+                                        <td>
+                                            <select name="memPaper" id="memPaper" name="memPaper">
+                                                <option value ="1" <c:if test="${loginUser.memPaper eq 1 }"> selected</c:if>>해당없음</option>
+                                                <option value ="2" <c:if test="${loginUser.memPaper eq 2 }"> selected</c:if>>65세 이상 고령자</option>
+                                                <option value ="3" <c:if test="${loginUser.memPaper eq 3 }"> selected</c:if>>장애인</option>
+                                                <option value ="4" <c:if test="${loginUser.memPaper eq 4 }"> selected</c:if>>한부모가정 보호대상자</option>
+                                                <option value ="5" <c:if test="${loginUser.memPaper eq 5 }"> selected</c:if>>저소득자</option>
+                                                <option value ="6" <c:if test="${loginUser.memPaper eq 6 }"> selected</c:if>>고용촉진장려금 지급대상 청년</option>
+                                                <option value ="7" <c:if test="${loginUser.memPaper eq 7 }"> selected</c:if>>범죄구조피해자</option>
+                                                <option value ="8" <c:if test="${loginUser.memPaper eq 8 }"> selected</c:if>>그밖에 고용노동부장관이 인정한 자</option>
+                                           
+                                        </select>
+                                        </td>    
+	                                </th>
+	                                <td colspan="2"></td>
+	                            </tr>
+	                        </table>
+	                    </div> <!--class=memberInfo-->
+					
                     <div class="btnArea">
-                        <a href="#"><span>회원정보 확인 및 수정</span></a>
-                        <a href="#"><span><span>비밀번호 변경</span></span></a>
+                        <button type="submit" style="margin-right:10px;"><span style="margin:10px;">회원정보수정</span></button>
+                    </form>
+                    
+                    <form action="updateMyPwd.me">
+                        <button type="submit"><span style="margin:10px;">비밀번호 변경</span></button>
+                    </form>
                     </div> <!--class=btnArea-->
                 </div> <!-- class=inner2-->
 
