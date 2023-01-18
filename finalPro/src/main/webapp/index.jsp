@@ -7,6 +7,6 @@ a<%@ page language="java" contentType="text/html; charset=UTF-8"
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="WEB-INF/views/member/login.jsp" />
+	<jsp:forward page="WEB-INF/views/list.jsp" />
 </body>
 </html>
