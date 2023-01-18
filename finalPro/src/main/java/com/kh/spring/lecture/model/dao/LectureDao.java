@@ -20,33 +20,7 @@ public class LectureDao {
 		return (Lecture)sqlSession.selectOne("lectureMapper.lectureDetail", LecNo);
 	}
 	
-	public int insertLecture(SqlSessionTemplate sqlSession, Lecture l) {
-		return sqlSession.insert("lectureMapper.insertLecture",l);
-	}
-	public int insertTeacher(SqlSessionTemplate sqlSession, Teacher t) {
-		return sqlSession.insert("lectureMapper.insertTeacher",t);
-	}
 	
-	
-	public int selectListCount_Lecture(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("lectureMapper.selectListCount_Lecture");
-	}
-	public int selectListCount_Teacher(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("lectureMapper.selectListCount_Teacher");
-	}
-	
-	public ArrayList<Lecture> selectLectureList(SqlSessionTemplate sqlSession, PageInfo pi){
-		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
-		int limit = pi.getBoardLimit(); 
-		RowBounds rowBounds = new RowBounds(startNo, limit);
-		return (ArrayList)sqlSession.selectList("lectureMapper.selectLectureList",null,rowBounds);
-	}
-	public ArrayList<Teacher> selectTeacherList(SqlSessionTemplate sqlSession, PageInfo pi){
-		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
-		int limit = pi.getBoardLimit(); 
-		RowBounds rowBounds = new RowBounds(startNo, limit);
-		return (ArrayList)sqlSession.selectList("lectureMapper.selectTeacherList",null,rowBounds);
-	}
 	
 	
 	
