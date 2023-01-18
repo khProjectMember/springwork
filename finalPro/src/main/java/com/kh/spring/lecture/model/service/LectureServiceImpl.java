@@ -31,34 +31,6 @@ public class LectureServiceImpl implements LectureService{
 	}
 	
 	
-	@Override
-	public int selectListCount_Lecture() {
-		return lDao.selectListCount_Lecture(sqlSession);
-	}
-	@Override
-	public int selectListCount_Teacher() {
-		return lDao.selectListCount_Teacher(sqlSession);
-	}
 	
-	
-
-	@Override
-	public ArrayList<Lecture> selectLectureList(PageInfo pi) {
-		return lDao.selectLectureList(sqlSession, pi);
-	}
-	@Override
-	public ArrayList<Teacher> selectTeacherList(PageInfo pi) {
-		return lDao.selectTeacherList(sqlSession, pi);
-	}
-
-	@Override
-	public int insertLecture(Lecture l) {
-		return lDao.insertLecture(sqlSession, l);
-	}
-	@Override
-	public int insertTeacher(Teacher t) {
-		return lDao.insertTeacher(sqlSession, t);
-	}
-
 
 }
