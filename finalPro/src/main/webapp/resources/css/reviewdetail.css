@@ -88,21 +88,28 @@ body, input, textarea, select, button a {
 .content_sec h1 {margin: auto; margin-top: 50px; margin-bottom: 50px; font-size: 50px;}
 .content_sec .detailbox {display: flex; flex-direction: column; width: 100%; border-top: 1px solid #000; height: 100%;}
 .content_sec .detailbox .detail_info {display: flex; padding: 50px 5px; border-bottom: 1px solid #000;}
-.content_sec .detailbox .detail_info .detail_cate {flex: 1; text-align: center; border-right: 1px solid #bdbdbd;}
+.content_sec .detailbox .detail_info .detail_cate {flex: 0.5; text-align: center; border-right: 1px solid #bdbdbd;}
 .content_sec .detailbox .detail_info .detail_cate span {padding: 0 5px; color: #666; font-size: 16px; vertical-align: middle;}
-.content_sec .detailbox .detail_info .detail_starpoint {flex: 1;  text-align: center; border-right: 1px solid #bdbdbd;}
+.content_sec .detailbox .detail_info .detail_lec {flex: 1.25; text-align: center; border-right: 1px solid #bdbdbd;}
+.content_sec .detailbox .detail_info .detail_lec span {padding: 0 5px; color: #666; font-size: 16px; vertical-align: middle;}
+.content_sec .detailbox .detail_info .detail_starpoint {flex: 0.5;  text-align: center; border-right: 1px solid #bdbdbd;}
 .content_sec .detailbox .detail_info .detail_starpoint span {padding: 0 5px; color: #666; font-size: 16px; vertical-align: middle;}
-.content_sec .detailbox .detail_info .detail_title {flex: 6; text-align: left;}
+.content_sec .detailbox .detail_info .detail_title {flex: 4; text-align: left;}
 .content_sec .detailbox .detail_info .detail_title span {margin-left: 20px; font-size: 20px; font-weight: 700; vertical-align: middle;}
-.content_sec .detailbox .detail_info .detail_nick {flex: 1; text-align: center; border-right: 1px solid #bdbdbd;}
+.content_sec .detailbox .detail_info .detail_nick {flex: 0.75; text-align: center; border-right: 1px solid #bdbdbd;}
 .content_sec .detailbox .detail_info .detail_nick span {vertical-align: middle; font-size: 16px; color: #666;}
-.content_sec .detailbox .detail_info .detail_date {flex: 1; text-align: center;}
+.content_sec .detailbox .detail_info .detail_date {flex: 0.75; text-align: center; border-right: 1px solid #bdbdbd;}
 .content_sec .detailbox .detail_info .detail_date span {vertical-align: middle; font-size: 16px; color: #666;}
+.content_sec .detailbox .detail_info .detail_recomm {flex: 0.75; text-align: center;}
+.content_sec .detailbox .detail_info .detail_recomm span {vertical-align: middle; font-size: 16px; color: #666;}
 .content_sec .detailbox .detail_content {width: 100%; min-height: 400px; max-height: 100%; border-bottom: 1px solid #bdbdbd;}
 .content_sec .detailbox .detail_content p {padding: 20px 40px;}
-.content_sec h3 {margin-top: 50px; margin-left: 20px;}
+.content_sec .middle_box {display: flex; justify-content: space-between; align-items: center; margin-top: 50px;}
+.content_sec .middle_box h3 {margin-left: 20px;}
+.content_sec .middle_box button {border: none; background-color: #fff; vertical-align: bottom; margin-right: 30px; cursor: pointer;}
+.content_sec .middle_box button img {width: 40px; height: 40px;}
 .content_sec .review {width: 100%; display: flex; flex-direction: column;}
-.content_sec .review .review_text {display: flex; width: 100%; padding: 50px 0; }
+.content_sec .review .review_text {display: flex; width: 100%; padding: 25px 0 50px 0; }
 .content_sec .review .review_text .review_area textarea {resize: none; width: 600px; height: 48px; padding: 5px 10px; margin-right: 10px;}
 .content_sec .review .review_text .review_btn {display: flex; width: 100%;}
 .content_sec .review .review_text .review_btn button {width: 120px; height: 60px; vertical-align: middle; color: #fff; background-color: #000; font-size: 15px; font-weight: 600; cursor: pointer;}

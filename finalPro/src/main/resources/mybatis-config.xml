@@ -8,12 +8,14 @@
 	<typeAliases>
 		<typeAlias type="com.kh.spring.member.model.vo.finalMember" alias="finalMember"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Notice" alias="Notice" />
-		<typeAlias type="com.kh.spring.board.model.vo.Meeting" alias="Meeting" />		
+		<typeAlias type="com.kh.spring.board.model.vo.Meeting" alias="Meeting" />
+		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/finalMember-mapper.xml" />
 		<mapper resource="/mappers/finalBoard-mapper.xml" />
 		<mapper resource="/mappers/finalMeeting-mapper.xml" />
+		<mapper resource="/mappers/finalReview-mapper.xml" />
 	</mappers>
 </configuration>

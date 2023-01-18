@@ -87,6 +87,26 @@ public class finalMeetingServiceImpl implements finalMeetingService {
 		// TODO Auto-generated method stub
 		return mDao.selectViewCountMeetingList(sqlSession, m);
 	}
+	
+	@Override
+	public ArrayList<Meeting> selectViewMeetingList(Meeting m) {
+		// TODO Auto-generated method stub
+		return mDao.selectViewMeetingList(sqlSession, m);
+	}
+
+	@Override
+	public int searchMeetingCount(String key_local, String key_gender, String key_age, String key_catg, int key_count) {
+		// TODO Auto-generated method stub
+		return mDao.searchMeetingCount(sqlSession, key_local, key_gender, key_age, key_catg, key_count);
+	}
+
+	@Override
+	public ArrayList<Meeting> searchMeetingList(String key_local, String key_gender, String key_age, String key_catg, int key_count) {
+		// TODO Auto-generated method stub
+		return mDao.searchMeetingList(sqlSession, key_local, key_gender, key_age, key_catg, key_count);
+	}
+
+	
 
 	
 

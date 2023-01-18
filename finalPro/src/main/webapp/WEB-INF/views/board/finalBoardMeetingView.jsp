@@ -31,7 +31,7 @@
                     <h1>모임 게시판</h1>
                     <div class="search_box">
                         <div class="search">
-                            <form class="search_arr" action="meetingsearch.bo" method="get">                                
+                            <form class="search_arr" method="post">                                
                                 <select name="key_local" class="search_location">
                                     <option value="전체">지역 전체</option>
                                     <option value="서울">서울</option>
@@ -63,7 +63,7 @@
                                     <option value="예능">예능</option>
                                 </select>
                                 <select name="key_count" class="search_person">
-                                    <option value="전체">인원 전체</option>
+                                    <option value="0">인원 전체</option>
                                     <option value="2">2명</option>
                                     <option value="3">3명</option>
                                     <option value="4">4명</option>
@@ -71,36 +71,41 @@
                                     <option value="6">6명</option>
                                     <option value="7">7명</option>
                                     <option value="8">8명</option>
-                                </select>
-                                <input type="text" name="keyword" class="search_input" placeholder="검색할 내용을 입력하세요.">
-                                <button type="submit" class="search_btn" >검색</button>
+                                </select>           
+                                <button type="button" class="search_btn">검색</button>
                             </form>                            
                         </div>
                     </div>
                     <div class="board_type">
                         <div class="type">
-                            <h2>전체 모임 ${ listCount }</h2>
+                            <ul>
+                                <li><a href="javascript:viewAlign();">최신순</a></li>
+                                <li><a href="javascript:viewCountAlign();">조회순</a></li>
+                            </ul>
                         </div>
                         <div class="board_btn">
                             <button class = "meeting_make">모임만들기</button>
                         </div>
-                    </div>                   
+                    </div>
+                    <div class="board_count">
+                        <h2>전체 모임 ${ listCount }</h2>
+                    </div>
                     <div class="main_board">
                         <ul>
                         	<c:forEach var="meeting" varStatus="status" items="${ list }">
 	                            <li>
 	                                <div class="board_info">
 	                                    <div class="board_textbox">
-	                                        <h3 class="hangoutTitle">${ meeting.hangoutTitle }</h3>
+	                                        <h3>${ meeting.hangoutTitle }</h3>
 	                                        <p class="hangoutNo" style="display: none;">${ meeting.hangoutNo }</p>                          
-	                                        <p>🌎<span class="hangoutLocal">${ meeting.hangoutLocal }</span></p>
-	                                        <p>💑<span class="hangoutGender">${ meeting.hangoutGender }</span></p>
-	                                        <p>🔞<span class="hangoutAge">${ meeting.hangoutAge }</span></p>
-	                                        <p>🎨<span class="hangoutCatg">${ meeting.hangoutCatg }</span></p>
-	                                        <p>🎣<span class="hangoutCount">현재 ${ meeting.hangoutNowCount }명 / 최대 ${ meeting.hangoutJoinCount }명</span></p>
+	                                        <p>🌎<span>${ meeting.hangoutLocal }</span></p>
+	                                        <p>💑<span>${ meeting.hangoutGender }</span></p>
+	                                        <p>🔞<span>${ meeting.hangoutAge }</span></p>
+	                                        <p>🎨<span>${ meeting.hangoutCatg }</span></p>
+	                                        <p>🎣<span>현재 ${ meeting.hangoutNowCount }명 / 최대 ${ meeting.hangoutJoinCount }명</span></p>
 	                                        <p>
-	                                            <span class="hangoutEdate">${ meeting.hangoutEdate }</span>
-	                                            <span class="hangoutViewCount">👀 ${ meeting.hangoutViewCount }</span>
+	                                            <span>${ meeting.hangoutEdate }</span>
+	                                            <span>👀 ${ meeting.hangoutViewCount }</span>
 	                                        </p>	                                        
 	                                    </div>      
 	                                </div>
@@ -119,23 +124,34 @@
     		location.href='meetingEnroll.bo';
     	});
     	
-    	// 모임 상세 페이지 이동
-    	$('.board_textbox').click(function() {
-    		location.href='meetingDetail.bo?hangoutNo=' + $(this).children('.hangoutNo').text();
-    	});
-    	
+    
     	// ajax 최신순 조회순
-    	$(function() {
-    		viewCountAlign();
-    	});
-    	
-    	function viewCountAlign() {
-    		$.ajax({
-    			url : "viewCountAlign.bo",	
+    	function viewAlign() {
+    		$.ajax({    			 
+    			url:"viewAlign.bo",
     			success: function(list) {
+    				let value = "";
     				for(let i in list) {
-    					
+    					value += "<li>"
+    					      +		"<div class='board_info'>"
+    					      +			"<div class='board_textbox'>"
+    					      +				"<h3>" + list[i].hangoutTitle + "</h3>"
+    					      +				"<p class='hangoutNo' style='display: none;'>" + list[i].hangoutNo + "</p>"
+    					      +				"<p>🌎<span>" + list[i].hangoutLocal +"</span></p>"
+    					      +				"<p>💑<span>" + list[i].hangoutGender + "</span></p>"
+    					      +				"<p>🔞<span>" + list[i].hangoutAge + "</span></p>"
+    					      +				"<p>🎨<span>" + list[i].hangoutCatg + "</span></p>"
+    					      +				"<p>🎣<span>현재 " + list[i].hangoutNowCount + "명 / 최대 " + list[i].hangoutJoinCount + "명</span></p>"
+    					      +				"<p>"
+    					      +					"<span>" + list[i].hangoutEdate + "</span>"
+    					      +					"<span>👀 " + list[i].hangoutViewCount + "</span>"
+    					      +				"</p>"
+    					      +			"</div>"
+    					      +		"</div>"
+    					      +	 "</li>";
     				}
+    				$('.main_board>ul').empty();					
+					$('.main_board>ul').html(value);
     			},
     			error: function() {
     				console.log("실패");
@@ -143,6 +159,97 @@
     		})
     	}
     	
+    	function viewCountAlign() {
+    		$.ajax({
+    			url : "viewCountAlign.bo",	
+    			success: function(list) {
+    				let value = "";
+    				for(let i in list) {
+    					value += "<li>"
+    					      +		"<div class='board_info'>"
+    					      +			"<div class='board_textbox'>"
+    					      +				"<h3>" + list[i].hangoutTitle + "</h3>"
+    					      +				"<p class='hangoutNo' style='display: none;'>" + list[i].hangoutNo + "</p>"
+    					      +				"<p>🌎<span>" + list[i].hangoutLocal +"</span></p>"
+    					      +				"<p>💑<span>" + list[i].hangoutGender + "</span></p>"
+    					      +				"<p>🔞<span>" + list[i].hangoutAge + "</span></p>"
+    					      +				"<p>🎨<span>" + list[i].hangoutCatg + "</span></p>"
+    					      +				"<p>🎣<span>현재 " + list[i].hangoutNowCount + "명 / 최대 " + list[i].hangoutJoinCount + "명</span></p>"
+    					      +				"<p>"
+    					      +					"<span>" + list[i].hangoutEdate + "</span>"
+    					      +					"<span>👀 " + list[i].hangoutViewCount + "</span>"
+    					      +				"</p>"
+    					      +			"</div>"
+    					      +		"</div>"
+    					      +	 "</li>";
+    				}
+    				$('.main_board>ul').empty();					
+					$('.main_board>ul').html(value);
+    			},
+    			error: function() {
+    				console.log("실패");
+    			}
+    		})
+    	}
+    	
+		$('.search_btn').click(function() {
+			
+			var selectData = $('.search_arr').serialize();
+			
+			console.log(selectData);
+			
+			$.ajax({
+				type : "post",
+				url : 'meetingsearch.bo',
+				data : selectData,
+				success: function(list) {
+					let value = "";
+    				for(let i in list) {
+    					value += "<li>"
+    					      +		"<div class='board_info'>"
+    					      +			"<div class='board_textbox'>"
+    					      +				"<h3>" + list[i].hangoutTitle + "</h3>"
+    					      +				"<p class='hangoutNo' style='display: none;'>" + list[i].hangoutNo + "</p>"
+    					      +				"<p>🌎<span>" + list[i].hangoutLocal +"</span></p>"
+    					      +				"<p>💑<span>" + list[i].hangoutGender + "</span></p>"
+    					      +				"<p>🔞<span>" + list[i].hangoutAge + "</span></p>"
+    					      +				"<p>🎨<span>" + list[i].hangoutCatg + "</span></p>"
+    					      +				"<p>🎣<span>현재 " + list[i].hangoutNowCount + "명 / 최대 " + list[i].hangoutJoinCount + "명</span></p>"
+    					      +				"<p>"
+    					      +					"<span>" + list[i].hangoutEdate + "</span>"
+    					      +					"<span>👀 " + list[i].hangoutViewCount + "</span>"
+    					      +				"</p>"
+    					      +			"</div>"
+    					      +		"</div>"
+    					      +	 "</li>";
+    				}
+    				$('.main_board>ul').empty();					
+					$('.main_board>ul').html(value);
+				},
+				error: function() {
+					console.log("실패");
+				}
+			})
+		})
+    	
+    	
+    	// 모임 상세 페이지 이동
+    	$(function() {
+    		$('.board_textbox').click(function() {
+    			var hangoutNo = $(this).children('.hangoutNo').text();
+    			console.log(hangoutNo);
+    			hangoutNo = Number(hangoutNo);
+    			console.log(hangoutNo);
+        		location.href='meetingDetail.bo?hangoutNo='+ hangoutNo;
+        	});
+    		$(document).on("click", '.board_textbox', function(){
+    			var hangoutNo = $(this).children('.hangoutNo').text();
+    			console.log(hangoutNo);
+    			hangoutNo = Number(hangoutNo);
+    			console.log(hangoutNo);
+    			location.href='meetingDetail.bo?hangoutNo='+ hangoutNo;
+			});
+    	});
     </script>
 	
 	

@@ -69,6 +69,53 @@
 		select h.hangout_no, h.hangout_title, h.hangout_content, h.hangout_local, h.hangout_gender, h.hangout_age, h.hangout_catg, to_char(h.hangout_edate, 'YYYY-MM-DD') as hangout_edate, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, m.mem_nickname 
 		from hangout h, member m 
 		where h.mem_no = m.mem_no 
-		order by h.hangout_viewcount
+		order by h.hangout_viewcount desc
+	</select>
+	<select id="selectViewMeetingList" resultMap="resultMeeting">
+		select h.hangout_no, h.hangout_title, h.hangout_content, h.hangout_local, h.hangout_gender, h.hangout_age, h.hangout_catg, to_char(h.hangout_edate, 'YYYY-MM-DD') as hangout_edate, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, m.mem_nickname 
+		from hangout h, member m 
+		where h.mem_no = m.mem_no 
+		order by h.hangout_no desc	
+	</select>
+	<select id="searchMeetingCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		from hangout		
+		where hangout_no is not null
+		<if test='key_local != "전체"'>
+		and hangout_local like '%'||#{key_local}||'%'
+		</if>
+		<if test='key_gender != "전체"'>
+		and hangout_gender like '%'||#{key_gender}||'%'
+		</if>
+		<if test='key_age != "전체"'>
+		and hangout_age like '%'||#{key_age}||'%'
+		</if>
+		<if test='key_catg != "전체"'>
+		and hangout_catg like '%'||#{key_catg}||'%'
+		</if>
+		<if test='key_count != "0"'>
+		and hangout_joincount like '%'||#{key_count}||'%'
+		</if>
+	</select>
+	<select id="searchMeetingList" resultMap="resultMeeting">
+		select h.hangout_no, h.hangout_title, h.hangout_content, h.hangout_local, h.hangout_gender, h.hangout_age, h.hangout_catg, to_char(h.hangout_edate, 'YYYY-MM-DD') as hangout_edate, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, m.mem_nickname 
+		from hangout h, member m 
+		where h.mem_no = m.mem_no 
+		<if test='key_local != "전체"'>
+		and hangout_local like '%'||#{key_local}||'%'
+		</if>
+		<if test='key_gender != "전체"'>
+		and hangout_gender like '%'||#{key_gender}||'%'
+		</if>
+		<if test='key_age != "전체"'>
+		and hangout_age like '%'||#{key_age}||'%'
+		</if>
+		<if test='key_catg != "전체"'>
+		and hangout_catg like '%'||#{key_catg}||'%'
+		</if>
+		<if test='key_count != "0"'>
+		and hangout_joincount like '%'||#{key_count}||'%'
+		</if>
+		order by h.hangout_no desc
 	</select>
 </mapper>

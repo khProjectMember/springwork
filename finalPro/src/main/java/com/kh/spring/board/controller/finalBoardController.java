@@ -189,12 +189,4 @@ public class finalBoardController {
 		return "board/finalBoardNoticeView";
 		
 	}
-	
-	
-	
-
-	
-	
-	
-	
 }

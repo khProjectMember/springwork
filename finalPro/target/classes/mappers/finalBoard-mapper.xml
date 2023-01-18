@@ -51,20 +51,7 @@
 	<select id="searchCount" parameterType="hashmap" resultType="_int">
 		select count(*) 
 		from notice
-		<choose>
-			<when test="keyvalue == 'search_all'">
-				where notice_title like '%'||#{keyword}||'%' 
-				or notice_content like '%'||#{keyword}||'%'
-			</when>
-			<otherwise>
-				where #{keyvalue} like '%'||#{keyword}||'%'
-			</otherwise>
-		</choose>		
-	</select>
-	<select id="selectSearchList" resultMap="noticeResult">
-		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
-		from notice n, member m 
-		where n.mem_no = m.mem_no and 
+		where
 			<if test="keyvalue == 'search_all'">
 				notice_title like '%'||#{keyword}||'%' 
 				or notice_content like '%'||#{keyword}||'%'
@@ -75,21 +62,36 @@
 			<if test="keyvalue == 'search_content'">
 				notice_content like '%'||#{keyword}||'%'		
 			</if>		 
+	</select>
+	<select id="selectSearchList" resultMap="noticeResult">
+		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
+		from notice n, member m 
+		where n.mem_no = m.mem_no and 
+			<if test="keyvalue == 'search_all'">
+				n.notice_title like '%'||#{keyword}||'%' 
+				or n.notice_content like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyvalue == 'search_title'">
+				n.notice_title like '%'||#{keyword}||'%'				
+			</if>
+			<if test="keyvalue == 'search_content'">
+				n.notice_content like '%'||#{keyword}||'%'		
+			</if>		 
 		order by n.notice_no desc
 	</select>
 	<select id="selectSearchListVersion" resultMap="noticeResult">
 		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
 		from notice n, member m 
 		where n.mem_no = m.mem_no and 
-			<if test="keyvalue == search_all">
-				notice_title like '%'||#{keyword}||'%' 
-				or notice_content like '%'||#{keyword}||'%'
+			<if test="keyvalue == 'search_all'">
+				n.notice_title like '%'||#{keyword}||'%' 
+				or n.notice_content like '%'||#{keyword}||'%'
 			</if>
-			<if test="keyvalue == search_title">
-				notice_title like '%'||#{keyword}||'%'				
+			<if test="keyvalue == 'search_title'">
+				n.notice_title like '%'||#{keyword}||'%'				
 			</if>
-			<if test="keyvalue == search_content">
-				notice_content like '%'||#{keyword}||'%'		
+			<if test="keyvalue == 'search_content'">
+				n.notice_content like '%'||#{keyword}||'%'		
 			</if>	 
 		order by n.notice_no desc
 	</select>

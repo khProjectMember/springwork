@@ -114,4 +114,25 @@ public class finalMeetingController {
 		return new Gson().toJson(list);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="viewAlign.bo", produces="application/json; charset=utf-8")
+	public String selectViewMeetingList(Meeting m) {
+		ArrayList<Meeting> list = mService.selectViewMeetingList(m);
+		return new Gson().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="meetingsearch.bo", produces="application/json; charset=utf-8")
+	public String searchMeeting(
+			@RequestParam(value="key_local") String key_local,
+			@RequestParam(value="key_gender") String key_gender,
+			@RequestParam(value="key_age") String key_age,
+			@RequestParam(value="key_catg") String key_catg,
+			@RequestParam(value="key_count") int key_count) {
+		int listCount = mService.searchMeetingCount(key_local, key_gender, key_age, key_catg, key_count);
+		System.out.println(listCount);
+		ArrayList<Meeting> list = mService.searchMeetingList(key_local, key_gender, key_age, key_catg, key_count);
+		
+		return new Gson().toJson(list);
+	}
 }

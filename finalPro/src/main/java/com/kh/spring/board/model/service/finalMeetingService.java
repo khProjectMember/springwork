@@ -2,6 +2,8 @@ package com.kh.spring.board.model.service;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.kh.spring.board.model.vo.Meeting;
 
 public interface finalMeetingService {
@@ -39,4 +41,14 @@ public interface finalMeetingService {
 	// 조회순
 	
 	ArrayList<Meeting> selectViewCountMeetingList(Meeting m);
+	
+	// 최신순
+	
+	ArrayList<Meeting> selectViewMeetingList(Meeting m);
+	
+	// 검색맨
+	
+	int searchMeetingCount(String key_local, String key_gender, String key_age, String key_catg, int key_count);
+	ArrayList<Meeting> searchMeetingList(String key_local, String key_gender, String key_age, String key_catg, int key_count);
+	
 }
