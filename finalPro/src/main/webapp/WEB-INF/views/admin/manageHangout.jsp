@@ -106,7 +106,7 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="list2.le?cpage=${ pi.nowPage+1 }">Next</a></li>
+											href="hlist.ad?cpage=${ pi.nowPage+1 }">Next</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
