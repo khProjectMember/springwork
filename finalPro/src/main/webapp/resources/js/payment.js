@@ -1,30 +1,43 @@
+var IMP = window.IMP; 
+IMP.init("imp67011510"); 
 
-function iamport(){
-		//가맹점 식별코드
-		IMP.init('imp80013463');
-		IMP.request_pay({
-		    pg : '',
-		    pay_method : 'trans',
-		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : '상품1' , //결제창에서 보여질 이름
-		    amount : 100, //실제 결제되는 가격
-		    buyer_email : 'iamport@siot.do',
-		    buyer_name : '구매자이름',
-		    buyer_tel : '010-1234-5678',
-		    buyer_addr : '서울 강남구 도곡동',
-		    buyer_postcode : '123-456'
-		}, function(rsp) {
-			console.log(rsp);
-		    if ( rsp.success ) {
-		    	var msg = '결제가 완료되었습니다.';
-		        msg += '고유ID : ' + rsp.imp_uid;
-		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '결제 금액 : ' + rsp.paid_amount;
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
-		    } else {
-		    	 var msg = '결제에 실패하였습니다.';
-		         msg += '에러내용 : ' + rsp.error_msg;
-		    }
-		    alert(msg);
-		});
-	}
+var today = new Date();   
+var hours = today.getHours(); // 시
+var minutes = today.getMinutes();  // 분
+var seconds = today.getSeconds();  // 초
+var milliseconds = today.getMilliseconds();
+var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+
+
+function requestPay() {
+    IMP.request_pay({
+        pg : 'kcp',
+        pay_method : 'card',
+        merchant_uid: "IMP"+makeMerchantUid, 
+        name : '${lecture.lecName}',
+        amount : 500,
+        buyer_email : '${member.memEmail}',
+        buyer_name : 'member.memName',
+        buyer_tel : 'member.memPhone',
+        buyer_addr : 'memAddress',
+        buyer_postcode : 'memZipcode'
+    }, function (rsp) { // callback
+        if (rsp.success) {
+	      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+	      // jQuery로 HTTP 요청
+	      jQuery.ajax({
+	        url: "{서버의 결제 정보를 받는 가맹점 endpoint}", 
+	        method: "POST",
+	        headers: { "Content-Type": "application/json" },
+	        data: {
+	          imp_uid: rsp.imp_uid,            // 결제 고유번호
+	          merchant_uid: rsp.merchant_uid   // 주문번호
+	        }
+	      }).done(function (data) {
+	        // 가맹점 서버 결제 API 성공시 로직
+	      })
+	    } else {
+	      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+	    }
+	  });
+}

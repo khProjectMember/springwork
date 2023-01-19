@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</script>
 </head>
 <body>
-	<c:
 	<jsp:forward page="WEB-INF/views/list.jsp" />
 </body>
 </html>
