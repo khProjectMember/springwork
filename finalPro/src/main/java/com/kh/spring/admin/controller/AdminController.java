@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.admin.model.service.AdminService;
+import com.kh.spring.board.model.vo.Meeting;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 import com.kh.spring.lecture.model.vo.Lecture;
@@ -51,7 +52,7 @@ public class AdminController {
 		  .setViewName("admin/enroll_TeacherList");
 		return mv;
 	}
-	@RequestMapping("alist.me")
+	@RequestMapping("mlist.ad")
 	public ModelAndView selectMemberList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
 		int listCount = aService.selectListCount_Member();
 		
@@ -62,6 +63,18 @@ public class AdminController {
 		  .setViewName("admin/manageMember");
 		return mv;
 	}
+	@RequestMapping("hlist.ad")
+	public ModelAndView selectHangoutList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
+		int listCount = aService.selectListCount_Member();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 10);
+		ArrayList<Meeting> list = aService.selectHangoutList(pi);
+		mv.addObject("pi",pi)
+		  .addObject("list",list)
+		  .setViewName("admin/manageHangout");
+		return mv;
+	}
+	
 	
 	
 	@RequestMapping("enrollForm.le")
