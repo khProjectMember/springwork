@@ -36,11 +36,14 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- sweetalert 알림창 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <c:if test="${ not empty alertMsg }">
 		<script>
-			alertify.alert("${alertMsg}");
+			Swal.fire("${alertMsg}");
 		</script>
 		<c:remove var="alertMsg" scope="session"/>
 </c:if>
