@@ -11,7 +11,7 @@
 
     <!-- css -->    
 
-    <link rel="stylesheet" href="resources/css/service centerQA.css">
+    <link rel="stylesheet" href="resources/css/servicecenterQA.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
