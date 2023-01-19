@@ -1,6 +1,5 @@
 package com.kh.spring.member.model.vo;
 
-import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,8 +24,8 @@ public class Member {
 	private String memZipcode;
 	private String memAddress;
 	private String memDetailAddress;
-	private Date memCdate;
-	private Date memDdate;
+	private String memCdate;
+	private String memDdate;
 	private String memPaper;
 	private String isAdmin;
 	private String memCarno;
