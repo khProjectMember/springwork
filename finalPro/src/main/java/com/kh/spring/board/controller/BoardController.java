@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
+import com.kh.spring.board.model.service.BoardService;
 import com.kh.spring.board.model.service.NoticeService;
 import com.kh.spring.board.model.vo.Notice;
+import com.kh.spring.board.model.vo.QNA;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 
@@ -30,6 +32,8 @@ import com.kh.spring.common.template.Pagination;
 public class BoardController {
 	@Autowired
 	private NoticeService nService;
+	@Autowired
+	private BoardService bService;
 	
 	@RequestMapping("notice.bo")
 	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Notice n, Model model) {
@@ -189,4 +193,22 @@ public class BoardController {
 		return "board/NoticeView";
 		
 	}
+	
+	@RequestMapping("QA.bo")
+	public String QNAlist(QNA q, Model model) throws NullPointerException{
+		ArrayList<QNA> list = bService.QNAList(q);
+		model.addAttribute("list", list);
+		return "QA";
+	}	
+	
+	@RequestMapping("QAboard.bo")
+	public String QAboard() {
+		return "QAboard";
+	}
+	
+	@RequestMapping("QAReply.bo")
+	public String QAReply() {
+		return "QAReply";
+	}
+	
 }

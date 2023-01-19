@@ -126,7 +126,7 @@
                         <div class="nav_info">
                             <h4>고객센터</h4>
                             <ul>
-                                <li><a href="">1:1문의</a></li>
+                                <li><a href="QA.bo">1:1문의</a></li>
                                 <li><a href="">자주하는문의</a></li>                                
                             </ul>
                         </div>

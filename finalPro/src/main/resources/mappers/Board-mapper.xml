@@ -14,6 +14,15 @@
 			<result column="mem_nickname" property="memNickname" />
 		</association>
 	</resultMap>
+	<resultMap type="QNA" id="QNAResult">
+		<result column="qna_no" property="qnaNo" />
+		<result column="qna_title" property="qnaTitle" />
+		<result column="qna_content" property="qnaContent" />
+		<result column="qna_replystatus" property="qnaReply" />
+		<result column="qna_status" property="qnaStatus" />
+		<result column="mem_no" property="memNo" />
+		<result column="qna_email" property="qnaEmail" />
+	</resultMap>
 	<select id="selectListCount" resultType="_int">
 		select count(*)
 		 from notice 
@@ -96,4 +105,9 @@
 		order by n.notice_no desc
 	</select>
 	
+	<select id="selectQNAList" resultMap="QNAResult">
+		select *
+			from qna 
+			where qna_status=0
+	</select>
 </mapper>
