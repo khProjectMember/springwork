@@ -39,6 +39,7 @@
 	
 	<!-- sweetalert 알림창 -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
 </head>
 <body>
 <c:if test="${ not empty alertMsg }">
@@ -46,6 +47,12 @@
 			Swal.fire("${alertMsg}");
 		</script>
 		<c:remove var="alertMsg" scope="session"/>
+</c:if>
+<c:if test="${ not empty errorMsg }">
+		<script>
+			Swal.fire("${errorMsg}");
+		</script>
+		<c:remove var="errorMsg" scope="session"/>
 </c:if>
  <div id="wrap">
         <div id="header">            
@@ -65,7 +72,7 @@
             					<!-- 로그인 후 -->
             					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
 					                <li><a href="myPage.me">마이페이지</a></li>
-					                <li><a href="logout.me">로그아웃</a><li>
+					                <li><a href="logout.me" onclick="Swal.fire({title: '로그아웃 되었습니다.',timer: 3000})">로그아웃</a><li>
 				             </c:otherwise>
 				            </c:choose>
                         </ul>

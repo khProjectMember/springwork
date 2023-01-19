@@ -84,7 +84,7 @@
             	
 		            <!-- 카카오 로그인 -->
 		            <div class="col-lg-12 text-center mt-3">
-					   <a href="https://kauth.kakao.com/oauth/authorize?client_id=93579955c5d3578c1d0e9bbe9e39cfdb&redirect_uri=http://localhost:8060/spring">
+					   <a href="https://kauth.kakao.com/oauth/authorize?client_id=93579955c5d3578c1d0e9bbe9e39cfdb&redirect_uri=http://localhost:8060/user/kakao/callback">
 					    	<img alt="카카오로그인" src="resources/img/kakao_login_large_wide.png" onclick="kakaoLogin()">
 					   </a>
 					</div>

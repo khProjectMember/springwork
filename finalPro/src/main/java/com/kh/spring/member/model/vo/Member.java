@@ -25,8 +25,8 @@ public class Member {
 	private String memZipcode;
 	private String memAddress;
 	private String memDetailAddress;
-	private Date memCdate;
-	private Date memDdate;
+	private String memCdate;
+	private String memDdate;
 	private String memPaper;
 	private String isAdmin;
 	private String memCarno;

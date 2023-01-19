@@ -5,7 +5,77 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2023-01-13T15:15:26Z</updated>
+  <updated>2023-01-17T11:00:00Z</updated>
+  <entry>
+    <title>The new Spring Boot version validation and upgrade support in Spring Tools</title>
+    <link rel="alternate" href="https://spring.io/blog/2023/01/17/the-new-spring-boot-version-validation-and-upgrade-support-in-spring-tools" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Martin Lippert</name>
+    </author>
+    <id>tag:spring.io,2023-01-17:5060</id>
+    <updated>2023-01-17T11:00:00Z</updated>
+    <content type="html">&lt;p&gt;New releases of Spring Boot are being released on a quite frequent schedule and updating your projects to newer versions of Spring Boot is something that many teams and organizations around the globe do as part of their daily work.&lt;/p&gt;
+&lt;p&gt;Sometimes those upgrades are simple and easy, for example for new patch releases that mostly include changes to fix bugs and address CVEs. In contrast to that, upgrading to a new minor or even a new major version requires more work, including code changes to adapt to new or changed APIs, updating configurations to not use deprecated keys anymore, and more.&lt;/p&gt;
+&lt;p&gt;Each new minor or major version of Spring therefore ships with a comprehensive guide and documentation about those changes and you can read and follow to upgrade your project. A good example of this is the &lt;a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide"&gt;new migration guide for upgrading your projects to Spring Boot 3&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#validating-versions-in-your-ide" class="anchor" name="validating-versions-in-your-ide"&gt;&lt;/a&gt;Validating versions in your IDE&lt;/h2&gt;
+&lt;p&gt;The latest release of the Spring Tools 4.17.1 (and the corresponding Spring Boot Tools for VSCode in version 1.43.0) include a number of experimental features to help you with staying up-to-date with the latest Spring Boot versions, whether it is the latest patch version or the latest and greatest minor and major versions of Spring Boot.&lt;/p&gt;
+&lt;p&gt;The first notable new experimental feature here is the ability to automatically validate the versions of Spring Boot that you use in your projects in your workspace. The new version validation feature marks your build files as soon as there is a newer patch, minor, or major version available - compared to the version of Spring Boot that you use in your projects. Those markers appear immediately in your problems view directly in your coding environment as soon as a new release becomes available on Maven Central.&lt;/p&gt;
+&lt;img src="https://github.com/spring-projects/sts4/wiki/images/Screenshot-Version-Validation-Markers.png"/&gt;
+&lt;p&gt;The version validations will deal with new patch, minor, and major versions independently from each other and you can control the severity of each of those validations. If you would like to ignore new major versions for the moment, just set the preference for new major versions to IGNORE. If you want to flag new patch versions as warnings or even errors, set the preference accordingly. That way, you will not be overwhelmed with version validation markers if you don¡¯t need them and see the ones that you are interested in with the severity level of your choice.&lt;/p&gt;
+&lt;img src="https://github.com/spring-projects/sts4/wiki/images/Screenshot-Version-Validation-Preferences.png"/&gt;&lt;h2&gt;&lt;a href="#upgrading-to-newer-versions" class="anchor" name="upgrading-to-newer-versions"&gt;&lt;/a&gt;Upgrading to newer versions&lt;/h2&gt;
+&lt;p&gt;Validating the versions that you use in your projects is just the first step. As a next step, you might want to actually upgrade your projects to those newer versions. This is where the new experimental upgrade support comes into play.&lt;/p&gt;
+&lt;p&gt;Quick fixes in your coding environment will show up on those version validations markers, allowing you to directly upgrade to those newer versions - independently of whether this is a newer patch, minor, or major version.&lt;/p&gt;
+&lt;img src="https://github.com/spring-projects/sts4/wiki/images/Screenshot-Patch-Upgrade-Quick-Fix.png"/&gt;
+&lt;p&gt;For newer patch versions, those quick fixes will only update the version of the Spring Boot parent in your build file - and nothing else.&lt;/p&gt;
+&lt;p&gt;For newer minor or major versions, the tooling will not just update the version of your Spring Boot parent. The quick fix will execute a full upgrade recipe that does many of the necessary changes for you automatically - including, for example, code changes, updates for newer property keys, shifting everything to the newer jakarta packages, and more.&lt;/p&gt;
+&lt;p&gt;This does not guarantee to absolutely do everything that is necessary to upgrade your projects. But it takes care of many of the necessary changes and automates them for you, so that you don¡¯t have to do them manually on your own. So it is meant to help you when upgrading your project, not guaranteeing that it will do absolutely everything.&lt;/p&gt;
+&lt;p&gt;The quick-fix actions - once invoked - will run in the background and apply all the necessary changes directly to the files of the project. There is - not yet - a dialog showing up that will ask for confirmation whether to really apply those changes to the project. Therefore, we recommend that you keep a version of your project in your local git repository and once the quick-fix action is done, use the various git tools to inspect the changes that were made before committing them.&lt;/p&gt;&lt;h2&gt;&lt;a href="#more-fine-grained-control" class="anchor" name="more-fine-grained-control"&gt;&lt;/a&gt;More fine grained control&lt;/h2&gt;
+&lt;p&gt;In addition to the quick fixes for version validations, the tooling gives you the option to execute those upgrades directly via a menu or command palette item. The benefit of this on-demand way of executing those upgrade recipes is that it provides and explains all the detailed steps and changes it will execute in a nice way. And it even allows you to include or exclude certain steps specifically - in case you would like to not let the tooling automatically upgrade certain bits.&lt;/p&gt;
+&lt;img src="https://github.com/spring-projects/sts4/wiki/images/Screenshot-Recipe-Details.png"/&gt;&lt;h2&gt;&lt;a href="#limitations" class="anchor" name="limitations"&gt;&lt;/a&gt;Limitations&lt;/h2&gt;
+&lt;p&gt;Gradle build files are not yet supported when applying the upgrade recipes for projects. While the version validation works for Gradle-based projects as well as many parts of the automated upgrade recipes, modifying the &lt;code&gt;build.gradle&lt;/code&gt; file itself is not yet supported, but on the roadmap for future releases.&lt;/p&gt;&lt;h2&gt;&lt;a href="#upgrading-outside-of-your-coding-environment" class="anchor" name="upgrading-outside-of-your-coding-environment"&gt;&lt;/a&gt;Upgrading outside of your coding environment&lt;/h2&gt;
+&lt;p&gt;Sometimes you don¡¯t want to run all those project upgrades inside of your coding environment, you might have a huge number of projects that you would like to upgrade in a row, or you would like to be guided through the upgrade process with more documentation and explanations in a step-by-step fashion. This is where the experimental &lt;a href="https://github.com/spring-projects-experimental/spring-boot-migrator"&gt;Spring Boot Migrator project&lt;/a&gt; comes into play.&lt;/p&gt;
+&lt;p&gt;In contrast to the ability to execute recipes as refactorings directly within the coding environment to automate the tedious tasks of a version upgrade, Spring Boot Migrator provides a more holistic approach towards upgrading a project by creating a detailed HTML report. This report contains and describes all the steps you need to follow to upgrade a project from Spring Boot 2.7 to Spring Boot 3.0 - independent of whether those steps can be automated or not. For those that can be automated, the report allows the user to directly execute the corresponding recipe to apply the changes automatically. For those that can¡¯t be automated, the report provides guidance to users of how to remediate a required change.&lt;/p&gt;
+&lt;p&gt;This frees developers from finding and reading through all release notes of different Spring and Spring Boot projects that might be applicable to their own application.&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/RKXblzn8lFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;Beyond that, the Spring Boot Migrator project provides a set of additional features (like a shell application to scan projects, support to convert JEE applications to Spring Boot, convert Mule definitions to Spring Integration, and more).&lt;/p&gt;&lt;h2&gt;&lt;a href="#behind-the-scenes-openrewrite" class="anchor" name="behind-the-scenes-openrewrite"&gt;&lt;/a&gt;Behind the scenes: OpenRewrite&lt;/h2&gt;
+&lt;p&gt;Behind the scenes of those upgrades for Spring Boot, the tools use the &lt;a href="https://github.com/openrewrite"&gt;OpenRewrite project&lt;/a&gt; as the foundation, especially the &lt;code&gt;rewrite-spring&lt;/code&gt; module that contains the implementation for all the automated source code changes that those upgrade recipes execute. So if you would like to learn more about the details from behind the scenes, feel free to take a look.&lt;/p&gt;&lt;h2&gt;&lt;a href="#outlook" class="anchor" name="outlook"&gt;&lt;/a&gt;Outlook&lt;/h2&gt;
+&lt;p&gt;The upgrade recipes are far from doing absolutely everything and we will enhance them for future versions. If you have any suggestions, feedback, or enhancement requests, please reach out and share them with us via: &lt;a href="https://github.com/spring-projects/sts4/issues/"&gt;https://github.com/spring-projects/sts4/issues/&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;&lt;a href="#resources" class="anchor" name="resources"&gt;&lt;/a&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/tools"&gt;Spring Tools 4 (for VSCode and Eclipse)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-boot-migrator"&gt;Spring Boot Migrator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
+  <entry>
+    <title>This Week in Spring - January 17th, 2023</title>
+    <link rel="alternate" href="https://spring.io/blog/2023/01/17/this-week-in-spring-january-17th-2023" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2023-01-17:5058</id>
+    <updated>2023-01-17T08:00:00Z</updated>
+    <content type="html">&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! I went to Helsinki, Finland, last week, and this week I&amp;rsquo;m in Atlanta, Georgia, to speak at the Atlanta Java User Group. And, of course, next week, I&amp;rsquo;ll be in New York to join a viewing party for the airing of &lt;a href="https://springone.io/"&gt;SpringOne Essentials&lt;/a&gt;. You&amp;rsquo;re going to join us, I trust? It&amp;rsquo;s going to be awesome! &lt;/p&gt;
+&lt;img src="https://pbs.twimg.com/media/FmqJZk2WYBECl4I.jpg"/&gt;
+&lt;p&gt;Look, it&amp;rsquo;s Tuesday. Tuesdays are no fun. We&amp;rsquo;re three solid days away from fun winter ski slopes from Friday. But that&amp;rsquo;s OK because every day is a chance to learn. And this week&amp;rsquo;s no exception: we&amp;rsquo;ve got a ton to look at it, so let&amp;rsquo;s dive right into it! &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2023/01/12/a-bootiful-podcast-mario-fusco-the-drools-rules-engine-project-lead-and-fellow-java-champion"&gt;A Bootiful Podcast: Mario Fusco, the Drools rules engine project lead and fellow Java Champion&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://joshlong.com/jl/blogpost/complex-event-processing-with-esper.html"&gt;Complex Event Processing with Esper and Spring Boot&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://medium.com/@konstde00/spring-boot-multi-tenant-architecture-overview-88198ea3991f"&gt;Spring Boot Multi-tenant Architecture Overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2023/01/13/spring-data-2022-0-1-and-2021-2-7-available"&gt;Spring Data 2022.0.1 and 2021.2.7 available&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2023/01/11/spring-framework-5-3-25-available-now"&gt;Spring Framework 5.3.25 available now&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2023/01/11/spring-framework-6-0-4-available-now"&gt;Spring Framework 6.0.4 available now&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/724391888/0/baeldung~Spring-MVC-Mapping-the-Root-URL-to-a-Page"&gt;Spring MVC ? Mapping the Root URL to a Page&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2023/01/13/spring-shell-2-1-5-and-3-0-0-rc1-are-now-available"&gt;Spring Shell 2.1.5 and 3.0.0-RC1 are now available&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://joshlong.com/jl/blogpost/jcmd.html"&gt;Easy JVM Observability with the JCMD CLI&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;This is super cool: &lt;a href="https://medium.com/graalvm/graalvm-native-image-meets-risc-v-899be38eddd9"&gt;GraalVM Native Image meets RISC-V&lt;/a&gt; Even cooler? The implementation might pave the way for GraalVM compilation to WebAssembly&amp;hellip; Imagine, friends. One day, through the magic of open source, we could compile a Spring Boot application to WebAssembly. What a time to be alive!&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/724129061/0/baeldung~Implementing-Retry-In-Kafka-Consumer"&gt;Implementing Retry In Kafka Consumer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://medium.com/codex/records-are-here-can-we-remove-lombok-already-63161f8d0f87"&gt;Records Are Here! Can We Remove Lombok Already?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/jobrunr/jobrunr/releases/tag/v6.0.0-M0"&gt;Release v6.0.0-M0 ¡¤ jobrunr/jobrunr. First milestone. This release also supports Spring Authorization Server&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://feeds.feedblitz.com/~/724015304/0/baeldung~Flyway-Out-of-Order-Migrations"&gt;Flyway Out of Order Migrations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Shell 2.1.5 and 3.0.0-RC1 are now available</title>
     <link rel="alternate" href="https://spring.io/blog/2023/01/13/spring-shell-2-1-5-and-3-0-0-rc1-are-now-available" />
@@ -377,279 +447,6 @@
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-security/reference/"&gt;Reference&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud 2022.0.0  (codename Kilburn) Has Been Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/12/16/spring-cloud-2022-0-0-codename-kilburn-has-been-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Ryan Baxter</name>
-    </author>
-    <id>tag:spring.io,2022-12-16:5039</id>
-    <updated>2022-12-17T01:44:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the community, I am pleased to announce that the General Availability (RELEASE) of the &lt;a href="https://cloud.spring.io"&gt;Spring Cloud 2022.0&lt;/a&gt; Release Train is available today. The release can be found in &lt;a href="https://repo1.maven.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2022.0.0/"&gt;Maven Central&lt;/a&gt;. You can check out the 2022.0 &lt;a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2022.0-Release-Notes"&gt;release notes for more information&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#notable-changes-in-the-2022-0-0-release-train" class="anchor" name="notable-changes-in-the-2022-0-0-release-train"&gt;&lt;/a&gt;Notable Changes in the 2022.0.0 Release Train&lt;/h2&gt;
-&lt;p&gt;Spring Cloud 2022.0.0 is a major release that builds upon Spring Framework 6.x and Spring Boot 3.x. This includes compatibility with Jakarta EE and requires a Java 17 baseline. See &lt;a href="https://github.com/orgs/spring-cloud/projects/96"&gt;here&lt;/a&gt; for the issues included in this release. Below are highlights from all of the 2022.0.0 milestone, release candidate and GA releases.&lt;/p&gt;&lt;h3&gt;&lt;a href="#spring-cloud-openfeign-feature-complete-announcement" class="anchor" name="spring-cloud-openfeign-feature-complete-announcement"&gt;&lt;/a&gt;Spring Cloud OpenFeign feature complete announcement&lt;/h3&gt;
-&lt;p&gt;Since Spring now provides its own interface HTTP clients solution, starting with 2022.0.0, we&amp;rsquo;re going to treat Spring Cloud OpenFeign as feature complete. This means that the Spring Cloud team will no longer be adding new features to the module. We will still fix bugs and security issues, and we will also consider and review small pull requests from the community.&lt;/p&gt;&lt;h3&gt;&lt;a href="#spring-cloud-kubernetes" class="anchor" name="spring-cloud-kubernetes"&gt;&lt;/a&gt;Spring Cloud Kubernetes&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Removed the use of &lt;code&gt;@ConditionalOnKubernetesEnabled&lt;/code&gt; in favor of &lt;code&gt;@ConditionalOnCloudPlatform&lt;/code&gt; from Spring Boot (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/893"&gt;893&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Refactor configmaps and secrets implementation (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/pull/917"&gt;#917&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Load Config Maps and Secrets using &lt;code&gt;spring.config.import&lt;/code&gt; removing the need to use Bootstrap context (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/pull/1002"&gt;1002&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Secrets and Config Maps support prefixes (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/765"&gt;765&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Filter service discovery by namespace (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/1000"&gt;#1000&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;KubernetesCatalogWatch should support namespaces (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/1158"&gt;#1158&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Upgrade To Kubernetes Java Client 17 (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/pull/1168"&gt;#1168&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Update to fabric8 6.2.0 (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/pull/1165"&gt;#1165&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Use endpoint slices for fabric8 catalog watcher (&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/issues/1146"&gt;#1149&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-function" class="anchor" name="spring-cloud-function"&gt;&lt;/a&gt;Spring Cloud Function&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added support for AOT &amp;amp; native&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-circuitbreaker" class="anchor" name="spring-cloud-circuitbreaker"&gt;&lt;/a&gt;Spring Cloud Circuitbreaker&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Bump Resilience4J To 2.0.2&lt;/li&gt;
-  &lt;li&gt;Add support for disabling threadpools when running Resilient4J circuitbreakers (&lt;a href="https://github.com/spring-cloud/spring-cloud-circuitbreaker/issues/147"&gt;147&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-task" class="anchor" name="spring-cloud-task"&gt;&lt;/a&gt;Spring Cloud Task&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Find out what is new and changed in Spring Cloud Tasks (&lt;a href="https://github.com/spring-cloud/spring-cloud-task/releases"&gt;release notes&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Read More on how to migrate from Spring Cloud Task 2.x to 3.0 in the (&lt;a href="https://github.com/spring-cloud/spring-cloud-task/wiki/Spring-Cloud-Task-3.0-Migration-Guide"&gt;migration guide&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-stream" class="anchor" name="spring-cloud-stream"&gt;&lt;/a&gt;Spring Cloud Stream&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added support for AOT &amp;amp; native&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-openfeign" class="anchor" name="spring-cloud-openfeign"&gt;&lt;/a&gt;Spring Cloud OpenFeign&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Allow customising load-balanced requests based on the selected &lt;code&gt;ServiceInstance&lt;/code&gt; (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/735"&gt;#735&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added support for target URL refreshing (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues/710"&gt;#710&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added support for LoadBalancer X-Forwarded Headers (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/748"&gt;#748&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Set Jackson Autoconfiguration to be enabled by default (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/476"&gt;#476&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Removed deprecations and adjusted to the API changes in Feign (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/768"&gt;#768&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Removed usage of Spring Cloud Commons HttpClient interfaces (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/788"&gt;#788&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Apache HttpClient 4 has been removed in favour of Apache HttpClient 5 (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues/783"&gt;#783&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Upgraded to Feign &lt;code&gt;12.0&lt;/code&gt; (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/782"&gt;#782&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Support for AOT and native images has been added (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/794"&gt;#794&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Support for Micrometer Observation API has been added ([#793]&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/793)"&gt;https://github.com/spring-cloud/spring-cloud-openfeign/pull/793)&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Feign has been upgraded to Feign &lt;code&gt;12.1&lt;/code&gt; (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/pull/792"&gt;#792&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added possibility to configure &lt;code&gt;ResponseInterceptor&lt;/code&gt; (&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/issues/802"&gt;#802&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-commons" class="anchor" name="spring-cloud-commons"&gt;&lt;/a&gt;Spring Cloud Commons&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Adds registration lifecycle listeners (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/999"&gt;#999&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Request data context for blocking LoadBalancer client requests has been made available to lifecycle callbacks (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/1090"&gt;#1090&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;The OAuth integration has been migrated from the deprecated Spring Security OAuth to OAuth2 support in Spring Security (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/1053"&gt;#1053&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/1043"&gt;Added possibility to retry on specific exceptions for the LoadBalancer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Adds registration lifecycle listeners (&lt;a href=""&gt;#999&lt;/a&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/999"&gt;https://github.com/spring-cloud/spring-cloud-commons/issues/999&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Request data context for blocking LoadBalancer client requests has been made available to lifecycle callbacks (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/1090"&gt;#1090&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;
-  &lt;p&gt;Added the possibility to eagerly create LoadBalancer child contexts (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/729"&gt;#729&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
-  &lt;li&gt;Added Weight-based load-balancing (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/1063"&gt;#1063&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added support for LoadBalancer child contexts in AOT and native image support (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/pull/1135"&gt;#1135&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Support added for property-based configuration for weighted load-balancing (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/pull/1163"&gt;#1163&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Removed Interfaces relying on Apache HttpClient v4. Removed OK HttpClient interfaces as they were only used by Spring Cloud OpenFeign. Spring Cloud OpenFeign now uses the OK HttpClient directly (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/issues/1171"&gt;#1171&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;
-  &lt;p&gt;Deprecated classes and interfaces have been removed. See breaking changes in the &lt;a href="https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2022.0-Release-Notes#breaking-changes"&gt;Spring Cloud 2022 Release Notes&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-  &lt;li&gt;Switched to lazily initializing child contexts in AOT mode (&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/pull/1176"&gt;#1176&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-contract" class="anchor" name="spring-cloud-contract"&gt;&lt;/a&gt;Spring Cloud Contract&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Removes Gradle&amp;rsquo;s support for &lt;code&gt;src/test/resources/contracts&lt;/code&gt; checking (&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1848"&gt;#1848&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1845"&gt;Remove Spring Cloud Contract Pact integration&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1839"&gt;Maven 3.6 as prerequisite for Maven plugin&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/321"&gt;Leave only code input triggers and output message type&lt;/a&gt; and &lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1837"&gt;#1837&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1838"&gt;Removing support for mocked AMQP, OOB AMQP and OOB Kafka&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Bumps Rest Assured to 5.1.0&lt;/li&gt;
-  &lt;li&gt;Removed reference to Spring Cloud Function Compiler&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1661"&gt;Bumped Pact to 4.2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-contract/issues/1762"&gt;Bumped Groovy to 4&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-netflix" class="anchor" name="spring-cloud-netflix"&gt;&lt;/a&gt;Spring Cloud Netflix&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Updated to Eureka 2.0.0. Eureka 2.0.0 is a new branch of Eureka unrelated to the &lt;a href="https://github.com/Netflix/eureka/tree/2.x-archive"&gt;old 2.x-archive&lt;/a&gt; experiment from 7 years ago. The new &lt;a href="https://github.com/Netflix/eureka/tree/2.x"&gt;2.x&lt;/a&gt; branch is for compatibility with JakartaEE. This allows Spring Cloud Netflix to be compatible with Spring Framework 6.0 and Spring Boot 3.0.&lt;/li&gt;
-  &lt;li&gt;Migrated Apache HttpClient to Apache HC5 HttpClient (&lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/pull/4126"&gt;#4126&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-consul" class="anchor" name="spring-cloud-consul"&gt;&lt;/a&gt;Spring Cloud Consul&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added support for AOT &amp;amp; native&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-config" class="anchor" name="spring-cloud-config"&gt;&lt;/a&gt;Spring Cloud Config&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Try multiple URLs when error response code received (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/issues/1845"&gt;#1845&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Allow specification of down health status (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/pull/2056"&gt;#2056&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Moved to AWS SDK V2 (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/pull/2111"&gt;#2111&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Moved from JSCH to Apache MINA (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/issues/1901"&gt;#1901&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added support for &lt;a href="https://docs.spring.io/spring-cloud-config/docs/4.0.0-RC1/reference/html/#_aot_and_native_image_support_2"&gt;Spring Native support for Config Client&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Vault upgraded to 3.0.0 (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/issues/2193"&gt;2193&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Bump JGit to 6.4 (&lt;a href="https://github.com/spring-cloud/spring-cloud-config/pull/2198"&gt;#2198&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-gateway" class="anchor" name="spring-cloud-gateway"&gt;&lt;/a&gt;Spring Cloud Gateway&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added support for AOT &amp;amp; native&lt;/li&gt;
-  &lt;li&gt;Added a &lt;code&gt;LocalResponseCache&lt;/code&gt; filter (&lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/pull/2759"&gt;2759&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Added micrometer &lt;code&gt;Observability&lt;/code&gt; support (&lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/pull/2715"&gt;2715&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr/&gt;
-&lt;p&gt;The following modules were updated as part of 2022.0.0:&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Module &lt;/th&gt;
-      &lt;th&gt;Version &lt;/th&gt;
-      &lt;th&gt;Issues&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Vault &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-vault/milestone/53?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Kubernetes &lt;/td&gt;
-      &lt;td&gt;3.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-kubernetes/milestone/55?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Function &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Zookeeper &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Circuitbreaker &lt;/td&gt;
-      &lt;td&gt;3.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-circuitbreaker/milestone/19?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Task &lt;/td&gt;
-      &lt;td&gt;3.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Bus &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Stream &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Openfeign &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-openfeign/milestone/59?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Commons &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-commons/milestone/109?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Contract &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Starter Build &lt;/td&gt;
-      &lt;td&gt;2022.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Netflix &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/milestone/117?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Consul &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Config &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-config/milestone/112?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Build &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Spring Cloud Gateway &lt;/td&gt;
-      &lt;td&gt;4.0.0 &lt;/td&gt;
-      &lt;td&gt;(&lt;a href="https://github.com/spring-cloud/spring-cloud-gateway/milestone/74?closed=1"&gt;issues&lt;/a&gt;)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;As always, we welcome feedback on &lt;a href="https://github.com/spring-cloud/"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;Gitter&lt;/a&gt;, on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href="https://twitter.com/SpringCloud"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;To get started with Maven with a BOM (dependency management only):&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint xml"&gt;&amp;lt;dependencyManagement&amp;gt;&#xD;
-    &amp;lt;dependencies&amp;gt;&#xD;
-        &amp;lt;dependency&amp;gt;&#xD;
-            &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-            &amp;lt;artifactId&amp;gt;spring-cloud-dependencies&amp;lt;/artifactId&amp;gt;&#xD;
-            &amp;lt;version&amp;gt;2022.0.0&amp;lt;/version&amp;gt;&#xD;
-            &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;&#xD;
-            &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;&#xD;
-        &amp;lt;/dependency&amp;gt;&#xD;
-    &amp;lt;/dependencies&amp;gt;&#xD;
-&amp;lt;/dependencyManagement&amp;gt;&#xD;
-&amp;lt;dependencies&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-config&amp;lt;/artifactId&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-netflix-eureka-client&amp;lt;/artifactId&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-    ...&#xD;
-&amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or with Gradle:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint groovy"&gt;plugins {&#xD;
-  id &amp;#39;java&amp;#39;&#xD;
-  id &amp;#39;org.springframework.boot&amp;#39; version &amp;#39;3.0.0&amp;#39;&#xD;
-  id &amp;#39;io.spring.dependency-management&amp;#39; version &amp;#39;1.1.0&amp;#39;&#xD;
-}&#xD;
-&#xD;
-repositories {&#xD;
-  mavenCentral()&#xD;
-}&#xD;
-&#xD;
-ext {&#xD;
-  set(&amp;#39;springCloudVersion&amp;#39;, &amp;quot;2022.0.0&amp;quot;)&#xD;
-}&#xD;
-&#xD;
-dependencies {&#xD;
-  implementation &amp;#39;org.springframework.cloud:spring-cloud-starter-config&amp;#39;&#xD;
-  implementation &amp;#39;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&amp;#39;&#xD;
-}&#xD;
-&#xD;
-dependencyManagement {&#xD;
-  imports {&#xD;
-    mavenBom &amp;quot;org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}&amp;quot;&#xD;
-  }&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring for Apache Pulsar 0.1.0 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/12/15/spring-for-apache-pulsar-0-1-0-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Chris Bono</name>
-    </author>
-    <id>tag:spring.io,2022-12-15:5038</id>
-    <updated>2022-12-15T21:00:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I¡¯m happy to announce that Spring for Apache Pulsar &lt;code&gt;0.1.0&lt;/code&gt; has been released and is now available from &lt;a href="https://repo1.maven.org/maven2/org/springframework/pulsar/spring-pulsar-spring-boot-starter/0.1.0"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is the initial GA minor release of the framework. The full &lt;code&gt;1.0.0&lt;/code&gt; GA release is expected mid Q12023 and will contain many more features. Although it still lives in the experimental Spring projects it is expected to move into the main Spring projects as part of the full release.&lt;/p&gt;&lt;h2&gt;&lt;a href="#notable-changes" class="anchor" name="notable-changes"&gt;&lt;/a&gt;Notable Changes&lt;/h2&gt;
-&lt;p&gt;We have been busy adding features since our &lt;a href="https://spring.io/blog/2022/08/16/introducing-experimental-spring-support-for-apache-pulsar"&gt;last blog&lt;/a&gt;. Notable new features include:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Reactive support&lt;/li&gt;
-  &lt;li&gt;GraalVM Native Image Support&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Please see the &lt;a href="https://github.com/spring-projects-experimental/spring-pulsar/releases/tag/0.1.0"&gt;release notes&lt;/a&gt; for more detail.&lt;/p&gt;
-&lt;p&gt;A great place to get started is the &lt;a href="https://docs.spring.io/spring-pulsar/docs/0.1.0/reference/html/#quick-tour"&gt;Quick Tour&lt;/a&gt; in the reference docs.&lt;/p&gt;&lt;h2&gt;&lt;a href="#stay-in-touch-hellip" class="anchor" name="stay-in-touch-hellip"&gt;&lt;/a&gt;Stay in touch&amp;hellip;&lt;/h2&gt;
-&lt;p&gt;As always, we welcome feedback and contributions, so please reach out to us on &lt;a href="https://github.com/spring-projects-experimental/spring-pulsar/issues"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-pulsar"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects-experimental/spring-pulsar/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-pulsar/docs/0.1.0/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-pulsar"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>

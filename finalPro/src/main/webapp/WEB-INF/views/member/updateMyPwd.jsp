@@ -105,7 +105,7 @@
             <!-- 이전 비밀번호 -->
             <div class="mb-3">
               <label for="currentPwd">이전 비밀번호</label>
-              <input type="password" id="currentPwd" name="currentPwd" class="form-control" placeholder="비밀번호 찾기에서 발급받은 임시비밀번호를 입력해주세요." style="width:435px" required>
+              <input type="password" id="currentPwd" name="currentPwd" class="form-control" placeholder="이전 비밀번호나 발급받은 임시비밀번호를 입력해주세요." style="width:435px" required>
               
             </div>
 
