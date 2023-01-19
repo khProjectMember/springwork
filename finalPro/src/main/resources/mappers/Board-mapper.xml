@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+	<resultMap type="Notice" id="noticeResult">
+		<result column="notice_no" property="noticeNo" />
+		<result column="notice_catg" property="noticeCatg" />
+		<result column="notice_title" property="noticeTitle" />
+		<result column="notice_content" property="noticeContent" />
+		<result column="notice_edate" property="edate" />
+		<result column="notice_filename" property="filename" />
+		<result column="notice_changename" property="changename" />
+		<result column="mem_no" property="memNo" />
+		<association property="m" javaType="Member">
+			<result column="mem_nickname" property="memNickname" />
+		</association>
+	</resultMap>
+	<select id="selectListCount" resultType="_int">
+		select count(*)
+		 from notice 
+	</select>
+	<select id="selectList" resultMap="noticeResult">
+		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
+		from notice n, member m 
+		where n.mem_no = m.mem_no
+		order by n.notice_no desc
+	</select>
+	
+	<select id="selectNotice" resultMap="noticeResult">
+		select n.notice_no, n.notice_catg, n.notice_title, m.mem_nickname, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, n.notice_content   
+		from notice n, member m 
+		where n.mem_no = m.mem_no and 
+		n.notice_no = #{noticeNo}
+	</select>
+	<insert id="insertNotice">
+		insert into notice(notice_no, notice_catg, notice_title, notice_content, notice_edate, mem_no) 
+		values (SEQ_NNO.NEXTVAL, #{noticeCatg}, #{noticeTitle}, #{noticeContent}, sysdate, 1)
+	</insert>
+	<update id="updateNotice">
+		update notice set notice_catg = #{noticeCatg}, notice_title = #{noticeTitle}, notice_content = #{noticeContent}, notice_edate = sysdate, mem_no = 1 
+		where notice_no = #{noticeNo}
+	</update>
+	<delete id="deleteNotice">
+		delete from notice where notice_no = #{noticeNo} 
+	</delete>
+	<select id="selectListVersion" resultMap="noticeResult">
+		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
+		from notice n, member m 
+		where n.mem_no = m.mem_no
+		order by n.notice_no desc
+	</select>
+	<select id="searchCount" parameterType="hashmap" resultType="_int">
+		select count(*) 
+		from notice
+		where
+			<if test="keyvalue == 'search_all'">
+				notice_title like '%'||#{keyword}||'%' 
+				or notice_content like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyvalue == 'search_title'">
+				notice_title like '%'||#{keyword}||'%'				
+			</if>
+			<if test="keyvalue == 'search_content'">
+				notice_content like '%'||#{keyword}||'%'		
+			</if>		 
+	</select>
+	<select id="selectSearchList" resultMap="noticeResult">
+		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
+		from notice n, member m 
+		where n.mem_no = m.mem_no and 
+			<if test="keyvalue == 'search_all'">
+				n.notice_title like '%'||#{keyword}||'%' 
+				or n.notice_content like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyvalue == 'search_title'">
+				n.notice_title like '%'||#{keyword}||'%'				
+			</if>
+			<if test="keyvalue == 'search_content'">
+				n.notice_content like '%'||#{keyword}||'%'		
+			</if>		 
+		order by n.notice_no desc
+	</select>
+	<select id="selectSearchListVersion" resultMap="noticeResult">
+		select n.notice_no, n.notice_catg, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate, m.mem_nickname 
+		from notice n, member m 
+		where n.mem_no = m.mem_no and 
+			<if test="keyvalue == 'search_all'">
+				n.notice_title like '%'||#{keyword}||'%' 
+				or n.notice_content like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyvalue == 'search_title'">
+				n.notice_title like '%'||#{keyword}||'%'				
+			</if>
+			<if test="keyvalue == 'search_content'">
+				n.notice_content like '%'||#{keyword}||'%'		
+			</if>	 
+		order by n.notice_no desc
+	</select>
+	
+</mapper>
