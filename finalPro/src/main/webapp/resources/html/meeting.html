@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+     <!-- css -->
+    <link rel="stylesheet" href="../css/meeting.css">
+
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">            
+            <div class="header">
+                <div class="header-top">
+                    <div class="user-info">
+                        <ul class="user">
+                            <li><a href="#">장바구니</a></li>
+                            <li><a href="#">마이페이지</a></li>
+                            <li><a href="#">로그인</a></li>
+                            <li><a href="#">회원가입</a></li>
+                        </ul>
+                    </div>
+                </div>                
+                <div class="header-mid">
+                    <div class="mid-f">
+                        <h1>
+                            <a href="#">樂受文化</a>
+                        </h1>
+                    </div>
+                    <div class="mid-m">
+                        <div class="category">
+                            <ul class="nav_category">
+                                <li><a href="">수강안내</a></li>
+                                <li><a href="">시설안내</a></li>
+                                <li><a href="">커뮤니티</a></li>
+                                <li><a href="">고객센터</a></li>                            
+                            </ul>
+                        </div>
+                    </div>                    
+                    <div class="mid-b">
+                        <div class="button_box">
+                            <div class="button_img">                            
+                                <button type="button"><img src="../img/icons8-달력-32.png" alt="달력"></button>
+                                <button type="button"><img src="../img/icons8-하트-50.png" alt="찜"></button>
+                                <button type="button" class="main_btn"><img src="../img/icons8-수색-30.png" alt="검색"></button>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="nav_bar">
+                    <div class="inner">
+                        <div class="nav_info">
+                            <h4>강좌안내</h4>
+                            <ul>
+                                <li><a href="">수강신청</a></li>
+                                <li><a href="">강좌목록</a></li>
+                                <li><a href="">강좌스케줄</a></li>
+                                <li><a href="">신청방법</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_info">
+                            <h4>시설안내</h4>
+                            <ul>
+                                <li><a href="">개요 및 시설</a></li>
+                                <li><a href="">시설현황</a></li>
+                                <li><a href="">이용안내</a></li>
+                                <li><a href="">오시는 길</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav_info">
+                            <h4>커뮤니티</h4>
+                            <ul>
+                                <li><a href="">공지사항/이벤트</a></li>
+                                <li><a href="">모임게시판</a></li>
+                                <li><a href="">수강생 후기</a></li>
+                                
+                            </ul>
+                        </div>
+                        <div class="nav_info">
+                            <h4>고객센터</h4>
+                            <ul>
+                                <li><a href="">1:1문의</a></li>
+                                <li><a href="">자주하는문의</a></li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+                <form action="" method="" class="h_form">
+                    <div class="search_hide">
+                        <div class="search_bar">
+                            <div class="search_array">
+                                <div class="search_select">
+                                    <select name="" id="">
+                                        <option value="0">전체검색</option>
+                                        <option value="강좌">강좌</option>
+                                        <option value="시설">시설</option>
+                                        <option value="커뮤니티">커뮤니티</option>                                    
+                                    </select>
+                                </div>                        
+                                <div class="search_inp">
+                                    <input type="text" id="" name="">
+                                    <button type="submit"><img src="../img/icons8-수색-30.png" alt="찾기"></button>
+                                    <button type="button" class="search_cancle"><img src="../img/icons8-지우다-24.png" alt="취소"></button>
+                                    <input type="hidden">
+                                </div>       
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>    
+                </div>
+            </div>            
+        </div>
+    </div>
+
+    <div id="wrap">
+        <div id="content">
+            <div class="inner">
+                <div class="content_fir">
+                    <div class="nav_box">
+                        <ul>
+                            <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="#" class="nav_a">커뮤니티</a></li>
+                            <li><a href="#">모임 게시판</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content_sec">
+                    <h1>모임 게시판</h1>
+                    <div class="search_box">
+                        <div class="search">
+                            <form class="search_arr" action="" method="">                                
+                                <select name="" id="" class="search_location">
+                                    <option value="전체">지역 전체</option>
+                                    <option value="서울">서울</option>
+                                    <option value="경기">경기</option>
+                                    <option value="강원">강원</option>
+                                    <option value="충청">충청</option>
+                                    <option value="전라">전라</option>
+                                    <option value="경상">경상</option>
+                                </select>                                
+                                <select name="" id="" class="search_gender">
+                                    <option value="전체">성별 전체</option>
+                                    <option value="남성">남성</option>
+                                    <option value="여성">여성</option>
+                                </select>                                
+                                <select name="" id="" class="search_age">
+                                    <option value="전체">연령 전체</option>
+                                    <option value="청소년">청소년</option>
+                                    <option value="20대">20대</option>
+                                    <option value="30대">30대</option>
+                                    <option value="40대">40대</option>
+                                    <option value="50대">50대</option>
+                                    <option value="60대 이상">60대 이상</option>
+                                </select>                                
+                                <select name="" id="" class="search_category">                                    
+                                    <option value="전체">카테고리 전체</option>
+                                    <option value="체육">체육</option>
+                                    <option value="인문학">인문학</option>
+                                    <option value="요리">요리</option>
+                                    <option value="예능">예능</option>
+                                </select>
+                                <select name="" id="" class="search_person">
+                                    <option value="전체">인원 전체</option>
+                                    <option value="2">2명</option>
+                                    <option value="3">3명</option>
+                                    <option value="4">4명</option>
+                                    <option value="5">5명</option>
+                                    <option value="6">6명</option>
+                                    <option value="7">7명</option>
+                                    <option value="8">8명</option>
+                                </select>
+                                <input type="text" name="" class="search_input" placeholder="검색할 내용을 입력하세요.">
+                                <button type="submit" class="search_btn" >검색</button>
+                            </form>                            
+                        </div>
+                    </div>
+                    <div class="board_type">
+                        <div class="type">
+                            <ul>
+                                <li><a href="">최신순</a></li>
+                                <li><a href="">조회순</a></li>
+                            </ul>
+                        </div>
+                        <div class="board_btn">
+                            <button onclick="">모임만들기</button>
+                        </div>
+                    </div>
+                    <div class="board_count">
+                        <h2>전체 모임 5</h2>
+                    </div>
+                    <div class="main_board">
+                        <ul>
+                            <li>
+                                <div class="board_info">
+                                    <div class="board_textbox">
+                                        <h3>제목이에욘</h3>                          
+                                        <p>🌎<span>서울</span></p>
+                                        <p>💑<span>성별</span></p>
+                                        <p>🔞<span>연령</span></p>
+                                        <p>🎨<span>카테고리</span></p>
+                                        <p>🎣<span>현재 4명 / 최대 6명</span></p>
+                                        <p>
+                                            <span>2023-01-01</span>
+                                            <span>👀 122</span>
+                                        </p>
+                                    </div>                                    
+                                </div>
+                            </li>
+                            <li>
+                                <div class="board_info">
+                                    <div class="board_textbox">
+                                        <h3>제목이에욘</h3>                          
+                                        <p>🌎<span>서울</span></p>
+                                        <p>💑<span>성별</span></p>
+                                        <p>🔞<span>연령</span></p>
+                                        <p>🎨<span>카테고리</span></p>
+                                        <p>🎣<span>현재 4명 / 최대 6명</span></p>
+                                        <p>
+                                            <span>2023-01-01</span>
+                                            <span>👀 122</span>
+                                        </p>
+                                    </div>                                    
+                                </div>
+                            </li>
+                            <li>
+                                <div class="board_info">
+                                    <div class="board_textbox">
+                                        <h3>제목이에욘</h3>                          
+                                        <p>🌎<span>서울</span></p>
+                                        <p>💑<span>성별</span></p>
+                                        <p>🔞<span>연령</span></p>
+                                        <p>🎨<span>카테고리</span></p>
+                                        <p>🎣<span>현재 4명 / 최대 6명</span></p>
+                                        <p>
+                                            <span>2023-01-01</span>
+                                            <span>👀 122</span>
+                                        </p>
+                                    </div>                                    
+                                </div>
+                            </li>
+                            <li>
+                                <div class="board_info">
+                                    <div class="board_textbox">
+                                        <h3>제목이에욘</h3>                          
+                                        <p>🌎<span>서울</span></p>
+                                        <p>💑<span>성별</span></p>
+                                        <p>🔞<span>연령</span></p>
+                                        <p>🎨<span>카테고리</span></p>
+                                        <p>🎣<span>현재 4명 / 최대 6명</span></p>
+                                        <p>
+                                            <span>2023-01-01</span>
+                                            <span>👀 122</span>
+                                        </p>
+                                    </div>                                    
+                                </div>
+                            </li>
+                            <li>
+                                <div class="board_info">
+                                    <div class="board_textbox">
+                                        <h3>제목이에욘</h3>                          
+                                        <p>🌎<span>서울</span></p>
+                                        <p>💑<span>성별</span></p>
+                                        <p>🔞<span>연령</span></p>
+                                        <p>🎨<span>카테고리</span></p>
+                                        <p>🎣<span>현재 4명 / 최대 6명</span></p>
+                                        <p>
+                                            <span>2023-01-01</span>
+                                            <span>👀 122</span>
+                                        </p>
+                                    </div>                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <div id="wrap">
+        <div id="footer">
+            <div class="inner">
+                <div class="footer">
+                    <div class="footer_info">
+                        <ul>
+                            <li><a href="">회사소개</a></li>
+                            <li><a href="">이용약관</a></li>
+                            <li><a href="">개인정보처리방침</a></li>
+                            <li><a href="">영상정보처리운영관리방침</a></li>
+                            <li><a href="">이메일무단수집거부</a></li>
+                        </ul>                                                
+                    </div>
+                    <div class="footer_content">
+                        <div class="mediabox">
+                            <div class="socialmedia">
+                                <a href=""><img src="../img/icons8-인스-타-그램-48.png" alt="인스타그램"></a>
+                                <a href=""><img src="../img/icons8-youtube-squared-48.png" alt="유튜브"></a><br>
+                            </div>
+                        </div>
+                        <div class="footer_txt">                            
+                            <span>상호명: {사업자명}</span>
+                            <span>대표자: {대표자 성} {대표자 이름}</span>
+                            <span>사업자등록번호: {사업자 등록 번호}</span>
+                            <span>주소: {주소}</span>
+                            <span>이메일:</span>
+                            <span>호스팅서비스제공자(커머스오픈시): (주)비마이프렌즈</span>
+                            <div class="f_textbox">
+                                <span>Ⓒ {해당년도}. {사업자명} Inc. All right reserved.</span>
+                                <span class="span_index"> * 아이콘의 저작권은 icons8.kr 에 있습니다. </span>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // 검색 버튼 fade
+        $(function() {
+            $('.main_btn').on('click', function(e) {
+                $('.h_form').fadeIn(300)
+                
+                $('.search_cancle').on('click', function() {
+                    $('.h_form').fadeOut(300)
+                })
+            })
+        })
+
+        // 강좌 이미지 설명 hover
+        $(function() {
+            $('.over_mouse').mouseover(function() {
+                $(this).find('.img_info').stop().fadeIn(400);
+            }).mouseleave(function() {
+                $(this).find('.img_info').stop().fadeOut(400);
+            })
+        })
+
+        // 헤더 카데고리 바 숨겨진 div
+        $(function() {
+            $('.nav_category').mouseover(function() {
+                $('.nav_bar').stop().fadeIn(0);
+            })
+            $($('.nav_bar')).mouseleave(function() {
+                $(this).fadeOut(0);
+            })
+            
+            
+        })
+
+        $(window).scroll(function( ){  //스크롤이 움직일때마다 이벤트 발생 
+            
+            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+            if(position < 1500) {
+                $('.quickmenu').stop().animate({top:position+"px"}, 1000); //해당 오브젝트 위치값 재설정
+            }
+        });
+            
+        const swiper = new Swiper('.swiper', {
+            
+            loop: true,
+            // speed: 10000,
+            // loopedSlides: 5,
+            // observer:true,
+            // observeParents:true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            autoplay: {
+                delay: 3000,
+                // stopOnLastSlide: false,
+                // disableOnInteraction: true,
+            }
+
+            // freeMode: {
+            //     enabled: true,
+            //     sticky: true,
+            // },
+
+        });
+          
+    </script>
+</body>
+</html>

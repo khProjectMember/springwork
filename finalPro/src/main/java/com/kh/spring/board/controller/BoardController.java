@@ -2,116 +2,71 @@ package com.kh.spring.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.kh.spring.board.model.service.BoardService;
-import com.kh.spring.board.model.vo.Board;
-import com.kh.spring.board.model.vo.Reply;
+import com.google.gson.JsonObject;
+import com.kh.spring.board.model.service.NoticeService;
+import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 
 @Controller
 public class BoardController {
 	@Autowired
-	private BoardService bService;
+	private NoticeService nService;
 	
-	/*
-	@RequestMapping("list.bo")
-	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Model model) {
-		int listCount = bService.selectListCount();
+	@RequestMapping("notice.bo")
+	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Notice n, Model model) {
+		int listCount = nService.selectListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 5);
-		ArrayList<Board> list = bService.selecList(pi);
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
+		ArrayList<Notice> list = nService.selectList(pi);
+		ArrayList<Notice> nlist = nService.selectListVersion(n);
 		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
+		model.addAttribute("nlist", nlist);
+		return "board/NoticeView";
 		
-		return "board/boardListView";
-	}
-	*/
-	
-	@RequestMapping("list.bo")
-	public ModelAndView selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
-		int listCount = bService.selectListCount();
-		
-		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 5);
-		ArrayList<Board> list = bService.selecList(pi);
-		/*
-		mv.addObject("pi",pi);
-		mv.addObject("list",list);
-		mv.setViewName("board/boardListView");
-		*/
-		mv.addObject("pi",pi)
-		  .addObject("list",list)
-		  .setViewName("board/boardListView");
-		return mv;
 	}
 	
 	@RequestMapping("detail.bo")
-	public ModelAndView selectBoard(int bno, ModelAndView mv) {
-		int result = bService.increaseCount(bno);
-		if(result > 0) {
-			Board b = bService.selectBoard(bno);
-			mv.addObject("b", b)
-			  .setViewName("board/boardDetailView");
-		}else {
-			mv.addObject("errorMsg","상세 조회 실패")
-			  .setViewName("common/errorPage");
-		}
-		return mv;
-	}
-	
-	@RequestMapping("enrollForm.bo")
-	public String enrollForm() {
-		return "board/boardEnrollForm";
-	}
-	
-	@RequestMapping("insert.bo")
-	public String insertBoard(Board b, MultipartFile upfile, HttpSession session, Model model) {
-		// System.out.println(b);
-		// System.out.println(upfile);
-		// MultipartFile은 파일을 등록하지 않아도 객체가 생성이 됨. 다만 filename= 비어서 들어온다
+	public String selectNotice(int noticeNo, Model model) {
+		Notice notice = nService.selectNotice(noticeNo);
 		
+		model.addAttribute("notice", notice);		
+		return "board/NoticeDetailView";
+	}
+	
+	@RequestMapping("enroll.bo")
+	public String enroll() {
+		return "board/NoticeWriteView";
+	}
+	/*
+	@RequestMapping("insert.bo")
+	public String insertNotice(Notice n, MultipartFile upfile, HttpSession session, Model model) {
 		if(!upfile.getOriginalFilename().equals("")) {
-			/*
-			String originName = upfile.getOriginalFilename();
-			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			int ranNum = (int)(Math.random() * 90000 + 10000 );
-			String ext = originName.substring(originName.lastIndexOf("."));
-			String changeName = currentTime + ranNum + ext;
-			
-			//업로드 시키고자 하는 폴더의 물리적인 경로 알아오기
-			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
-			
-			
-				try {
-					upfile.transferTo(new File(savePath + changeName));
-				} catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
-				} 
-			*/
 			String changeName = changeFilename(upfile, session);
-			b.setOriginName(upfile.getOriginalFilename());
-			b.setChangeName("resources/uploadFiles/"+ changeName);
-			
+			n.setFilename(upfile.getOriginalFilename());
+			n.setChangename("resources/uploadFiles/"+ changeName);
 		}
-		//넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로까지 있는 바뀐이름
-		//넘어온 파일이 없으면 : 제목, 작성자, 내용
-		int result = bService.insertBoard(b);
+		int result = nService.insertNotice(n);
 		if(result > 0 ) {
 			session.setAttribute("alertMsg", "성공적으로 게시글이 등록되었습니다");
 			return "redirect:list.bo";
@@ -121,82 +76,117 @@ public class BoardController {
 		}
 	}
 	
+	
+	
 	public String changeFilename(MultipartFile upfile, HttpSession session) {
-			String originName = upfile.getOriginalFilename();
-			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			int ranNum = (int)(Math.random() * 90000 + 10000 );
-			String ext = originName.substring(originName.lastIndexOf("."));
-			String changeName = currentTime + ranNum + ext;
+		String originName = upfile.getOriginalFilename();
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		int ranNum = (int)(Math.random() * 90000 + 10000 );
+		String ext = originName.substring(originName.lastIndexOf("."));
+		String changeName = currentTime + ranNum + ext;
+		
+		//업로드 시키고자 하는 폴더의 물리적인 경로 알아오기
+		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+		
+		
+			try {
+				upfile.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			} 
+		return changeName;
+	}
+	*/
+	
+	@ResponseBody
+	@RequestMapping(value="SummerNoteImageFile", produces="application/json; charset=utf-8")
+	
+	public JsonObject SummerNoteImageFile(@RequestParam("file") MultipartFile file) {
+		JsonObject jsonObject = new JsonObject();
+		
+		String fileRoot = "C:\\FinalSpring\\finalPro\\src\\main\\webapp\\WEB-INF\\summernote_Image\\";
+		String originalFileName = file.getOriginalFilename();
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+		
+		String saveFileName = UUID.randomUUID() + extension;
+		
+		File targetFile = new File(fileRoot + saveFileName);
+		
+		try {
+			InputStream inputstream = file.getInputStream();
+			FileUtils.copyInputStreamToFile(inputstream, targetFile); //파일 저장
+			jsonObject.addProperty("url", "/summernoteImage/"+saveFileName);
+			jsonObject.addProperty("responseCode", "success");
 			
-			//업로드 시키고자 하는 폴더의 물리적인 경로 알아오기
-			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
-			
-			
-				try {
-					upfile.transferTo(new File(savePath + changeName));
-				} catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
-				} 
-			return changeName;
+		} catch(IOException e) {
+			FileUtils.deleteQuietly(targetFile);
+			jsonObject.addProperty("responseCode", "error");
+			e.printStackTrace();
+		} 
+		
+		return jsonObject;
 	}
 	
-	@RequestMapping("delete.bo")
-	public String deleteBoard(int bno, String filePath, HttpSession session,Model model) {
-		int result = bService.deleteBoard(bno);
+	@RequestMapping("insert.bo")
+	public String insertNotice(Notice n) {
+		int result = nService.insertNotice(n);
 		if(result > 0) {
-			if(!filePath.equals("")) {
-				new File(session.getServletContext().getRealPath(filePath)).delete();
-			}
-			session.setAttribute("alertMsg", "성공적으로 게시글이 삭제되었습니다");
-			return "redirect:list.bo";
+			return "redirect:notice.bo";
 		} else {
-			model.addAttribute("errorMsg","게시글 삭제 실패");
 			return "common/errorPage";
 		}
-	}
-	@RequestMapping("updateForm.bo")
-	public String updateForm(int bno, Model model) {
-		model.addAttribute("b",bService.selectBoard(bno));
-		return "board/boardUpdateForm";
 	}
 	
 	@RequestMapping("update.bo")
-	public String updateBoard(Board b, MultipartFile reupfile, HttpSession session ,Model model) {
-		if( !reupfile.getOriginalFilename().equals("")) {
-			if(b.getOriginName() != null) {
-				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
-			}
-			String changeName = changeFilename(reupfile, session);
-			
-			b.setOriginName(reupfile.getOriginalFilename());
-			b.setChangeName("resources/uploadfiles" + changeName);
-		}
-		int result = bService.updateBoard(b);
+	public String updateNotice(Notice n) {
+		int result = nService.updateNotice(n);
 		if(result > 0) {
-			session.setAttribute("alert", "성공적으로 게시글이 수정되었습니다");
-			return "redirect:detail.bo?bno=" + b.getBoardNo();
+			return "redirect:notice.bo";
 		} else {
-			model.addAttribute("errorMsg","게시글 수정 실패");
 			return "common/errorPage";
 		}
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="rlist.bo", produces="application/json; charset=utf-8")
-	public String ajaxSelectReplyList(int bno) {
-		ArrayList<Reply> list = bService.selectReplyList(bno);
-		return new Gson().toJson(list);
+	@RequestMapping("updateFrm.bo")
+	public String updateFrm(@RequestParam(value="nNo") int nNo, Model model) {
+		model.addAttribute("notice", nService.selectNotice(nNo));
+		return "board/NoticeModifyView";
 	}
-	@ResponseBody
-	@RequestMapping(value="rinsert.bo")
-	public String ajaxInsertReply(Reply r) {
-		int result= bService.insertReply(r);
-		return result > 0 ? "success" : "fail";
+	
+	@RequestMapping("deleteFrm.bo")
+	public String deleteNotice(@RequestParam(value="nNo") int nNo) {
+		
+		int result = nService.deleteNotice(nNo);
+		
+		
+		if(result > 0 ) {
+			return "redirect:notice.bo";
+		} else {
+			return "common/errorPage";
+		}
 	}
-	@ResponseBody
-	@RequestMapping(value="topList.bo", produces="application/json; charset=utf-8")
-	public String ajaxTopBoardList() {
-		ArrayList<Board> list = bService.selectTopBoardList();
-		return new Gson().toJson(list);
+	
+	
+	@RequestMapping("search.bo")
+	public String searchNotice(@RequestParam(value="keyvalue") String keyvalue,
+			@RequestParam(value="keyword") String keyword,
+			@RequestParam(value="cpage", defaultValue="1") int nowPage, 
+			Notice n,
+			Model model) {
+		int listCount = nService.searchCount(keyvalue, keyword);
+		
+
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
+		ArrayList<Notice> list = nService.selectSearchList(pi, keyvalue, keyword);
+		ArrayList<Notice> nlist = nService.selectSearchListVersion(keyvalue, keyword);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		model.addAttribute("nlist", nlist);
+		
+		
+		
+		return "board/NoticeView";
+		
 	}
 }

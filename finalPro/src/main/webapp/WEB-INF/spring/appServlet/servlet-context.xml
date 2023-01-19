@@ -54,12 +54,5 @@
 		<mapping path="/delete.me"/>
 			<beans:bean class="com.kh.spring.common.interceptor.LoginInterceptor" id="loginInterceptor" />
 		</interceptor>
-	</interceptors>
-	
-	
-	
-	
-	
-	
-	
+	</interceptors>	
 </beans:beans>
