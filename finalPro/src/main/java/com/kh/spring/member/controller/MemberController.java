@@ -39,7 +39,11 @@ public class MemberController {
 	public String loginEnroll() {
 		return "member/login";
 	}
-	
+	//관리자 메뉴로 이동
+	@RequestMapping("enrollPage.ad")
+	public String enrollPage() {
+		return "admin/admin";
+	}
 	
 	 /*
 	 * 	2.2 스프링에서 제공 ModelAndView 객체를 사용하는 방법
