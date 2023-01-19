@@ -14,7 +14,8 @@
 		<typeAlias type="com.kh.spring.lecture.model.vo.Teacher" alias="Teacher" />
 		<typeAlias type="com.kh.spring.board.model.vo.Notice" alias="Notice" />
 		<typeAlias type="com.kh.spring.board.model.vo.Meeting" alias="Meeting" />
-		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />	
+		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />
+		<typeAlias type="com.kh.spring.qa.model.vo.Qna" alias="Qna" />	
 	</typeAliases>
 	
 	<mappers>
@@ -24,5 +25,6 @@
 		<mapper resource="/mappers/Board-mapper.xml" />
 		<mapper resource="/mappers/Meeting-mapper.xml" />
 		<mapper resource="/mappers/Review-mapper.xml" />
+		<mapper resource="/mappers/qna-mapper.xml" />
 	</mappers>
 </configuration>
