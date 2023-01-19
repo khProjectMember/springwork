@@ -40,13 +40,6 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	/*
-	// 카카오 로그인 페이지로
-	@RequestMapping("kakaoEnroll.me")
-	public String kakaoEnroll() {
-		return "member/kakao";
-	}
-	*/
 	
 	 /*
 	 * 	2.2 스프링에서 제공 ModelAndView 객체를 사용하는 방법
@@ -230,30 +223,8 @@ public class MemberController {
 	public String updateMyPwd() {
 		return "member/updateMyPwd";
 	}
+	
 	/*
-	// 마이페이지 탈퇴
-		@RequestMapping("delete.me")
-		public String deleteMember(String memId, String memPw, HttpSession session, Model model) {
-			String encPwd = ((Member)session.getAttribute("loginUser")).getMemPw(); //DB에 저장된 password(암호화된)
-			if(bcryptPasswordEncoder.matches(memPw, encPwd)) {
-			
-				int result = mService.deleteMember(memId);
-				if(result > 0) {
-					session.removeAttribute("loginUser");
-					session.setAttribute("alertMsg", "성공적으로 탈퇴되었습니다.<br> 그동안 이용해 주셔서 감사합니다.");
-					return "redirect:/";
-				} else {
-					model.addAttribute("errorMsg","회원 탈퇴 실패입니다.");
-					return "common/errorPage";
-				}
-			} else {
-				session.setAttribute("alertMsg", "비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.");
-				return "redirect:myPage.me";
-			}
-		}
-		
-		
-		
 		//비밀번호 찾기
 	@RequestMapping("updateTempPwd.me")
 	public String findPwd(Email email, Model model, Member m) {

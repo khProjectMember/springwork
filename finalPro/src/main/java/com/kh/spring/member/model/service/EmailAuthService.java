@@ -21,8 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmailAuthService {
 
-	String mailId = "jsb3322@naver.com";
-	String pwd = "";
+	String mailId = "khtest123@naver.com";
+	String pwd = "testforproject11";
 	String port = "587";
 	String host = "smtp.naver.com";
 	
