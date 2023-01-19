@@ -2,6 +2,7 @@ package com.kh.spring.admin.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.spring.board.model.vo.Meeting;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -12,9 +13,11 @@ public interface AdminService {
 	int selectListCount_Lecture();
 	int selectListCount_Teacher();
 	int selectListCount_Member();
+	int selectListCount_Hangout();
 	ArrayList<Lecture> selectLectureList(PageInfo pi);
 	ArrayList<Teacher> selectTeacherList(PageInfo pi);
 	ArrayList<Member> selectMemberList(PageInfo pi);
+	ArrayList<Meeting> selectHangoutList(PageInfo pi);
 				
 	//2. 정보 등록 부분
 	int insertLecture(Lecture l);

@@ -56,4 +56,17 @@
 			from member
 		where mem_status = 'Y'
 	</select>
+	
+	<!-- Hangout 테이블 관리 -->
+	<select id="selectHangoutList" resultMap="meetingMapper.resultMeeting">
+		select h.hangout_no, h.hangout_title, m.mem_nickname, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, TO_CHAR(h.hangout_edate,'YY.MM.DD') as "hangout_edate",h.hangout_status 
+			from hangout h, member m 
+			where h.mem_no = m.mem_no 
+		order by h.hangout_no desc
+	</select>
+	<select id="selectListCount_Hangout" resultType="_int">
+		select count(*)
+			from hangout
+		where hangout_status = 'Y'
+	</select>
 </mapper>

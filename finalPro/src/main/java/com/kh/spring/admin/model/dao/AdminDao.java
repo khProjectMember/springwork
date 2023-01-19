@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.board.model.vo.Meeting;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -30,6 +31,9 @@ public class AdminDao {
 	public int selectListCount_Member(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectListCount_Member");
 	}
+	public int selectListCount_Hangout(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectListCount_Hangout");
+	}
 	
 	public ArrayList<Lecture> selectLectureList(SqlSessionTemplate sqlSession, PageInfo pi){
 		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
@@ -48,5 +52,11 @@ public class AdminDao {
 		int limit = pi.getBoardLimit(); 
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		return (ArrayList)sqlSession.selectList("adminMapper.selectMemberList",null,rowBounds);
+	}
+	public ArrayList<Meeting> selectHangoutList(SqlSessionTemplate sqlSession, PageInfo pi){
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectHangoutList",null,rowBounds);
 	}
 }

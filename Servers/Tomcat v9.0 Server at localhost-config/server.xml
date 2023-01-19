@@ -153,6 +153,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
       <Context docBase="finalPro" path="/spring" reloadable="true" source="org.eclipse.jst.jee.server:finalPro"/></Host>
+      <Context docBase="C:\springwork\finalPro\src\main\webapp\WEB-INF\summernote_Image\" path="/summernoteImage" reloadable="true"/>
     </Engine>
   </Service>
 </Server>
