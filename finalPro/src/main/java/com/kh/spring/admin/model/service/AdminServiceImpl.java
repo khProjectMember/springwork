@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.admin.model.dao.AdminDao;
+import com.kh.spring.board.model.vo.Meeting;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -32,6 +33,10 @@ public class AdminServiceImpl implements AdminService{
 	public int selectListCount_Member() {
 		return aDao.selectListCount_Member(sqlSession);
 	}
+	@Override
+	public int selectListCount_Hangout() {
+		return aDao.selectListCount_Hangout(sqlSession);
+	}
 	
 	
 
@@ -46,6 +51,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public ArrayList<Member> selectMemberList(PageInfo pi) {
 		return aDao.selectMemberList(sqlSession, pi);
+	}
+	@Override
+	public ArrayList<Meeting> selectHangoutList(PageInfo pi) {
+		return aDao.selectHangoutList(sqlSession, pi);
 	}
 	
 
