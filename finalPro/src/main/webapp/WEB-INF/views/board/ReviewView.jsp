@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
-	<div id="wrap">
+	 <div id="wrap">
         <div id="content">
             <div class="inner">
                 <div class="content_fir">
@@ -45,122 +45,51 @@
                             <ul>
                                 <li><a href="">최신순</a></li>
                                 <li><a href="">조회순</a></li>
+                                <li><a href="">추천순</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="table_box">
                         <table>
                             <colgroup>
+                                <col style="display: none;">
+                                <col style="width: 100px;">
+                                <col style="width: 180px;">
                                 <col style="width: 80px;">
-                                <col style="width: 100px;">
-                                <col style="width: 100px;">
                                 <col style="width: auto;">
-                                <col style="width: 140px;">
-                                <col style="width: 140px;">
+                                <col style="width: 80px;">
+                                <col style="width: 180px;">
+                                <col style="width: 80px">
                                 <col style="width: 80px">
                             </colgroup>
-                            <thead> 
+                            <thead>
+                            
                                 <tr>
-                                    <th>No</th>
+                                    <th style="display: none;">번호</th>
                                     <th>카테고리</th>
+                                    <th>강의명</th>
                                     <th>평점</th>
                                     <th>제목</th>
                                     <th>작성자</th>
                                     <th>작성날짜</th>
                                     <th>조회수</th>
+                                    <th>추천수</th>
                                 </tr>
                             </thead>
-                            <tbody>                                
-                                <tr>
-                                    <td>10</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>공지사항</td>
-                                    <td>4.5</td>
-                                    <td class="subject"><a href="">[광복점]신년맞이 성인 특강Ⅱ</a></td>
-                                    <td>관리자</td>
-                                    <td>2023-01-01</td>
-                                    <td>50</td>
-                                </tr>
+                            <tbody>
+	                            <c:forEach var="review" varStatus="status" items="${ list }">                                
+	                                <tr>
+	                                    <td style="display: none;">${ review.revNo }</td>
+	                                    <td>${ review.revCatg }</td>
+	                                    <td>${ review.l.lecName }</td>
+	                                    <td>${ review.revStar }</td>
+	                                    <td class="subject"><a href="">${ review.revTitle }</a></td>
+	                                    <td>${ review.m.memNickname }</td>
+	                                    <td>${ review.revDate }</td>
+	                                    <td>${ review.revCount }</td>
+	                                    <td>${ review.revRec }</td>
+	                                </tr>
+	                            </c:forEach>                                
                             </tbody>
                         </table>
                     </div>
@@ -169,25 +98,71 @@
                             <div class="pagin_box_fir"></div>
                             <div class="pagin_box_sec">
                                 <ul>
-                                    <li><a href="">이전</a></li>                                                          
-                                    <li><a href="">1</a></li>                                                          
-                                    <li><a href="">2</a></li>                                                          
-                                    <li><a href="">3</a></li>                                                          
-                                    <li><a href="">4</a></li>                                                          
-                                    <li><a href="">5</a></li>                                                          
-                                    <li><a href="">다음</a></li>                                                          
+                                	<c:choose>
+	                                	<c:when test="${ pi.nowPage eq 1 }">
+	                                    	<li><a href="#">이전</a></li>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                    	<li><a href="review.bo?rpage=${ pi.nowPage-1 }">이전</a></li>
+	                                    </c:otherwise>
+	                                </c:choose>   
+	                                    <c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endpage }">
+	                                    	<li><a href="review.bo?rpage=${ page }">${ page }</a></li>
+	                                    </c:forEach>
+	                                <c:choose>
+	                                    <c:when test="${ pi.nowPage eq pi.maxPage }">                                                            
+	                                    	<li><a href="#">다음</a></li>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                    	<li><a href="review.bo?rpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    </c:otherwise>
+	                                </c:choose>                                                        
                                 </ul>
                             </div>
                             <div class="pagin_box_thi">
                                 <button>게시글 작성</button>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    /* 
+    	$(function() {
+    		basicReviewList();
+    	})
+    	
+    	function basicReviewList() {
+    		$.ajax({
+    			url: "selectReviewList.bo",
+    			success: function(list) {
+    				console.log("성공");
+    				console.log(list);
+    				let value = "";
+    				for(let i in list) {
+    					value += "<tr>"
+    						  +		"<td style='display: none;'>" + list[i].revNo + "</td>"
+    						  +		"<td>" + list[i].revCatg + "</td>"
+    						  +		"<td>" + list[i].l.lecName + "</td>"
+    						  +		"<td>" + list[i].revStar + "</td>"
+    						  +		"<td>" + list[i].revTitle + "</td>"
+    						  +		"<td>" + list[i].m.memNickname + "</td>"
+    						  +		"<td>" + list[i].revDate + "</td>"
+    						  +		"<td>" + list[i].revCount + "</td>"
+    						  +		"<td>" + list[i].revRec + "</td>"
+    						  +	 "</tr>";
+    				}
+    				$('.table_box>table>tbody').empty();
+    				$('.table_box>table>tbody').html(value);
+    			},
+    			error: function() {
+    				console.log("실패");
+    			}	
+    		}) 
+    	} */
+    </script>
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

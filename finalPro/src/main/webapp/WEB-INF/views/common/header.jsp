@@ -97,7 +97,7 @@
                             <ul>
                                 <li><a href="notice.bo">공지사항/이벤트</a></li>
                                 <li><a href="meeting.bo">모임게시판</a></li>
-                                <li><a href="">수강생 후기</a></li>
+                                <li><a href="review.bo">수강생 후기</a></li>
                                 
                             </ul>
                         </div>

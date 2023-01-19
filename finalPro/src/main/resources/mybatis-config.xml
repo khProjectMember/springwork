@@ -9,7 +9,8 @@
 		<typeAlias type="com.kh.spring.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Notice" alias="Notice" />
 		<typeAlias type="com.kh.spring.board.model.vo.Meeting" alias="Meeting" />
-		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />		
+		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />
+		<typeAlias type="com.kh.spring.lecture.model.vo.Lecture" alias="Lecture" />
 	</typeAliases>
 	
 	<mappers>
@@ -17,5 +18,6 @@
 		<mapper resource="/mappers/Board-mapper.xml" />
 		<mapper resource="/mappers/Meeting-mapper.xml" />
 		<mapper resource="/mappers/Review-mapper.xml" />
+		<mapper resource="/mappers/Lecture-mapper.xml" />
 	</mappers>
 </configuration>

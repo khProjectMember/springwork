@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -32,16 +33,20 @@ public class BoardController {
 	private NoticeService nService;
 	
 	@RequestMapping("notice.bo")
-	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Notice n, Model model) {
+	public String selectList(@RequestParam(value="cpage", defaultValue="1") int nowPage, HttpServletRequest request, Notice n, Model model) {
 		int listCount = nService.selectListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
 		ArrayList<Notice> list = nService.selectList(pi);
 		ArrayList<Notice> nlist = nService.selectListVersion(n);
 		
+		String url = request.getServletPath();
+		url = url.substring(1);
+		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
 		model.addAttribute("nlist", nlist);
+		model.addAttribute("url", url);
 		return "board/NoticeView";
 		
 	}
@@ -172,17 +177,21 @@ public class BoardController {
 			@RequestParam(value="keyword") String keyword,
 			@RequestParam(value="cpage", defaultValue="1") int nowPage, 
 			Notice n,
+			HttpServletRequest request,
 			Model model) {
 		int listCount = nService.searchCount(keyvalue, keyword);
-		
 
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 5, 10);
 		ArrayList<Notice> list = nService.selectSearchList(pi, keyvalue, keyword);
 		ArrayList<Notice> nlist = nService.selectSearchListVersion(keyvalue, keyword);
 		
+		String url = request.getServletPath();
+		url = url.substring(1);
+		url = url + "?keyvalue=" + keyvalue + "&keyword=" + keyword;
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
 		model.addAttribute("nlist", nlist);
+		model.addAttribute("url", url);
 		
 		
 		

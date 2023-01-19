@@ -38,7 +38,6 @@
                                 </select>
                                 <input type="text" name="keyword" class="search_input" placeholder="검색할 내용을 입력하세요.">
                                 <button type="submit" class="search_btn" >검색</button>
-                                
                             </form>                            
                         </div>
                     </div>
@@ -85,18 +84,25 @@
 	                                    	<li><a href="#">이전</a></li>
 	                                    </c:when>
 	                                    <c:otherwise>
-	                                    	<li><a href="notice.bo?cpage=${ pi.nowPage-1 }">이전</a></li>
+	                                    	<li><a href="${ url }?cpage=${ pi.nowPage-1 }">이전</a></li>
 	                                    </c:otherwise>
 	                                </c:choose>   
 	                                    <c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endpage }">
-	                                    	<li><a href="notice.bo?cpage=${ page }">${ page }</a></li>
+	                                    	<li><a href="${ url }?cpage=${ page }">${ page }</a></li>
 	                                    </c:forEach>
 	                                <c:choose>
 	                                    <c:when test="${ pi.nowPage eq pi.maxPage }">                                                            
 	                                    	<li><a href="#">다음</a></li>
 	                                    </c:when>
 	                                    <c:otherwise>
-	                                    	<li><a href="notice.bo?cpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    	<li><a href="${ url }<c:choose>
+	                                    							<c:when test="${ url } = notice.bo">
+	                                    								?cpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    							</c:when>
+	                                    							<c:otherwise>
+	                                    								&cpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    							</c:otherwise>
+	                                    						</c:choose>
 	                                    </c:otherwise>
 	                                </c:choose>                                                                                           
                                 </ul>
@@ -117,6 +123,10 @@
     		console.log("안눌려용");
     		location.href='enroll.bo';
     	})
+    	
+    	
+    	
+    	
     </script>
     
     
