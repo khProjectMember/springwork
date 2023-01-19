@@ -69,4 +69,6 @@
 			from hangout
 		where hangout_status = 'Y'
 	</select>
+	
+	<!-- 1대1 문의 관리 -->
 </mapper>

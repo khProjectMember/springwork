@@ -46,7 +46,7 @@ public class LectureController {
 	public String lectureList(Lecture l, Model model) {
 		ArrayList<Lecture> list = lService.lectureList(l);
 		model.addAttribute("list", list);
-		return "lect_list";
+		return "lecture/lect_list";
 	}
 	
 	

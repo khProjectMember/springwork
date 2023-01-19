@@ -31,7 +31,7 @@ https://templatemo.com/tm-564-plot-listing
   </head>
 <body>
 
-  <jsp:include page="common/header.jsp" /> 
+  <jsp:include page="../common/header.jsp" /> 
 
 
 	
@@ -68,7 +68,7 @@ https://templatemo.com/tm-564-plot-listing
 				  </div>
   
 
- <jsp:include page="common/footer.jsp" /> 
+ <jsp:include page="../common/footer.jsp" /> 
 
   <!-- Scripts -->
   <script src="resources/nak/vendor/jquery/jquery.min.js"></script>

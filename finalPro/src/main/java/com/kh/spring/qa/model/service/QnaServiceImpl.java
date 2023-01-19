@@ -8,7 +8,7 @@ import com.kh.spring.qa.model.dao.qnaDao;
 import com.kh.spring.qa.model.vo.Qna;
 
 @Service
-public class qnaServiceImpl implements qnaService {
+public class QnaServiceImpl implements QnaService {
 	@Autowired
 	private qnaDao qDao;
 	
