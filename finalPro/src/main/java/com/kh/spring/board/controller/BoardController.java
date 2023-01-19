@@ -20,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.kh.spring.board.model.service.BoardService;
 import com.kh.spring.board.model.vo.Board;
+import com.kh.spring.board.model.vo.QNA;
 import com.kh.spring.board.model.vo.Reply;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
+import com.kh.spring.lecture.model.vo.Lecture;
 
 @Controller
 public class BoardController {
@@ -199,4 +201,23 @@ public class BoardController {
 		ArrayList<Board> list = bService.selectTopBoardList();
 		return new Gson().toJson(list);
 	}
+	
+	
+	@RequestMapping("QA.bo")
+	public String QNAlist(QNA q, Model model,Integer memNo) {
+		ArrayList<QNA> list = bService.QNAList(q, memNo);
+		model.addAttribute("list", list);
+		return "QA";
+	}	
+	
+	@RequestMapping("QAboard.bo")
+	public String QAboard() {
+		return "views/QAboard";
+	}
+	
+	@RequestMapping("QAReply.bo")
+	public String QAReply() {
+		return "views/QAReply";
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.kh.spring.board.model.service;
 import java.util.ArrayList;
 
 import com.kh.spring.board.model.vo.Board;
+import com.kh.spring.board.model.vo.QNA;
 import com.kh.spring.board.model.vo.Reply;
 import com.kh.spring.common.model.vo.PageInfo;
 
@@ -32,5 +33,7 @@ public interface BoardService {
 	
 	//8. Top5 조회수 리스트(ajax)
 	ArrayList<Board> selectTopBoardList();
+	
+	ArrayList<QNA> QNAList(QNA q, int memNo);
 	
 }

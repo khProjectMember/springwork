@@ -11,7 +11,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="resources/css/header.css">
-    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/main.css"> 
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
                         <ul class="user">
                             <li><a href="detail.le">찜목록</a></li>
                             <li><a href="#">마이페이지</a></li>
-                            <li><a href="#">로그인</a></li>
+                            <li><a href="login.me">로그인</a></li>
                             <li><a href="#">회원가입</a></li>
                         </ul>
                     </div>
@@ -99,8 +99,8 @@
                         <div class="nav_info">
                             <h4>고객센터</h4>
                             <ul>
-                                <li><a href="">1:1문의</a></li>
-                                <li><a href="">자주하는문의</a></li>                                
+                                <li><a href="QA.bo">1:1문의</a></li>
+                                <li><a href="QAboard.bo">자주하는문의</a></li>                                
                             </ul>
                         </div>
                     </div>

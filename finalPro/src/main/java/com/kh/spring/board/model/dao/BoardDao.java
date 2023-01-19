@@ -1,12 +1,14 @@
 package com.kh.spring.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.board.model.vo.Board;
+import com.kh.spring.board.model.vo.QNA;
 import com.kh.spring.board.model.vo.Reply;
 import com.kh.spring.common.model.vo.PageInfo;
 
@@ -48,5 +50,9 @@ public class BoardDao {
 	}
 	public ArrayList<Board> selectTopBoardList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectTopBoardList");
+	}
+
+	public ArrayList<QNA> selectQNAList(SqlSessionTemplate sqlSession, QNA q, int memNo) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectQNAList", q);
 	}
 }

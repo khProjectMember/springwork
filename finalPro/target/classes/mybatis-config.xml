@@ -12,6 +12,7 @@
 		<typeAlias type="com.kh.spring.lecture.model.vo.Apply" alias="Apply"/>		
 		<typeAlias type="com.kh.spring.lecture.model.vo.Lecture" alias="Lecture"/>		
 		<typeAlias type="com.kh.spring.lecture.model.vo.Wish" alias="Wish"/>
+		<typeAlias type="com.kh.spring.board.model.vo.QNA" alias="QNA"/>	
 		<typeAlias alias="Teacher" type="com.kh.spring.lecture.model.vo.Teacher"/>		
 	</typeAliases>
 	

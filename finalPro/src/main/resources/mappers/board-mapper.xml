@@ -16,6 +16,16 @@
 		<result column="reply_writer" property="replyWriter" />
 		<result column="create_date" property="createDate" />
 	</resultMap>
+	
+	<resultMap type="QNA" id="QNAResult">
+		<result column="qna_no" property="qnaNo" />
+		<result column="qna_title" property="qnaTitle" />
+		<result column="qna_content" property="qnaContent" />
+		<result column="qna_replystatus" property="qnaReply" />
+		<result column="qna_status" property="qnaStatus" />
+		<result column="mem_no" property="memNo" />
+		<result column="qna_email" property="qnaEmail" />
+	</resultMap>
 	<select id="selectListCount" resultType="_int">
 		select count(*)
 			from board
@@ -96,5 +106,11 @@
 					where status='Y' 
 					order by count desc)
 		where rownum between 1 and 5
+	</select>
+	
+	<select id="selectQNAList" resultMap="QNAResult">
+		select *
+			from qna 
+			where qna_status=0 AND mem_no=${memNo}
 	</select>
 </mapper>
