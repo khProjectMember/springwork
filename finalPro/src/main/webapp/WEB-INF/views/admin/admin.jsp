@@ -28,7 +28,7 @@
 						<div class="position-sticky pt-3">
 							<ul class="nav flex-column">
 			          			<li class="nav-item">
-						            <a class="nav-link active" aria-current="page" href="#">
+						            <a class="nav-link active" aria-current="page" href="${contextPath }/spring/admin.ad">
 										<span data-feather="home"></span>
 										대시보드
 						            </a>
@@ -37,6 +37,18 @@
 						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/mlist.ad">
 										<span data-feather="home"></span>
 										회원 관리
+						            </a>
+			          			</li>
+			          			<li class="nav-item">
+						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/list.te">
+										<span data-feather="home"></span>
+										강사 관리
+						            </a>
+			          			</li>
+			          			<li class="nav-item">
+						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/list2.le">
+										<span data-feather="home"></span>
+										강의 관리
 						            </a>
 			          			</li>
 			          			<li class="nav-item">
@@ -88,7 +100,7 @@
 						<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 							<div>
 								<h4>새로운 회원</h4>
-								<h6 class="text-muted">${mCount }명의 새로운 회원이 있습니다.</h6>
+								<h6 class="text-muted">${mCount}명의 새로운 회원이 있습니다.</h6>
 							</div>
 						</div>
 						<table class="table">
@@ -98,16 +110,14 @@
 									<th scope="col">이름</th>
 									<th scope="col">닉네임</th>
 									<th scope="col">가입일자</th>
-									<th scope="col">작성한 리뷰</th>
 								</tr>
 							</thead>
 							<tbody class="newMemberList">
 								<tr>
-									<td class="id"></td>
-									<td class="name"></td>
-									<td class="nickName"></td>
-									<td class="enrollDate"></td>
-									<td class="reviewCount"></td>
+									<td class="memId"></td>
+									<td class="memName"></td>
+									<td class="memNickname"></td>
+									<td class="memCdate"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -145,17 +155,16 @@
 				</main>
 				<script>
 						$.ajax({
-							url: "${contextPath}/selectNewMember.ad",
+							url: "${contextPath}/spring/selectNewMember.ad",
 							success: (data)=>{
 								var div = $('.newMemberList').clone();
 								$(".newMemberList").html("");
 								for(const m of data) {
 									console.log(m);
-									div.find('.id').text(m.id);
-									div.find('.name').text(m.name);
-									div.find('.nickName').text(m.nickName);
-									div.find('.enrollDate').text(m.enrollDate);
-									div.find('.reviewCount').text(m.reviewCount);
+									div.find('.memId').text(m.memId);
+									div.find('.memName').text(m.memName);
+									div.find('.memNickname').text(m.memNickname);
+									div.find('.memCdate').text(m.memCdate);
 									
 									
 									$(".newMemberList").append(div.html());
@@ -166,7 +175,7 @@
 							}
 						});
 						
-						$.ajax({
+						/* $.ajax({
 							url: "${contextPath}/selectNewReview.ad",
 							success: (data)=>{
 								var div = $('.newReviewList').clone();
@@ -185,13 +194,13 @@
 							error: (data)=>{
 								console.log(data);
 							}
-						});
+						}); */
 				</script>
 			
 				<script src="resources/nak/assets/js/bootstrap.bundle.min.js"></script>
 				<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-				<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-				<script src="resources/nak/assets/js/dashboard.js"></script>
+				<!-- <script src="resources/nak/assets/js/dashboard.js"></script> -->
+				<script src="resources/nak/assets/js/Chart.min.js"></script>
 				</div>
 			</div>
 	    </div>

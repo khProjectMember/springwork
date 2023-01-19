@@ -1,17 +1,19 @@
 package com.kh.spring.qa.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.spring.qa.model.service.qnaService;
+import com.kh.spring.qa.model.service.QnaService;
 import com.kh.spring.qa.model.vo.Qna;
 
 @Controller
 public class QnaController {
 	@Autowired
-	private qnaService qService;
+	private QnaService qService;
 	
 	@RequestMapping("qa.bo")
 	public String qa() {
@@ -35,8 +37,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping("QA.bo")
-	public String QNAlist(QNA q, Model model) throws NullPointerException{
-		ArrayList<QNA> list = bService.QNAList(q);
+	public String QNAlist(Qna q, Model model) throws NullPointerException{
+		ArrayList<Qna> list = qService.QnaList(q);
 		model.addAttribute("list", list);
 		return "QA";
 	}	

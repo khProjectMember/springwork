@@ -3,6 +3,7 @@ package com.kh.spring.admin.model.service;
 import java.util.ArrayList;
 
 import com.kh.spring.board.model.vo.Meeting;
+import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -22,4 +23,11 @@ public interface AdminService {
 	//2. 정보 등록 부분
 	int insertLecture(Lecture l);
 	int insertTeacher(Teacher t);
+	
+	
+	
+	
+	int selectNewMemberCount();
+	ArrayList<Member> selectNewMember();
+	
 }

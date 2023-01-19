@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="adminMapper">
+	<!-- 대시보드쪽 새로운 멤버관련 -->
+	<select id="selectNewMember" resultMap="memberMapper.memberResult">
+		select *
+		from member
+		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y'
+		order by mem_cdate desc
+	</select>
+	
+	<select id="selectNewMemberCount" resultType="_int">
+		select count(*)
+		from member
+		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y'
+	</select>
+
+
+
 	<!-- lecture테이블 관리 -->
 	<insert id="insertLecture" >
 		insert into lecture(lec_no, lec_name, lec_sdate, lec_edate,
@@ -70,5 +86,5 @@
 		where hangout_status = 'Y'
 	</select>
 	
-	<!-- 1대1 문의 관리 -->
+	
 </mapper>

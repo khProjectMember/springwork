@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="reviewMapper">
-	
+	<resultMap type="Review" id="resultReview">
+		<result column="rev_no" property="revNo" />
+		<result column="rev_title" property="revTitle" />
+		<result column="rev_catg" property="revCatg" />
+		<result column="rev_content" property="revContent" />
+		<result column="rev_date" property="revDate" />
+		<result column="rev_star" property="revStar" />
+		<result column="rev_count" property="revCount" />
+		<result column="rev_rec" property="revRec" />
+		<result column="mem_no" property="memNo" />		
+		<result column="lec_no" property="lecNo" />
+		<association property="m" javaType="Member">
+			<result column="mem_nickname" property="memNickname" />
+		</association>
+		<association property="l" javaType="Lecture">
+			<result column="lec_name" property="lecName"/>
+		</association>
+	</resultMap>
+	<select id="reviewListCount" resultType="_int">
+		select count(*) 
+		from review
+	</select>
+	<select id="selectReviewList" resultMap="resultReview">
+		select r.rev_no, r.rev_title, r.rev_catg, r.rev_content, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_star, r.rev_count, r.rev_rec, m.mem_nickname, l.lec_name
+		from review r, member m, lecture l  
+		where r.mem_no = m.mem_no and r.lec_no = l.lec_no 
+		order by r.rev_no desc
+	</select>
 </mapper>

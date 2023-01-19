@@ -59,4 +59,14 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		return (ArrayList)sqlSession.selectList("adminMapper.selectHangoutList",null,rowBounds);
 	}
+	
+	//새 회원
+	public ArrayList<Member> selectNewMember(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectNewMember");
+	}
+
+	public int selectNewMemberCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectNewMemberCount");
+	}
+	
 }
