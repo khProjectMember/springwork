@@ -104,7 +104,7 @@ public class BoardController {
 	public JsonObject SummerNoteImageFile(@RequestParam("file") MultipartFile file) {
 		JsonObject jsonObject = new JsonObject();
 		
-		String fileRoot = "C:\\springwork\\finalPro\\src\\main\\webapp\\WEB-INF\\summernote_Image\\";
+		String fileRoot = "C:\\FinalSpring\\finalPro\\src\\main\\webapp\\WEB-INF\\summernote_Image\\";
 		String originalFileName = file.getOriginalFilename();
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 		
