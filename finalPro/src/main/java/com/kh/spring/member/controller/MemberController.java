@@ -80,7 +80,7 @@ public class MemberController {
 			session.setAttribute("alertMsg", "성공적으로 로그인 되었습니다.");
 			mv.setViewName("redirect:/"); //redirect: mainPage로 간다는 의미			
 		} else {	
-			mv.addObject("errorMsg","비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+			mv.addObject("errorMsg","비밀번호가 일치하지 않거나 탈퇴한 회원입니다. 다시 한번 확인해 주세요.");
 			mv.setViewName("common/errorPage"); //servlet-context에서 자동으로 설정해줬기에 나머지 안써도됨
 		}
 		return mv;
