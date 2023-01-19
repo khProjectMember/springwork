@@ -2,13 +2,14 @@ package com.kh.spring.qa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.spring.qa.model.service.qnaService;
 import com.kh.spring.qa.model.vo.Qna;
 
 @Controller
-public class qnaController {
+public class QnaController {
 	@Autowired
 	private qnaService qService;
 	
@@ -31,6 +32,23 @@ public class qnaController {
 		} else {
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("QA.bo")
+	public String QNAlist(QNA q, Model model) throws NullPointerException{
+		ArrayList<QNA> list = bService.QNAList(q);
+		model.addAttribute("list", list);
+		return "QA";
+	}	
+	
+	@RequestMapping("QAboard.bo")
+	public String QAboard() {
+		return "QAboard";
+	}
+	
+	@RequestMapping("QAReply.bo")
+	public String QAReply() {
+		return "QAReply";
 	}
 }
 
