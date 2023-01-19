@@ -8,16 +8,20 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.admin.model.service.AdminService;
 import com.kh.spring.board.model.vo.Meeting;
+import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 import com.kh.spring.lecture.model.vo.Lecture;
@@ -29,6 +33,41 @@ public class AdminController {
 	@Autowired
 	private AdminService aService;
 	
+	// 대시보드 이동
+		@RequestMapping("admin.ad")
+		public String admin(Model model) {
+			int mCount = aService.selectNewMemberCount();
+			//int rCount = aService.selectNewReviewCount();
+			
+			model.addAttribute("mCount", mCount);
+			//model.addAttribute("rCount", rCount);
+			return "admin/admin";
+		}
+		// 새로운 멤버
+		@RequestMapping(value="selectNewMember.ad", produces="application/json; charset=UTF-8")
+		@ResponseBody
+		public String selectNewMember() {
+			JSONArray array = new JSONArray();
+			ArrayList<Member> mList = new ArrayList<Member>();
+			mList = aService.selectNewMember();
+			int mCount = aService.selectNewMemberCount();
+			
+			if(mList.size()!=0) {
+				for(Member m : mList) {
+				//	int reviewCount = aService.selectReviewCount(m.getMemId());
+					
+					JSONObject json = new JSONObject();
+					json.put("memId", m.getMemId());
+					json.put("memName", m.getMemName());
+					json.put("memNickname", m.getMemNickname());
+					json.put("memCdate", m.getMemCdate()+"");
+					array.add(json);
+				}
+			}
+			return array.toString();
+		}
+		
+		
 	@RequestMapping("list2.le")
 	public ModelAndView selectLectureList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
 		int listCount = aService.selectListCount_Lecture();
@@ -76,7 +115,7 @@ public class AdminController {
 	}
 	
 	
-	
+	//강사 강의 등록하는 곳
 	@RequestMapping("enrollForm.le")
 	public String enrollLectureForm() {
 		return "admin/enroll_Lecture";

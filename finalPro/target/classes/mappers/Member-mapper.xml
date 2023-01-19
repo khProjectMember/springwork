@@ -24,7 +24,7 @@
   
   <insert id="insertMember">
   	insert into member(mem_no, mem_name, mem_id, mem_pw, mem_nickname, mem_gender, mem_birthday, mem_phone, mem_email, mem_zipcode, mem_address, mem_detailaddress, mem_cdate, mem_ddate, mem_paper, is_admin, mem_carno, mem_status )
-  			values(seq_mno.nextval, #{memName}, #{memId}, #{memPw}, #{memNickname}, #{memGender}, #{memBirthday}, #{memPhone}, #{memEmail}, #{memZipcode}, #{memAddress}, #{memDetailAddress}, #{memCdate}, #{memDdate}, #{memPaper}, #{isAdmin},#{memCarno}, #{memStatus} )
+  			values(seq_mno.nextval, #{memName}, #{memId}, #{memPw}, #{memNickname}, #{memGender}, #{memBirthday}, #{memPhone}, #{memEmail}, #{memZipcode}, #{memAddress}, #{memDetailAddress}, sysdate, sysdate, #{memPaper}, #{isAdmin},#{memCarno}, #{memStatus} )
   </insert>
   
   <select id="loginMember" resultMap="memberResult">
