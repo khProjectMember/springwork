@@ -21,6 +21,7 @@ public class Notice {
 	private String edate;
 	private String filename;
 	private String changename;
+	private String memNo;
 	private Member m;
 	
 }
