@@ -330,8 +330,9 @@
               <label class="custom-control-label" id="agreementCheckBox">개인정보 수집 및 이용에 동의합니다.</label>
             </div> -->
             
+  			
             <!-- 가입완료 버튼 -->
-            <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="EnrollFormChk();" style="background-color: #434950; border-color : #d9dcdf; width:438px;">가입 완료</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color: #434950; border-color : #d9dcdf; width:438px;">가입 완료</button>
             <button class="btn btn-primary btn-lg btn-block" type="reset" style="background-color: #434950; border-color : #d9dcdf; width:438px;">다시 쓰기</button>
             </form> <!--form class="enrollForm"-->
             

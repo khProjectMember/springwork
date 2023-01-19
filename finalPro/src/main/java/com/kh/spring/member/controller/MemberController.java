@@ -21,7 +21,7 @@ import com.kh.spring.member.model.service.EmailAuthService;
 import com.kh.spring.member.model.vo.Email;
 import com.kh.spring.member.model.vo.Member;
 
-@Controller	// 빈 스캐닝을 통해 자동으로 빈에 등록
+@Controller
 public class MemberController {
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class MemberController {
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	
-	// 로그인 페이지로
+	// 로그인 페이지로 이동
 	@RequestMapping("loginEnroll.me")
 	public String loginEnroll() {
 		return "member/login";
@@ -77,6 +77,7 @@ public class MemberController {
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPw(), loginUser.getMemPw())) {//m.getUserPwd(): 사용자가 입력한 비번, loginUser.getUserPwd(): DB에 저장된 값
 			session.setAttribute("loginUser", loginUser); //로그인 성공 sessionScope에 담고 메인페이지로 url요청
+			session.setAttribute("alertMsg", "성공적으로 로그인 되었습니다.");
 			mv.setViewName("redirect:/"); //redirect: mainPage로 간다는 의미			
 		} else {	
 			mv.addObject("errorMsg","로그인 실패");
@@ -89,7 +90,9 @@ public class MemberController {
 	//로그아웃
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
+		session.setAttribute("alertMsg", "성공적으로 로그아웃 되었습니다.");
 		session.invalidate();
+		
 		return "redirect:/";
 	}
 	//회원가입페이지로 이동
@@ -135,7 +138,7 @@ public class MemberController {
 		int result = mService.insertMember(m);
 		if(result > 0) {
 			session.setAttribute("alertMsg", "성공적으로 회원가입이 되었습니다.");
-			return "redirect:/";
+			return "redirect:/loginEnroll.me";
 		} else {
 			model.addAttribute("errorMsg","회원가입 실패");
 			return "common/errorPage";
@@ -380,7 +383,7 @@ public class MemberController {
 		if(result > 0) {
 			Member updateM = mService.loginMember(m);
 			session.setAttribute("loginUser", updateM);
-			System.out.println("성공적으로 수정되었습니다.");
+			System.out.println("회원정보가 성공적으로 수정되었습니다.");
 			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 			return "redirect:myPage.me"; //myPage.me로 가면 jsp가도록 위에 설정해놓음
 		} else {
