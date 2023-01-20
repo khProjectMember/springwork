@@ -204,9 +204,8 @@
                     <div class="content_fir">
                         <div class="nav_box">
                             <ul>
-                                <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                                <li><a href="goHome.le" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                                 <li><a href="myPage.me" class="nav_a">마이페이지</a></li>
-                                <li><a href="#">회원정보변경</a></li>
                             </ul>
                         </div>
                     </div>
@@ -229,19 +228,19 @@
                         <div class="leftArea">
                             <dl>
                                 <dt>
-                                    &emsp;<img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/contents/icon_field.png"><span>나의 관심분야</span><br><br>
+                                    &emsp;<a href="#"><img src="resources/img/icons8-하트-50.png" alt="찜" style="width:40px;"><span style="color: black;">나의 관심분야</span></a><br><br>
                                 </dt>
                             </dl>
                             <dl>
                                 <dt>
-                                    &emsp;<img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/contents/icon_field.png"><span>나의 일정관리</span>
+                                    &emsp;<a href="#"><img src="resources/img/icons8-달력-32.png" alt="찜" style="width:40px;"><span style="color: black;">나의 일정관리</span></a>
                                 </dt>
                             </dl>        
                         </div>
                         <div class="rightArea">
                             <ul>
                                 <li>
-                                    <a href="#"><img src="../img/icons8-하트-50.png" alt="찜"><span class="txt">장바구니</span>
+                                    <a href="#"><img src="resources/img/icons8-하트-50.png" alt="찜" style="width:40px;"><span class="txt">찜목록</span>
                                     <span class="num">0</span>
                                     </a>
                                 </li>
@@ -309,23 +308,13 @@
 	                            </tr>
 	                            <tr>
 	                                <th>주소</th>
-	                                <td colspan="3"><input id="memAddress" name="memAddress" value="${loginUser.memAddress }" size="25"> <input id="memDetailAddress" name="memDetailAddress" value="${loginUser.memDetailAddress }" size="30"></td>
+	                                <td colspan="3">
+	                                	<input id="memAddress" name="memAddress" value="${loginUser.memAddress }" size="40">
+	                                	<input id="memDetailAddress" name="memDetailAddress" value="${loginUser.memDetailAddress }" size="30">
+	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>취약계층 유형
-	                                    <!--<td>
-                                            <c:choose>
-	                                             <c:when test="${loginUser.memPaper eq 1 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="1">해당없음</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 2 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="2">65세 이상 고령자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 3 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="3">장애인</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 4 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="4">한부모가정 보호대상자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 5 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="5">저소득자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 6 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="6">고용촉진장려금 지급대상 청년</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 7 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="7">범죄구조피해자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 8 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="8">그밖에 고용노동부장관이 인정한 자</option></select></c:when>
-                                            </c:choose>
-                                        </td>
-                                        -->
                                         <td>
                                             <select name="memPaper" id="memPaper" name="memPaper">
                                                 <option value ="1" <c:if test="${loginUser.memPaper eq 1 }"> selected</c:if>>해당없음</option>
