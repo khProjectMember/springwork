@@ -8,33 +8,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>樂受文化 악수문화센터 마이페이지</title>
-    
-        <!-- css -->
-        <link rel="stylesheet" href="../css/main.css">
-    
-        <!-- js -->
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    
-    
-    
-        <!-- 폰트 -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-    	
-		<!-- jQuery 라이브러리 -->
+	
+		<!-- jQuery 라이브러리 지우지 마세용!-->
 		<script src="https://code.jquery.com/jquery-3.6.1.js" ></script>
-		<!-- 부트스트랩에서 제공하고 있는 스타일 -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-		<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>    	
-    	
+
     <style>
-        
         .content_fir {width: 100%; display: flex; justify-content: flex-end;}
         .content_fir .nav_box {margin: 50px 0;}
         .content_fir .nav_box ul {display: flex;}
@@ -151,18 +129,46 @@
             text-align: right;
         }
     </style>
+    <script>
+ 	// 닉네임 중복체크
+	$(function(){
+		const $nickNameInput = $("#updateForm input[name=memNickname]");
+		$nickNameInput.keyup(function(){
+			// 최소 2글자 이상 입력되었을때만 ajax요청하도록 함
+			if($nickNameInput.val().length >= 2) {
+				$.ajax({
+					url:"nicknameCheck.me",
+					data: {checkNickname:$nickNameInput.val()}, //key: checkId, value: $nickNameInput.val()
+					success: function(result){
+						if(result == "NNN"){
+							$("#checkNickResult").show();
+							$("#checkNickResult").css("color","#f82a2aa3").text("중복된 닉네임이 존재합니다.");
+							$("#updateForm :submit()").attr("disabled",true);
+						} else {
+							$("#checkNickResult").show();
+							$("#checkNickResult").css("color","#199894b3").text("사용가능한 닉네임입니다.");
+							$("#updateForm :submit()").attr("disabled",false);
+						}
+					},
+					error:function(){
+						console.log("닉네임 중복체크 ajax통신 실패");
+					}
+				});
+			} else{ // 3글자 보다 작았으면
+				$("checkNickResult").hide();
+			
+				$("#updateForm :submit()").attr("disabled", true);
+			}
+			
+		})
+	})
+    </script>
     </head>
 <body>
     <!--header--> 
     <jsp:include page="../common/header.jsp"/>
 
     <!--body-->
-<c:if test="${ not empty alertMsg }">
-		<script>
-			alertify.alert("${alertMsg}");
-		</script>
-		<c:remove var="alertMsg" scope="session"/>
-</c:if>
     <div id="wrap">
         <div id="content">
             <div class="inner">
@@ -170,9 +176,8 @@
                     <div class="content_fir">
                         <div class="nav_box">
                             <ul>
-                                <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                                <li><a href="goHome.le" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                                 <li><a href="myPage.me" class="nav_a">마이페이지</a></li>
-                                <li><a href="#">회원정보변경</a></li>
                             </ul>
                         </div>
                     </div>
@@ -195,19 +200,19 @@
                         <div class="leftArea">
                             <dl>
                                 <dt>
-                                    &emsp;<img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/contents/icon_field.png"><span>나의 관심분야</span><br><br>
+                                    &emsp;<a href="#"><img src="resources/img/icons8-하트-50.png" alt="찜" style="width:40px;"><span style="color: black;">나의 관심분야</span></a><br><br>
                                 </dt>
                             </dl>
                             <dl>
                                 <dt>
-                                    &emsp;<img src="https://culture.lotteshopping.com/LDCS/resources/normal/img/contents/icon_field.png"><span>나의 일정관리</span>
+                                    &emsp;<a href="#"><img src="resources/img/icons8-달력-32.png" alt="찜" style="width:40px;"><span style="color: black;">나의 일정관리</span></a>
                                 </dt>
                             </dl>        
                         </div>
                         <div class="rightArea">
                             <ul>
                                 <li>
-                                    <a href="#"><img src="../img/icons8-하트-50.png" alt="찜"><span class="txt">장바구니</span>
+                                    <a href="#"><img src="resources/img/icons8-하트-50.png" alt="찜" style="width:40px;"><span class="txt">찜목록</span>
                                     <span class="num">0</span>
                                     </a>
                                 </li>
@@ -244,7 +249,7 @@
                     <div class="title">
                         <h3>회원정보</h3>
                     </div>
-                    <form action="update.me" method="post">
+                    <form action="update.me" method="post" id="updateForm">
 	                    <div class="memberInfoTable">
 	                        <table style="border-spacing: 0;">
 	                            <caption>회원정보</caption>
@@ -262,7 +267,8 @@
 	                            </tr>
 	                            <tr>
 	                                <th>닉네임</th>
-	                                <td style="padding-right: 554px;"><input id="memNickname" name="memNickname" value="${loginUser.memNickname }"></td>
+	                                <td style="padding-right: 554px;"><input id="memNickname" name="memNickname" value="${loginUser.memNickname }">
+	                                <font id="checkNickResult" style="font-size:0.8em; display:none"></font></td>
 	                                <th>생년월일</th>
 	                                <td><input id="memBirthday" name="memBirthday" value="${loginUser.memBirthday }"></td>
 	                            </tr>
@@ -274,23 +280,13 @@
 	                            </tr>
 	                            <tr>
 	                                <th>주소</th>
-	                                <td colspan="3"><input id="memAddress" name="memAddress" value="${loginUser.memAddress }" size="25"> <input id="memDetailAddress" name="memDetailAddress" value="${loginUser.memDetailAddress }" size="30"></td>
+	                                <td colspan="3">
+	                                	<input id="memAddress" name="memAddress" value="${loginUser.memAddress }" size="40">
+	                                	<input id="memDetailAddress" name="memDetailAddress" value="${loginUser.memDetailAddress }" size="30">
+	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <th>취약계층 유형
-	                                    <!--<td>
-                                            <c:choose>
-	                                             <c:when test="${loginUser.memPaper eq 1 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="1">해당없음</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 2 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="2">65세 이상 고령자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 3 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="3">장애인</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 4 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="4">한부모가정 보호대상자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 5 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="5">저소득자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 6 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="6">고용촉진장려금 지급대상 청년</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 7 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="7">범죄구조피해자</option></select></c:when>
-	                                             <c:when test="${loginUser.memPaper eq 8 }"><select name="memPaper" id="memPaper" name="memPaper"><option value="8">그밖에 고용노동부장관이 인정한 자</option></select></c:when>
-                                            </c:choose>
-                                        </td>
-                                        -->
                                         <td>
                                             <select name="memPaper" id="memPaper" name="memPaper">
                                                 <option value ="1" <c:if test="${loginUser.memPaper eq 1 }"> selected</c:if>>해당없음</option>
@@ -319,7 +315,7 @@
                     </form>
                     </div> <!--class=btnArea-->
                 </div> <!-- class=inner2-->
-
+				
                 <div class="inner3">
                     <div class="title">
                         <h3>문화센터 마케팅 수신동의</h3>
@@ -340,23 +336,25 @@
                     </p>
             </div>
                 </div><!--inner3-->
-
-                <div class="inner4">
-                    <h3>배려주차장 차량번호 등록</h3>
-                    <div class="inner4-1">
-                        <div class="checkBox">
-                            <input type="hidden" id="carNoOld" value="">
-                            <p>
-                                <label for="" style="font-size: 16px;color: #222;text-align: left;padding: 11px 5px 10px 5px;height: 66px;font-weight: normal;">차량번호</label>
-                                <input type="text" maxlength="20" id="" value="${loginUser.memCarno }">
-                        		
-                                <label for="">차량번호 수집동의</label>
-                                <span><input type="checkbox"></span>
-                                <a href="#" class="btn btnType04 btnBlack"><span>저장</span></a>
-                            </p>
-                        </div><!--class=checkBox-->
-                    </div> <!--class=inner4-1-->   
-
+				
+				
+	                <div class="inner4">
+	                    <h3>배려주차장 차량번호 등록</h3>
+	                    <div class="inner4-1">
+	                        <div class="checkBox">
+	                            <p>
+	                            	<form action="updateCar.me">
+	                                <label for="" style="font-size: 16px;color: #222;text-align: left;padding: 11px 5px 10px 5px;height: 66px;font-weight: normal;">차량번호</label>
+	                                <input type="text" maxlength="20" id="" value="${loginUser.memCarno }">
+	                        		
+	                                <label for="">차량번호 수집동의</label>
+	                                <span><input type="checkbox"></span>
+	                                <button type="submit" class="btn btnType04 btnBlack"><span>저장</span></button>
+	                                </form>
+	                            </p>
+	                        </div><!--class=checkBox-->
+	                    </div> <!--class=inner4-1-->   
+				
                         <div class="parkingDetail">
                             <p class="txt" style="color:black">배려주차장등록 서비스 이용을 위해 아래와 같이 알려드립니다.</p>
                             <p class="txt" style="color:black">배려주차장은 영유아동승자, 노약자, 임산부 등 다양한 교통약자를 위한 주차공간입니다.</p>

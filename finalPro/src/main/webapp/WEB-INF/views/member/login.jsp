@@ -9,21 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- css -->
+    <!-- css 지우지마세용 -->
     <link rel="stylesheet" href="resources/css/login.css">
       
-    <!-- js -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-    <script src="js/exam(kangho).js"></script>
-
-    <!-- 폰트 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-    
 <style>
-
     .idpwSearch{
         display: flex;
         justify-content: center;
@@ -82,15 +71,15 @@
             </form>
             
             	
-		            <!-- 카카오 로그인 -->
+		            <!-- 카카오 로그인 지우지마세용!!
 		            <div class="col-lg-12 text-center mt-3">
 					   <a href="https://kauth.kakao.com/oauth/authorize?client_id=93579955c5d3578c1d0e9bbe9e39cfdb&redirect_uri=http://localhost:8060/spring">
 					    	<img alt="카카오로그인" src="resources/img/kakao_login_large_wide.png" onclick="kakaoLogin()">
 					   </a>
 					</div>
+					-->
 				
-				
-			<!-- 카카오 로그인 -->
+			<!-- 카카오 로그인 지우지마세용!! -->
 			<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
 			<script type="text/javascript">
 			    $(document).ready(function(){

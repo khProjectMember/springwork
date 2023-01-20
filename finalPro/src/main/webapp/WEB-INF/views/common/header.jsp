@@ -11,15 +11,12 @@
 
     <!-- css -->
     <link rel="stylesheet" href="resources/css/header.css">
-    
 
     <!-- js -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous" ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-
 
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,29 +29,36 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 
- 	<!-- 부트스트랩에서 제공하고 있는 스타일 -->
+ 	<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스타일 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+	<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스크립트 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	
 	<!-- sweetalert 알림창 -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
 </head>
 <body>
-<c:if test="${ not empty alertMsg }">
+	<!-- sweetalert 알림창 -->
+	<c:if test="${ not empty alertMsg }">
 		<script>
 			Swal.fire("${alertMsg}");
 		</script>
 		<c:remove var="alertMsg" scope="session"/>
-</c:if>
+	</c:if>
+	<c:if test="${ not empty errorMsg }">
+		<script>
+			Swal.fire("${errorMsg}");
+		</script>
+		<c:remove var="errorMsg" scope="session"/>
+	</c:if>
  <div id="wrap">
         <div id="header">            
             <div class="header">
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                         <li><a href="#">장바구니</a></li>
-                            
+                         <li><a href="wishList.le">장바구니</a></li>
                             <c:choose>
            					<c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
@@ -65,7 +69,7 @@
             					<!-- 로그인 후 -->
             					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
 					                <li><a href="myPage.me">마이페이지</a></li>
-					                <li><a href="logout.me">로그아웃</a><li>
+					                <li><a href="logout.me" onclick="Swal.fire({title: '로그아웃 되었습니다.',timer: 3000})">로그아웃</a><li>
 				             </c:otherwise>
 				            </c:choose>
                         </ul>
@@ -74,7 +78,7 @@
                 <div class="header-mid">
                     <div class="mid-f">
                         <h1>
-                            <a href="#">樂受文化</a>
+                            <a href="goHome.le">樂受文化</a>
                         </h1>
                     </div>
                     <div class="mid-m">
@@ -102,9 +106,9 @@
                         <div class="nav_info">
                             <h4>강좌안내</h4>
                             <ul>
-                                <li><a href="">수강신청</a></li>
+                                <li><a href="applyList.le">수강신청</a></li>
                                 <li><a href="list.le">강좌목록</a></li>
-                                <li><a href="">강좌스케줄</a></li>
+                                <li><a href="lectureDetail.le">강좌스케줄</a></li>
                                 <li><a href="">신청방법</a></li>
                             </ul>
                         </div>
@@ -112,9 +116,9 @@
                             <h4>시설안내</h4>
                             <ul>
                                 <li><a href="">개요 및 시설</a></li>
-                                <li><a href="">시설현황</a></li>
+                                <li><a href="facility.fa">시설현황</a></li>
                                 <li><a href="">이용안내</a></li>
-                                <li><a href="">오시는 길</a></li>
+                                <li><a href="contact.co">오시는 길</a></li>
                             </ul>
                         </div>
                         <div class="nav_info">
@@ -161,38 +165,6 @@
             </div>
         </div>            
  </div>
-    
-	<!-- 로그인 클릭 시 뜨는 모달 (기존에는 안보이다가 위의 a 클릭시 보임) 
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            
-                 Modal Header 
-                <div class="modal-header">
-                    <h4 class="modal-title">로그인</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <form action="login.me" method="post">
-                
-                     Modal Body 
-                    <div class="modal-body">
-                        <label for="memId" class="mr-sm-2">아이디 :</label>
-                        <input class="form-control mb-2 mr-sm-2" placeholder="아이디를  입력해주세요" id="memId" name="memId"><br>
-                        <label for="memPw" class="mr-sm-2">비밀번호: </label>
-                        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="비밀번호를 입력해주세요" id="memPw" name="memPw">
-                    </div>
-                    
-                     Modal footer 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">로그인</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    -->
-    
     <script>
         // 검색 버튼 fade
         $(function() {

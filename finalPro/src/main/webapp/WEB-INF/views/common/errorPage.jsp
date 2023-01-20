@@ -13,7 +13,7 @@
 
     <br>
     <div align="center">
-        <img src="https://cdn-icons-png.flaticon.com/512/4522/4522205.png">
+        <img src="resources/img/error.png">
         <br><br>
         <!--에러 문구 넣을 곳-->
         <h1 style="font-weight:bold">${ errorMsg }</h1>

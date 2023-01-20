@@ -40,4 +40,7 @@ public class MemberDao{
 	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.update("memberMapper.updatePwd", map);
 	}
+	public int updateCarNumber(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateCarNumber",m);
+	}
 }
