@@ -1,7 +1,5 @@
 package com.kh.spring.lecture.model.vo;
 
-import com.kh.spring.member.model.vo.Member;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +11,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Lecture {
+public class Lecture{
 	private int lecNo;
 	private String lecName;
 	private String lecSdate;
@@ -32,4 +30,8 @@ public class Lecture {
 	private String lecMlist;
 	private int teaNo;
 	private int locNo;
+	private Teacher teacher;
+	private LectureLocation lectureLocation;
+	
+	
 }

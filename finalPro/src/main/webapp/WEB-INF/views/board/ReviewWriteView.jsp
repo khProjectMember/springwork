@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 	<!-- css -->
 	<link rel="stylesheet" href="resources/css/reviewWrite.css">
 	<!-- controll에서 강의 받아사 input hidden 해야함 수정 mapper-->
@@ -21,12 +23,12 @@
                         <ul>
                             <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">커뮤니티</a></li>
-                            <li><a href="#">수강생 후기</a></li>
+                            <li><a href="#">공지사항/이벤트</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="content_sec">
-                    <h1>수강생 후기</h1>
+                    <h1>공지사항/이벤트</h1>
                     <div class="textbox">
                         <form action="insertReview.bo" method="post">
                             <table>
@@ -96,7 +98,6 @@
                             </div>
                         </form>
                     </div>
-                    
                 </div>
             </div>
         </div>

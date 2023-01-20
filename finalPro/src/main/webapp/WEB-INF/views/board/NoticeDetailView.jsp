@@ -34,7 +34,14 @@
                     <div class="detailbox">
                         <div class="detail_info">
                             <div class="detail_cate">
-                                <span>${ notice.noticeCatg }</span>
+                             <c:choose>
+	                                    <c:when test="${ notice.noticeCatg eq 0}">
+	                                    <span>공지사항</span>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                    <span>이벤트</span>
+	                                    </c:otherwise>
+	                         </c:choose>
                             </div>
                             <div class="detail_title">
                                 <span>${ notice.noticeTitle }</span>

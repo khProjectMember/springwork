@@ -11,45 +11,74 @@
 
     <!-- css -->
     <link rel="stylesheet" href="resources/css/header.css">
-    
 
     <!-- js -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous" ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-
 
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- 서머노트Api -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
+ 	<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스타일 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스크립트 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- sweetalert 알림창 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 </head>
 <body>
+	<!-- sweetalert 알림창 -->
+	<c:if test="${ not empty alertMsg }">
+		<script>
+			Swal.fire("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
+	<c:if test="${ not empty errorMsg }">
+		<script>
+			Swal.fire("${errorMsg}");
+		</script>
+		<c:remove var="errorMsg" scope="session"/>
+	</c:if>
  <div id="wrap">
         <div id="header">            
             <div class="header">
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                            <li><a href="#">장바구니</a></li>
-                            <li><a href="#">마이페이지</a></li>
-                            <li><a href="#">로그인</a></li>
-                            <li><a href="#">회원가입</a></li>
+                         <li><a href="wishList.le">장바구니</a></li>
+                            <c:choose>
+           					<c:when test="${ empty loginUser }">
+           						<!-- 로그인 전 -->
+	                            <li><a href="loginEnroll.me">로그인</a></li>
+	                            <li><a href="enrollForm.me">회원가입</a></li>
+	                        </c:when>
+            				<c:otherwise>
+            					<!-- 로그인 후 -->
+            					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
+					                <li><a href="myPage.me">마이페이지</a></li>
+					                <li><a href="logout.me" onclick="Swal.fire({title: '로그아웃 되었습니다.',timer: 3000})">로그아웃</a><li>
+				             </c:otherwise>
+				            </c:choose>
                         </ul>
                     </div>
                 </div>                
                 <div class="header-mid">
                     <div class="mid-f">
                         <h1>
-                            <a href="#">樂受文化</a>
+                            <a href="goHome.le">樂受文化</a>
                         </h1>
                     </div>
                     <div class="mid-m">
@@ -77,9 +106,9 @@
                         <div class="nav_info">
                             <h4>강좌안내</h4>
                             <ul>
-                                <li><a href="">수강신청</a></li>
-                                <li><a href="">강좌목록</a></li>
-                                <li><a href="">강좌스케줄</a></li>
+                                <li><a href="applyList.le">수강신청</a></li>
+                                <li><a href="list.le">강좌목록</a></li>
+                                <li><a href="lectureDetail.le">강좌스케줄</a></li>
                                 <li><a href="">신청방법</a></li>
                             </ul>
                         </div>
@@ -87,9 +116,9 @@
                             <h4>시설안내</h4>
                             <ul>
                                 <li><a href="">개요 및 시설</a></li>
-                                <li><a href="">시설현황</a></li>
+                                <li><a href="facility.fa">시설현황</a></li>
                                 <li><a href="">이용안내</a></li>
-                                <li><a href="">오시는 길</a></li>
+                                <li><a href="contact.co">오시는 길</a></li>
                             </ul>
                         </div>
                         <div class="nav_info">
@@ -104,7 +133,7 @@
                         <div class="nav_info">
                             <h4>고객센터</h4>
                             <ul>
-                                <li><a href="">1:1문의</a></li>
+                                <li><a href="qa.bo">1:1문의</a></li>
                                 <li><a href="">자주하는문의</a></li>                                
                             </ul>
                         </div>
@@ -136,8 +165,6 @@
             </div>
         </div>            
  </div>
-    
-
     <script>
         // 검색 버튼 fade
         $(function() {
