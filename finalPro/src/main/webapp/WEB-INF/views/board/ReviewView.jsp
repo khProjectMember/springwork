@@ -83,7 +83,7 @@
 	                                    <td>${ review.revCatg }</td>
 	                                    <td>${ review.l.lecName }</td>
 	                                    <td>${ review.revStar }</td>
-	                                    <td class="subject"><a href="">${ review.revTitle }</a></td>
+	                                    <td class="subject"><a href="reviewDetail.bo?revNo=${ review.revNo }">${ review.revTitle }</a></td>
 	                                    <td>${ review.m.memNickname }</td>
 	                                    <td>${ review.revDate }</td>
 	                                    <td>${ review.revCount }</td>
@@ -120,7 +120,7 @@
                                 </ul>
                             </div>
                             <div class="pagin_box_thi">
-                                <button>게시글 작성</button>
+                                <button type="button" class= "reviewEnroll">게시글 작성</button>
                             </div>
                         </div>
                     </div>
@@ -129,6 +129,10 @@
         </div>
     </div>
     <script type="text/javascript">
+    	$('.reviewEnroll').click(function() {
+    		location.href='reviewEnrollFrm.bo';
+    	})
+    
     /* 
     	$(function() {
     		basicReviewList();

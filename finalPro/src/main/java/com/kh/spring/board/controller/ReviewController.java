@@ -32,6 +32,72 @@ public class ReviewController {
 		return "board/ReviewView";
 	}
 	
+	@RequestMapping("reviewEnrollFrm.bo")
+	public String enroll() {
+		return "board/ReviewWriteView";
+	}
+	
+	@RequestMapping("insertReview.bo")
+	public String insertReview(Review r) {
+		int result = rService.insertReview(r);
+		
+		if(result > 0) {
+			return "redirect:review.bo";
+		} else {
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("reviewDetail.bo")
+	public String reviewDetail(int revNo, Model model) {
+		int inc = rService.incCount(revNo);
+		Review review = rService.selectReviewDetail(revNo);
+		
+		model.addAttribute("review", review);
+		
+		return "board/ReviewDetailView";
+	}
+	
+	@RequestMapping("reviewModify.bo")
+	public String reiviewModifyFrm(@RequestParam(value="revNo") int revNo, Model model) {
+		model.addAttribute("review", rService.selectReviewDetail(revNo));
+		
+		return "board/ReviewModifyView";
+	}
+	
+	@RequestMapping("updateReview.bo")
+	public String updateReview(Review r) {
+		int result = rService.updateReview(r);
+		
+		if(result > 0) {
+			return "redirect:review.bo";
+		} else {
+			return "board/errorPage";
+		}
+	}
+	
+	@RequestMapping("reviewDelete.bo")
+	public String deleteReview(@RequestParam(value="revNo") int revNo) {
+		int result = rService.deleteReview(revNo);
+		
+		if(result > 0) {
+			return "redirect:review.bo";
+		} else {
+			return "board/errorPage";
+		}
+	}
+	/*
+	@ResponseBody
+	@RequestMapping(value="reviewRecommend.bo", produces="application/json; charset=utf-8")
+	public String reviewRecommend(@RequestParam(value="revNo") int revNo) {
+		int insertRecommend = rService.insertRecommend(revNo);
+		int updateRecommend = rService.updateRecommendCount(revNo);
+		
+		
+		
+		return new Gson();
+	}
+	*/
 	@ResponseBody
 	@RequestMapping(value="selectReviewList.bo", produces="application/json; charset=utf-8")
 	public String selectReviewList(@RequestParam(value="cpage", defaultValue="1") int nowPage, Review r, Model model) {
@@ -44,4 +110,8 @@ public class ReviewController {
 		
 		return new Gson().toJson(list);
 	}
+	
+	
+	
+	
 }

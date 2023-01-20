@@ -187,11 +187,12 @@ public class BoardController {
 		
 		String url = request.getServletPath();
 		url = url.substring(1);
-		url = url + "?keyvalue=" + keyvalue + "&keyword=" + keyword;
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("url", url);
+		model.addAttribute("keyvalue", keyvalue);
+		model.addAttribute("keyword", keyword);
 		
 		
 		
