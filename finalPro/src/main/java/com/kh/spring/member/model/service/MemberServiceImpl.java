@@ -72,6 +72,11 @@ public class MemberServiceImpl implements MemberService{ //memberDao로 감
 	public int updatePwd(HashMap<String, String> map) {
 		return mDao.updatePwd(sqlSession, map);
 	}
+
+	@Override
+	public int updateCarNumber(Member m) {
+		return mDao.updateCarNumber(sqlSession,m);
+	}
 	
 	
 	
