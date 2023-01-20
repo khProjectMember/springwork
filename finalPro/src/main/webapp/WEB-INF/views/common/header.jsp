@@ -136,7 +136,7 @@
                         <div class="search_bar">
                             <div class="search_array">
                                 <div class="search_select">
-                                    <select name="" id="">
+                                    <select name="">
                                         <option value="0">전체검색</option>
                                         <option value="강좌">강좌</option>
                                         <option value="시설">시설</option>
@@ -144,7 +144,7 @@
                                     </select>
                                 </div>                        
                                 <div class="search_inp">
-                                    <input type="text" id="" name="">
+                                    <input type="text" name="">
                                     <button type="submit"><img src="resources/img/icons8-수색-30.png" alt="찾기"></button>
                                     <button type="button" class="search_cancle"><img src="resources/img/icons8-지우다-24.png" alt="취소"></button>
                                     <input type="hidden">

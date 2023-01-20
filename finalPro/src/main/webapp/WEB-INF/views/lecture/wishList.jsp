@@ -107,6 +107,8 @@
                                 <td width="15%">선택    강좌</td>
                                 <td width="10%">0</td>
                             </tr>
+                            </cotherwise>
+                            </c:foreach>
                         </tbody>
                     </table>
                     <div class="join_move">

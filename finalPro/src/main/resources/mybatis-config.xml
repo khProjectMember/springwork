@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd" >
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" > -->
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
@@ -20,5 +21,6 @@
 		<mapper resource="/mappers/member-mapper.xml" />
 		<mapper resource="/mappers/board-mapper.xml" />
 		<mapper resource="/mappers/lecture-mapper.xml" />
+		<mapper resource="/mappers/wish-mapper.xml" />
 	</mappers>
 </configuration>
