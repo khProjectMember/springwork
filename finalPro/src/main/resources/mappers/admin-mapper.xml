@@ -63,7 +63,7 @@
 	
 	<!-- Member 테이블 관리 -->
 	<select id="selectMemberList" resultMap="memberMapper.memberResult">
-		select mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_birthday, TO_CHAR(mem_cdate,'YY.MM.DD') as "mem_cdate", mem_carno 
+		select mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_birthday, TO_CHAR(mem_cdate,'YY.MM.DD') as "mem_cdate", mem_carno , mem_status
 			from member
 		order by mem_no desc
 	</select>
