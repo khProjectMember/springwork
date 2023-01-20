@@ -151,6 +151,40 @@
             text-align: right;
         }
     </style>
+    <script>
+ // 닉네임 중복체크
+	$(function(){
+		const $nickNameInput = $("#updateForm input[name=memNickname]");
+		$nickNameInput.keyup(function(){
+			// 최소 2글자 이상 입력되었을때만 ajax요청하도록 함
+			if($nickNameInput.val().length >= 2) {
+				$.ajax({
+					url:"nicknameCheck.me",
+					data: {checkNickname:$nickNameInput.val()}, //key: checkId, value: $nickNameInput.val()
+					success: function(result){
+						if(result == "NNN"){
+							$("#checkNickResult").show();
+							$("#checkNickResult").css("color","#f82a2aa3").text("중복된 닉네임이 존재합니다. 다시 입력해 주세요");
+							$("#updateForm :submit()").attr("disabled",true);
+						} else {
+							$("#checkNickResult").show();
+							$("#checkNickResult").css("color","#199894b3").text("사용가능한 닉네임입니다.");
+							$("#updateForm :submit()").attr("disabled",false);
+						}
+					},
+					error:function(){
+						console.log("닉네임 중복체크 ajax통신 실패");
+					}
+				});
+			} else{ // 3글자 보다 작았으면
+				$("checkNickResult").hide();
+			
+				$("#updateForm :submit()").attr("disabled", true);
+			}
+			
+		})
+	})
+    </script>
     </head>
 <body>
     <!--header--> 
@@ -244,7 +278,7 @@
                     <div class="title">
                         <h3>회원정보</h3>
                     </div>
-                    <form action="update.me" method="post">
+                    <form action="update.me" method="post" id="updateForm">
 	                    <div class="memberInfoTable">
 	                        <table style="border-spacing: 0;">
 	                            <caption>회원정보</caption>
@@ -262,7 +296,8 @@
 	                            </tr>
 	                            <tr>
 	                                <th>닉네임</th>
-	                                <td style="padding-right: 554px;"><input id="memNickname" name="memNickname" value="${loginUser.memNickname }"></td>
+	                                <td style="padding-right: 554px;"><input id="memNickname" name="memNickname" value="${loginUser.memNickname }">
+	                                <font id="checkNickResult" style="font-size:0.8em; display:none"></font></td>
 	                                <th>생년월일</th>
 	                                <td><input id="memBirthday" name="memBirthday" value="${loginUser.memBirthday }"></td>
 	                            </tr>

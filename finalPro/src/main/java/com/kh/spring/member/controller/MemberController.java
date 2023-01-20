@@ -39,11 +39,7 @@ public class MemberController {
 	public String loginEnroll() {
 		return "member/login";
 	}
-	//관리자 메뉴로 이동
-	@RequestMapping("enrollPage.ad")
-	public String enrollPage() {
-		return "admin/admin";
-	}
+	
 	
 	 /*
 	 * 	2.2 스프링에서 제공 ModelAndView 객체를 사용하는 방법
@@ -84,7 +80,7 @@ public class MemberController {
 			session.setAttribute("alertMsg", "성공적으로 로그인 되었습니다.");
 			mv.setViewName("redirect:/"); //redirect: mainPage로 간다는 의미			
 		} else {	
-			mv.addObject("errorMsg","로그인 실패");
+			mv.addObject("errorMsg","비밀번호가 일치하지 않거나 탈퇴한 회원입니다. 다시 한번 확인해 주세요.");
 			mv.setViewName("common/errorPage"); //servlet-context에서 자동으로 설정해줬기에 나머지 안써도됨
 		}
 		return mv;
@@ -94,9 +90,7 @@ public class MemberController {
 	//로그아웃
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
-		session.setAttribute("alertMsg", "성공적으로 로그아웃 되었습니다.");
 		session.invalidate();
-		
 		return "redirect:/";
 	}
 	//회원가입페이지로 이동
@@ -391,8 +385,8 @@ public class MemberController {
 			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 			return "redirect:myPage.me"; //myPage.me로 가면 jsp가도록 위에 설정해놓음
 		} else {
-			model.addAttribute("errorMsg","회원정보 변경 실패");
-			return "common/errorPage";			
+			model.addAttribute("errorMsg","회원정보 변경에 실패하였습니다. 다시한번 확인해주세요.");
+			return "redirect:myPage.me";			
 		}
 	}
 	
@@ -411,7 +405,7 @@ public class MemberController {
 				return "common/errorPage";
 			}
 		} else {
-			session.setAttribute("alertMsg", "비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.");
+			session.setAttribute("errorMsg", "비밀번호가 일치하지 않거나 탈퇴한 회원입니다. 다시 한번 확인해 주세요.");
 			return "redirect:myPage.me";
 		}
 	}
