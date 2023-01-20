@@ -9,7 +9,9 @@
 <title>Insert title here</title>
 
 	<!-- css -->
-	<link rel="stylesheet" href="resources/css/noticewrite.css">
+	<link rel="stylesheet" href="resources/css/reviewWrite.css">
+	<!-- controll에서 강의 받아사 input hidden 해야함 수정 mapper-->
+	<!-- 로그인 세션도 받아서 input hidden mem_no 수정해야함 insert 부분 mapper -->
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -28,7 +30,7 @@
                 <div class="content_sec">
                     <h1>공지사항/이벤트</h1>
                     <div class="textbox">
-                        <form action="insert.bo" method="post">
+                        <form action="insertReview.bo" method="post">
                             <table>
                                 <colgroup>
                                     <col style="width: 15%;">
@@ -39,15 +41,40 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">제목</th>
-                                        <td colspan="3"><input type="text" name="noticeTitle" class="title_input" placeholder="제목을 입력해주세요."></td>
+                                        <td colspan="3"><input type="text" name="revTitle" class="title_input" placeholder="제목을 입력해주세요."></td>                                        
                                     </tr>
                                     <tr>
                                         <th scope="row">카테고리</th>
                                         <td>
-                                            <select name="noticeCatg" id="">
-                                                <option value="공지사항">공지사항</option>
-                                                <option value="이벤트">이벤트</option>                                                
+                                            <select name="revCatg" id="">
+                                                <option value="컴퓨터">컴퓨터</option>      
+                                                <option value="언어">언어</option>                                        
+                                                <option value="음식">음식</option>
+                                                <option value="음악">음악</option>
                                             </select>
+                                        </td>
+                                        <th scope="row">수강한 강의</th>
+                                        <td>
+                                            <select name="revLecture" id="">
+                                                <option value="수영">컴활</option>                                        
+                                                <option value="프랑스어">프랑스어</option>
+                                                <option value="한식">한식</option>
+                                                <option value="바이올린">바이올린</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">평점</th>
+                                        <td>
+                                            <div class="starpoint_set">
+                                                <span>*스크롤 후 클릭해주세요</span>
+                                                <input type="radio" name="revStar" value="5" id="star1" class="star"><label for="star1" class="label">★</label>
+                                                <input type="radio" name="revStar" value="4" id="star2" class="star"><label for="star2" class="label">★</label>
+                                                <input type="radio" name="revStar" value="3" id="star3" class="star"><label for="star3" class="label">★</label>
+                                                <input type="radio" name="revStar" value="2" id="star4" class="star"><label for="star4" class="label">★</label>
+                                                <input type="radio" name="revStar" value="1" id="star5" class="star"><label for="star5" class="label">★</label>                                                
+                                                <input type="hidden" value="">
+                                            </div>
                                         </td>
                                         <th scope="row">작성자</th>
                                         <td><input type="text" placeholder="작성자 닉네임" class="nick_input" readonly></td>
@@ -55,18 +82,18 @@
                                     <tr class="th_textarea">
                                         <th scope="row">내용</th>
                                         <td colspan="3">
-                                            <textarea id="summernote" name="noticeContent" class="text_content"></textarea>
+                                            <textarea id="summernote" name="revContent" class="text_content"></textarea>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="postbox">
                                 <div class="homebox">
-                                    <button class="noticeList_box">목록</button>
+                                    <button class="listReturn">목록</button>
                                 </div>
                                 <div class="modifybox">
-                                    <button type="submit">작성</button>                                   
-                                    <button type="reset" class="cancle">취소</button>
+                                    <button type="submit">작성</button>
+                                    <button type="reset" class="cancle">취소</button>                                           
                                 </div>
                             </div>
                         </form>
@@ -178,55 +205,14 @@
  
         $('.cancle').on('click', function() {
             $('#summernote').summernote('reset');
-        })
+        });
+
+  		$('.listReturn').click(function() {
+  			location.href='review.bo';
+  		});
         
-        $('.noticeList_box').click(function() {
-        	location.href='notice.bo';
-        });
-        
-
-        $(window).scroll(function( ){  //스크롤이 움직일때마다 이벤트 발생 
-            
-            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-            if(position < 1500) {
-                $('.quickmenu').stop().animate({top:position+"px"}, 1000); //해당 오브젝트 위치값 재설정
-            }
-        });
-            
-        const swiper = new Swiper('.swiper', {
-            
-            loop: true,
-            // speed: 10000,
-            // loopedSlides: 5,
-            // observer:true,
-            // observeParents:true,
-
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-
-            autoplay: {
-                delay: 3000,
-                // stopOnLastSlide: false,
-                // disableOnInteraction: true,
-            }
-
-            // freeMode: {
-            //     enabled: true,
-            //     sticky: true,
-            // },
-
-        });
-          
     </script>
+    
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

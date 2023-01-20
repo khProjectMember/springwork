@@ -6,6 +6,7 @@
 		<result column="rev_title" property="revTitle" />
 		<result column="rev_catg" property="revCatg" />
 		<result column="rev_content" property="revContent" />
+		<result column="rev_lecture" property="revLecture" />
 		<result column="rev_date" property="revDate" />
 		<result column="rev_star" property="revStar" />
 		<result column="rev_count" property="revCount" />
@@ -29,4 +30,34 @@
 		where r.mem_no = m.mem_no and r.lec_no = l.lec_no 
 		order by r.rev_no desc
 	</select>
+	<insert id="insertReview">
+		insert into review (rev_no, rev_title, rev_catg, rev_content, rev_lecture, rev_date, rev_star, rev_count, rev_rec, mem_no, lec_no) 
+		values (SEQ_RENO.NEXTVAL, #{revTitle}, #{revCatg}, #{revContent}, #{revLecture}, sysdate, #{revStar}, 0, 0, 1, 1)
+	</insert>
+	<update id="incCount">
+		update review set rev_count = rev_count + 1 
+		where rev_no = #{revNO}
+	</update>
+	<select id="selectReviewDetail" resultMap="resultReview">
+		select r.rev_no, r.rev_catg, r.rev_title, r.rev_star, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_rec, r.rev_content, l.lec_name, m.mem_nickname
+		from review r, member m, lecture l
+		where r.mem_no = m.mem_no and r.lec_no = l.lec_no and
+		r.rev_no = #{revNo}
+	</select>
+	<update id="updateReview">
+		update review set rev_title = #{revTitle}, rev_catg = #{revCatg}, rev_lecture = #{revLecture}, rev_star = #{revStar}, rev_content = #{revContent}
+		where rev_no = #{revNo}
+	</update>
+	<delete id="deleteReview">
+		delete from review where rev_no = #{revNo}
+	</delete>
+	<insert id="insertRecommend">
+		insert into reviewrecommend (rev_no, mem_no) 
+		values (#{rev_no}, 1)
+	</insert>
+	<update id="updateRecommendCount">
+		update review set rev_count = rev_count + 1
+		where rev_no = revNO
+	</update>
+	
 </mapper>
