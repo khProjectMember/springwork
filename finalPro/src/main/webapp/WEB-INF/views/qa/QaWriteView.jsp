@@ -22,7 +22,7 @@
                 <div class="content_fir">
                     <div class="nav_box">
                         <ul>
-                            <li><a href="#" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="views/list.jsp" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">고객센터</a></li>
                             <li><a href="#">1:1문의</a></li>
                         </ul>                            
@@ -41,13 +41,14 @@
                              </ul>
                         </div>
                     </div>
-                
+                 <form name="detailForm" method="post" action="insertQA.bo" class="insertFrm">
                     <div>
-                            <input type="radio" name="qnaStatus" value="0">공개</label>
-                            <input type="radio" name="qnaStatus" value="1">비공개</label>
+                            <input type="radio" name="qnaStatus" value="1">공개</label>
+                            <input type="radio" name="qnaStatus" value="0">비공개</label>              
+                           
                     </div>
                     <div class="basicDataTable aLeft" mb30>
-                        <form name="detailForm" method="post" action="insertQA.bo" class="insertFrm">
+                       
                             <table>                   
                                 <colgroup>
                                     <col style="width:12%;">
@@ -77,7 +78,7 @@
                                             <label for="tit">내용</label>
                                         </th>
                                         <td>
-                                        	 <textarea id="summernote" name="qnaContent" class="text_content"></textarea>
+                                           <textarea id="summernote" name="qnaContent" class="text_content"></textarea>
                                            <!-- <textarea cols="150" rows="10" placeholder="간략히 써 주세요."></textarea> -->                                                                                     
                                         </td>                                    
                                     </tr>                                                                                                           
@@ -85,6 +86,7 @@
                             </table>
                         </form>
                     </div>
+                    
                     <div class="btnArea">
                         <div class="leftArea">
                             <a href="#" class="btn btntype03 btnWhite">
@@ -103,28 +105,6 @@
                 </div>            
             </div>
         </div>
-
-        <div id="wrap">
-            <div id="banner">
-                <div class="inner">
-                    <div class="banner">                                                          
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <div id="wrap">
-        <div id="content">           
-            <div class="quickmenu">
-                <ul>
-                    <li><a href="">문의</a></li>
-                    <li><a href="#"><img src="resources/img/icons8-쪽으로-48.png" alt="화살표 위로"></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>   
-
-    <div class="all"></div>
     <script>
     	function qaFrm() {
     		$('.insertFrm').submit();
@@ -269,6 +249,5 @@
 	    });
     </script>
     <jsp:include page="../common/footer.jsp" />
-    
 </body>
 </html>

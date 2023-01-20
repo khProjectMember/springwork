@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="qnaMapper">
+	<resultMap type="Qna" id="qnaResult">
+		<result column="qna_no" property="qnaNo" />
+		<result column="qna_title" property="qnaTitle" />
+		<result column="qna_content" property="qnaContent" />
+		<result column="qna_replystatus" property="qnaReplyStatus" />
+		<result column="qna_status" property="qnaStatus" />
+		<result column="mem_no" property="memNo" />
+		<result column="qna_email" property="qnaEmail" />	
+	</resultMap>
 	<insert id="insertQna">
 		insert into qna (qna_no, qna_title, qna_content, qna_replystatus, qna_status, mem_no, qna_email) 
-		values (SEQ_QNO.NEXTVAL, #{qnaTitle}, #{qnaContent}, DEFAULT,DEFAULT, 1, #{qnaEmail})
+		values (SEQ_QNO.NEXTVAL, #{qnaTitle}, #{qnaContent}, #{qnaReplyStatus},#{qnaStatus}, 1, #{qnaEmail})
 	</insert>
+	<select id="selectListCount" resultType="_int">
+		select count(*)
+		 from qna 
+	</select>	
+	<select id="qnaList" resultMap="qnaResult">
+		select qna_no, qna_title, qna_replystatus, qna_status
+		from qna		
+		order by qna_no asc
+	</select>
 </mapper>
