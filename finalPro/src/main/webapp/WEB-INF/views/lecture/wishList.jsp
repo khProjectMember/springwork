@@ -20,6 +20,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript">
+    function add_wish(wishNo){
+    	$ajax({
+    		type : "post",
+    		async : false,
+    		url : "${contextPath}/wish/addLecsInWish.le",
+    		data : {lec_no:lec_no},
+    		success : function(data, textStatus){
+    			if(data.trim()=='add_success'){
+    				alert("찜목록에 등록되었습니다.")}
+    			}else if(data.trim()=='already_existed'){
+    				alert("이미 찜목록에 등록된 강의입니다.")}
+    			},
+    			error : function(data,textStatus){
+    				alert("에러가 발생했습니다,"+data);
+    			},
+    			complete : function(data, textStatus){
+    				alert("작업을 완료했습니다.")
+    			}
+    	})
+    }
+    </script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -47,8 +70,23 @@
                             </th>
                         </thead>
                         <tbody>
+                        <c:choose>
+                        <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+                        <c:set var="myWishList" value="${wishMap.myWishList }"/>
+                        <c:set var="myLecsList" value="${wishMap.myLecsList }"/>
+	                    <c:set var="totalLecsNum" value="0"/>
+	                    <c:set var="totalDiscountedPrice" value="0"/>
+                        	<c:when test="${empty myWishList }">
+                        	<tr>
+                        		<td colspan="6">찜목록에 강의가 없습니다.</td>
+                        	</tr>
+                        	</c:when>
+                        	<c:otherwise>
+                        	<c:foreach var="item" items="${myLecsList }" varstatus="cnt">
+                        		<c:set var="wish_lecs_qty" value="${myWishList[cnt.count-1].cart_lecs_qty}"/>
+                        		<c:set var="wish_no" value="${myWishList[cnt.count-1].wish_no"/>	
                             <tr>
-                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox" name="checked_lecs" checked value="${item.lecs_no } onclick="calcLecsPrice(${item.lecs_sales_price },this)"></td>
                                 <td><a href="detail.le?="${lecNo }>체육/수영</td>  
                                 <td>기초수영</td>
                                 <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>

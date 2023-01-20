@@ -12,6 +12,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Wish{
+	private int wishNo;
 	private int memNo;
-	private String wishList;
+	private int lecNo;
+	private int wishCount;
 }

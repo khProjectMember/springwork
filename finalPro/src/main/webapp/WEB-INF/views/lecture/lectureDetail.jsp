@@ -60,6 +60,28 @@
     	  });
     }
     </script>
+     <script type="text/javascript">
+    function add_wish(wishNo){
+    	$ajax({
+    		type : "post",
+    		async : false,
+    		url : "${contextPath}/wish/addLecsInWish.le",
+    		data : {lec_no:lec_no},
+    		success : function(data, textStatus){
+    			if(data.trim()=='add_success'){
+    				alert("찜목록에 등록되었습니다.")}
+    			}else if(data.trim()=='already_existed'){
+    				alert("이미 찜목록에 등록된 강의입니다.")}
+    			},
+    			error : function(data,textStatus){
+    				alert("에러가 발생했습니다,"+data);
+    			},
+    			complete : function(data, textStatus){
+    				alert("작업을 완료했습니다.")
+    			}
+    	})
+    }
+    </script>
 
     <!-- css -->
     <link rel="stylesheet" href="resources/css/lectureDetailView.css">
@@ -178,7 +200,7 @@
                     <a href="list.le">목록</a>
                     <!-- <a href="applyForm.le">신청하기</a> -->
                     <button onClick="requestPay()">신청하기</button>
-                    <a href="wishList.le">찜하기</a>
+                    <a href="javascript:add_wish('${lecsMap.lecs.lecNo }')">찜하기</a>
                 </div>
                 <div class="class_review">
                     <h1>수강후기(0)</h1>

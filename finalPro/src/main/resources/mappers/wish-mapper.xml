@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="wishMapper">
+	<resultMap id="wishResult" type="Wish">
+		<result property="wish_no" colum="wish_no"/>
+		<result property="mem_no" colum="mem_no"/>
+		<result property="lec_no" colum="lec_no"/>
+		<result property="wish_count" colum="wish_count"/>
+	</resultMap>
+	<resultMap type="Lecture" id="lectureResult">
+  	<result column="lec_no" property="lecNo" />
+  	<result column="lec_name" property="lecName" />
+  	<result column="lec_sdate" property="lecSdate" />
+  	<result column="lec_edate" property="lecEdate" />
+  	<result column="lec_info" property="lecInfo" />
+  	<result column="lec_stime" property="lecStime" />
+  	<result column="lec_etime" property="lecEtime" />
+  	<result column="lec_count" property="lecCount" />
+  	<result column="lec_filename" property="lecFilename" />
+  	<result column="lec_bcatg" property="lecBcatg" />
+  	<result column="lec_scatg" property="lecScatg" />
+  	<result column="lec_price" property="lecPrice" />
+  	<result column="lec_grade" property="lecGrade" />
+  	<result column="lec_jnum" property="lecJnum" />
+  	<result column="lec_cnum" property="lecCnum" />
+  	<result column="lec_mlist" property="lecMlist" />
+  	<result column="tea_no" property="teaNo" />
+  	<result column="loc_no" property="locNo" />
+  	<collection property="teacher" resultMap="Teacher"/>
+  	<collection property="lectureLocation" resultMap="LectureLocation"/>
+  </resultMap>
+  	<select id="selectWishList" resultMap="WishResult" parameterType="wish">
+  		<![CDATA[
+			select * from Wish
+			where mem_no = #{mem_no}
+		]]>
+  	</select>
+  	
+  	<select id="selectLecsList" resultMap="lectureResult" parameterType="java.util.Map">
+  		<![CDATA[
+  			select l.* from lecture l, wish w
+  			where l.lec_no = w.lec_no
+  			and w.lecs_no in
+		]]>
+		<foreach item="item" collection="list" open="(" seperater="," close=")">
+			#{item.lec_no}
+		</foreach>
+		</select>
+  
+	<select id="selectCountInWish" resultType="String" parameterType="Wish">
+		<![CDATA[
+			select decode(count(*),0,'false','true') from wish
+			where lec_no=#{lecNo}
+			and mem_no=#{memNo}
+		]]>
+	</select>
+	<insert id="insertLecsInWish" prameterType="Wish">
+		<![CDATA[
+			insert into wish(wish_no, mem_no, lec_no)
+			values (#{wishNo}, #{memNo}, #{lecNo})
+		]]>
+	</insert>
+</mapper>
