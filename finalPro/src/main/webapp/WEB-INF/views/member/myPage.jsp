@@ -8,33 +8,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>樂受文化 악수문화센터 마이페이지</title>
-    
-        <!-- css -->
-        <link rel="stylesheet" href="../css/main.css">
-    
-        <!-- js -->
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    
-    
-    
-        <!-- 폰트 -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-    	
-		<!-- jQuery 라이브러리 -->
+	
+		<!-- jQuery 라이브러리 지우지 마세용!-->
 		<script src="https://code.jquery.com/jquery-3.6.1.js" ></script>
-		<!-- 부트스트랩에서 제공하고 있는 스타일 -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-		<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>    	
+		
     	
     <style>
-        
         .content_fir {width: 100%; display: flex; justify-content: flex-end;}
         .content_fir .nav_box {margin: 50px 0;}
         .content_fir .nav_box ul {display: flex;}
@@ -152,7 +131,7 @@
         }
     </style>
     <script>
- // 닉네임 중복체크
+ 	// 닉네임 중복체크
 	$(function(){
 		const $nickNameInput = $("#updateForm input[name=memNickname]");
 		$nickNameInput.keyup(function(){
