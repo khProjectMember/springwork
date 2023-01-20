@@ -60,7 +60,7 @@
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                         <li><a href="#">장바구니</a></li>
+                         <li><a href="wishList.le">장바구니</a></li>
                             
                             <c:choose>
            					<c:when test="${ empty loginUser }">
