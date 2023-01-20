@@ -164,7 +164,7 @@
 					success: function(result){
 						if(result == "NNN"){
 							$("#checkNickResult").show();
-							$("#checkNickResult").css("color","#f82a2aa3").text("중복된 닉네임이 존재합니다. 다시 입력해 주세요");
+							$("#checkNickResult").css("color","#f82a2aa3").text("중복된 닉네임이 존재합니다.");
 							$("#updateForm :submit()").attr("disabled",true);
 						} else {
 							$("#checkNickResult").show();
