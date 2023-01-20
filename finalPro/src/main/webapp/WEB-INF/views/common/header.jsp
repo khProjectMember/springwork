@@ -81,7 +81,7 @@
                 <div class="header-mid">
                     <div class="mid-f">
                         <h1>
-                            <a href="#">樂受文化</a>
+                            <a href="goHome.le">樂受文化</a>
                         </h1>
                     </div>
                     <div class="mid-m">
