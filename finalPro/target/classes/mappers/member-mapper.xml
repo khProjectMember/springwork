@@ -36,7 +36,7 @@
   
   <update id="updateMember">
   	update member
-  		set mem_nickname=#{memNickname}, mem_birthday=#{memBirthday}, mem_phone = #{memPhone}, mem_email=#{memEmail} , mem_address=#{memAddress}, mem_detailaddress=#{memDetailAddress}, mem_paper = #{memPaper}
+  		set mem_nickname=#{memNickname}, mem_birthday=#{memBirthday}, mem_phone = #{memPhone}, mem_email=#{memEmail} , mem_address=#{memAddress}, mem_detailaddress=#{memDetailAddress}, mem_paper = #{memPaper}, mem_ddate = sysdate
   	  where mem_id=#{memId}
   </update>
   
@@ -82,4 +82,11 @@
   		set mem_pw = #{newPwd}
   	  where mem_id = #{memId}
   </update>
+  
+  <insert id="updateCarNumber" >
+  	insert into member(mem_carno)
+  		values(#{memCarno})
+  	  where mem_id = #{memId}
+  </insert>
+ 
 </mapper>

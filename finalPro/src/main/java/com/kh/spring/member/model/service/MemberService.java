@@ -35,4 +35,7 @@ public interface MemberService {
 	
 	// 비밀번호 변경 업데이트
 	int updatePwd(HashMap<String, String> map);
+	
+	// 차량 번호 등록
+	int updateCarNumber(Member m);
 }

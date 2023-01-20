@@ -11,8 +11,7 @@
 	
 		<!-- jQuery 라이브러리 지우지 마세용!-->
 		<script src="https://code.jquery.com/jquery-3.6.1.js" ></script>
-		
-    	
+
     <style>
         .content_fir {width: 100%; display: flex; justify-content: flex-end;}
         .content_fir .nav_box {margin: 50px 0;}
@@ -170,12 +169,6 @@
     <jsp:include page="../common/header.jsp"/>
 
     <!--body-->
-<c:if test="${ not empty alertMsg }">
-		<script>
-			alertify.alert("${alertMsg}");
-		</script>
-		<c:remove var="alertMsg" scope="session"/>
-</c:if>
     <div id="wrap">
         <div id="content">
             <div class="inner">
@@ -183,7 +176,7 @@
                     <div class="content_fir">
                         <div class="nav_box">
                             <ul>
-                                <li><a href="goHome.le" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                                <li><a href="goHome.le" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                                 <li><a href="myPage.me" class="nav_a">마이페이지</a></li>
                             </ul>
                         </div>
@@ -322,7 +315,7 @@
                     </form>
                     </div> <!--class=btnArea-->
                 </div> <!-- class=inner2-->
-
+				
                 <div class="inner3">
                     <div class="title">
                         <h3>문화센터 마케팅 수신동의</h3>
@@ -343,23 +336,25 @@
                     </p>
             </div>
                 </div><!--inner3-->
-
-                <div class="inner4">
-                    <h3>배려주차장 차량번호 등록</h3>
-                    <div class="inner4-1">
-                        <div class="checkBox">
-                            <input type="hidden" id="carNoOld" value="">
-                            <p>
-                                <label for="" style="font-size: 16px;color: #222;text-align: left;padding: 11px 5px 10px 5px;height: 66px;font-weight: normal;">차량번호</label>
-                                <input type="text" maxlength="20" id="" value="${loginUser.memCarno }">
-                        		
-                                <label for="">차량번호 수집동의</label>
-                                <span><input type="checkbox"></span>
-                                <a href="#" class="btn btnType04 btnBlack"><span>저장</span></a>
-                            </p>
-                        </div><!--class=checkBox-->
-                    </div> <!--class=inner4-1-->   
-
+				
+				
+	                <div class="inner4">
+	                    <h3>배려주차장 차량번호 등록</h3>
+	                    <div class="inner4-1">
+	                        <div class="checkBox">
+	                            <p>
+	                            	<form action="updateCar.me">
+	                                <label for="" style="font-size: 16px;color: #222;text-align: left;padding: 11px 5px 10px 5px;height: 66px;font-weight: normal;">차량번호</label>
+	                                <input type="text" maxlength="20" id="" value="${loginUser.memCarno }">
+	                        		
+	                                <label for="">차량번호 수집동의</label>
+	                                <span><input type="checkbox"></span>
+	                                <button type="submit" class="btn btnType04 btnBlack"><span>저장</span></button>
+	                                </form>
+	                            </p>
+	                        </div><!--class=checkBox-->
+	                    </div> <!--class=inner4-1-->   
+				
                         <div class="parkingDetail">
                             <p class="txt" style="color:black">배려주차장등록 서비스 이용을 위해 아래와 같이 알려드립니다.</p>
                             <p class="txt" style="color:black">배려주차장은 영유아동승자, 노약자, 임산부 등 다양한 교통약자를 위한 주차공간입니다.</p>

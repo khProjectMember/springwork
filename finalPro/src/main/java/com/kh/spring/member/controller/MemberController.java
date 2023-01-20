@@ -390,6 +390,22 @@ public class MemberController {
 		}
 	}
 	
+	// 배려주차장 차량번호 등록
+	@RequestMapping("updateCar.me")
+	public String updateCarNumber(Member m, HttpSession session, Model model) {
+		int result = mService.updateCarNumber(m);
+		if(result > 0) {
+			Member updateM = mService.loginMember(m);
+			session.setAttribute("loginUser", updateM);
+			System.out.println("차량번호 등록이 완료되었습니다.");
+			session.setAttribute("alertMsg", "차량번호 등록이 완료되었습니다.");
+			return "redirect:myPage.me"; 
+		} else {
+			model.addAttribute("errorMsg","차량번호 등록에 실패하였습니다. 다시한번 확인해주세요.");
+			return "redirect:myPage.me";			
+		}
+	}
+	
 	// 마이페이지 탈퇴
 	@RequestMapping("delete.me")
 	public String deleteMember(String memId, String memPw, HttpSession session, Model model) {
