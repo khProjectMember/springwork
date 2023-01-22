@@ -23,6 +23,7 @@ import com.kh.spring.board.model.dao.ReviewDao;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 
+
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
@@ -86,6 +87,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return rDao.updateRecommendCount(sqlSession, revNo);
 	}
 
+
 	@Override
 	public ArrayList<Reviewrecommend> selectRecommend(int revNo) {
 		// TODO Auto-generated method stub
@@ -137,3 +139,8 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	
 }
+
+
+
+
+

@@ -36,6 +36,7 @@ public interface ReviewService {
 	
 	int insertRecommend(int revNo, int memNo);
 	int updateRecommendCount(int revNo);
+
 	ArrayList<Reviewrecommend> selectRecommend(int revNo);
 	
 	// 최신, 조회, 추천
@@ -55,5 +56,5 @@ public interface ReviewService {
 	ArrayList<ReviewReply> reviewReplyList(int revNo);
 	ArrayList<ReviewReplyRe> replyReList(int reviewReplyNo);
 
-	
 }
+

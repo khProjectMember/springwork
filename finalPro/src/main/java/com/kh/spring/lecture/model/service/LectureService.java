@@ -8,6 +8,6 @@ import com.kh.spring.lecture.model.vo.Teacher;
 
 public interface LectureService {
 	public ArrayList<Lecture> lectureList(Lecture l);
-	public Lecture lectureDetail(int lecNo);
+	public Lecture lectureDetail(Integer lecNo);
 	
 }

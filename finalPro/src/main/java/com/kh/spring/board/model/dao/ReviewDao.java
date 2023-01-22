@@ -106,3 +106,4 @@ public class ReviewDao {
 		return (ArrayList) sqlSession.selectList("reviewMapper.reviewReplyList", revNo);
 	}
 }
+

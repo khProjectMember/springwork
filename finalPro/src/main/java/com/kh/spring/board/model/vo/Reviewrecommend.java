@@ -17,4 +17,6 @@ public class Reviewrecommend {
 	private int revNo;
 	private int memNo;
 	private int recoStatus;
+
 }
+
