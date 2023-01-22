@@ -18,6 +18,7 @@ public class Review {
 	private int revNo;
 	private String revTitle;
 	private String revCatg;
+	private String revLecture;
 	private String revContent;
 	private String revDate;
 	private int revStar;

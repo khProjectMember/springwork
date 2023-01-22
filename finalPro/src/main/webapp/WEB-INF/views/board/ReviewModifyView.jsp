@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
-	 <div id="wrap">
+	<div id="wrap">
         <div id="content">
             <div class="inner">
                 <div class="content_fir">
@@ -26,7 +26,7 @@
                 <div class="content_sec">
                     <h1>수강생 후기 수정</h1>
                     <div class="textbox">
-                        <form action="" method="post">
+                        <form action="updateReview.bo" method="post">
                             <table>
                                 <colgroup>
                                     <col style="width: 15%;">
@@ -37,49 +37,63 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">제목</th>
-                                        <td><input type="text" name="" id="" class="title_input" placeholder="제목을 입력해주세요."></td>
+                                        <td colspan="3"><input type="text" name="revTitle" value="${ review.revTitle }" class="title_input" placeholder="제목을 입력해주세요."></td>                                        
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">카테고리</th>
+                                        <td>
+                                            <select name="revCatg" id="">
+                                                <option value="컴퓨터">컴퓨터</option>      
+                                                <option value="언어">언어</option>                                        
+                                                <option value="음식">음식</option>
+                                                <option value="음악">음악</option>
+                                            </select>
+                                        </td>
+                                        <th scope="row">수강한 강의</th>
+                                        <td>
+                                            <select name="revLecture" id="">
+                                                <option value="수영">컴활</option>                                        
+                                                <option value="프랑스어">프랑스어</option>
+                                                <option value="한식">한식</option>
+                                                <option value="바이올린">바이올린</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">평점</th>
                                         <td>
                                             <div class="starpoint_set">
                                                 <span>*스크롤 후 클릭해주세요</span>
-                                                <input type="radio" name="starpoint" value="5" id="star1" class="star"><label for="star1" class="label">★</label>
-                                                <input type="radio" name="starpoint" value="4" id="star2" class="star"><label for="star2" class="label">★</label>
-                                                <input type="radio" name="starpoint" value="3" id="star3" class="star"><label for="star3" class="label">★</label>
-                                                <input type="radio" name="starpoint" value="2" id="star4" class="star"><label for="star4" class="label">★</label>
-                                                <input type="radio" name="starpoint" value="1" id="star5" class="star"><label for="star5" class="label">★</label>                                                
-                                                <input type="hidden" value="">
+                                                <input type="radio" name="revStar" value="5" id="star1" class="star"><label for="star1" class="label">★</label>
+                                                <input type="radio" name="revStar" value="4" id="star2" class="star"><label for="star2" class="label">★</label>
+                                                <input type="radio" name="revStar" value="3" id="star3" class="star"><label for="star3" class="label">★</label>
+                                                <input type="radio" name="revStar" value="2" id="star4" class="star"><label for="star4" class="label">★</label>
+                                                <input type="radio" name="revStar" value="1" id="star5" class="star"><label for="star5" class="label">★</label>                                                
+                                                <input type="hidden" name="revNo" value="${ review.revNo }">
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">수강한 강의</th>
-                                        <td>
-                                            <select name="" id="">
-                                                <option value="체육">수영</option>                                        
-                                                <option value="요리">한식</option>
-                                                <option value="예능">바이올린</option>
-                                            </select>
-                                        </td>
                                         <th scope="row">작성자</th>
-                                        <td><input type="text" placeholder="작성자 닉네임" class="nick_input" readonly></td>
+                                        <td><input type="text" placeholder="작성자 닉네임" value="${ review.m.memNickname }" class="nick_input" readonly></td>
                                     </tr>
                                     <tr class="th_textarea">
                                         <th scope="row">내용</th>
                                         <td colspan="3">
-                                            <textarea id="summernote" name="editordata" class="text_content"></textarea>
+                                            <textarea id="summernote" name="revContent" class="text_content">
+                                            	${ review.revContent }
+                                            </textarea>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="postbox">
                                 <div class="homebox">
-                                    <button onclick="location.href=#">목록</button>
+                                    <button type="button" class="listReturn">목록</button>
                                 </div>
                                 <div class="modifybox">
                                     <button type="submit">수정</button>
                                     <button type="reset" class="cancle">취소</button>
                                 </div>
-                            </div>
+                            </div>                            
                         </form>
                     </div>
                     
@@ -87,6 +101,115 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+	 	// 검색 버튼 fade
+	    $(function() {
+	        $('.main_btn').on('click', function(e) {
+	            $('.h_form').fadeIn(300)
+	            
+	            $('.search_cancle').on('click', function() {
+	                $('.h_form').fadeOut(300)
+	            })
+	        })
+	    })
+	
+	    // 강좌 이미지 설명 hover
+	    $(function() {
+	        $('.over_mouse').mouseover(function() {
+	            $(this).find('.img_info').stop().fadeIn(400);
+	        }).mouseleave(function() {
+	            $(this).find('.img_info').stop().fadeOut(400);
+	        })
+	    })
+	
+	    // 헤더 카데고리 바 숨겨진 div
+	    $(function() {
+	        $('.nav_category').mouseover(function() {
+	            $('.nav_bar').stop().fadeIn(1);
+	        })
+	        $($('.nav_bar')).mouseleave(function() {
+	            $(this).fadeOut(1);
+	        })
+	        
+	        
+	    })
+	
+	    // 서머노트
+	  
+	
+	    $('#summernote').summernote({
+	        height: 400,                 // 에디터 높이
+	        minHeight: 400,             // 최소 높이
+	        maxHeight: 400,             // 최대 높이
+	        focus: true,
+	        toolbar: [
+	            // 글꼴 설정
+	            ['fontname', ['fontname']],
+	            // 글자 크기 설정
+	            ['fontsize', ['fontsize']],
+	            // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+	            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+	            // 글자색
+	            ['color', ['forecolor','color']],
+	            // 표만들기
+	            ['table', ['table']],
+	            // 글머리 기호, 번호매기기, 문단정렬
+	            ['para', ['ul', 'ol', 'paragraph']],
+	            // 줄간격
+	            ['height', ['height']],
+	            // 그림첨부, 링크만들기, 동영상첨부
+	            ['insert',['picture','link','video']],
+	            // 코드보기, 확대해서보기, 도움말
+	            ['view', ['codeview','fullscreen', 'help']]
+	        ],
+	        fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+	        
+	        callbacks : { 
+	        	onImageUpload : function(files) {
+	        // 파일 업로드(다중업로드를 위해 반복문 사용)
+	            	
+	            		console.log(files[0]);	            		
+	            		sendFile(files[0], this);
+	        	}
+	        	
+	        }
+	    	
+	    	
+	  
+	    });
+	    
+		function sendFile(file, editor) {
+	    	var data = new FormData();
+	    	data.append("file", file);
+	    	console.log(file);
+	    	console.log(editor);
+	    	$.ajax({
+	    		data: data,
+	    		type:"POST",
+	    		url: "SummerNoteImageFile",
+	    		contentType: false,
+	    		processData: false,
+	    		success: function(data) {
+	    			console.log(data);
+	    			console.log(editor);
+	    			$(editor).summernote('insertImage', data.url);
+	    		},
+	    		error: function(e) {
+	    			console.log(e);
+	    		}
+	    		
+	    	})
+	    }
+	    
+	
+	    $('.cancle').on('click', function() {
+	        $('#summernote').summernote('reset');
+	    });
+	    
+	    $('.listReturn').click(function() {
+	    	location.href='review.bo';
+  		});
+    </script>
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

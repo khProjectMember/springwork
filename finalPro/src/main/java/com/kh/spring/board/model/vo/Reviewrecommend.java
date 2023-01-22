@@ -16,4 +16,6 @@ import lombok.ToString;
 public class Reviewrecommend {
 	private int revNo;
 	private int memNo;
+
 }
+
