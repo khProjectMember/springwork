@@ -74,6 +74,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return rDao.updateRecommendCount(sqlSession, revNo);
 	}
 
+
 }
 
 /*
@@ -91,3 +92,5 @@ public class ReviewServiceImpl implements ReviewService {
  * 
  * }
  */
+
+

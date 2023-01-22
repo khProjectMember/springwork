@@ -6,9 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
 	<!-- css -->
 	<link rel="stylesheet" href="resources/css/notice.css">
+	
+	<%
+		String keyvalue = "";
+		String keyword = "";
+		int nowPage;
+		if(request.getParameter(keyvalue) != null) {
+			keyvalue = request.getParameter("keyvalue");
+			keyword = request.getParameter("keyword");
+		}
+		
+		if(request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt((request.getParameter("nowPage")));
+		}
+	%>
+	
+	
+	
+	
 </head>
 <body>
 	<!-- 헤더 -->
@@ -88,21 +105,16 @@
 	                                    </c:otherwise>
 	                                </c:choose>   
 	                                    <c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endpage }">
-	                                    	<li><a href="${ url }?cpage=${ page }">${ page }</a></li>
+	                                    	<li><a href="javascript:paging(${ page });">${ page }</a></li>
 	                                    </c:forEach>
 	                                <c:choose>
 	                                    <c:when test="${ pi.nowPage eq pi.maxPage }">                                                            
 	                                    	<li><a href="#">다음</a></li>
 	                                    </c:when>
 	                                    <c:otherwise>
-	                                    	<li><a href="${ url }<c:choose>
-	                                    							<c:when test="${ url } = notice.bo">
-	                                    								?cpage=${ pi.nowPage+1 }">다음</a></li>
-	                                    							</c:when>
-	                                    							<c:otherwise>
-	                                    								&cpage=${ pi.nowPage+1 }">다음</a></li>
-	                                    							</c:otherwise>
-	                                    						</c:choose>
+	                                    	<li><a href="${ url }?cpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    	<form>
+	                                    	</form>
 	                                    </c:otherwise>
 	                                </c:choose>                                                                                           
                                 </ul>
@@ -116,6 +128,11 @@
             </div>
         </div>
     </div>
+    <form method="get" action="" class="submitFrm">
+    	<input type="hidden" name="keyvalue" value="${ keyvalue }">
+    	<input type="hidden" name="keyword" value="${ keyword }">
+    	<input type="hidden" name="cpage" class = "cpage">
+    </form>
     <jsp:include page="../common/footer.jsp" />
     
     <script type="text/javascript">
@@ -124,11 +141,11 @@
     		location.href='enroll.bo';
     	})
     	
-    	
-    	
-    	
+    	function paging(num) {
+    		var url = "${ url }";
+    		$('.cpage').attr("value", num);
+    		$('.submitFrm').attr("action", url).submit();
+    	}
     </script>
-    
-    
 </body>
 </html>
