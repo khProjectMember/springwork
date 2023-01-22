@@ -19,9 +19,7 @@ body, input, textarea, select, button a {
 #header{width: 100%; height: 200px;}
 #banner {width: 100%; height: 500px;}
 #footer{width: 100%; height: 300px; margin-top: 200px; background-color: #f1f1f1;}
-
 .inner {margin: 0 200px 0 200px; height: inherit;}
-
 .all {width: 1700px; height: 100%;}
 
 /* 헤더 */
