@@ -49,4 +49,6 @@ public class ReviewDao {
 	public int updateRecommendCount(SqlSessionTemplate sqlSession, int revNo) {
 		return sqlSession.update("reviewMapper.updateRecommendCount", revNo);
 	}
+
 }
+

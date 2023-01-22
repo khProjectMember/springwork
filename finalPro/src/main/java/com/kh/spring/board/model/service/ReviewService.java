@@ -32,4 +32,7 @@ public interface ReviewService {
 	
 	int insertRecommend(int revNo);
 	int updateRecommendCount(int revNo);
+
+
 }
+

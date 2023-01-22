@@ -5,7 +5,52 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2023-01-20T04:00:00Z</updated>
+  <updated>2023-01-20T10:51:00Z</updated>
+  <entry>
+    <title>Spring Modulith 0.3 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2023/01/20/spring-modulith-0-3-released" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Oliver Drotbohm</name>
+    </author>
+    <id>tag:spring.io,2023-01-20:5064</id>
+    <updated>2023-01-20T10:51:00Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;Hot on the heels of Spring Boot 3.0.2, I am excited to announce the 0.3 release of Spring Modulith.
+The release is packed with improvements.
+We have tweaked a couple of things that might require your attention and a couple of adapting changes to your code.
+The most notable changes are:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/114"&gt;GH-114&lt;/a&gt; ? We renamed the &lt;code&gt;・.modulith.model&lt;/code&gt; package to &lt;code&gt;・.modulith.core&lt;/code&gt;. This primarily affects &lt;code&gt;ApplicationModules&lt;/code&gt;. Please adapt your imports accordingly.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/120"&gt;GH-120&lt;/a&gt; ? The documentation support now generates diagram files using the &lt;code&gt;*.puml&lt;/code&gt; file extension, as suggested by &lt;a href="https://plantuml.com/sources"&gt;PlantUML&lt;/a&gt;. Please adapt your imports accordingly.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/103"&gt;GH-103&lt;/a&gt; ? &lt;a href="https://docs.spring.io/spring-modulith/docs/0.3.0/api/org/springframework/modulith/ApplicationModuleInitializer.html"&gt;&lt;code&gt;ApplicationModuleInitializer&lt;/code&gt;&lt;/a&gt; implementations will be triggered upon application startup, in the order following the application module dependency structure (more core ones are invoked first). Also, &lt;code&gt;ApplicationModules&lt;/code&gt; exposes a &lt;a href="https://docs.spring.io/spring-modulith/docs/0.3.0/api/org/springframework/modulith/core/ApplicationModules.html#getComparator()"&gt;&lt;code&gt;・.getComparator()&lt;/code&gt;&lt;/a&gt; to order Spring beans that way. Note, that this requires the &lt;a href="https://jgrapht.org/"&gt;JGraphT&lt;/a&gt; library to be on the classpath (automatically pulled in via the &lt;code&gt;spring-modulith-runtime&lt;/code&gt; artifact). See the &lt;a href="https://docs.spring.io/spring-modulith/docs/0.3.0/reference/html/#runtime.application-module-initializer"&gt;reference documentation&lt;/a&gt; for details.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/116"&gt;GH-116&lt;/a&gt; ? &lt;code&gt;PublishedEvents&lt;/code&gt; now sees events published from asynchronous event listeners, too.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/100"&gt;GH-100&lt;/a&gt; ? If you&amp;#8217;re using AssertJ in your tests, you can now use &lt;a href="https://docs.spring.io/spring-modulith/docs/0.3.0/api/org/springframework/modulith/test/AssertablePublishedEvents.html"&gt;&lt;code&gt;AssertablePublishedEvents&lt;/code&gt;&lt;/a&gt; for a more streamlined integration  (for example, &lt;code&gt;assertThat(events).contains(MyEvent.class).matching(・)&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/117"&gt;GH-117&lt;/a&gt; ? As we incentivize event-based, asynchronous application module integration, the test starter now also pulls in &lt;a href="http://www.awaitility.org/"&gt;Awaitility&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects-experimental/spring-modulith/issues/111"&gt;GH-111&lt;/a&gt; ? We now publish aggregated &lt;a href="https://docs.spring.io/spring-modulith/docs/0.3.0/api/"&gt;Javdoc&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Find a complete change log in the &lt;a href="https://github.com/spring-projects-experimental/spring-modulith/releases/tag/0.3.0"&gt;GitHub release page&lt;/a&gt;. We are looking forward to your feedback in the &lt;a href="https://github.com/spring-projects-experimental/spring-modulith/discussions"&gt;GitHub discussions&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Boot 3.0.2 available now</title>
     <link rel="alternate" href="https://spring.io/blog/2023/01/19/spring-boot-3-0-2-available-now" />
@@ -522,19 +567,6 @@
 &lt;p&gt;This release includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v3.0.1"&gt;54 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="https://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="https://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-boot/docs/3.0.1/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>A Bootiful Podcast: Field CTO and Chief Evangelist at Gradle Justin Reock</title>
-    <link rel="alternate" href="https://spring.io/blog/2022/12/22/a-bootiful-podcast-field-cto-and-chief-evangelist-at-gradle-justin-reock" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2022-12-22:5044</id>
-    <updated>2022-12-22T19:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans and happy holidays!! In this installment, Josh Long talks to Field CTO and Chief Evangelist at Gradle Justin Reock. &lt;/p&gt;
-&lt;iframe title="Field CTO and Chief Evangelist at Gradle Justin Reock" allowtransparency="true" height="150" width="100%" style="border: none; min-width: min(100%, 430px);" scrolling="no" data-name="pb-iframe-player" src="https://www.podbean.com/player-v2/?i=2u8rh-1345c58-pb&amp;from=pb6admin&amp;share=1&amp;download=1&amp;rtl=0&amp;fonts=Arial&amp;skin=1&amp;font-color=&amp;logo_link=episode_page&amp;btn-skin=7"&gt;&lt;/iframe&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>
