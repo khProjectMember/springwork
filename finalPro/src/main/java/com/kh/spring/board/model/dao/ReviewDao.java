@@ -21,4 +21,32 @@ public class ReviewDao {
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		return (ArrayList) sqlSession.selectList("reviewMapper.selectReviewList", null, rowBounds);
 	}
+	
+	public int insertReview(SqlSessionTemplate sqlSession, Review r) {
+		return sqlSession.insert("reviewMapper.insertReview", r);
+	}
+	
+	public int incCouont(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.update("reviewMapper.incCount", revNo);
+	}
+	
+	public Review selectReviewDetail(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.selectOne("reviewMapper.selectReviewDetail", revNo);
+	}
+	
+	public int updateReview(SqlSessionTemplate sqlSession, Review r) {
+		return sqlSession.update("reviewMapper.updateReview", r);
+	}
+	
+	public int deleteReview(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.delete("reviewMapper.deleteReview", revNo);
+	}
+	
+	public int insertRecommend(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.insert("reviewMapper.insertRecommend", revNo);
+	}
+	
+	public int updateRecommendCount(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.update("reviewMapper.updateRecommendCount", revNo);
+	}
 }
