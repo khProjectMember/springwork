@@ -80,7 +80,7 @@
                             	<c:forEach var="notice" varStatus = "status" items="${ list }">
                            	                            	                           	                            	                            		                                
 	                                <tr>	                                	                    		                   
-	                                    <td class="noticeNo" >${ (nlist.size() -status.index) - ((pi.nowPage - 1) * 10) }</td>											                                    	                                                           
+	                                    <td class="noticeNo" ><%-- ${ (nlist.size() -status.index) - ((pi.nowPage - 1) * 10) } --%></td>											                                    	                                                           
 	                                    <td>${ notice.noticeCatg }</td>
 	                                    <td class="subject"><a href="detail.bo?noticeNo=${ notice.noticeNo }">${ notice.noticeTitle }</a></td>
 	                                    <td>${ notice.m.memNickname }</td>

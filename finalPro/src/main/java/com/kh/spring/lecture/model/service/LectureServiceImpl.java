@@ -26,7 +26,7 @@ public class LectureServiceImpl implements LectureService{
 		return lDao.lectureList(sqlSession, l);
 	}
 	
-	public Lecture lectureDetail(int lecNo) {
+	public Lecture lectureDetail(Integer lecNo) {
 		return lDao.lectureDetail(sqlSession, lecNo);
 	}
 	
