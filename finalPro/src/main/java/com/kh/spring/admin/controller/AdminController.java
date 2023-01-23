@@ -67,6 +67,29 @@ public class AdminController {
 			return array.toString();
 		}
 		
+		//새로운 리뷰
+		@RequestMapping(value="selectNewReview.ad", produces="application/json; charset=UTF-8")
+		@ResponseBody
+		public String selectNewReview() {
+			JSONArray array = new JSONArray();
+			int rCount = aService.selectNewReviewCount();
+			ArrayList<Review> rList = new ArrayList<Review>();
+			rList = aService.selectNewReview();
+			
+			if(rList.size()!=0) {
+				for(Review r : rList) {
+					String title = MovieInfo.getMovieInfo(r.getMovieId()).getMovieTitle();
+					JSONObject json = new JSONObject();
+					json.put("boardId", r.getBoardId());
+					json.put("boardTitle", r.getBoardTitle());
+					json.put("boardContent", r.getBoardContent());
+					json.put("nickName", r.getNickName());
+					json.put("createDate", r.getCreateDate()+"");
+					array.add(json);
+				}
+			}
+			return array.toString();
+		}
 		
 	@RequestMapping("list2.le")
 	public ModelAndView selectLectureList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
