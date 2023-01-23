@@ -30,6 +30,7 @@ public class Lecture{
 	private String lecMlist;
 	private int teaNo;
 	private int locNo;
+	
 	private Teacher teacher;
 	private LectureLocation lectureLocation;
 	
