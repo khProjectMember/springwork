@@ -55,7 +55,14 @@
                     </div>
                     <div class="middle_box">
                         <h3>댓글</h3>
-                        <button class="revRecommbtn"><img src="resources/img/icons8-엄지-척-52.png" alt="따봉"></button>                        
+                        <c:choose>
+                        	<c:when test="${ empty loginUser }">
+                        		<button class="recommendNo"><img src="resources/img/icons8-엄지-척-52.png" alt="따봉"></button>
+                        	</c:when>
+                        	<c:otherwise>
+								<button onclick="revRecomm();"><img src="resources/img/icons8-엄지-척-52.png" alt="따봉"></button>                        	
+                        	</c:otherwise>
+                        </c:choose>                                                                              		
                     </div>
                     <div class="review">
                         <div class="review_text">
@@ -82,23 +89,7 @@
                                 </ul>
                             </div>
                             <div class="review_main">
-                                <div class="main_add">
-                                    <div class="user_nick">
-                                        <span>닉네임</span>
-                                        <button><img src="resources/img/icons8-지우다-24.png" alt="삭제"></button>
-                                    </div>
-                                    <div class="user_content">
-                                        <p>내용이에욘</p>
-                                    </div>
-                                    <div class="user_func">
-                                        <span>2023-01-01</span>
-                                        <div class="user_good">
-                                            <button onclick="#">답글</button>
-                                            <img src="resources/img/icons8-하트-50.png" alt="좋아요">
-                                            <span>0</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="user_comment_add">
                                     <div class="comment_nick">
                                         <span>리뷰 작성자</span>
@@ -119,11 +110,12 @@
             </div>
         </div>
     </div>
+    <input type="hidden" class="id.check">
     <form method="post" class="enrollFrm">
 		<input type="hidden" name="revNo" value="${ review.revNo }">
     </form>
     <jsp:include page="../common/footer.jsp" />
-    <script type="text/javascript">
+    <script type="text/javascript">    
     	//목록 이동
     	
     	$('.listReturn').click(function() {
@@ -144,9 +136,68 @@
     	
     	// 글 추천 (글 추천할 때 멤버 번호도 넘겨줘야함 controll 수정)
     	
-    	$('.revRecommbtn').click(function() {
-    		$('.enrollFrm').attr('action', 'reviewRecommend.bo').submit();
+    	
+    	function revRecomm() {
+        	console.log("실행맨");
+
+        	$.ajax({
+        		url : "reviewRecommend.bo",
+        		data : {revNo: "${ review.revNo }",
+        				memNo: "${ loginUser.memNo }"
+        	   		},
+        		success: function(map) {
+        			console.log("성공");
+        			location.reload();
+        		},
+       			error: function() {
+       				console.log("실패");
+       			}
+       		});
+       	}
+    	
+    	$(function() {
+    		selectReviewReplyList();
     	})
+    	
+    	function selectReviewReplyList() {
+    		console.log("되는건가요?");
+    		$.ajax({
+    			url: "rlist.bo",
+    			data: {
+    				revNo : ${ review.revNo }
+    			},
+    			success: function(list) {
+    				let value = "";
+    				for(let i in list) {
+    					value += "<div class='main_add'>"
+    						  +		"<div class='user_nick'>"
+    						  +			"<span>"+list[i].revReplyWriter+"</span>"
+    						  +			"<button><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
+    						  +		"</div>"
+    						  +		"<div class='user_content'>"
+    						  +			"<p>"+list[i].revReplyContent+"</p>"
+    						  +		"</div>"
+    						  +		"<div class='user_func'>"
+    						  +			"<span>"+list[i].revReplyDate+"</span>"
+    						  +			"<div class='user_good'>"
+    						  +				"<button onclick=''>답글</button>"
+    						  +				"<img src='resources/img/icons8-하트-50.png' alt='좋아요'>"
+    						  +				"<span>0</span>"
+    						  +			"</div>"
+    						  +		"</div>"
+    						  +	 "</div>";
+    				}
+    				$('.review_main').html(value);
+    			},
+    			error: function() {
+    				console.log("실패");
+    			}
+    		})
+    	}
+    		
+    	
+    	
+    		
     </script>
     
 </body>
