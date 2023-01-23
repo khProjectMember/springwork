@@ -52,7 +52,7 @@
 						            </a>
 			          			</li>
 			          			<li class="nav-item">
-						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/manageReview.ad">
+						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/rlist.ad">
 										<span data-feather="home"></span>
 										리뷰게시판 관리
 						            </a>
@@ -127,27 +127,31 @@
 					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 						<div>
 							<h4>새로운 리뷰</h4>
-							<h6 class="text-muted">${rCount }개의 새로운 리뷰가 있습니다.</h6>
+							<h6 class="text-muted">${rCount}개의 새로운 리뷰가 있습니다.</h6>
 						</div>
 					</div>
 					<table class="table">
 						<thead>
 							<tr>
 								<th scope="col">번호</th>
-								<th scope="col">작성자</th>
-								<th scope="col">별점</th>
+								<th scope="col">강의명</th>
+								<th scope="col">평점</th>
 								<th scope="col">제목</th>
 								<th scope="col">작성일자</th>
+								<th scope="col">조회수</th>
+								<th scope="col">추천수</th>
+								
 							</tr>
 						</thead>
 						<tbody class="newReviewList">
 							<tr>
-								<td class="boardId"></td>
-								<td class="nickName"></td>
-								<td class="movieTitle"></td>
-								<td class="movieRating"></td>
-								<td class="boardTitle"></td>
-								<td class="createDate"></td>
+								<td class="revNo"></td>
+								<td class="revLecture"></td>
+								<td class="revStar"></td>
+								<td class="revTitle"></td>
+								<td class="revDate"></td>
+								<td class="revCount"></td>
+								<td class="revRec"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -175,18 +179,19 @@
 							}
 						});
 						
-						/* $.ajax({
-							url: "${contextPath}/selectNewReview.ad",
+						 $.ajax({
+							url: "${contextPath}/spring/selectNewReview.ad",
 							success: (data)=>{
 								var div = $('.newReviewList').clone();
 								$(".newReviewList").html("");
 								for(const r of data) {
-									div.find('.boardId').text(r.boardId);
-									div.find('.nickName').text(r.nickName);
-									div.find('.movieTitle').text(r.movieTitle);
-									div.find('.movieRating').text(r.movieRating);
-									div.find('.boardTitle').text(r.boardTitle);
-									div.find('.createDate').text(r.createDate);
+									div.find('.revNo').text(r.revNo);
+									div.find('.revLecture').text(r.revLecture);
+									div.find('.revStar').text(r.revStar);
+									div.find('.revTitle').text(r.revTitle);
+									div.find('.revDate').text(r.revDate);
+									div.find('.revCount').text(r.revCount);
+									div.find('.revRec').text(r.revRec);
 									
 									$(".newReviewList").append(div.html());
 								}
@@ -194,7 +199,7 @@
 							error: (data)=>{
 								console.log(data);
 							}
-						}); */
+						}); 
 				</script>
 			
 				<script src="resources/nak/assets/js/bootstrap.bundle.min.js"></script>

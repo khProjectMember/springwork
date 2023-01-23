@@ -15,19 +15,24 @@ public interface AdminService {
 	int selectListCount_Teacher();
 	int selectListCount_Member();
 	int selectListCount_Hangout();
+	int selectListCount_Review();
 	ArrayList<Lecture> selectLectureList(PageInfo pi);
 	ArrayList<Teacher> selectTeacherList(PageInfo pi);
 	ArrayList<Member> selectMemberList(PageInfo pi);
 	ArrayList<Meeting> selectHangoutList(PageInfo pi);
+	ArrayList<Review> selectReviewList(PageInfo pi);
 				
 	//2. 정보 등록 부분
 	int insertLecture(Lecture l);
 	int insertTeacher(Teacher t);
 	
-	
+	int deleteReview_ad(String revNo);
 	
 	
 	int selectNewMemberCount();
 	ArrayList<Member> selectNewMember();
+	int selectNewReviewCount();
+	ArrayList<Review> selectNewReview();
+	
 	
 }

@@ -14,8 +14,22 @@
 		from member
 		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y'
 	</select>
+	
+	<select id="selectNewReview" resultMap="reviewMapper.resultReview">
+		select rev_no, rev_title, l.lec_name, m.mem_nickname,  rev_date, rev_star
+		from review
+		    join lecture l using(lec_no)
+		    join member m using(mem_no)
+		where to_char(rev_date, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd')
+		order by rev_no desc
+	</select>
 
-
+	<select id="selectNewReviewCount" resultType="_int">
+		select count(*)
+		from review
+		where to_char(rev_date, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd')
+	</select>
+	
 
 	<!-- lecture테이블 관리 -->
 	<insert id="insertLecture" >
@@ -86,5 +100,21 @@
 		where hangout_status = 'Y'
 	</select>
 	
+	<!-- Review 테이블 관리 -->
+	<select id="selectReviewList" resultMap="reviewMapper.resultReview">
+		select r.rev_no, r.rev_title, r.rev_catg, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_star, r.rev_count, r.rev_rec, m.mem_nickname, l.lec_name
+			from review r  
+			join member m on(r.mem_no = m.mem_no) 
+			join lecture l on(r.lec_no = l.lec_no) 
+		order by r.rev_no desc
+	</select>
+	<select id="selectListCount_Review" resultType="_int">
+		select count(*)
+			from review
+	</select>
+	<update id = "deleteReview_ad">
+		delete from review
+		where rev_no = #{revNo}
+	</update>
 	
 </mapper>

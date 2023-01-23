@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.board.model.vo.Meeting;
+import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -34,6 +35,9 @@ public class AdminDao {
 	public int selectListCount_Hangout(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectListCount_Hangout");
 	}
+	public int selectListCount_Review(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectListCount_Review");
+	}
 	
 	public ArrayList<Lecture> selectLectureList(SqlSessionTemplate sqlSession, PageInfo pi){
 		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
@@ -59,6 +63,15 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		return (ArrayList)sqlSession.selectList("adminMapper.selectHangoutList",null,rowBounds);
 	}
+	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, PageInfo pi){
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectReviewList",null,rowBounds);
+	}
+	
+	
+	
 	
 	//새 회원
 	public ArrayList<Member> selectNewMember(SqlSessionTemplate sqlSession) {
@@ -68,5 +81,17 @@ public class AdminDao {
 	public int selectNewMemberCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectNewMemberCount");
 	}
+	//새 리뷰
+	public ArrayList<Review> selectNewReview(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectNewReview");
+	}
+
+	public int selectNewReviewCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectNewReviewCount");
+	}
 	
+//	리뷰삭제
+	public int deleteReview_ad(SqlSessionTemplate sqlSession, String RevNo) {
+		return sqlSession.update("adminMapper.deleteReview_ad", RevNo);
+	}
 }

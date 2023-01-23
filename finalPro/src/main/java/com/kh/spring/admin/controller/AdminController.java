@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -78,13 +79,15 @@ public class AdminController {
 			
 			if(rList.size()!=0) {
 				for(Review r : rList) {
-					String title = MovieInfo.getMovieInfo(r.getMovieId()).getMovieTitle();
+					/* String title = MovieInfo.getMovieInfo(r.getMovieId()).getMovieTitle(); */
 					JSONObject json = new JSONObject();
-					json.put("boardId", r.getBoardId());
-					json.put("boardTitle", r.getBoardTitle());
-					json.put("boardContent", r.getBoardContent());
-					json.put("nickName", r.getNickName());
-					json.put("createDate", r.getCreateDate()+"");
+					json.put("revNo", r.getRevNo());
+					json.put("revLecture", r.getRevLecture());
+					json.put("revStar", r.getRevStar());
+					json.put("revTitle", r.getRevTitle());
+					json.put("revDate", r.getRevDate()+"");
+					json.put("revCount", r.getRevCount());
+					json.put("revRec", r.getRevRec());
 					array.add(json);
 				}
 			}
@@ -127,13 +130,25 @@ public class AdminController {
 	}
 	@RequestMapping("hlist.ad")
 	public ModelAndView selectHangoutList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
-		int listCount = aService.selectListCount_Member();
+		int listCount = aService.selectListCount_Hangout();
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 10);
 		ArrayList<Meeting> list = aService.selectHangoutList(pi);
 		mv.addObject("pi",pi)
 		  .addObject("list",list)
 		  .setViewName("admin/manageHangout");
+		return mv;
+	}
+	
+	@RequestMapping("rlist.ad")
+	public ModelAndView selectReviewList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
+		int listCount = aService.selectListCount_Review();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 10);
+		ArrayList<Review> list = aService.selectReviewList(pi);
+		mv.addObject("pi",pi)
+		  .addObject("list",list)
+		  .setViewName("admin/manageReview");
 		return mv;
 	}
 	
@@ -208,4 +223,26 @@ public class AdminController {
 				} 
 			return changeName;
 	}
+	
+	
+
+	//리뷰 선택 삭제
+		@RequestMapping("deleteReview.ad")
+		public String deleteReview_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+//			System.out.println(deleteArr);
+			int result = 0;
+			for(int i = 0; i < deleteArr.size(); i++) {
+				result = aService.deleteReview_ad(deleteArr.get(i));
+			}
+			
+			if(result > 0) {
+				return "manageReview";
+			} else {
+				System.out.println("컨트롤러에서 실패");
+				return "";
+			}
+			
+		}
+	
+	
 }
