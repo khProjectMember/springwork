@@ -56,7 +56,14 @@
 										<span data-feather="home"></span>
 										리뷰게시판 관리
 						            </a>
-			          			</li><li class="nav-item">
+			          			</li>
+			          			<li class="nav-item">
+						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/nlist.ad">
+										<span data-feather="home"></span>
+										공지사항 관리
+						            </a>
+			          			</li>
+			          			<li class="nav-item">
 						            <a class="nav-link" aria-current="page" href="${contextPath }/spring/hlist.ad">
 										<span data-feather="home"></span>
 										모임게시판 관리

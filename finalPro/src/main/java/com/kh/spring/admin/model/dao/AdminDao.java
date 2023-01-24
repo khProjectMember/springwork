@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.board.model.vo.Meeting;
+import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
@@ -37,6 +38,9 @@ public class AdminDao {
 	}
 	public int selectListCount_Review(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectListCount_Review");
+	}
+	public int selectListCount_Notice(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectListCount_Notice");
 	}
 	
 	public ArrayList<Lecture> selectLectureList(SqlSessionTemplate sqlSession, PageInfo pi){
@@ -69,7 +73,12 @@ public class AdminDao {
 		RowBounds rowBounds = new RowBounds(startNo, limit);
 		return (ArrayList)sqlSession.selectList("adminMapper.selectReviewList",null,rowBounds);
 	}
-	
+	public ArrayList<Notice> selectNoticeList(SqlSessionTemplate sqlSession, PageInfo pi){
+		int startNo = (pi.getNowPage()-1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(startNo, limit);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectNoticeList",null,rowBounds);
+	}
 	
 	
 	
@@ -93,5 +102,8 @@ public class AdminDao {
 //	리뷰삭제
 	public int deleteReview_ad(SqlSessionTemplate sqlSession, String RevNo) {
 		return sqlSession.update("adminMapper.deleteReview_ad", RevNo);
+	}
+	public int deleteNotice_ad(SqlSessionTemplate sqlSession, String noticeNo) {
+		return sqlSession.update("adminMapper.deleteNotice_ad", noticeNo);
 	}
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.admin.model.service.AdminService;
 import com.kh.spring.board.model.vo.Meeting;
+import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
@@ -151,7 +152,17 @@ public class AdminController {
 		  .setViewName("admin/manageReview");
 		return mv;
 	}
-	
+	@RequestMapping("nlist.ad")
+	public ModelAndView selectNoticeList(@RequestParam(value="cpage", defaultValue="1") int nowPage, ModelAndView mv) {
+		int listCount = aService.selectListCount_Notice();
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, nowPage, 10, 10);
+		ArrayList<Notice> list = aService.selectNoticeList(pi);
+		mv.addObject("pi",pi)
+		  .addObject("list",list)
+		  .setViewName("admin/manageNotice");
+		return mv;
+	}
 	
 	//강사 강의 등록하는 곳
 	@RequestMapping("enrollForm.le")
@@ -236,13 +247,29 @@ public class AdminController {
 			}
 			
 			if(result > 0) {
-				return "manageReview";
+				return "redirect:rlist.ad";
 			} else {
 				System.out.println("컨트롤러에서 실패");
 				return "";
 			}
 			
 		}
-	
+		//공지 선택 삭제
+				@RequestMapping("deleteNotice.ad")
+				public String deleteNotice_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+//					System.out.println(deleteArr);
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteNotice_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:nlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+					
+				}
 	
 }
