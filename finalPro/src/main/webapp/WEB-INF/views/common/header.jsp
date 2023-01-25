@@ -52,15 +52,16 @@
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                         <li><a href="myWishList.wi">찜목록</a></li>
                             <c:choose>
            					<c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
+  			                     <li><a href="loginEnroll.me">찜목록</a></li>
 	                            <li><a href="loginEnroll.me">로그인</a></li>
 	                            <li><a href="enrollForm.me">회원가입</a></li>
 	                        </c:when>
             				<c:otherwise>
             					<!-- 로그인 후 -->
+  			                     <li><a href="myWishList.wi">찜목록</a></li>
             					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
 					                <li><a href="myPage.me">마이페이지</a></li>
 					                <li><a href="logout.me" onclick="Swal.fire({title: '로그아웃 되었습니다.',timer: 3000})">로그아웃</a><li>
@@ -100,18 +101,15 @@
                         <div class="nav_info">
                             <h4>강좌안내</h4>
                             <ul>
-                                <li><a href="applyList.le">수강신청</a></li>
                                 <li><a href="list.le">강좌목록</a></li>
-                                <li><a href="lectureDetail.le">강좌스케줄</a></li>
+                                <li><a href="myApplyList.ap">신청목록</a></li>
                                 <li><a href="">신청방법</a></li>
                             </ul>
                         </div>
                         <div class="nav_info">
                             <h4>시설안내</h4>
                             <ul>
-                                <li><a href="">개요 및 시설</a></li>
                                 <li><a href="facility.fa">시설현황</a></li>
-                                <li><a href="">이용안내</a></li>
                                 <li><a href="contact.co">오시는 길</a></li>
                             </ul>
                         </div>

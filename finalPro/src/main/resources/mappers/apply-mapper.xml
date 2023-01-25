@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="applyMapper">
+	<resultMap id="applyResult" type="apply">
+		<result property="applyNo" column="apply_no"/>
+		<result property="memNo" column="mem_no"/>
+		<result property="lecNo" column="lec_no"/>
+		<result property="applyCount" column="apply_count"/>
+	</resultMap>
+	<resultMap type="Lecture" id="lectureResult">
+  	<result column="lec_no" property="lecNo" />
+  	<result column="lec_name" property="lecName" />
+  	<result column="lec_sdate" property="lecSdate" />
+  	<result column="lec_edate" property="lecEdate" />
+  	<result column="lec_info" property="lecInfo" />
+  	<result column="lec_stime" property="lecStime" />
+  	<result column="lec_etime" property="lecEtime" />
+  	<result column="lec_count" property="lecCount" />
+  	<result column="lec_filename" property="lecFilename" />
+  	<result column="lec_bcatg" property="lecBcatg" />
+  	<result column="lec_scatg" property="lecScatg" />
+  	<result column="lec_price" property="lecPrice" />
+  	<result column="lec_grade" property="lecGrade" />
+  	<result column="lec_jnum" property="lecJnum" />
+  	<result column="lec_cnum" property="lecCnum" />
+  	<result column="lec_mlist" property="lecMlist" />
+  	<result column="tea_no" property="teaNo" />
+  	<result column="loc_no" property="locNo" />
+  </resultMap>
+  
+  	<select id="selectApplyList" resultMap="applyResult" parameterType="Apply">
+  		<![CDATA[
+			select * from apply
+			where mem_no=#{memNo}
+		]]>
+  	</select>
+  
+  	<select id="selectLecsList" resultMap="lectureResult" parameterType="java.util.Map">
+  		<![CDATA[
+  			select l.* from lecture l
+  			where l.lec_no in
+		]]>
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.lecNo}
+		</foreach>
+		</select>
+		
+	<select id="selectCountInApply" resultType="String" parameterType="Apply">
+		<![CDATA[
+			select decode(count(*),0,'false','true') from apply
+			where lec_no=#{lecNo}
+			and mem_no=#{memNo}
+		]]>
+	</select>
+
+  	
+  	<insert id="insertLecsInApply" parameterType="Apply">
+		<![CDATA[
+			insert into apply(apply_no, mem_no, lec_no)
+			values (#{applyNo}, #{memNo}, #{lecNo})
+		]]>
+	</insert>
+	
+	<select id="selectMaxApplyNo" resultType="int">
+	    <![CDATA[
+			select count(nvl(apply_no, 0)) + 1 from apply 
+    	]]>
+	</select>
+	
+	<delete id="deleteApplyLecs" parameterType="int">
+	    <![CDATA[
+	      delete from apply
+	      where apply_no=#{applyNo}
+    	]]>
+	</delete>
+	
+
+</mapper>
