@@ -7,6 +7,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.board.model.vo.Join;
 import com.kh.spring.board.model.vo.Meeting;
 import com.kh.spring.member.model.vo.Member;
 
@@ -51,8 +52,12 @@ public class MeetingDao {
 		return sqlSession.delete("meetingMapper.deleteMeeting", hangoutNo);
 	}
 	
-	public int insertJoinMeeting(SqlSessionTemplate sqlSession, int hangoutNo) {
-		return sqlSession.insert("meetingMapper.insertJoinMeeting", hangoutNo);
+	public int insertJoinMeeting(SqlSessionTemplate sqlSession, int hangoutNo, int memNo) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("hangoutNo", hangoutNo);
+		map.put("memNo", memNo);
+		
+		return sqlSession.insert("meetingMapper.insertJoinMeeting", map);
 	}
 	
 	public int updateMeetingCount(SqlSessionTemplate sqlSession, int hangoutNo) {
@@ -87,5 +92,21 @@ public class MeetingDao {
 		map.put("key_count", key_count);
 		
 		return (ArrayList) sqlSession.selectList("meetingMapper.searchMeetingList", map);
+	}
+	
+	public ArrayList<Join> joinvalue(SqlSessionTemplate sqlSession, int hangoutNo) {
+		return (ArrayList) sqlSession.selectList("meetingMapper.joinvalue", hangoutNo);
+	}
+	
+	public int deleteJoinMeeting(SqlSessionTemplate sqlSession, int hangoutNo, int memNo) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("hangoutNo", hangoutNo);
+		map.put("memNo", memNo);
+		
+		return sqlSession.delete("meetingMapper.deleteJoinMeeting", map);
+	}
+	
+	public int updateDownMeetingCount(SqlSessionTemplate sqlSession, int hangoutNo) {
+		return sqlSession.update("meetingMapper.updateDownMeetingCount", hangoutNo);
 	}
 }

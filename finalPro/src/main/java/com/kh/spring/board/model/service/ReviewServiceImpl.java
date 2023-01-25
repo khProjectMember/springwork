@@ -136,6 +136,37 @@ public class ReviewServiceImpl implements ReviewService {
 		return null;
 	}
 
+	@Override
+	public int insertReviewReply(ReviewReply rr) {
+		// TODO Auto-generated method stub
+		return rDao.insertReviewReply(sqlSession, rr);
+	}
+
+	@Override
+	public ArrayList<Reviewrecommend> reviewRecommendRenum(int revNo) {
+		// TODO Auto-generated method stub
+		return rDao.reviewRecommendRenum(sqlSession, revNo);
+	}
+
+	@Override
+	public int deleteRecommend(int revNo, int memNo) {
+		// TODO Auto-generated method stub
+		return rDao.deleteRecommend(sqlSession, revNo, memNo);
+	}
+
+	@Override
+	public int updateRecommendCountDelete(int revNo) {
+		// TODO Auto-generated method stub
+		return rDao.updateRecommendCountDelete(sqlSession, revNo);
+	}
+
+	@Override
+	public int deleteReviewReply(int revNo) {
+		// TODO Auto-generated method stub
+		return rDao.deleteReviewReply(sqlSession, revNo);
+	}
+
+	
 	
 	
 }

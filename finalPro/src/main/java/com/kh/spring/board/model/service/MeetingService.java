@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.spring.board.model.vo.Join;
 import com.kh.spring.board.model.vo.Meeting;
 
 public interface MeetingService {
@@ -31,12 +32,17 @@ public interface MeetingService {
 	
 	// 모임 참여
 	
-	int insertJoinMeeting(int hangoutNo);
+	int insertJoinMeeting(int hangoutNo, int memNo);
 	int updateMeetingCount(int hangoutNo);
 	
-	// 모임 참여 취소
+	// 모임 탈퇴
 	
-	int deleteJoinOutMeeting(int hangoutNo);
+	int deleteJoinMeeting(int hangoutNo, int memNo);
+	int updateDownMeetingCount(int hangoutNo);
+	
+	// 모임 참여 리스트
+	
+	ArrayList<Join> joinvalue(int hangoutNo);
 	
 	// 조회순
 	

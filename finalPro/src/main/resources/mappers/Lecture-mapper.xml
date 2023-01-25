@@ -61,7 +61,6 @@
 		 join teacher t 
 		 on (l.tea_no = t.tea_no) 
 		 where l.lec_no = #{lecNo}
-
 		
 	</select>
   

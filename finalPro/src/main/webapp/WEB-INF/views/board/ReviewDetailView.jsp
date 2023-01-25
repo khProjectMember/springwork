@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,22 +61,29 @@
                         		<button class="recommendNo"><img src="resources/img/icons8-엄지-척-52.png" alt="따봉"></button>
                         	</c:when>
                         	<c:otherwise>
-								<button onclick="revRecomm();"><img src="resources/img/icons8-엄지-척-52.png" alt="따봉"></button>                        	
+                        		<c:if test="${ fn:contains(list, loginUser.memNo) }">
+                        			<button onclick="revRecommDelete();"><img src="resources/img/icons8-엄지-척-52 색깔.png" alt="따봉색깔" class="goodImg"></button>
+                        		</c:if>
+                        		<c:if test="${ not fn:contains(list, loginUser.memNo) }">
+                        			<button onclick="revRecomm();"><img src="resources/img/icons8-엄지-척-52.png" alt="따봉" class="goodImg"></button>
+                        		</c:if>								                        	
                         	</c:otherwise>
                         </c:choose>                                                                              		
                     </div>
                     <div class="review">
                         <div class="review_text">
                             <div class="review_area">
-                                <textarea name="" id="" ></textarea>
+                                <textarea name="revReplyContent" class="revReplyContent"></textarea>
                             </div>
                             <div class="review_btn">
                                 <button class="insertComment">등록</button>
                             </div>
                             <div class="home_btn">
                                 <button class="listReturn">목록</button>
-                                <button class="btn_re">수정</button>
-                                <button class="btn_delete">삭제</button>
+                                <c:if test="${ loginUser.memNickname eq review.m.memNickname }">
+                                	<button class="btn_re">수정</button>
+                                	<button class="btn_delete">삭제</button>
+                                </c:if>                                
                             </div>
                         </div>
                         <div class="review_show">
@@ -116,6 +124,38 @@
     </form>
     <jsp:include page="../common/footer.jsp" />
     <script type="text/javascript">    
+	    $(function() {
+			selectReviewReplyList();
+			
+			
+			$(document).on('click', '.revReplyDelete', function() {
+				
+				
+				if(${loginUser.memNickname == '쿄쿄' }) {
+					$.ajax({
+						url:'revReplyDelete.bo',
+						data: { revNo: ${ review.revNo }},
+						success: function(result) {
+							if(result == "success") {
+								Swal.fire("댓글이 삭제 되었습니다.");
+								location.reload();	
+							
+							}
+						},
+						error: function() {
+							console.log("실패");	
+						}					
+					})	
+				} else {
+					Swal.fire("삭제 권한이 없습니다.");
+				}
+				
+			})
+		})
+    	
+    	$('.recommendNo').on('click', function() {
+    		alert('로그인 후 이용 가능합니다.');
+    	})
     	//목록 이동
     	
     	$('.listReturn').click(function() {
@@ -145,19 +185,36 @@
         		data : {revNo: "${ review.revNo }",
         				memNo: "${ loginUser.memNo }"
         	   		},
-        		success: function(map) {
-        			console.log("성공");
-        			location.reload();
+        		success: function(result) {
+        			console.log("성공");        			
+            		location.reload();	
+        			        			
         		},
        			error: function() {
        				console.log("실패");
        			}
        		});
        	}
-    	
-    	$(function() {
-    		selectReviewReplyList();
-    	})
+	    
+	    function revRecommDelete() {
+        	console.log("실행맨");
+
+        	$.ajax({
+        		url : "reviewRecommendDelete.bo",
+        		data : {revNo: "${ review.revNo }",
+        				memNo: "${ loginUser.memNo }"
+        	   		},
+        		success: function(result) {
+        			console.log("성공");        			
+            		location.reload();	
+        			        			
+        		},
+       			error: function() {
+       				console.log("실패");
+       			}
+       		});
+       	}
+	    
     	
     	function selectReviewReplyList() {
     		console.log("되는건가요?");
@@ -172,7 +229,7 @@
     					value += "<div class='main_add'>"
     						  +		"<div class='user_nick'>"
     						  +			"<span>"+list[i].revReplyWriter+"</span>"
-    						  +			"<button><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
+    						  +			"<button class='revReplyDelete'><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
     						  +		"</div>"
     						  +		"<div class='user_content'>"
     						  +			"<p>"+list[i].revReplyContent+"</p>"
@@ -193,6 +250,34 @@
     				console.log("실패");
     			}
     		})
+    	}
+    	
+    	$('.insertComment').on('click', function() {
+    		addReply();
+    	})
+    	
+    	function addReply() {
+    		if($('.revReplyContent').val().trim().length != 0) {
+    			$.ajax({
+    				url : "rinsert.bo",
+    				data : {
+    					revNo : ${ review.revNo },
+    					revReplyWriter : "${ loginUser.memNickname }",
+    					revReplyContent : $('.revReplyContent').val()
+    				},
+    				success: function(result) {
+    					if(result == "success") {
+    						selectReviewReplyList();
+    						$('.revReplyContent').val("");
+    					}
+    				},
+    				error: function() {
+    					console.log("실패");
+    				}
+    			})
+    		} else {
+    			alert("댓글 작성 후 등록해주세요");
+    		}
     	}
     		
     	

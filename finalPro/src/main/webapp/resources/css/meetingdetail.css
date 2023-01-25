@@ -115,6 +115,7 @@ body, input, textarea, select, button a {
 .content_sec .review .review_text .home_btn .btn_re {vertical-align: middle; color: #fff; background-color: #000;}
 .content_sec .review .review_text .home_btn .btn_delete {vertical-align: middle; color: #000; background-color: rgba(255, 0, 0, 0.587);}
 .content_sec .review .review_text .home_btn .btn_join {vertical-align: middle; color: #000; background-color: rgba(0, 89, 255, 0.587);}
+.content_sec .review .review_text .home_btn .btn_join_no {vertical-align: middle; color: #000; background-color: rgba(0, 89, 255, 0.587);}
 .content_sec .review .review_show {display: flex; width: 1000px; flex-direction: column; border-top: 1px solid #000;}
 .content_sec .review .review_show .review_count {margin: 20px 0;}
 .content_sec .review .review_show .review_count span {font-size: 16px; font-weight: 600;}

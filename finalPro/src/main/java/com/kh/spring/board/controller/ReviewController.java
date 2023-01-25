@@ -64,9 +64,13 @@ public class ReviewController {
 	public String reviewDetail(int revNo, Model model) {
 		int inc = rService.incCount(revNo);
 		Review review = rService.selectReviewDetail(revNo);
+		ArrayList<Reviewrecommend> list = rService.reviewRecommendRenum(revNo);
+		ArrayList<ReviewReply> rlist = rService.reviewReplyList(revNo);
 		
 		
 		model.addAttribute("review", review);
+		model.addAttribute("rlist", rlist);
+		
 		
 		
 		return "board/ReviewDetailView";
@@ -105,21 +109,31 @@ public class ReviewController {
 	@RequestMapping(value="reviewRecommend.bo", produces="application/json; charset=utf-8")
 	public String reviewRecommend(@RequestParam(value="revNo") int revNo, @RequestParam(value="memNo") int memNo, Model model) {
 		System.out.println(revNo);
-		int insertRecommend = rService.insertRecommend(revNo, memNo);
+		int result = rService.insertRecommend(revNo, memNo);
 		int updateRecommend = rService.updateRecommendCount(revNo);
 		ArrayList<Reviewrecommend> selectRecommend = rService.selectRecommend(revNo);
 		
-		System.out.println(insertRecommend);
+		System.out.println(result);
 		System.out.println(updateRecommend);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("insertRecommend", insertRecommend);
+		map.put("insertRecommend", result);
 		map.put("updateRecommend", updateRecommend);
 		
 		model.addAttribute("selectRecommend", selectRecommend);		
 		
-		return new Gson().toJson(map);
+		return new Gson().toJson(result);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="reviewRecommendDelete.bo", produces="application/json; charset=utf-8")
+	public String reviewRecommendDelete(@RequestParam(value="revNo") int revNo, @RequestParam(value="memNo") int memNo, Model model) {
+		int result = rService.deleteRecommend(revNo, memNo);
+		int updateRecommendCountDelete = rService.updateRecommendCountDelete(revNo);
+		
+		
+		return new Gson().toJson(result);
 	}
 	
 	@ResponseBody
@@ -198,9 +212,22 @@ public class ReviewController {
 		return new Gson().toJson(list);
 	}
 	
-			
+	@ResponseBody
+	@RequestMapping("rinsert.bo")
+	public String rinsert(ReviewReply rr) {
+		int result = rService.insertReviewReply(rr);
+		
+		return result > 0 ? "success" : "fail";
+	}
 	
-
+	@ResponseBody
+	@RequestMapping("revReplyDelete.bo")
+	public String rdelete(int revNo) {
+		int result = rService.deleteReviewReply(revNo);
+		
+		return result > 0 ? "success" : "fail";
+	}
+	
 }
 
 

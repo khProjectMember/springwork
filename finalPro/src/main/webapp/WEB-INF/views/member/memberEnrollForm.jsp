@@ -28,13 +28,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 
-<style>
-
-* {
-    box-sizing: border-box;
-    font-family: "Noto Sans KR", sans-serif;
-}
-</style>
     <script>
     
       // 주소찾기 기능

@@ -22,7 +22,7 @@ public interface ReviewService {
 	
 	int incCount(int revNo);
 	Review selectReviewDetail(int revNo);
-	
+	ArrayList<Reviewrecommend> reviewRecommendRenum(int revNo);
 	
 	// 리뷰 수정
 	
@@ -38,6 +38,12 @@ public interface ReviewService {
 	int updateRecommendCount(int revNo);
 
 	ArrayList<Reviewrecommend> selectRecommend(int revNo);
+	
+	
+	// 리뷰 글 추천 삭제
+	
+	int deleteRecommend(int revNo, int memNo);
+	int updateRecommendCountDelete(int revNo);
 	
 	// 최신, 조회, 추천
 	
@@ -55,6 +61,11 @@ public interface ReviewService {
 	
 	ArrayList<ReviewReply> reviewReplyList(int revNo);
 	ArrayList<ReviewReplyRe> replyReList(int reviewReplyNo);
+	
+	
+	int insertReviewReply(ReviewReply rr);
+	
+	int deleteReviewReply(int revNo);
 
 }
 
