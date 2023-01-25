@@ -10,7 +10,7 @@
     <title>Document</title>
 
     <!-- css 지우지마세용 -->
-    <link rel="stylesheet" href="resources/css/login.css">
+    <link rel="stylesheet" href="resources/css/login1.css">
       
 <style>
     .idpwSearch{
