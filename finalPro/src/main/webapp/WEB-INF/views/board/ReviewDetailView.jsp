@@ -204,7 +204,7 @@
     					value += "<div class='main_add'>"
     						  +		"<div class='user_nick'>"
     						  +			"<span>"+list[i].revReplyWriter+"</span>"
-    						  +			"<button class='revReplyDelete'><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
+    						  +			"<button onclick='revReplyDelete("+list[i].revReplyNo+");'><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
     						  +		"</div>"
     						  +		"<div class='user_content'>"
     						  +			"<p>"+list[i].revReplyContent+"</p>"
@@ -212,11 +212,10 @@
     						  +		"<div class='user_func'>"
     						  +			"<span>"+list[i].revReplyDate+"</span>"
     						  +			"<div class='user_good'>"
-    						  +				"<img src='resources/img/icons8-하트-50 (1).png' alt='좋아요'>"
+    						  +				"<img src='resources/img/icons8-하트-50 (1).png' alt='좋아요' onclick='replyRecommend("+list[i].revReplyNo+");' >"
     					 	  +				"<span>"+list[i].revReplyGcount+"</span>"
     						  +			"</div>"
     						  +		"</div>"
-    						  +		"<input type='hidden' class= 'revReplyNo' value='"+list[i].revReplyNo+"'>"
     						  +	 "</div>";
     						  
     				}
@@ -271,14 +270,14 @@
     	}
     		
     	
+    	/* 
     	$(document).on('click', '.revReplyDelete', function() {
 			console.log($('.revReplyNo').val());
-		
 			$.ajax({
 				url:'revReplyDelete.bo',
 				data: {
 						UserId : '${ loginUser.memNickname }',
-						revReplyNo: $('.revReplyNo').val()
+						revReplyNo: num
 					},
 				success: function(result) {
 					location.reload();
@@ -286,18 +285,19 @@
 				error: function() {
 					console.log("실패");	
 				}					
-			})	
+			})
+				
 		
 		
 		})
-	
+		
 	
 		$(document).on('click', '.replyGood', function() {
-			console.log($('.revReplyNo').val());
+			console.log($('.replyGood').val());
 		    	$.ajax({
 	        		url : "replyRecommend.bo",
 	        		data : {
-	        				revReplyNo: $('.revReplyNo').val(),
+	        				revReplyNo: $('.replyGood').val(),
 	        				memNo: "${ loginUser.memNo }"
 	        	   		},
 	        		success: function(result) {
@@ -310,7 +310,43 @@
 	       				location.reload();
 	       			}
 	       		});
-		})
+		}) */
+		
+		function revReplyDelete(num) {
+    		$.ajax({
+				url:'revReplyDelete.bo',
+				data: {
+						UserId : '${ loginUser.memNickname }',
+						revReplyNo: num
+					},
+				success: function(result) {
+					location.reload();
+				},
+				error: function() {
+					console.log("실패");	
+				}					
+			})
+    	}
+		
+		
+		function replyRecommend(num) {
+    		$.ajax({
+        		url : "replyRecommend.bo",
+        		data : {
+        				revReplyNo: num,
+        				memNo: "${ loginUser.memNo }"
+        	   		},
+        		success: function(result) {
+        			console.log("성공");		        			
+            		location.reload();
+        			        			
+        		},
+       			error: function() {
+       				console.log("실패");
+       				location.reload();
+       			}
+       		});
+    	}
 
     </script>
 </body>
