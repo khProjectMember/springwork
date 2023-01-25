@@ -3,4 +3,7 @@
 <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.kh.spring.qa.model.service.QnaService"/>
+<fullyQualifiedTypeName name="com.kh.spring.board.model.vo.Review"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.kh.spring.board.model.vo.Notice"/>
 </qualifiedTypeNameHistroy>

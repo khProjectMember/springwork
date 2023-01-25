@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰관리</title>
+<title>공지관리</title>
 <style>
   	 
     .content2{
@@ -43,43 +43,43 @@
 			<div id="inner">
 				<div class="content2">
 					<div class="innerOuter">
-						<h2>리뷰 목록</h2>
+						<h2>공지 목록</h2>
 						<br>
-						<input type = "button" value = "삭제" class = "btn btn-outline-danger" onclick="deleteValue();">
-						<table id="ReviewList" class="table table-hover" align="center">
+						
+						<table id="NoticeList" class="table table-hover" align="center">
 							<thead>
 								<tr>
 									<th>번호</th>
 									<th>카테고리</th>
-                                    <th>강의명</th>
-                                    <th>평점</th>
                                     <th>제목</th>
-                                    <th>작성자</th>
                                     <th>작성날짜</th>
-                                    <th>조회수</th>
-                                    <th>추천수</th>
+                                    <th>작성자</th>
                                     <th></th>
 									
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="r" items="${ list }">
+								<c:forEach var="n" items="${ list }">
 									<tr>
-										<td class="rno">${ r.revNo}</td>
-										<td>${r.revCatg}</td>
-										<td>${r.l.lecName}</td>
-										<td>${r.revStar}</td>
-										<td>${r.revTitle}</td>
-										<td>${r.m.memNickname}</td>
-										<td>${r.revDate}</td>
-										<td>${r.revCount}</td>
-										<td>${r.revRec}</td>
-										<td><input name = "selectDelete" type = "checkbox" value = "${r.revNo }"/></td>
+										<td class="nno">${ n.noticeNo}</td>
+										<c:choose>
+		                                    <c:when test="${ n.noticeCatg eq 0}">
+		                                    <td>공지사항</td>
+		                                    </c:when>
+		                                    <c:otherwise>
+		                                    <td>이벤트</td>
+		                                    </c:otherwise>
+	                                    </c:choose>
+										<td class="subject"><a href="detail.bo?noticeNo=${ n.noticeNo }">${ n.noticeTitle }</a></td>
+										<td>${n.edate}</td>
+										<td>${n.m.memNickname}</td>
+										<td><input name = "selectDelete" type = "checkbox" value = "${n.noticeNo }"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<br>
+						<input type = "button" value = "삭제" class = "btn btn-outline-danger" onclick="deleteValue();">
 						<!-- 상세페이지 -->
 					<!-- 	<script>
 							$(function() {
@@ -118,7 +118,7 @@
 			} else {
 				var msg = confirm("정말 삭제하시겠습니까?");
 				$.ajax({
-					url: "${contextPath}/spring/deleteReview.ad",
+					url: "${contextPath}/spring/deleteNotice.ad",
 					type: 'POST',
 					data: {
 						deleteArr: deleteArr
@@ -141,13 +141,13 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="rlist.ad?cpage=${ pi.nowPage-1 }">Previous</a></li>
+											href="nlist.ad?cpage=${ pi.nowPage-1 }">Previous</a></li>
 									</c:otherwise>
 								</c:choose>
 								<c:forEach var="p" begin="${ pi.startPage }"
 									end="${ pi.endpage }">
 									<li class="page-item"><a class="page-link"
-										href="rlist.ad?cpage=${ p }">${ p }</a></li>
+										href="nlist.ad?cpage=${ p }">${ p }</a></li>
 								</c:forEach>
 								<c:choose>
 									<c:when test="${ pi.nowPage eq pi.maxPage }">
@@ -156,7 +156,7 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="rlist.ad?cpage=${ pi.nowPage+1 }">Next</a></li>
+											href="nlist.ad?cpage=${ pi.nowPage+1 }">Next</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -167,8 +167,7 @@
 						<form id="searchForm" action="" method="Get" align="center">
 							<div class="select">
 								<select class="custom-select" name="condition">
-									<option value="name">이름</option>
-									<option value="nickname">닉네임</option>
+									<option value="name">카테고리</option>
 								</select>
 							</div>
 							<div class="text">

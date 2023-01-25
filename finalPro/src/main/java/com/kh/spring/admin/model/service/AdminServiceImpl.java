@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.board.model.vo.Meeting;
+import com.kh.spring.board.model.vo.Notice;
+import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -37,9 +39,15 @@ public class AdminServiceImpl implements AdminService{
 	public int selectListCount_Hangout() {
 		return aDao.selectListCount_Hangout(sqlSession);
 	}
+	@Override
+	public int selectListCount_Review() {
+		return aDao.selectListCount_Review(sqlSession);
+	}
+	@Override
+	public int selectListCount_Notice() {
+		return aDao.selectListCount_Notice(sqlSession);
+	}
 	
-	
-
 	@Override
 	public ArrayList<Lecture> selectLectureList(PageInfo pi) {
 		return aDao.selectLectureList(sqlSession, pi);
@@ -56,7 +64,14 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<Meeting> selectHangoutList(PageInfo pi) {
 		return aDao.selectHangoutList(sqlSession, pi);
 	}
-	
+	public ArrayList<Review> selectReviewList(PageInfo pi) {
+		return aDao.selectReviewList(sqlSession, pi);
+	}
+	@Override
+	public ArrayList<Notice> selectNoticeList(PageInfo pi) {
+		return aDao.selectNoticeList(sqlSession, pi);
+	}
+
 
 	@Override
 	public int insertLecture(Lecture l) {
@@ -69,12 +84,34 @@ public class AdminServiceImpl implements AdminService{
 	
 	
 	//새로운 멤버조회
+	@Override
 	public ArrayList<Member> selectNewMember() {
 		return aDao.selectNewMember(sqlSession);
 	}
-
+	@Override
 	public int selectNewMemberCount() {
 		return aDao.selectNewMemberCount(sqlSession);
 	}
-
+	
+	//새로운 리뷰 조회
+	@Override
+	public ArrayList<Review> selectNewReview() {
+		return aDao.selectNewReview(sqlSession);
+	}
+	@Override
+	public int selectNewReviewCount() {
+		return aDao.selectNewReviewCount(sqlSession);
+	}
+	
+	//리뷰 삭제
+	@Override
+	public int deleteReview_ad(String revNo) {
+		return aDao.deleteReview_ad(sqlSession, revNo);
+	}
+	//공지 삭제
+	@Override
+	public int deleteNotice_ad(String noticeNo) {
+		return aDao.deleteNotice_ad(sqlSession, noticeNo);
+	}
+	
 }

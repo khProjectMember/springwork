@@ -81,7 +81,14 @@
                            	                            	                           	                            	                            		                                
 	                                <tr>	                                	                    		                   
 	                                    <td class="noticeNo" >${ ( nlist.size() -status.index) - ((pi.nowPage - 1) * 10) }</td>											                                    	                                                           
-	                                    <td>${ notice.noticeCatg }</td>
+	                                    <c:choose>
+	                                    <c:when test="${ notice.noticeCatg eq 0}">
+	                                    <td>공지사항</td>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                    <td>이벤트</td>
+	                                    </c:otherwise>
+	                                    </c:choose>
 	                                    <td class="subject"><a href="detail.bo?noticeNo=${ notice.noticeNo }">${ notice.noticeTitle }</a></td>
 	                                    <td>${ notice.m.memNickname }</td>
 	                                    <td>${ notice.edate }</td>                        
