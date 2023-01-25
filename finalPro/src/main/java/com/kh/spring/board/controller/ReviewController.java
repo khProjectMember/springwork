@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,6 +70,7 @@ public class ReviewController {
 		
 		
 		model.addAttribute("review", review);
+		model.addAttribute("list", list);
 		model.addAttribute("rlist", rlist);
 		
 		
@@ -217,15 +219,31 @@ public class ReviewController {
 	public String rinsert(ReviewReply rr) {
 		int result = rService.insertReviewReply(rr);
 		
+		
 		return result > 0 ? "success" : "fail";
 	}
 	
 	@ResponseBody
 	@RequestMapping("revReplyDelete.bo")
-	public String rdelete(int revNo) {
-		int result = rService.deleteReviewReply(revNo);
+	public String rdelete(int revReplyNo, HttpSession session) {
+		int result = rService.deleteReviewReply(revReplyNo);
 		
-		return result > 0 ? "success" : "fail";
+		if(result > 0) {
+			session.setAttribute("alertMsg", "댓글이 삭제 되었습니다.");
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("reviewTotalCount.bo")
+	public int reviewTotalCount(int revNo) {
+		int result = rService.reviewTotalCount(revNo);
+		
+		return result;
 	}
 	
 }
