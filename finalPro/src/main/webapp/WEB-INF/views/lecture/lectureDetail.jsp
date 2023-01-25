@@ -20,7 +20,7 @@
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script type="text/javascript">
-    var IMP = window.IMP; 
+    var IMP = window.IMP;
     IMP.init("imp67011510"); 
 
     var today = new Date();   
@@ -37,7 +37,7 @@
             pay_method : 'card',
             merchant_uid: "IMP"+makeMerchantUid, 
             name : '${lecture.lecName}',
-            amount : 500,
+            amount : '${lecture.lecPrice}',
             buyer_email : '${member.memEmail}',
             buyer_name : 'member.memName',
             buyer_tel : 'member.memPhone',
@@ -253,6 +253,7 @@
                 <div class="class_regi">
                     <hr>
                     <a href="list.le">목록</a>
+                    <button onClick="requestPay()">결제</button>
                     <a href="javascript:apply_lecs(${lecture.lecNo },${loginUser.memNo})">신청하기</a>
                     <a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a>
                 </div>
