@@ -126,8 +126,12 @@ public class ReviewDao {
 		return sqlSession.update("reviewMapper.updateRecommendCountDelete", revNo);
 	}
 	
-	public int deleteReviewReply(SqlSessionTemplate sqlSession, int revNo) {
-		return sqlSession.delete("reviewMapper.deleteReviewReply", revNo);
+	public int deleteReviewReply(SqlSessionTemplate sqlSession, int revReplyNo) {
+		return sqlSession.delete("reviewMapper.deleteReviewReply", revReplyNo);
+	}
+	
+	public int reviewTotalCount(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.selectOne("reviewMapper.reviewTotalCount", revNo);
 	}
 	
 	

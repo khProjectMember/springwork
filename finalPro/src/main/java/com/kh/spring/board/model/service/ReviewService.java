@@ -65,7 +65,9 @@ public interface ReviewService {
 	
 	int insertReviewReply(ReviewReply rr);
 	
-	int deleteReviewReply(int revNo);
+	int deleteReviewReply(int revReplyNo);
+	
+	int reviewTotalCount(int revNo);
 
 }
 
