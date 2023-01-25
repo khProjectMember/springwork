@@ -22,12 +22,12 @@ public class Lecture{
 	private int lecCount;
 	private String lecFilename;
 	private String lecBcatg;
-	
 	private String lecScatg;
 	private int lecPrice;
 	private int lecGrade;
 	private int lecJnum;
 	private int lecCnum;
+	
 	private String lecMlist;
 	private int teaNo;
 	private int locNo;

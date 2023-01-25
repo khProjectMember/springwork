@@ -1,10 +1,3 @@
-@media only screen and (max-width: 1700px) {
-    #header {width: 1700px;}
-    #banner {width: 1700px;}
-    #content {width: 1700px;}
-    #footer {width: 1700px;}
-    .header .nav_bar {width: 1700px;}
-}
 
 /* 초기화 */
 
@@ -26,10 +19,10 @@ body, input, textarea, select, button a {
 #wrap {width: 100%;}
 #header{width: 100%; height: 200px;}
 #banner {width: 100%; height: 500px;}
-#content {width: 100%; height: 1400px; position: relative;}
+#content {width: 100%; height: 1100px; position: relative;}
 #footer{width: 100%; height: 300px; margin-top: 200px; background-color: #f1f1f1;}
 
-.inner {margin: 0 200px 0 200px; height: inherit;}
+.inner {margin: 0 500px; height: inherit;}
 
 .all {width: 1700px; height: 100%;}
 
@@ -97,38 +90,6 @@ body, input, textarea, select, button a {
 
 /* 콘텐츠 */
 
-/* 추천강좌 */
-.content {width: 100%; margin-top: 100px; display: flex; flex-direction: column;}
-.content h2 {font-size: 28px; height: 50px; margin-bottom: 50px;}
-.content .container {width: 100%; height: 450px;}
-.content .container .reco {width: 100%;}
-.content .container .reco .reco_ul {display: flex; flex-wrap: wrap; width: 100%;}
-.content .container .reco .reco_ul li {display: flex; flex-basis: 20%; width: 20%; position: relative; box-sizing: border-box; padding: 0 15px;}
-.content .container .reco .reco_ul li a {display: flex; position: relative; width: 100%; height: 350px; flex-direction: column;}
-.content .container .reco .reco_ul li a .img_box {position: relative;}
-.content .container .reco .reco_ul li a .img_box img {width: 100%; height: 300px;}
-.content .container .reco .reco_ul li a .img_info {display: none; position: absolute; background: rgba(0, 0, 0, 0.25); width: 100%; height: 300px;}
-.content .container .reco .reco_ul li a .img_info .info_detail {display: flex; flex-direction: column; margin: 10px 0 0 7px;}
-.content .container .reco .reco_ul li a .img_info .info_detail span {font-size: 18px; color: #f1f1f1; font-weight: 500; margin-bottom: 5px;}
-.content .container .reco .reco_ul li a .img_info .info_detail p {font-size: 14px; color: #f1f1f1; font-weight: 300;}
-.content .container .reco .reco_ul li a .img_title {display: flex; justify-content: center; align-items: center;}
-.content .container .reco .reco_ul li a .img_title p {color: #222; font-size: 15px; font-weight: 600;}
-.content_fir {width: 100%; display: flex; justify-content: flex-end;}
-.content_fir .nav_box {margin: 50px 0;}
-.content_fir .nav_box ul {display: flex;}
-.content_fir .nav_box ul li a {font-size: 14px; color: #666; font-weight: 400; padding: 0 7px; overflow: hidden; white-space: nowrap;}
-.content_fir .nav_box ul li .nav_a {border-right: 1px solid #bdbdbd;}
-.content_fir .nav_box ul li a img {width: 20px; height: 20px; vertical-align: bottom; overflow: hidden; white-space: nowrap;}
-
-
-
-/* 퀵메뉴 */
-#content .quickmenu {display: flex; border: 1px solid #a1a1a1; position: absolute; left: 20px; top : 0px;}
-#content .quickmenu ul {display: flex; flex-direction: column; width: 50px; align-items: center;}
-#content .quickmenu ul li {padding: 10px 0; border-bottom: 1px solid #a1a1a1; width: 100%; text-align: center;}
-#content .quickmenu ul li:last-child {border-bottom: none;}
-#content .quickmenu ul li a {color: #222; font-size: 15px; font-weight: 400; overflow: hidden; white-space: nowrap;}
-#content .quickmenu ul li a img {width: 20px; height: 20px;}
 
 
 /* 푸터 */
@@ -164,13 +125,10 @@ body, input, textarea, select, button a {
     #footer {width: 1700px;}
     .header .nav_bar {width: 1700px;}
 }
-/* 초기화 */
+
 /* 컨텐츠 */
-* {
-    box-sizing: border-box;
-    font-family: "Noto Sans KR", sans-serif;
-}
-#main{width:658px; margin : -190px auto;}
+
+.headTitle { display: flex; justify-content: space-between;}
 
 #main #loginFrm fieldset ul li.error{
     color:#e7723d; padding:0px; display:none;
@@ -208,47 +166,41 @@ body, input, textarea, select, button a {
     background-position: -101px -21px;
 }
 #main #loginFrm fieldset #login_btn{
-    background:rgba(255, 0, 0, 0.587);
+    background:rgba(255, 0, 0, 0.70);
     width:100%; color:#fff; padding:5px 0; line-height: 66px;
-    font-size: 25px; font-weight:medium;
+    font-size: 25px; font-weight:600;
     min-width: 120px;
-    border:rgba(255, 0, 0, 0.587);
+    border:rgba(255, 0, 0, 0.70);
 }
 #main .join_link{border:1px solid #aaa; color:#0074e9; display:block; text-align:center; background:#fff; padding: 20px 0; width:100%; box-shadow:0 2px 0 #eee;}
 
 #container {
-    position: relative;
-    padding-top: 95px;
+    
+    padding-top: 180px;
 }
-#content.login {
-    padding-top: 120px;
-}
-#content > .inner {
-    margin: 0 auto;
-}
-#content.login h2 {
+
+.login {display: flex; flex-direction: column;}
+
+.login h2 {
     text-align: left;
     margin-bottom: 27px;
-    position: relative;
     line-height: 1;
 }
-#content h2 {
+ 
+h2 {
     font-size: 70px;
     color: #000;
     font-family: 'Noto Sans KR';
     font-weight: 500;
 }
-#content.login .logo {
-    position: absolute;
-    top:131px;
-    right: 1px;
-}
 
-#content.login .loginList {
+.login .loginList {
     font-size: 18px;
     margin-bottom: 30px;
 }
-#content.login .loginList li input {
+.login .loginList li input {
+    width: 100%;
+    height: 60px;
     background: none;
     height: auto;
     line-height: 1;
@@ -259,6 +211,8 @@ body, input, textarea, select, button a {
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: 0;
+    outline: none;
+    padding
     padding-top: 28px;
     padding-bottom: 23px;
     padding-left: 38px;
@@ -267,102 +221,78 @@ input[type="text"] {
     display: inline-block;
     width: 100%;
 }
-#content.login .loginList li {
-    position: relative;
-}
+
 input[type="password"] {
     display: inline-block;
     width: 100%;
 }
-#content.login .loginList li:before{
-    display: block;
-    content: '';  
-    background: url(../img/human.png) no-repeat 0 0;
-    position: absolute;
-    top: 33px;
-    width: 33px;
-    height: 30px;
-    left: 0;
+
+.login .loginList ul {display: flex; flex-direction: column;}
+
+.login .loginList li {
+    display: flex;
+    margin: 10px 0;
 }
-#content.login .loginList li + li:before {
-    display: block;
-    content: '';
-    width: 33px;
-    height: 30px;
-    background: url(../img/secret.png) no-repeat 0 0;
-    position: absolute;
-    top: 32px;
-    left: 0;
+
+.login .loginList li img {
+    width: 20px;
+    height: 20px;
+    
 }
 
 .skip{display:none;}
 
 h1{text-align: center; margin: -140px auto 10px;}
 
+.login .idpwSearch form {
+    text-align: center;
+    margin: 0 10px;
+}
 
 
-#content.login .loginList li:before {
-    display: block;
-    content: '';
-    width: 18px;
-    height: 19px;
-    background: url(../img/human.png) no-repeat 0 0;
-    position: absolute;
-    top: 33px;
-    left: 0;
-}
-#content.login .idpwSearch a:first-child:after {
-    display: block;
-    content: '';
-    width: 1px;
-    height: 15px;
-    background: #ddd;
-    position: absolute;
-    top: 1px;
-    right: -15px;
-}
-#content.login .idpwSearch a {
+.login .idpwSearch a {
     font-size: 20px;
     line-height: 1;
     display: inline-block;
-    position: relative;
+    
 }
-#content.login .loginTip {
+.login .loginTip {
     border: 1px solid #ddd;
     background: #f4f4f4;
     padding: 40px 29px 35px 28px;
-    position: relative;
+    
     margin-bottom: 20px;
 }
-#content.login .loginTip dt {
+.login .loginTip dt {
     font-size: 18px;
     color: #222;
     line-height: 1;
     margin-bottom: 15px;
 }
-#content.login .loginTip dd {
-    padding-top:12px;
+.login .loginTip dd {
+    padding:12px 0;
     font-size: 18px;
     line-height: 26px;
     color:#666;
 }
-#content.login .loginTip dl {
+.login .loginTip dl {
     font-weight:bold;
     font-size: 20px;
     line-height: 26px;
 }
-#content.login .loginTip .btnType01 {
-    position: absolute;
+.login .loginTip .btnType01 {
+    
     top: 75px;
     right: 30px;
 }
 .btnBlue {
-    background: rgba(255, 0, 0, 0.587);
+    background: rgba(255, 0, 0, 0.70);
 }
 .btnType01 {
     height: 50px;
     line-height: 50px;
     font-size: 16px;
+    font-weight: 500;
 }
 .btn {
     display: inline-block;
@@ -375,14 +305,12 @@ a {
     color: #666;   
     word-break: break-all;
     /* outline: 0; */
-}
-#content.login .idpwSearch {
+}   
+.login .idpwSearch {
     margin: 40px 0 45px;
     text-align: center;
 }
-#content.login .idpwSearch a:first-child {
-    margin-right: 29px;
-}
+
 
 
 footer{color:#333; text-align:center; font-size:0.85rem;margin-top:20px;}

@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kh.spring.board.model.service.MeetingService;
+import com.kh.spring.board.model.vo.Join;
 import com.kh.spring.board.model.vo.Meeting;
 
 @Controller
@@ -58,9 +59,11 @@ public class MeetingController {
 	public String MeetingDetail(int hangoutNo, Model model) {
 		int viewCount = mService.incCount(hangoutNo);
 		Meeting meeting = mService.selectMeetingDetail(hangoutNo);
+		ArrayList<Join> list = mService.joinvalue(hangoutNo);
 		
 	
 		model.addAttribute("meeting", meeting);
+		model.addAttribute("list", list);
 		
 		return "board/MeetingDetailView";
 	}
@@ -96,16 +99,31 @@ public class MeetingController {
 	}
 	
 	@RequestMapping("meetingjoin.bo")
-	public String insertJoinMeeting(@RequestParam(value="hangoutNo") int hangoutNo) {
-		int result = mService.insertJoinMeeting(hangoutNo);
+	public String insertJoinMeeting(@RequestParam(value="hangoutNo") int hangoutNo, @RequestParam(value="memNo") int memNo) {
+		int result = mService.insertJoinMeeting(hangoutNo, memNo);
 		int updateNowCount = mService.updateMeetingCount(hangoutNo);
 		
 		if((result+updateNowCount) > 1) {
+			
 			return "redirect:meeting.bo";
 		} else {
 			return "board/errorPage";
 		}
 	}
+	
+	@RequestMapping("meetingjoinOut.bo")
+	public String deleteJoinOutMeeting(@RequestParam(value="hangoutNo") int hangoutNo, @RequestParam(value="memNo") int memNo) {
+		int result = mService.deleteJoinMeeting(hangoutNo, memNo);
+		int updateDownMeetingCount = mService.updateDownMeetingCount(hangoutNo);
+		
+		if((result+updateDownMeetingCount) > 1) {
+			
+			return "redirect:meeting.bo";
+		} else {
+			return "board/errorPage";
+		}
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="viewCountAlign.bo", produces="application/json; charset=utf-8")

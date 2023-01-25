@@ -20,6 +20,11 @@
 			<result column="mem_nickname" property="memNickname" />
 		</association>
 	</resultMap>
+	
+	<resultMap type="Join" id="resultJoin">
+		<result column="hangout_no" property="hangoutNo" />
+		<result column="mem_no" property="memNo" />
+	</resultMap>
 	<select id="selectMeetingCount" resultType="_int">
 		select count(*) from hangout	
 	</select>
@@ -34,11 +39,11 @@
 			select SEQ_HNO.CURRVAL as hangoutNo from dual
 		</selectKey>
 		insert into hangout(hangout_no, hangout_title, hangout_content, hangout_local, hangout_gender, hangout_age, hangout_catg, hangout_edate, hangout_status, hangout_joincount, hangout_nowcount, hangout_viewcount, mem_no) 
-		values (SEQ_HNO.NEXTVAL, #{hangoutTitle}, #{hangoutContent}, #{hangoutLocal}, #{hangoutGender}, #{hangoutAge}, #{hangoutCatg}, sysdate, 'Y', #{hangoutJoinCount}, 1, 0, 1)
+		values (SEQ_HNO.NEXTVAL, #{hangoutTitle}, #{hangoutContent}, #{hangoutLocal}, #{hangoutGender}, #{hangoutAge}, #{hangoutCatg}, sysdate, 'Y', #{hangoutJoinCount}, 1, 0, #{memNo})
 	</insert>
 	<insert id="insertjoin">
 		insert into join (hangout_no, mem_no) 
-		values (#{hangoutNo}, 1)
+		values (#{hangoutNo}, #{memNo})
 	</insert>	
 	<update id="incCount">
 		update hangout set hangout_viewcount = hangout_viewcount + 1 
@@ -59,7 +64,7 @@
 	</delete>
 	<insert id="insertJoinMeeting">
 		insert into join (hangout_no, mem_no) 
-		values (#{hangoutNo}, 2)
+		values (#{hangoutNo}, #{memNo})
 	</insert>
 	<update id="updateMeetingCount">
 		update hangout set hangout_nowcount = hangout_nowcount + 1
@@ -118,4 +123,15 @@
 		</if>
 		order by h.hangout_no desc
 	</select>
+	<select id="joinvalue" resultMap="resultJoin" resultType="_int">
+		select mem_no from join
+		where hangout_no = #{hangoutNo}
+	</select>
+	<delete id="deleteJoinMeeting">
+		delete from join where hangout_no = #{hangoutNo} and mem_no = #{memNo}
+	</delete>
+	<update id="updateDownMeetingCount">
+		update hangout set hangout_nowcount = hangout_nowcount - 1
+		where hangout_no = #{hangoutNo} 
+	</update>
 </mapper>

@@ -16,7 +16,7 @@ public class LectureDao {
 		return (ArrayList)sqlSession.selectList("lectureMapper.lectureList",l);
 	}
 
-	public Lecture lectureDetail(SqlSessionTemplate sqlSession, int LecNo) {
+	public Lecture lectureDetail(SqlSessionTemplate sqlSession, Integer LecNo) {
 		return (Lecture)sqlSession.selectOne("lectureMapper.lectureDetail", LecNo);
 	}
 	

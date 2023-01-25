@@ -6,9 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
 	<!-- css -->
 	<link rel="stylesheet" href="resources/css/notice.css">
+	
+	<%
+		String keyvalue = "";
+		String keyword = "";
+		int nowPage;
+		if(request.getParameter(keyvalue) != null) {
+			keyvalue = request.getParameter("keyvalue");
+			keyword = request.getParameter("keyword");
+		}
+		
+		if(request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt((request.getParameter("nowPage")));
+		}
+	%>
+	
+	
+	
+	
 </head>
 <body>
 	<!-- 헤더 -->
@@ -63,8 +80,15 @@
                             	<c:forEach var="notice" varStatus = "status" items="${ list }">
                            	                            	                           	                            	                            		                                
 	                                <tr>	                                	                    		                   
-	                                    <td class="noticeNo" >${ (nlist.size() -status.index) - ((pi.nowPage - 1) * 10) }</td>											                                    	                                                           
-	                                    <td>${ notice.noticeCatg }</td>
+	                                    <td class="noticeNo" >${ ( nlist.size() -status.index) - ((pi.nowPage - 1) * 10) }</td>											                                    	                                                           
+	                                    <c:choose>
+	                                    <c:when test="${ notice.noticeCatg eq 0}">
+	                                    <td>공지사항</td>
+	                                    </c:when>
+	                                    <c:otherwise>
+	                                    <td>이벤트</td>
+	                                    </c:otherwise>
+	                                    </c:choose>
 	                                    <td class="subject"><a href="detail.bo?noticeNo=${ notice.noticeNo }">${ notice.noticeTitle }</a></td>
 	                                    <td>${ notice.m.memNickname }</td>
 	                                    <td>${ notice.edate }</td>                        
@@ -78,7 +102,7 @@
                         <div class="pagin_box">
                             <div class="pagin_box_fir"></div>
                             <div class="pagin_box_sec">
-                                <ul>
+                                <ul> 
                                 	<c:choose>
 	                                	<c:when test="${ pi.nowPage eq 1 }">
 	                                    	<li><a href="#">이전</a></li>
@@ -88,21 +112,16 @@
 	                                    </c:otherwise>
 	                                </c:choose>   
 	                                    <c:forEach var="page" begin="${ pi.startPage }" end="${ pi.endpage }">
-	                                    	<li><a href="${ url }?cpage=${ page }">${ page }</a></li>
+	                                    	<li><a href="javascript:paging(${ page });">${ page }</a></li>
 	                                    </c:forEach>
 	                                <c:choose>
 	                                    <c:when test="${ pi.nowPage eq pi.maxPage }">                                                            
 	                                    	<li><a href="#">다음</a></li>
 	                                    </c:when>
 	                                    <c:otherwise>
-	                                    	<li><a href="${ url }<c:choose>
-	                                    							<c:when test="${ url } = notice.bo">
-	                                    								?cpage=${ pi.nowPage+1 }">다음</a></li>
-	                                    							</c:when>
-	                                    							<c:otherwise>
-	                                    								&cpage=${ pi.nowPage+1 }">다음</a></li>
-	                                    							</c:otherwise>
-	                                    						</c:choose>
+	                                    	<li><a href="${ url }?cpage=${ pi.nowPage+1 }">다음</a></li>
+	                                    	<form>
+	                                    	</form>
 	                                    </c:otherwise>
 	                                </c:choose>                                                                                           
                                 </ul>
@@ -116,6 +135,11 @@
             </div>
         </div>
     </div>
+    <form method="get" action="" class="submitFrm">
+    	<input type="hidden" name="keyvalue" value="${ keyvalue }">
+    	<input type="hidden" name="keyword" value="${ keyword }">
+    	<input type="hidden" name="cpage" class = "cpage">
+    </form>
     <jsp:include page="../common/footer.jsp" />
     
     <script type="text/javascript">
@@ -124,11 +148,11 @@
     		location.href='enroll.bo';
     	})
     	
-    	
-    	
-    	
+    	function paging(num) {
+    		var url = "${ url }";
+    		$('.cpage').attr("value", num);
+    		$('.submitFrm').attr("action", url).submit();
+    	}
     </script>
-    
-    
 </body>
 </html>

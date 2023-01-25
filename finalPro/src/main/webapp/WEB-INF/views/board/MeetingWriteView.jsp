@@ -42,7 +42,10 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">작성자</th>
-                                        <td><input type="text" class="nick_input" placeholder="작성자 닉네임" readonly></td>
+                                        <td>
+                                        	<input type="text" class="nick_input" placeholder="${ loginUser.memNickname }" readonly>
+                                        	<input type="hidden" name="memNo" value="${ loginUser.memNo }">
+                                        </td>                                        
                                         <th scope="row">모집인원</th>
                                         <td>
                                             <select name="hangoutJoinCount" id="">
@@ -121,7 +124,7 @@
                                     <button type="submit">작성</button>
                                     <button type="reset" class="cancle">취소</button>
                                 </div>
-                            </div>
+                            </div>                            
                         </form>
                     </div>
                     
@@ -197,6 +200,11 @@
 	    $('.meetingList_box').click(function() {
 	    	location.href='meeting.bo';
 	    })
+	    
+	    $(function() {
+    		
+    	})
+    	
 	    
     </script>
     

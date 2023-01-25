@@ -84,7 +84,15 @@
                             </ul>
                         </div>
                         <div class="board_btn">
-                            <button class = "meeting_make">모임만들기</button>
+                        	<c:choose>
+                        		<c:when test="${ empty loginUser }">
+                        			<button class = "meeting_make_no">모임만들기</button>	
+                        		</c:when>
+                        		<c:otherwise>
+                        			<button class = "meeting_make">모임만들기</button>
+                        		</c:otherwise>
+                        	</c:choose>
+                            	
                         </div>
                     </div>
                     <div class="board_count">
@@ -119,6 +127,13 @@
     </div>
     
     <script type="text/javascript">
+    	// 로그인 제한
+    	
+    	$('.meeting_make_no').on('click', function() {
+    		Swal.fire("로그인 후 이용해주세요.");
+    	})
+    
+    
     	// 모임 만들기 폼 이동
     	$('.meeting_make').click(function() {
     		location.href='meetingEnroll.bo';

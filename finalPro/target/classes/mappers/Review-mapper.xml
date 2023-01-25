@@ -6,6 +6,7 @@
 		<result column="rev_title" property="revTitle" />
 		<result column="rev_catg" property="revCatg" />
 		<result column="rev_content" property="revContent" />
+		<result column="rev_lecture" property="revLecture" />
 		<result column="rev_date" property="revDate" />
 		<result column="rev_star" property="revStar" />
 		<result column="rev_count" property="revCount" />
@@ -19,6 +20,18 @@
 			<result column="lec_name" property="lecName"/>
 		</association>
 	</resultMap>
+	<resultMap type="Reviewrecommend" id="reviewRecommendReview">
+		<result column="rev_no" property="revNo" />
+		<result column="mem_no" property="memNo" />
+		<result column="reco_status" property="recoStatus" />
+	</resultMap>
+	<resultMap type="ReviewReply" id="reviewReplyReview">
+		<result column="revreply_no" property="revReplyNo" />
+		<result column="revreply_writer" property="revReplyWriter" />
+		<result column="revreply_content" property="revReplyContent" />
+		<result column="revreply_date" property="revReplyDate" />
+		<result column="rev_no" property="revNo" />
+	</resultMap>
 	<select id="reviewListCount" resultType="_int">
 		select count(*) 
 		from review
@@ -29,4 +42,106 @@
 		where r.mem_no = m.mem_no and r.lec_no = l.lec_no 
 		order by r.rev_no desc
 	</select>
+	<insert id="insertReview">
+		insert into review (rev_no, rev_title, rev_catg, rev_content, rev_lecture, rev_date, rev_star, rev_count, rev_rec, mem_no, lec_no) 
+		values (SEQ_RENO.NEXTVAL, #{revTitle}, #{revCatg}, #{revContent}, #{revLecture}, sysdate, #{revStar}, 0, 0, 1, 1)
+	</insert>
+	<update id="incCount">
+		update review set rev_count = rev_count + 1 
+		where rev_no = #{revNo}
+	</update>
+	<select id="selectReviewDetail" resultMap="resultReview">
+		select r.rev_no, r.rev_catg, r.rev_title, r.rev_star, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_rec, r.rev_content, l.lec_name, m.mem_nickname
+		from review r, member m, lecture l
+		where r.mem_no = m.mem_no and r.lec_no = l.lec_no and
+		r.rev_no = #{revNo}
+	</select>	
+	<update id="updateReview">
+		update review set rev_title = #{revTitle}, rev_catg = #{revCatg}, rev_lecture = #{revLecture}, rev_star = #{revStar}, rev_content = #{revContent}
+		where rev_no = #{revNo}
+	</update>
+	<delete id="deleteReview">
+		delete from review where rev_no = #{revNo}
+	</delete>
+	<insert id="insertRecommend" parameterType="hashmap">
+		insert into reviewrecommend (rev_no, mem_no, reco_status) 
+		values (#{revNo}, #{memNo}, 1)
+	</insert>
+	<update id="updateRecommendCount">
+		update review set rev_rec = rev_rec + 1
+		where rev_no = #{revNO}
+	</update>
+	<select id="Reviewrecommend" resultMap="reviewRecommendReview">
+		select * from reviewrecommend where rev_no = #{revNo}
+	</select>
+	<select id="selectViewManyDate" resultMap="resultReview">
+		select r.rev_no, r.rev_title, r.rev_catg, r.rev_content, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_star, r.rev_count, r.rev_rec, m.mem_nickname, l.lec_name
+		from review r, member m, lecture l  
+		where r.mem_no = m.mem_no and r.lec_no = l.lec_no 
+		order by r.rev_count desc
+	</select>
+	<select id="selectViewCountDate" resultMap="resultReview">
+		select r.rev_no, r.rev_title, r.rev_catg, r.rev_content, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_star, r.rev_count, r.rev_rec, m.mem_nickname, l.lec_name
+		from review r, member m, lecture l  
+		where r.mem_no = m.mem_no and r.lec_no = l.lec_no 
+		order by r.rev_rec desc
+	</select>
+	<select id="searchCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		from review
+		where
+		<if test="keyvalue == '전체'">
+			rev_title like '%'||#{keyword}||'%' 
+			or rev_content like '%'||#{keyword}||'%'
+		</if>	
+		<if test="keyvalue == '제목'">
+			rev_title like '%'||#{keyword}||'%' 
+		</if>
+		<if test="keyvalue == '내용'">
+			rev_content like '%'||#{keyword}||'%' 
+		</if>
+	</select>
+	<select id="selectSearchReview" resultMap="resultReview">
+		select r.rev_no, r.rev_title, r.rev_catg, r.rev_content, to_char(r.rev_date, 'YYYY-MM-DD') as rev_date, r.rev_star, r.rev_count, r.rev_rec, m.mem_nickname, l.lec_name
+		from review r, member m, lecture l  
+		where r.mem_no = m.mem_no and r.lec_no = l.lec_no and
+			<if test="keyvalue == '전체'">
+				r.rev_title like '%'||#{keyword}||'%'
+				or r.rev_content like '%'||#{keyword}||'%'
+			</if>
+			<if test="keyvalue == '제목'">
+				r.rev_title like '%'||#{keyword}||'%'				
+			</if>
+			<if test="keyvalue == '내용'">
+				r.rev_content like '%'||#{keyword}||'%'				
+			</if>
+		order by r.rev_no desc
+	</select>
+	<select id="reviewReplyList" resultMap="reviewReplyReview">
+		select revreply_no, revreply_writer, revreply_content, to_char(revreply_date, 'YYYY-MM-DD') as revreply_date, rev_no
+		from reviewreply
+		where rev_no = #{revNo}
+	</select>
+	<insert id="insertReviewReply">
+		insert into reviewreply (revreply_no, revreply_writer, revreply_content, revreply_date, rev_no) 
+		values (SEQ_RRNO.NEXTVAL, #{revReplyWriter}, #{revReplyContent}, sysdate, #{revNo})
+		
+	</insert>
+	<select id="reviewRecommendRenum" resultMap="reviewRecommendReview" resultType="_int">
+		select mem_no from reviewrecommend where rev_no = #{revNo}
+	</select>
+	<delete id="deleteRecommend">
+		delete from reviewrecommend where rev_no = #{revNo} and mem_no = #{memNo}
+	</delete>
+	<update id="updateRecommendCountDelete">
+		update review set rev_rec = rev_rec - 1
+		where rev_no = #{revNo}
+	</update>
+	<delete id="deleteReviewReply">
+		delete from reviewreply where revreply_no = #{revReplyNo}
+	</delete>
+	<select id="reviewTotalCount" resultType="_int">
+		select count(*) from reviewreply where rev_no = #{revNo}
+	</select>
+	
 </mapper>
