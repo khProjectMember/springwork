@@ -278,5 +278,52 @@ public class AdminController {
 					}
 					
 				}
+				//회원 선택 삭제
+				@RequestMapping("deleteMember.ad")
+				public String deleteMember_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+//					System.out.println(deleteArr);
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteMember_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:mlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+				//회원 선택 삭제
+				@RequestMapping("deleteHangout.ad")
+				public String deleteHangout_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteHangout_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:hlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+
+				//강사 선택 삭제
+				@RequestMapping("deleteTeacher.ad")
+				public String deleteTeacher_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteTeacher_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:list.te";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
 	
 }

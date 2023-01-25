@@ -31,7 +31,11 @@ public interface AdminService {
 	int insertTeacher(Teacher t);
 	
 	int deleteReview_ad(String revNo);
-	int deleteNotice_ad(String string);
+	int deleteNotice_ad(String noticeNo);
+	int deleteMember_ad(String memNo);
+	int deleteHangout_ad(String hangoutNo);
+	int deleteTeacher_ad(String teaNo);
+	
 	
 	int selectNewMemberCount();
 	int selectNewReviewCount();
@@ -40,6 +44,8 @@ public interface AdminService {
 	
 	ArrayList<Teacher> selectTeachers(Teacher t);
 	ArrayList<LectureLocation> selectLocations(LectureLocation l);
+	
+	
 	
 	
 	
