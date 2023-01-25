@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.board.model.dao.ReviewDao;
+import com.kh.spring.board.model.vo.ReplyRecommend;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.board.model.vo.ReviewReply;
 import com.kh.spring.board.model.vo.ReviewReplyRe;
@@ -170,6 +171,60 @@ public class ReviewServiceImpl implements ReviewService {
 	public int reviewTotalCount(int revNo) {
 		// TODO Auto-generated method stub
 		return rDao.reviewTotalCount(sqlSession, revNo);
+	}
+
+	@Override
+	public ReviewReply selectRevReply(int revReplyNo) {
+		// TODO Auto-generated method stub
+		return rDao.selectRevReply(sqlSession, revReplyNo);
+	}
+
+	@Override
+	public ArrayList<ReviewReply> newReivewReplyList(int revNo) {
+		// TODO Auto-generated method stub
+		return rDao.newReviewReplyList(sqlSession, revNo);
+	}
+
+	@Override
+	public ArrayList<ReviewReply> GoodReivewReplyList(int revNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertReplyRecommend(int revReplyNo, int memNo) {
+		// TODO Auto-generated method stub
+		return rDao.insertReplyRecommend(sqlSession, revReplyNo, memNo);
+	}
+
+	@Override
+	public int updateReplyRecommend(int revReplyNo) {
+		// TODO Auto-generated method stub
+		return rDao.updateReplyRecommend(sqlSession, revReplyNo);
+	}
+
+	@Override
+	public ArrayList<ReplyRecommend> replyrecommendList(int revReplyNo) {
+		// TODO Auto-generated method stub
+		return rDao.replyrecommendList(sqlSession, revReplyNo);
+	}
+
+	@Override
+	public int deleteReplyRecommend(int revReplyNo, int memNo) {
+		// TODO Auto-generated method stub
+		return rDao.deleteReplyRecommend(sqlSession, revReplyNo, memNo);
+	}
+
+	@Override
+	public int updateReplyRecommendDelete(int revReplyNo) {
+		// TODO Auto-generated method stub
+		return rDao.updateReplyRecommendDelete(sqlSession, revReplyNo);
+	}
+
+	@Override
+	public int goodTotalCount(int revReplyNo) {
+		// TODO Auto-generated method stub
+		return rDao.goodTotalCount(sqlSession, revReplyNo);
 	}
 
 	

@@ -7,7 +7,6 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.spring.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.kh.spring.lecture.model.vo.Apply" alias="Apply"/>		
 		<typeAlias type="com.kh.spring.lecture.model.vo.Lecture" alias="Lecture"/>		
 		<typeAlias type="com.kh.spring.lecture.model.vo.LectureLocation" alias="LectureLocation"/>
 		<typeAlias type="com.kh.spring.lecture.model.vo.Teacher" alias="Teacher" />
@@ -15,11 +14,13 @@
 		<typeAlias type="com.kh.spring.board.model.vo.Meeting" alias="Meeting" />
 		<typeAlias type="com.kh.spring.board.model.vo.Review" alias="Review" />
 		<typeAlias type="com.kh.spring.board.model.vo.Reviewrecommend" alias="Reviewrecommend" />
+		<typeAlias type="com.kh.spring.board.model.vo.ReplyRecommend" alias="Replyrecommend" />
 		<typeAlias type="com.kh.spring.board.model.vo.ReviewReply" alias="ReviewReply" />
 		<typeAlias type="com.kh.spring.board.model.vo.ReviewReplyRe" alias="ReviewReplyRe" />
 		<typeAlias type="com.kh.spring.board.model.vo.Join" alias="Join" />
 		<typeAlias type="com.kh.spring.qa.model.vo.Qna" alias="Qna" />
 		<typeAlias type="com.kh.spring.wish.model.vo.Wish" alias="wish" />
+		<typeAlias type="com.kh.spring.apply.model.vo.Apply" alias="Apply"/>		
 	</typeAliases>
 	
 	<mappers>
@@ -31,5 +32,6 @@
 		<mapper resource="/mappers/Review-mapper.xml" />
 		<mapper resource="/mappers/qna-mapper.xml" />
 		<mapper resource="/mappers/wish-mapper.xml" />
+		<mapper resource="/mappers/apply-mapper.xml" />
 	</mappers>
 </configuration>

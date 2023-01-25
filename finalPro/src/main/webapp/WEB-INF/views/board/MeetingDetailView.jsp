@@ -59,15 +59,8 @@
                     	<input type="hidden" name="hangoutNo" value="${ meeting.hangoutNo }">
                     	<input type="hidden" name="memNo" class="memNofrm" >                	
                     </form>
-                    <h3>댓글</h3>
                     <div class="review">
                         <div class="review_text">
-                            <div class="review_area">
-                                <textarea name="" id="" ></textarea>
-                            </div>
-                            <div class="review_btn">
-                                <button onclick="#">등록</button>
-                            </div>
                             
                             <div class="home_btn">
                                 <button class="meetingList_btn">목록</button>
@@ -85,51 +78,6 @@
                                 		</c:if>
                                 	</c:otherwise>
                                 </c:choose>
-                                
-                                
-                            </div>                            
-                        </div>
-                        <div class="review_show">
-                            <div class="review_count">
-                                <span>총 댓글 수 5</span>
-                            </div>
-                            <div class="review_order">
-                                <ul>
-                                    <li><a href="">추천순</a></li>
-                                    <li><a href="">최신순</a></li>
-                                </ul>
-                            </div>
-                            <div class="review_main">
-                                <div class="main_add">
-                                    <div class="user_nick">
-                                        <span>닉네임</span>
-                                        <button><img src="../img/icons8-지우다-24.png" alt="삭제"></button>
-                                    </div>
-                                    <div class="user_content">
-                                        <p>내용이에욘</p>
-                                    </div>
-                                    <div class="user_func">
-                                        <span>2023-01-01</span>
-                                        <div class="user_good">
-                                            <button onclick="#">답글</button>
-                                            <img src="../img/icons8-하트-50.png" alt="좋아요">
-                                            <span>0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="user_comment_add">
-                                    <div class="comment_nick">
-                                        <span>리뷰 작성자</span>
-                                        <button><img src="../img/icons8-지우다-24.png" alt="삭제"></button>
-                                    </div>
-                                    <div class="comment_content">
-                                        <p>내용이에욘</p>
-                                    </div>
-                                    <div class="comment_btn">
-                                        <span>2023-01-01</span>
-                                        <button class="#">답글</button>
-                                    </div>
-                                </div>
                             </div>                            
                         </div>
                     </div> 
@@ -158,10 +106,10 @@
     		$('.memNofrm').attr('value', ${ loginUser.memNo });
     		if( list.includes(${loginUser.memNo})) {
     			$('.modifyFrm').attr('action', 'meetingjoinOut.bo').submit();
-    			Swal.fire("모임 탈퇴 하셨습니다!");
+    			
     		} else {
     			$('.modifyFrm').attr('action', 'meetingjoin.bo').submit();
-    			Swal.fire("모임에 참여 되었습니다!");
+    			
     		}
     		
     		

@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<c:set var="myWishList"  value="${wishMap.myWishList}"  />
-<c:set var="myLecsList"  value="${wishMap.myLecsList}"  />
-<c:set var="memNo" value="${memNo}"/>
+<c:set var="myApplyList"  value="${applyMap.myApplyList}"  />
+<c:set var="myLecsList"  value="${applyMap.myLecsList}"  />
 
 <c:set  var="totalLecsNum" value="0" />  <!--주문 개수 -->
 <!DOCTYPE html>
@@ -18,17 +17,21 @@
     <!-- css -->
     <link rel="stylesheet" href="resources/css/wishList.css">
 
-    <!-- js -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-
+    <!-- 결제 -->
+	<!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 	
-	<script>
-	var IMP = window.IMP; 
+	 <script type="text/javascript">
+    var IMP = window.IMP; 
     IMP.init("imp67011510"); 
 
     var today = new Date();   
@@ -44,8 +47,8 @@
             pg : 'html5_inicis',
             pay_method : 'card',
             merchant_uid: "IMP"+makeMerchantUid, 
-            name : 'lecture.lecName',
-            amount : 500,
+            name : '${lname}',
+            amount : '${lprice}',
             buyer_email : 'member.memEmail',
             buyer_name : 'member.memName',
             buyer_tel : 'member.memPhone',
@@ -105,51 +108,19 @@
    		});
    	}
 	
-	function delete_wish_lecs(wishNo){
-		var wishNo=Number(wishNo);
+	function delete_apply_lecs(applyNo){
+		var applyNo=Number(applyNo);
 		var formObj=document.createElement("form");
-		var i_wish = document.createElement("input");
-		i_wish.name="wishNo";
-		i_wish.value=wishNo;
+		var i_apply = document.createElement("input");
+		i_apply.name="applyNo";
+		i_apply.value=applyNo;
 		
-		formObj.appendChild(i_wish);
+		formObj.appendChild(i_apply);
 	    document.body.appendChild(formObj); 
 	    formObj.method="post";
-	    formObj.action="${contextPath}/removeWishLecs.wi";
+	    formObj.action="${contextPath}/removeApplyLecs.ap";
 	    formObj.submit();
 	}
-	
-	function apply_lecs(lecNo, memNo, wishNo){
-		var wishNo=Number(wishNo);
-		var formObj=document.createElement("form");
-		var i_wish = document.createElement("input");
-		i_wish.name="wishNo";
-		i_wish.value=wishNo;
-		
-		formObj.appendChild(i_wish);
-	    document.body.appendChild(formObj); 
-	    formObj.method="post";
-	    formObj.action="${contextPath}/removeWishLecs.wi";
-    	$.ajax({
-    		type : 'post',
-    		url : '${contextPath}/addLecsInApply.ap',
-    		data : ({lecNo:lecNo, memNo:memNo}),
-    		success : function(data, textStatus){
-    			if(data.trim()=='add_success'){
-    				alert("신청목록에 등록되었습니다.")
-    			}else if(data.trim()=='already_existed'){
-    				alert("이미 신청목록에 등록된 강의입니다.")
-    			    formObj.submit();
-    				}
-    			},
-    			error : function(data,textStatus){
-    				alert("에러가 발생했습니다,"+data);
-    			},
-    			complete : function(data, textStatus){
-    				alert("작업을 완료했습니다.")
-    			}
-    	});
-    }
 	</script>
 </head>
 <body>
@@ -159,11 +130,11 @@
             <div class="inner">
                 <div class="lecture_util">
                     <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="myApplyList.ap">신청목록&emsp;|&emsp;</a>
+                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
                     <a href="list.le">강좌검색</a>
                 </div>
                 <div class="lecture_join">
-                    <h1>찜목록</h1>
+                    <h1>신청 목록</h1>
                 </div>
 			                <form action="" method="post">
                     <table class="join_form">
@@ -178,25 +149,27 @@
                     			<td width="10%"></td>	
                    			 </tr>
                    	<c:choose>
-				    <c:when test="${ empty myWishList }">
+				    <c:when test="${ empty myApplyList }">
 					    <tr>
 					       <td colspan=8 class="fixed">
-					         <strong>장바구니에 상품이 없습니다.</strong>
+					         <strong>신청목록에 상품이 없습니다.</strong>
 					       </td>
 					     </tr>
 					 </c:when>
 					 
 				     <c:otherwise>
-                      <c:forEach var="item" items="${ myLecsList }" varStatus="cnt">
-                        <c:set var="wishNo" value="${myWishList[cnt.count-1].wishNo}" />
+                      <c:forEach var="lecture" items="${ myLecsList }" varStatus="cnt">
+                        <c:set var="applyNo" value="${myApplyList[cnt.count-1].applyNo}" />
+                        <c:set var="lname" value="${lecture.lecName}"/>
+						<c:set var="lprice" value="${lecture.lecPrice}"/>
                             <tr>
-                                <td>${item.lecBcatg}/${item.lecScatg }</td>  
-                                <td><a href="detail.le?lecNo=${item.lecNo }">${item.lecName }</td>
+                                <td>${lecture.lecBcatg}/${lecture.lecScatg }</td>  
+                                <td><a href="detail.le?lecNo=${lecture.lecNo }">${lecture.lecName }</td>
                                 <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>
                                 <td>수영장</td>
-                                <td>${item.lecPrice}</td>
+                                <td>${lecture.lecPrice}</td>
                                 <td>대기중<br>대기인원 : 0명</td>
-                                <td> <a href="javascript:apply_lecs(${item.lecNo }, ${loginUser.memNo}, '${wishNo}')">신청</a><br><a href="javascript:delete_wish_lecs('${wishNo}');"> 
+                                <td><button onClick="requestPay()">결제</button><br><a href="javascript:delete_apply_lecs('${applyNo}');"> 
 					  				삭제</a></td>
                             </tr>
                             <c:set  var="totalLecsNum" value="${totalLecsNum+1 }" />
@@ -209,7 +182,7 @@
                                 </td>
                                 <td width="15%"></td>
                                 <td width="10%"></td>
-                                <td width="15%">찜한 강좌</td>
+                                <td width="15%">신청한 강좌</td>
                                 <td width="10%">${totalLecsNum}개</td>
                             </tr>
                             </c:otherwise>
@@ -219,15 +192,13 @@
                     <div class="join_move">
                         <input type="hidden" name="lectureNo">
                         <input type="hidden" name="userNo">
-                        <!-- <input type="submit" value="신청하기">-->
-                        <button onClick="requestPay()">신청하기</button>
                     </div>
                 </form>
                 <div class="lecture_regi">
                     <hr>
                     <a href="list.le">강좌목록</a>
                     <a href="goHome.le">홈으로</a>
-                    <a href="applyList.le">신청목록</a>
+                    <a href="myWishList.wi">찜목록</a>
                 </div>
             </div>
         </div>
