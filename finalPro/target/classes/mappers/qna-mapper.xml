@@ -23,4 +23,26 @@
 		from qna		
 		order by qna_no asc
 	</select>
+	<select id="QnaDetail" resultMap="qnaResult">
+		select qna_no, qna_title, qna_content, qna_replystatus, qna_status, mem_no, qna_email
+		from qna
+		where qna_no = #{qnaNo}
+	</select>
+	<resultMap type="QnaReply" id="qnaReplyResult">
+		<result column="qnareply_no" property="qnaReplyNo" />
+		<result column="qnareply_catg" property="qnaReplyCatg" />
+		<result column="qnareply_writer" property="qnaReplyWriter" />
+		<result column="qnareply_content" property="qnaReplyContent" />
+		<result column="qnareply_date" property="qnaReplyDate" />
+		<result column="qna_no" property="qnaNo" />
+	</resultMap>
+	<insert id="insertQnaReply">
+		insert into qnareply (qnareply_no, qnareply_catg, qnareply_writer, qnareply_content, qnareply_date, qna_no) 
+		values (SEQ_QNO.NEXTVAL, #{qnaReplyCatg}, #{qnaReplyWriter}, #{qnaReplyContent},#{qnaReplyDate}, #{qnaNo})
+	</insert>
+	<select id="QnaReplyList" resultMap="qnaReplyResult">
+		select qnareply_no, qnareply_writer, qnareply_content,qna_no
+		from qnareply
+		where qna_no = #{qnaNo}
+	</select>		
 </mapper>

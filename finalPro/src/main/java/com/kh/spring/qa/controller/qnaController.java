@@ -6,10 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.qa.model.service.qnaService;
+import com.kh.spring.qa.model.service.qnaServiceImpl;
 import com.kh.spring.qa.model.vo.Qna;
+import com.kh.spring.qa.model.vo.QnaReply;
+
 
 @Controller
 public class qnaController {
@@ -44,4 +51,24 @@ public class qnaController {
 		model.addAttribute("list", list);
 		return "qa/QaView";
 	}
+	
+	@RequestMapping("qnaDetail.bo")
+	public String qnaDetail(int qnaNo, Model model) {
+		Qna qna = qService.QnaDetail(qnaNo);
+				
+		model.addAttribute("qna", qna);
+				
+		return "qa/QAViewDetail";
+	}
+
+	
+	@ResponseBody
+	@RequestMapping(value="qlist.bo", produces="application/json; charset=utf-8")
+	public String qnaReplyList(@RequestParam(value="qnaNo") int qnaNo) {
+		ArrayList<QnaReply> list = qService.QnaReplyList(qnaNo);
+		
+		return new Gson().toJson(list);
+	}
+	
 }
+

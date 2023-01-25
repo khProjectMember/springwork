@@ -74,7 +74,7 @@
                                 	<c:forEach var="l" items="${ list }">
                                 	<tr>
 	                                    <td>${l.qnaNo}</td>
-	                                    <td>${l.qnaTitle}</td>
+	                                    <td><a href="qnaDetail.bo?qnaNo=${l.qnaNo}">${l.qnaTitle}</a></td>
 	                                    <td>
 	                                    <c:choose>                                                                         	
 			                                <c:when test="${l.qnaReplyStatus == 1}">

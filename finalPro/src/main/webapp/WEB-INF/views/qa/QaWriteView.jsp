@@ -43,8 +43,8 @@
                     </div>
                  <form name="detailForm" method="post" action="insertQA.bo" class="insertFrm">
                     <div>
-                            <input type="radio" name="qnaStatus" value="1">공개</label>
-                            <input type="radio" name="qnaStatus" value="0">비공개</label>              
+                            <input type="radio" name="qnaStatus"  value="1">공개</label>
+                            <input type="radio" name="qnaStatus"  value="0">비공개</label>              
                            
                     </div>
                     <div class="basicDataTable aLeft" mb30>

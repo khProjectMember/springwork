@@ -12,4 +12,16 @@ public interface qnaService {
 	int selectListCount();
 
 	public ArrayList<Qna> qnaList(Qna q);
+	
+	Qna selectqnaDetail(int qnaNo);
+
+	public Qna QnaDetail(int qnaNo);
+
+	<QnaReply> ArrayList<QnaReply> qnaReplyList(int qnaNo);
+
+	ArrayList<com.kh.spring.qa.model.vo.QnaReply> QnaReplyList(int qnaNo);
+	
+	// 리플
+	
+
 }
