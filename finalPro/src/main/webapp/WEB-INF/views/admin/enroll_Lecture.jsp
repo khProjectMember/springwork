@@ -85,15 +85,15 @@
                         <td><input class="form-control" name="lecPrice" required></td>
                     </tr>
                     
-                     <tr>
+                    <!--  <tr>
                         <th><label for="title">강의평점</label></th>
-                        <td><input class="form-control" name="lecGrade" ></td>
-                    </tr>
+                        <td><input class="form-control" name="lecGrade" placeholder="평점" type="number" readonly ></td>
+                    </tr> -->
                     
-                   <!--   <tr>
+                   <!-- <tr>
                         <th><label for="title">접수인원</label></th>
                         <td><input class="form-control" name="lecJnum" required></td>
-                    </tr> -->
+                    </tr>  -->
                     
                      <tr>
                         <th><label for="title">수강인원</label></th>

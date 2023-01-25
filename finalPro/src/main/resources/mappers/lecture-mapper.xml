@@ -17,7 +17,7 @@
   	<result column="lec_grade" property="lecGrade" />
   	<result column="lec_jnum" property="lecJnum" />
   	<result column="lec_cnum" property="lecCnum" />
-  	<result column="lec_mlist" property="lecMlist" />
+<!--   	<result column="lec_mlist" property="lecMlist" /> -->
   	<result column="tea_no" property="teaNo" />
   	<result column="loc_no" property="locNo" />
   	<collection property="teacher" resultMap="Teacher"/>

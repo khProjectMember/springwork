@@ -121,8 +121,16 @@
 									</c:otherwise>
 								</c:choose>
 							</ul>
+							<div class="pagin_box_thi">
+                                <button class="text_box_button">강의추가</button>
+                            </div>
 						</div>
-
+						<script type="text/javascript">
+					    	$('.text_box_button').click(function() {
+					    		console.log("안눌려용");
+					    		location.href='enrollForm.le';
+					    	})
+					    </script>
 						<br clear="both"> <br>
 
 						<form id="searchForm" action="" method="Get" align="center">

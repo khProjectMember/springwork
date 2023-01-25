@@ -39,7 +39,7 @@
 							  tea_no, loc_no)
 			values((seq_lno.nextval), #{lecName}, #{lecSdate}, #{lecEdate}, 
 			#{lecInfo}, #{lecStime}, #{lecEtime}, #{lecCount}, #{lecFilename}, 
-			#{lecBcatg}, #{lecScatg}, #{lecPrice}, #{lecGrade}, #{lecJnum}, #{lecCnum},
+			#{lecBcatg}, #{lecScatg}, #{lecPrice}, default, #{lecJnum}, #{lecCnum},
 			#{teaNo}, #{locNo})
  	</insert>
   	
