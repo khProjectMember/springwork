@@ -85,7 +85,7 @@
 						<br>
 						<div class="pagin_box_thi">
                                 <button class="text_box_button">강사등록</button>
-                                <button class="text_box_button" onclick="deleteValue();">강사삭제</button>
+                                <button class="text_box_button2" onclick="deleteValue();">강사삭제</button>
                         </div>
 						<!-- 상세페이지 -->
 							

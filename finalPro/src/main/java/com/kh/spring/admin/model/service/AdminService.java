@@ -28,13 +28,17 @@ public interface AdminService {
 				
 	//2. 정보 등록 부분
 	int insertLecture(Lecture l);
+	int updateLecture(Lecture l);
 	int insertTeacher(Teacher t);
+	
+	
 	
 	int deleteReview_ad(String revNo);
 	int deleteNotice_ad(String noticeNo);
 	int deleteMember_ad(String memNo);
 	int deleteHangout_ad(String hangoutNo);
 	int deleteTeacher_ad(String teaNo);
+	int deleteLecture_ad(String lecNo);
 	
 	
 	int selectNewMemberCount();
@@ -44,6 +48,10 @@ public interface AdminService {
 	
 	ArrayList<Teacher> selectTeachers(Teacher t);
 	ArrayList<LectureLocation> selectLocations(LectureLocation l);
+	Lecture selectLecture(int lecNo);
+	
+	
+	
 	
 	
 	
