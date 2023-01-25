@@ -4,6 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <meta charset="UTF-8">
 <title>공지관리</title>
 <style>
@@ -92,45 +104,45 @@
 							})
 						</script> -->
 						<script>
-		/* const trs = $(".review");
-		for(tr of trs) {
-			tr.addEventListener("click", function(){
-				console.log($(this).find(".boardId").html());
-				const boardId = $(this).find(".boardId").text();
-				const writer = $(this).find(".nickName").text();
-				const movieTitle = $(this).find(".movieTitle").text();
-				location.href = "${contextPath}/movieReviewDetail.re?boardId="+boardId+"&writer="+writer+"&movieTitle="+movieTitle;
-			});
-		} */
-		
-		function deleteValue() {
-			var deleteArr = new Array(); //삭제할 리뷰 리스트
-			var list = $("input[name='selectDelete']"); //체크된 리스트
-			//console.log(list);
-			for(var i = 0; i < list.length; i++) {
-				if(list[i].checked) {
-					deleteArr.push(list[i].value); //boardId 값 들어감
-					//console.log(deleteArr);
-				}
-			}
-			if(deleteArr.length == 0) {
-				alert('선택된 글이 없습니다.');
-			} else {
-				var msg = confirm("정말 삭제하시겠습니까?");
-				$.ajax({
-					url: "${contextPath}/spring/deleteNotice.ad",
-					type: 'POST',
-					data: {
-						deleteArr: deleteArr
-					},
-					success: function(data) {
-						alert("삭제되었습니다.");
-						history.go(0);
-					}
-				});
-			}
-		}
-	</script>
+								/* const trs = $(".review");
+								for(tr of trs) {
+									tr.addEventListener("click", function(){
+										console.log($(this).find(".boardId").html());
+										const boardId = $(this).find(".boardId").text();
+										const writer = $(this).find(".nickName").text();
+										const movieTitle = $(this).find(".movieTitle").text();
+										location.href = "${contextPath}/movieReviewDetail.re?boardId="+boardId+"&writer="+writer+"&movieTitle="+movieTitle;
+									});
+								} */
+								
+								function deleteValue() {
+									var deleteArr = new Array(); //삭제할 리뷰 리스트
+									var list = $("input[name='selectDelete']"); //체크된 리스트
+									//console.log(list);
+									for(var i = 0; i < list.length; i++) {
+										if(list[i].checked) {
+											deleteArr.push(list[i].value); //boardId 값 들어감
+											//console.log(deleteArr);
+										}
+									}
+									if(deleteArr.length == 0) {
+										alert('선택된 글이 없습니다.');
+									} else {
+										var msg = confirm("정말 삭제하시겠습니까?");
+										$.ajax({
+											url: "${contextPath}/spring/deleteNotice.ad",
+											type: 'POST',
+											data: {
+												deleteArr: deleteArr
+											},
+											success: function(data) {
+												alert("삭제되었습니다.");
+												history.go(0);
+											}
+										});
+									}
+								}
+							</script>
 	
 						<div id="pagingArea">
 							<ul class="pagination">

@@ -27,6 +27,7 @@ import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.LectureLocation;
 import com.kh.spring.lecture.model.vo.Teacher;
 import com.kh.spring.member.model.vo.Member;
 
@@ -39,10 +40,10 @@ public class AdminController {
 		@RequestMapping("admin.ad")
 		public String admin(Model model) {
 			int mCount = aService.selectNewMemberCount();
-			//int rCount = aService.selectNewReviewCount();
+			int rCount = aService.selectNewReviewCount();
 			
 			model.addAttribute("mCount", mCount);
-			//model.addAttribute("rCount", rCount);
+			model.addAttribute("rCount", rCount);
 			return "admin/admin";
 		}
 		// 새로운 멤버
@@ -164,9 +165,15 @@ public class AdminController {
 		return mv;
 	}
 	
+	
 	//강사 강의 등록하는 곳
 	@RequestMapping("enrollForm.le")
-	public String enrollLectureForm() {
+	public String enrollLectureForm(Teacher t, LectureLocation l, Model model) {
+			ArrayList<Teacher> tlist = aService.selectTeachers(t);
+			ArrayList<LectureLocation> Llist = aService.selectLocations(l);
+			
+			model.addAttribute("tlist", tlist);
+			model.addAttribute("Llist", Llist);
 		return "admin/enroll_Lecture";
 	}
 	@RequestMapping("enrollForm.te")
@@ -270,6 +277,53 @@ public class AdminController {
 						return "";
 					}
 					
+				}
+				//회원 선택 삭제
+				@RequestMapping("deleteMember.ad")
+				public String deleteMember_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+//					System.out.println(deleteArr);
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteMember_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:mlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+				//회원 선택 삭제
+				@RequestMapping("deleteHangout.ad")
+				public String deleteHangout_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteHangout_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:hlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+
+				//강사 선택 삭제
+				@RequestMapping("deleteTeacher.ad")
+				public String deleteTeacher_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteTeacher_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:list.te";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
 				}
 	
 }

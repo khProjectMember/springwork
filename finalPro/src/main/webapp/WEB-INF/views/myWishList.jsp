@@ -4,6 +4,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="myWishList"  value="${wishMap.myWishList}"  />
 <c:set var="myLecsList"  value="${wishMap.myLecsList}"  />
+<c:set var="memNo" value="${memNo}"/>
 
 <c:set  var="totalLecsNum" value="0" />  <!--주문 개수 -->
 <!DOCTYPE html>
@@ -117,6 +118,38 @@
 	    formObj.action="${contextPath}/removeWishLecs.wi";
 	    formObj.submit();
 	}
+	
+	function apply_lecs(lecNo, memNo, wishNo){
+		var wishNo=Number(wishNo);
+		var formObj=document.createElement("form");
+		var i_wish = document.createElement("input");
+		i_wish.name="wishNo";
+		i_wish.value=wishNo;
+		
+		formObj.appendChild(i_wish);
+	    document.body.appendChild(formObj); 
+	    formObj.method="post";
+	    formObj.action="${contextPath}/removeWishLecs.wi";
+    	$.ajax({
+    		type : 'post',
+    		url : '${contextPath}/addLecsInApply.ap',
+    		data : ({lecNo:lecNo, memNo:memNo}),
+    		success : function(data, textStatus){
+    			if(data.trim()=='add_success'){
+    				alert("신청목록에 등록되었습니다.")
+    			}else if(data.trim()=='already_existed'){
+    				alert("이미 신청목록에 등록된 강의입니다.")
+    			    formObj.submit();
+    				}
+    			},
+    			error : function(data,textStatus){
+    				alert("에러가 발생했습니다,"+data);
+    			},
+    			complete : function(data, textStatus){
+    				alert("작업을 완료했습니다.")
+    			}
+    	});
+    }
 	</script>
 </head>
 <body>
@@ -126,7 +159,7 @@
             <div class="inner">
                 <div class="lecture_util">
                     <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
+                    <a href="myApplyList.ap">신청목록&emsp;|&emsp;</a>
                     <a href="list.le">강좌검색</a>
                 </div>
                 <div class="lecture_join">
@@ -163,7 +196,7 @@
                                 <td>수영장</td>
                                 <td>${item.lecPrice}</td>
                                 <td>대기중<br>대기인원 : 0명</td>
-                                <td><a href="javascript:delete_wish_lecs('${wishNo}');"> 
+                                <td> <a href="javascript:apply_lecs(${item.lecNo }, ${loginUser.memNo}, '${wishNo}')">신청</a><br><a href="javascript:delete_wish_lecs('${wishNo}');"> 
 					  				삭제</a></td>
                             </tr>
                             <c:set  var="totalLecsNum" value="${totalLecsNum+1 }" />
@@ -184,8 +217,8 @@
                         </tbody>
                     </table>
                     <div class="join_move">
-                        <input type="hidden" name="lectureNum">
-                        <input type="hidden" name="userNum">
+                        <input type="hidden" name="lectureNo">
+                        <input type="hidden" name="userNo">
                         <!-- <input type="submit" value="신청하기">-->
                         <button onClick="requestPay()">신청하기</button>
                     </div>

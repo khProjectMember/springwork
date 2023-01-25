@@ -122,12 +122,6 @@
               <font id = "pwdError" size = "2"></font>
             </div>
             
-		      <!--hidden 부분-->
-		      <!--<input type="hidden" name="memCdate">-->
-		      <!-- <input type="hidden" name="memDdate">-->
-		      <!--<input type="hidden" name="isAdmin" value="N">-->
-		      <!-- <input type="hidden" name="memCarno">-->
-
 
             <hr style="width:435px;">
             

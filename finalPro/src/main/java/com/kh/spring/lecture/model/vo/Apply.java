@@ -12,6 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Apply {
+	private int applyNo;
 	private int memNo;
-	private String applyList;
+	private int lecNo;
 }
