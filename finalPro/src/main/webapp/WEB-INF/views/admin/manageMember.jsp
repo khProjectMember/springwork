@@ -92,7 +92,9 @@
 							</tbody>
 						</table>
 						<br>
+						<c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
 						<input type = "button" value = "회원탈퇴" class = "btn btn-outline-danger" onclick="deleteValue();">
+						</c:if>
 						<!-- 상세페이지 -->
 						<!-- <script>
 							$(function() {

@@ -59,6 +59,11 @@
 	                            <li><a href="loginEnroll.me">로그인</a></li>
 	                            <li><a href="enrollForm.me">회원가입</a></li>
 	                        </c:when>
+	                        <c:when test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
+	                        	<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
+					                <li><a href="admin.ad">관리자메뉴</a></li>
+					                <li><a href="logout.me" onclick="Swal.fire({title: '로그아웃 되었습니다.',timer: 3000})">로그아웃</a><li>
+	                        </c:when>
             				<c:otherwise>
             					<!-- 로그인 후 -->
             					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>

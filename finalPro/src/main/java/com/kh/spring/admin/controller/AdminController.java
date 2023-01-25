@@ -213,9 +213,6 @@ public class AdminController {
 			  l.setLecFilename(upfile.getOriginalFilename());
 			  l.setLecFilename("resources/uploadFiles/"+changeName); 
 		}
-		 
-		//넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로까지 있는 바뀐이름
-		//넘어온 파일이 없으면 : 제목, 작성자, 내용
 		int result = aService.insertLecture(l);
 		if(result > 0 ) {
 			session.setAttribute("alertMsg", "성공적으로 게시글이 등록되었습니다");
@@ -240,9 +237,10 @@ public class AdminController {
 		//넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로까지 있는 바뀐이름
 		//넘어온 파일이 없으면 : 제목, 작성자, 내용
 		int result = aService.updateLecture(l);
+		System.out.println(result);
 		if(result > 0 ) {
 			session.setAttribute("alertMsg", "성공적으로 게시글이 수정되었습니다");
-			return "redirect:detail.le?lecNo=" + l.getLecNo();
+			return "redirect:list2.le";
 		} else {
 			model.addAttribute("errorMsg","게시글 수정 실패");
 			return "common/errorPage";
@@ -251,13 +249,13 @@ public class AdminController {
 		
 	}
 	@RequestMapping("updateForm.le")
-	public String modify_Lecture(int lecNo, Teacher t, LectureLocation l, Model model) {
+	public String modify_Lecture(Integer lecNo, Teacher t, LectureLocation l, Model model) {
 		ArrayList<Teacher> tlist = aService.selectTeachers(t);
 		ArrayList<LectureLocation> Llist = aService.selectLocations(l);
-		Lecture L = aService.selectLecture(lecNo);
+		 
 		model.addAttribute("tlist", tlist);
 		model.addAttribute("Llist", Llist);
-		model.addAttribute("lecture", L);
+		model.addAttribute("l", aService.selectLecture(lecNo));
 		return "admin/modify_Lecture";
 	}
 	

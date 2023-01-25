@@ -48,36 +48,36 @@
             <br>
 
             <form id="modify_Lecture" method="post" action="lecupdate.le" enctype="multipart/form-data">
-            	<input type="hidden" name=lecNo value="${lecture.lecNo }">
-            	 <input type="hidden" name="lecJnum" value="${ lecture.lecJnum }">
+            	<input type="hidden" name=lecNo value="${l.lecNo }">
+            	 <%--<input type="hidden" name="lecJnum" value="${ lecture.lecJnum }"> --%>
                 <table align="center">
                     <tr>
                         <th><label for="title">강의명</label></th>
-                        <td><input class="form-control" name="lecName" required>${lecture.lecName }</td>
+                        <td><input class="form-control" name="lecName" value="${l.lecName }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의시작날짜</label></th>
-                        <td><input class="form-control" name="lecSdate" required>${lecture.lecSdate }</td>
+                        <td><input class="form-control" name="lecSdate" value="${l.lecSdate }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의종료날짜</label></th>
-                        <td><input class="form-control" name="lecEdate" required>${lecture.lecEdate }</td>
+                        <td><input class="form-control" name="lecEdate" value="${l.lecEdate }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의시작시간</label></th>
-                        <td><input class="form-control" name="lecStime" required>${lecture.lecStime }</td>
+                        <td><input class="form-control" name="lecStime" value="${l.lecStime }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의종료시간</label></th>
-                        <td><input class="form-control" name="lecEtime" required>${lecture.lecEtime }</td>
+                        <td><input class="form-control" name="lecEtime" value="${l.lecEtime }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의횟수</label></th>
-                        <td><input class="form-control" name="lecCount" required>${lecture.lecCount }</td>
+                        <td><input class="form-control" name="lecCount" value="${l.lecCount }" required></td>
                     </tr>
                     <tr>
                         <th><label for="upfile">강의사진</label></th>
-                        <td><input type="file" class="form-control-file border" name="reupfile" value="${lecture.lecFilename }"></td>
+                        <td><input type="file" class="form-control-file border" name="reupfile" value="${l.lecFilename }"></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의대분류</label></th>
@@ -96,16 +96,16 @@
                     </tr>
                      <tr>
                         <th><label for="title">강의가격</label></th>
-                        <td><input class="form-control" name="lecPrice" required>${lecture.lecPrice }</td>
+                        <td><input class="form-control" name="lecPrice" value="${l.lecPrice }" required ></td>
                     </tr>
                      <tr>
                         <th><label for="title">수강인원</label></th>
-                        <td><input class="form-control" name="lecCnum" required>${lecture.lecCnum }</td>
+                        <td><input class="form-control" name="lecCnum" value="${l.lecCnum }" required></td>
                     </tr>
                     
                     <tr>
                    		<th><label for="title">강의설명</label></th>       
-                        <td><textarea class="form-control" name="lecInfo" rows="10" cols="50" style="resize:none" required >${lecture.lecInfo }</textarea></th>
+                        <td><textarea class="form-control" name="lecInfo" rows="10" cols="50" style="resize:none" value="${lecture.lecInfo }"required ></textarea></th>
                     </tr>
                     <tr>
                         <th><label for="title">강사</label></th>

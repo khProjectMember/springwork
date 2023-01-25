@@ -153,7 +153,7 @@ public class AdminServiceImpl implements AdminService{
 		return aDao.selectLocations(sqlSession, l);
 	}
 	@Override
-	public Lecture selectLecture(int lecNo) {
+	public Lecture selectLecture(Integer lecNo) {
 		return aDao.selectLecture(sqlSession, lecNo);
 	}
 	

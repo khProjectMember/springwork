@@ -119,7 +119,11 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
-	
+	@RequestMapping("updateForm.bo")
+	public String updateForm(int bno, Model model) {
+		model.addAttribute("b",bService.selectBoard(bno));
+		return "board/boardUpdateForm";
+	}
 	public String changeFilename(MultipartFile upfile, HttpSession session) {
 			String originName = upfile.getOriginalFilename();
 			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -153,11 +157,7 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
-	@RequestMapping("updateForm.bo")
-	public String updateForm(int bno, Model model) {
-		model.addAttribute("b",bService.selectBoard(bno));
-		return "board/boardUpdateForm";
-	}
+	
 	
 	
 	@ResponseBody

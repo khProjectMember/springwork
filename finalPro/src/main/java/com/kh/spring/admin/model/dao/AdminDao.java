@@ -21,7 +21,7 @@ public class AdminDao {
 		return sqlSession.insert("adminMapper.insertLecture",l);
 	}
 	public int updateLecture(SqlSessionTemplate sqlSession, Lecture l) {
-		return sqlSession.update("adminMapper.updateLeture",l);
+		return sqlSession.update("adminMapper.updateLecture",l);
 	}
 	public int insertTeacher(SqlSessionTemplate sqlSession, Teacher t) {
 		return sqlSession.insert("adminMapper.insertTeacher",t);
@@ -138,7 +138,7 @@ public class AdminDao {
 	public ArrayList<Lecture> selectLecture(SqlSessionTemplate sqlSession, Lecture l) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectLecture", l);
 	}
-	public Lecture selectLecture(SqlSessionTemplate sqlSession, int lecNo) {
+	public Lecture selectLecture(SqlSessionTemplate sqlSession, Integer lecNo) {
 		return sqlSession.selectOne("adminMapper.selectLecture",lecNo);
 	}
 	

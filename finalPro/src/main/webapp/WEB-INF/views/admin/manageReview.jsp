@@ -57,7 +57,7 @@
 					<div class="innerOuter">
 						<h2>리뷰 목록</h2>
 						<br>
-						<input type = "button" value = "삭제" class = "btn btn-outline-danger" onclick="deleteValue();">
+						
 						<table id="ReviewList" class="table table-hover" align="center">
 							<thead>
 								<tr>
@@ -92,6 +92,9 @@
 							</tbody>
 						</table>
 						<br>
+						<c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
+						<input type = "button" value = "삭제" class = "btn btn-outline-danger" onclick="deleteValue();">
+						</c:if>
 						<!-- 상세페이지 -->
 					<!-- 	<script>
 							$(function() {

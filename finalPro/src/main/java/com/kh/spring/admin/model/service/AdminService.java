@@ -48,7 +48,7 @@ public interface AdminService {
 	
 	ArrayList<Teacher> selectTeachers(Teacher t);
 	ArrayList<LectureLocation> selectLocations(LectureLocation l);
-	Lecture selectLecture(int lecNo);
+	Lecture selectLecture(Integer lecNo);
 	
 	
 	

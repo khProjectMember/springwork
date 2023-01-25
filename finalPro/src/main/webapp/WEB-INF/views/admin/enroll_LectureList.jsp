@@ -79,8 +79,7 @@
 							<tbody>
 								<c:forEach var="l" items="${ list }">
 									<tr>
-										<td><button class="text_box_button3">강의수정</button></td>
-										<td class="lno" value="${l.lecNo}">${ l.lecNo }</td>
+										<td class="lecNo">${ l.lecNo }</td>
 										<td><a href="detail.le?lecNo=${l.lecNo}">${l.lecName}</a></td>
 										<td>${l.teacher.teaName }</td>
 										<td>${l.lecSdate} ~ ${l.lecEdate}</td>
@@ -89,7 +88,7 @@
 										<td>${l.lecBcatg}  -${l.lecScatg}</td>
 										<td>${l.lecPrice}</td>
 										<td>${l.lecGrade}</td>
-										<td>여기에 접수인원 카운트/${l.lecCnum}</td>
+										<td> 카운트/${l.lecCnum}</td>
 										<td>${l.lectureLocation.locName}</td>
 										<td><input name = "selectDelete" type = "checkbox" value = "${l.lecNo }"/></td>
 									</tr>
@@ -98,19 +97,30 @@
 						</table>
 						<br>
 						<div class="pagin_box_thi">
+							 <c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
                                 <button class="text_box_button">강의추가</button>
                                 <button class="text_box_button2" onclick="deleteValue();">강의삭제</button>
+                               </c:if>
                             </div>
-                            
+                           
+                            <form method="post" class="postForm_le">
+						    	<input type="hidden" name="lecNo" value="${ l.lecNo }">
+						    	<input type="hidden" name="filePath" value="${ l.lecFilename}">
+						    </form>
                        <script type="text/javascript">
 					    	$('.text_box_button').click(function() {
 					    		console.log("안눌려용");
 					    		location.href='enrollForm.le';
 					    	})
-					    	$('.text_box_button3').click(function() {
+					    	/* $('.text_box_button3').click(function() {
 					    		console.log("안눌려용");
 					    		location.href='updateForm.le';
-					    	})
+					    	}) */
+					    	function postFormSubmit(num){
+								if(num == 1){
+									$(".postForm_le").attr("action","updateForm.le").submit();
+								} 
+							}
 					    </script>
 					    <script>
 								

@@ -33,7 +33,7 @@
 
 	<!-- lecture테이블 관리 -->
 	<select id="selectLecture" resultMap="lectureMapper.lectureResult">
- 		select lec_no, lec_name
+ 		select lec_name
 						, lec_sdate
 						, lec_edate
 						, lec_info
@@ -68,28 +68,28 @@
  	</insert>
  	<update id = "updateLecture">
 		update lecture 
-					  set lec_name =# {lecName}
-						, lec_sdate =# {lecSdate}
-						, lec_edate =# {lecEdate}
-						, lec_info =# {lecInfo}
-						, lec_stime =# {lecStime}
-						, lec_etime =# {lecEtime}
-						, lec_count =# {lecCount}
-						, lec_filename =# {lecFilename}
-						, lec_bcatg =# {lecBcatg}
-						, lec_scatg =# {lecScatg}
-						, lec_price =# {lecPrice}
+					  set lec_name = #{lecName}
+						, lec_sdate = #{lecSdate}
+						, lec_edate = #{lecEdate}
+						, lec_info = #{lecInfo}
+						, lec_stime = #{lecStime}
+						, lec_etime = #{lecEtime}
+						, lec_count = #{lecCount}
+						, lec_filename = #{lecFilename}
+						, lec_bcatg = #{lecBcatg}
+						, lec_scatg = #{lecScatg}
+						, lec_price = #{lecPrice}
 						, lec_grade = default
-						, lec_jnum =# {lecJnum}
-						, lec_cnum =# {lecCnum}
-						, tea_no =# {teaNo}
-						, loc_no =# {locNo}
+						, lec_jnum = #{lecJnum}
+						, lec_cnum = #{lecCnum}
+						, tea_no = #{teaNo}
+						, loc_no = #{locNo}
 		where lec_no = #{lecNo}
 	</update>
  
   	
   	<select id="selectLectureList" resultMap="lectureMapper.lectureResult">
-		select l.lec_no, l.lec_name, t.tea_name, l.lec_sdate, l.lec_edate, l.lec_stime, l.lec_etime, l.lec_count,
+		select l.lec_no, l.lec_name, t.tea_name, to_char(l.lec_sdate,'YYYY-MM-DD') as "lec_sdate", to_char(l.lec_edate,'YYYY-MM-DD') as "lec_edate", l.lec_stime, l.lec_etime, l.lec_count,
 						 l.lec_bcatg, l.lec_scatg, l.lec_price, l.lec_grade, l.lec_cnum, ll.loc_name
 			from lecture l
 			join Teacher t on (l.tea_no = t.tea_no)
@@ -124,7 +124,7 @@
 	</insert>
 	
   	<select id="selectTeacherList" resultMap="lectureMapper.Teacher">
-		select tea_no, tea_name, tea_age, TO_CHAR(tea_edate,'YY.MM.DD') as "tea_edate", tea_status
+		select tea_no, tea_name, tea_age, TO_CHAR(tea_edate,'YY.MM.DD') as "tea_edate"
 			from teacher
 			where tea_status = 'Y'
 		order by tea_no desc
