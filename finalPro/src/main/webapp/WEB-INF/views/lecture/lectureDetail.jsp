@@ -116,6 +116,26 @@
     			}
     	});
     }
+    
+    function apply_lecs(lecNo, memNo){
+    	$.ajax({
+    		type : 'post',
+    		url : '${contextPath}/addLecsInApply.ap',
+    		data : ({lecNo:lecNo, memNo:memNo}),
+    		success : function(data, textStatus){
+    			if(data.trim()=='add_success'){
+    				alert("신청목록에 등록되었습니다.")
+    			}else if(data.trim()=='already_existed'){
+    				alert("이미 신청목록에 등록된 강의입니다.")}
+    			},
+    			error : function(data,textStatus){
+    				alert("에러가 발생했습니다,"+data);
+    			},
+    			complete : function(data, textStatus){
+    				alert("작업을 완료했습니다.")
+    			}
+    	});
+    }
     </script>
 
     <!-- css -->
@@ -153,7 +173,7 @@
                         <tr>
                             <td><h1>${lecture.lecName }</h1></td>
                             <td rowspan="2"><a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a></td>
-                            <td rowspan="2"><a href="">신청하기</a></td>
+                            <td rowspan="2"><a href="javascript:apply_lecs(${lecture.lecNo },${loginUser.memNo})">신청하기</a></td>
                         </tr>
                     </table>
                 </div>
@@ -233,8 +253,7 @@
                 <div class="class_regi">
                     <hr>
                     <a href="list.le">목록</a>
-                    <!-- <a href="applyForm.le">신청하기</a> -->
-                    <button onClick="requestPay()">신청하기</button>
+                    <a href="javascript:apply_lecs(${lecture.lecNo },${loginUser.memNo})">신청하기</a>
                     <a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a>
                 </div>
                 <div class="class_review">
