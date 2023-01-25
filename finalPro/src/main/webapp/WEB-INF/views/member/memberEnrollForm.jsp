@@ -314,7 +314,7 @@
       <!--<input type="hidden" name="memCdate">-->
       <!-- <input type="hidden" name="memDdate">-->
       <input type="hidden" name="isAdmin" value="N">
-      <!-- <input type="hidden" name="memCarno">-->
+      <input type="hidden" name="memCarno" value="서울12가3456">
 
 
             <hr style="width:435px;">
