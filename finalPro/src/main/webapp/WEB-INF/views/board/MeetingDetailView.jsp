@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,8 @@
                         </div>
                     </div>
                     <form method="post" class="modifyFrm">
-                    	<input type="hidden" name="hangoutNo" value="${ meeting.hangoutNo }">                    	
+                    	<input type="hidden" name="hangoutNo" value="${ meeting.hangoutNo }">
+                    	<input type="hidden" name="memNo" class="memNofrm" >                	
                     </form>
                     <h3>댓글</h3>
                     <div class="review">
@@ -69,9 +71,22 @@
                             
                             <div class="home_btn">
                                 <button class="meetingList_btn">목록</button>
-                                <button class="btn_re">수정</button>
-                                <button class="btn_delete">삭제</button>
-                                <button class="btn_join">참여</button>
+                                <c:choose>
+                                	<c:when test="${ empty loginUser }">
+ 										<button class="btn_join_no">참여</button>							                               	
+                                	</c:when>
+                                	<c:otherwise>
+                                		<c:if test="${ loginUser.memNickname eq meeting.m.memNickname }">
+                                			<button class="btn_re">수정</button>
+                                			<button class="btn_delete">삭제</button>		
+                                		</c:if>
+                                		<c:if test="${ loginUser.memNickname ne meeting.m.memNickname }">
+                                			<button class="btn_join">참여</button>
+                                		</c:if>
+                                	</c:otherwise>
+                                </c:choose>
+                                
+                                
                             </div>                            
                         </div>
                         <div class="review_show">
@@ -133,13 +148,33 @@
     		$('.modifyFrm').attr('action', 'meetingdelete.bo').submit();
     	})
     	$('.btn_join').click(function() {
-    		$('.modifyFrm').attr('action', 'meetingjoin.bo').submit();
-    	})
-    	
-    	
-    	$(function() {
+    		var list = [];
+    		<c:forEach var="join" items="${ list }" varStatus="status">
+    			list.push(${ join.memNo });
+    		</c:forEach>
+    		
+    		console.log(list);
+    		
+    		$('.memNofrm').attr('value', ${ loginUser.memNo });
+    		if( list.includes(${loginUser.memNo})) {
+    			$('.modifyFrm').attr('action', 'meetingjoinOut.bo').submit();
+    			Swal.fire("모임 탈퇴 하셨습니다!");
+    		} else {
+    			$('.modifyFrm').attr('action', 'meetingjoin.bo').submit();
+    			Swal.fire("모임에 참여 되었습니다!");
+    		}
+    		
     		
     	})
+    	
+    	
+    	// 로그인 제한
+    	
+    	$('.btn_join_no').on('click', function() {
+    		Swal.fire("로그인 후 이용해주세요.");
+    	})
+    	
+    	
     	
     </script>
 	<jsp:include page="../common/footer.jsp" />
