@@ -7,6 +7,7 @@ import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.LectureLocation;
 import com.kh.spring.lecture.model.vo.Teacher;
 import com.kh.spring.member.model.vo.Member;
 
@@ -36,6 +37,12 @@ public interface AdminService {
 	int selectNewReviewCount();
 	ArrayList<Member> selectNewMember();
 	ArrayList<Review> selectNewReview();
+	
+	ArrayList<Teacher> selectTeachers(Teacher t);
+	ArrayList<LectureLocation> selectLocations(LectureLocation l);
+	
+	
+	
 	
 
 	

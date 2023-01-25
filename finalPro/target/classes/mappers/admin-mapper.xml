@@ -56,6 +56,20 @@
 		select count(*)
 			from lecture
 	</select>
+	
+	<select id="selectTeachers" resultMap="lectureMapper.Teacher">
+		select tea_no, tea_name
+		from teacher
+		where tea_status = 'Y'
+		order by tea_no
+	</select>
+	
+	<select id="selectLocations" resultMap="lectureMapper.LectureLocation">
+		select loc_no, loc_name
+		from lecturelocation
+		order by loc_no 
+	</select>
+	
 
 	<!-- Teacher테이불 관리 -->
 	<insert id="insertTeacher">

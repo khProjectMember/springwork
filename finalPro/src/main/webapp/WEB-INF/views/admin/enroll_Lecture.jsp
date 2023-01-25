@@ -4,8 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- 부트스트랩에서 제공하고 있는 스크립트 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원관리</title>
 <style>
   	 
     .content2{
@@ -21,18 +33,18 @@
     }
     #enrollForm>table{width: 100%; border: 1px solid lightgray; 
     background-color: rgb(247, 245, 245);}
-    #enrollForm>table *{ margin:5px;}
+    #enrollForm>table *{ margin:3px; padding: 6px;}
 </style>
 </head>
-
 <body>
-<jsp:include page="../common/header.jsp" />
-<div id="wrap">
-<div id="content">
-<div id="inner">
-	<div class="content2">
-	 	<div class="innerOuter">
-            <h2>강좌목록 등록</h2>
+<jsp:include page="../common/header.jsp"></jsp:include>
+
+	<div id="wrap">
+		<div id="content">
+			<div id="inner">
+				<div class="content2">
+					<div class="innerOuter">
+						<h2>강좌목록 등록</h2>
             <br>
 
             <form id="enrollForm" method="post" action="lecinsert.le" enctype="multipart/form-data">
@@ -107,14 +119,20 @@
                     <tr>
                         <th><label for="title">강사</label></th>
                         	<td><select id="select3" name="teaNo">
-                        			<option value="1">이연복</option>
-                        			<option value="2">정연복</option>
-                        			<option value="3">정성하</option>
-                        			<option value="4">정대하</option>
-                        			<option value="5">빌게이츠</option>
+                        			<c:forEach var="t" items="${tlist}">
+	                        			<option value="${t.teaNo }">${t.teaName }</option>
+									</c:forEach>
                         	</select></td>
                     </tr>
                     <tr>
+                        <th><label for="title">강의실</label></th>
+                        <td><select id="select4" name="locNo">
+                        <c:forEach var="l" items="${Llist}">
+                        		<option value="${l.locNo }">${l.locName }</option>
+						</c:forEach>
+                        	 </select></td>
+                    </tr>
+                   <!--  <tr>
                         <th><label for="title">강의실</label></th>
                         <td><select id="select4" name="locNo">
                         		<option value="1">다목적강의반</option>
@@ -125,7 +143,7 @@
 							    <option value="6">튤립관</option>
 							    <option value="7">들국화관</option>
                         	 </select></td>
-                    </tr>
+                    </tr> -->
                 </table>
                 <br>
 
