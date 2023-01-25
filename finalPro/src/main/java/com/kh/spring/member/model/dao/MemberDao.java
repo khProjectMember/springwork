@@ -41,6 +41,6 @@ public class MemberDao{
 		return sqlSession.update("memberMapper.updatePwd", map);
 	}
 	public int updateCarNumber(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.insert("memberMapper.updateCarNumber",m);
+		return sqlSession.update("memberMapper.updateCarNumber",m);
 	}
 }
