@@ -14,18 +14,10 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Review {
+public class ReviewReply {
+	private int revReplyNo;
+	private String revReplyWriter;
+	private String revReplyContent;
+	private String revReplyDate;
 	private int revNo;
-	private String revTitle;
-	private String revCatg;
-	private String revLecture;
-	private String revContent;
-	private String revDate;
-	private int revStar;
-	private int revCount;
-	private int revRec;
-	private int memNo;
-	private int lecNo;
-	private Member m;
-	private Lecture l;
 }
