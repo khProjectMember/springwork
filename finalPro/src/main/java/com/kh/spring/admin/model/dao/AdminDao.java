@@ -11,6 +11,7 @@ import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.LectureLocation;
 import com.kh.spring.lecture.model.vo.Teacher;
 import com.kh.spring.member.model.vo.Member;
 
@@ -105,5 +106,11 @@ public class AdminDao {
 	}
 	public int deleteNotice_ad(SqlSessionTemplate sqlSession, String noticeNo) {
 		return sqlSession.update("adminMapper.deleteNotice_ad", noticeNo);
+	}
+	public ArrayList<Teacher> selectTeachers(SqlSessionTemplate sqlSession, Teacher t) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectTeachers", t);
+	}
+	public ArrayList<LectureLocation> selectLocations(SqlSessionTemplate sqlSession, LectureLocation l) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectLocations", l);
 	}
 }

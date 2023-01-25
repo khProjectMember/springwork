@@ -12,6 +12,7 @@ import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
+import com.kh.spring.lecture.model.vo.LectureLocation;
 import com.kh.spring.lecture.model.vo.Teacher;
 import com.kh.spring.member.model.vo.Member;
 
@@ -112,6 +113,14 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int deleteNotice_ad(String noticeNo) {
 		return aDao.deleteNotice_ad(sqlSession, noticeNo);
+	}
+	@Override
+	public ArrayList<Teacher> selectTeachers(Teacher t) {
+		return aDao.selectTeachers(sqlSession, t);
+	}
+	@Override
+	public ArrayList<LectureLocation> selectLocations(LectureLocation l) {
+		return aDao.selectLocations(sqlSession, l);
 	}
 	
 }
