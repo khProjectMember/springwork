@@ -83,10 +83,10 @@
   	  where mem_id = #{memId}
   </update>
   
-  <insert id="updateCarNumber" >
+  <update id="updateCarNumber" >
   	update member
   		set mem_carno = #{memCarno}
   	  where mem_id = #{memId}
-  </insert>
+  </update>
  
 </mapper>
