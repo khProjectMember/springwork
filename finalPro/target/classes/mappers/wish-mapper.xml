@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wishMapper">
+	<resultMap id="wishResult" type="wish">
+		<result property="wishNo" column="wish_no"/>
+		<result property="memNo" column="mem_no"/>
+		<result property="lecNo" column="lec_no"/>
+		<result property="wishCount" column="wish_count"/>
+	</resultMap>
+	<resultMap type="Lecture" id="lectureResult">
+  	<result column="lec_no" property="lecNo" />
+  	<result column="lec_name" property="lecName" />
+  	<result column="lec_sdate" property="lecSdate" />
+  	<result column="lec_edate" property="lecEdate" />
+  	<result column="lec_info" property="lecInfo" />
+  	<result column="lec_stime" property="lecStime" />
+  	<result column="lec_etime" property="lecEtime" />
+  	<result column="lec_count" property="lecCount" />
+  	<result column="lec_filename" property="lecFilename" />
+  	<result column="lec_bcatg" property="lecBcatg" />
+  	<result column="lec_scatg" property="lecScatg" />
+  	<result column="lec_price" property="lecPrice" />
+  	<result column="lec_grade" property="lecGrade" />
+  	<result column="lec_jnum" property="lecJnum" />
+  	<result column="lec_cnum" property="lecCnum" />
+  	<result column="lec_mlist" property="lecMlist" />
+  	<result column="tea_no" property="teaNo" />
+  	<result column="loc_no" property="locNo" />
+  </resultMap>
+  
+  	<select id="selectWishList" resultMap="wishResult" parameterType="Wish">
+  		<![CDATA[
+			select * from wish
+			where mem_no=#{memNo}
+		]]>
+  	</select>
+  
+  	<select id="selectLecsList" resultMap="lectureResult" parameterType="java.util.Map">
+  		<![CDATA[
+  			select l.* from lecture l
+  			where l.lec_no in
+		]]>
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.lecNo}
+		</foreach>
+		</select>
+		
+	<select id="selectCountInWish" resultType="String" parameterType="Wish">
+		<![CDATA[
+			select decode(count(*),0,'false','true') from wish
+			where lec_no=#{lecNo}
+			and mem_no=#{memNo}
+		]]>
+	</select>
+
+  	
+  	<insert id="insertLecsInWish" parameterType="Wish">
+		<![CDATA[
+			insert into wish(wish_no, mem_no, lec_no)
+			values (#{wishNo}, #{memNo}, #{lecNo})
+		]]>
+	</insert>
+	
+	<select id="selectMaxWishNo" resultType="int">
+	    <![CDATA[
+			select count(nvl(wish_no, 0)) + 1 from wish 
+    	]]>
+	</select>
+	
+	<delete id="deleteWishLecs" parameterType="int">
+	    <![CDATA[
+	      delete from wish
+	      where wish_no=#{wishNo}
+    	]]>
+	</delete>
+	
+
+</mapper>

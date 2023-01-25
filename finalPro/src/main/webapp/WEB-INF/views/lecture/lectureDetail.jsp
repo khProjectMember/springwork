@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="memNo" value="${ memNo}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,8 @@
 	<!-- 결제 -->
 	<!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script type="text/javascript">
@@ -92,17 +96,15 @@
    	        });
    		});
    	}
-    </script>
-     <script type="text/javascript">
-    function add_wish(wishNo){
-    	$ajax({
-    		type : "post",
-    		async : false,
-    		url : "${contextPath}/wish/addLecsInWish.le",
-    		data : {lec_no:lec_no},
+       
+    function add_lecs(lecNo, memNo){
+    	$.ajax({
+    		type : 'post',
+    		url : '${contextPath}/addLecsInWish.wi',
+    		data : ({lecNo:lecNo, memNo:memNo}),
     		success : function(data, textStatus){
     			if(data.trim()=='add_success'){
-    				alert("찜목록에 등록되었습니다.")}
+    				alert("찜목록에 등록되었습니다.")
     			}else if(data.trim()=='already_existed'){
     				alert("이미 찜목록에 등록된 강의입니다.")}
     			},
@@ -112,7 +114,7 @@
     			complete : function(data, textStatus){
     				alert("작업을 완료했습니다.")
     			}
-    	})
+    	});
     }
     </script>
 
@@ -150,7 +152,7 @@
                     <table>
                         <tr>
                             <td><h1>${lecture.lecName }</h1></td>
-                            <td rowspan="2"><a href="">장바구니</a></td>
+                            <td rowspan="2"><a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a></td>
                             <td rowspan="2"><a href="">신청하기</a></td>
                         </tr>
                     </table>
@@ -233,7 +235,7 @@
                     <a href="list.le">목록</a>
                     <!-- <a href="applyForm.le">신청하기</a> -->
                     <button onClick="requestPay()">신청하기</button>
-                    <a href="javascript:add_wish('${lecsMap.lecs.lecNo }')">찜하기</a>
+                    <a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a>
                 </div>
                 <div class="class_review">
                     <h1>수강후기(0)</h1>
