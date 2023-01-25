@@ -122,4 +122,23 @@
 		from reviewreply
 		where rev_no = #{revNo}
 	</select>
+	<insert id="insertReviewReply">
+		insert into reviewreply (revreply_no, revreply_writer, revreply_content, revreply_date, rev_no) 
+		values (SEQ_RRNO.NEXTVAL, #{revReplyWriter}, #{revReplyContent}, sysdate, #{revNo})
+		
+	</insert>
+	<select id="reviewRecommendRenum" resultMap="reviewRecommendReview" resultType="_int">
+		select mem_no from reviewrecommend where rev_no = #{revNo}
+	</select>
+	<delete id="deleteRecommend">
+		delete from reviewrecommend where rev_no = #{revNo} and mem_no = #{memNo}
+	</delete>
+	<update id="updateRecommendCountDelete">
+		update review set rev_rec = rev_rec - 1
+		where rev_no = #{revNo}
+	</update>
+	<delete id="deleteReviewReply">
+		delete from reviewreply where rev_no = #{revNo}
+	</delete>
+	
 </mapper>

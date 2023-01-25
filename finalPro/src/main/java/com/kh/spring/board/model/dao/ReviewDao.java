@@ -105,5 +105,31 @@ public class ReviewDao {
 	public ArrayList<ReviewReply> reviewReplyList(SqlSessionTemplate sqlSession, int revNo) {
 		return (ArrayList) sqlSession.selectList("reviewMapper.reviewReplyList", revNo);
 	}
+	
+	public int insertReviewReply(SqlSessionTemplate sqlSession, ReviewReply rr) {
+		return sqlSession.insert("reviewMapper.insertReviewReply", rr);
+	}
+	
+	public ArrayList<Reviewrecommend> reviewRecommendRenum(SqlSessionTemplate sqlSession, int revNo) {
+		return (ArrayList) sqlSession.selectList("reviewMapper.reviewRecommendRenum", revNo);
+	}
+	
+	public int deleteRecommend (SqlSessionTemplate sqlSession, int revNo, int memNo) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("revNo", revNo);
+		map.put("memNo", memNo);
+		
+		return sqlSession.delete("reviewMapper.deleteRecommend", map);
+	}
+	
+	public int updateRecommendCountDelete(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.update("reviewMapper.updateRecommendCountDelete", revNo);
+	}
+	
+	public int deleteReviewReply(SqlSessionTemplate sqlSession, int revNo) {
+		return sqlSession.delete("reviewMapper.deleteReviewReply", revNo);
+	}
+	
+	
 }
 

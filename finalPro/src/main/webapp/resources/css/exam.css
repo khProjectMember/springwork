@@ -76,3 +76,5 @@ body, input, textarea, select, button a {
 .footer .footer_content .footer_txt .f_textbox {display: flex;}
 .footer .footer_content .footer_txt .f_textbox .span_index {margin-left: auto;}
 
+
+a:hover { text-decoration: none;}

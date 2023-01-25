@@ -27,12 +27,6 @@
     <!-- 서머노트Api -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
-
- 	<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스타일 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스크립트 -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	
 	<!-- sweetalert 알림창 -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

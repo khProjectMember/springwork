@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.board.model.dao.MeetingDao;
+import com.kh.spring.board.model.vo.Join;
 import com.kh.spring.board.model.vo.Meeting;
 
 @Service
@@ -65,21 +66,15 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public int insertJoinMeeting(int hangoutNo) {
+	public int insertJoinMeeting(int hangoutNo, int memNo) {
 		// TODO Auto-generated method stub
-		return mDao.insertJoinMeeting(sqlSession, hangoutNo);
+		return mDao.insertJoinMeeting(sqlSession, hangoutNo, memNo);
 	}
 	
 	@Override
 	public int updateMeetingCount(int hangoutNo) {
 		// TODO Auto-generated method stub
 		return mDao.updateMeetingCount(sqlSession, hangoutNo);
-	}
-
-	@Override
-	public int deleteJoinOutMeeting(int hangoutNo) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -104,6 +99,24 @@ public class MeetingServiceImpl implements MeetingService {
 	public ArrayList<Meeting> searchMeetingList(String key_local, String key_gender, String key_age, String key_catg, int key_count) {
 		// TODO Auto-generated method stub
 		return mDao.searchMeetingList(sqlSession, key_local, key_gender, key_age, key_catg, key_count);
+	}
+
+	@Override
+	public ArrayList<Join> joinvalue(int hangoutNo) {
+		// TODO Auto-generated method stub
+		return mDao.joinvalue(sqlSession, hangoutNo);
+	}
+
+	@Override
+	public int deleteJoinMeeting(int hangoutNo, int memNo) {
+		// TODO Auto-generated method stub
+		return mDao.deleteJoinMeeting(sqlSession, hangoutNo, memNo);
+	}
+
+	@Override
+	public int updateDownMeetingCount(int hangoutNo) {
+		// TODO Auto-generated method stub
+		return mDao.updateDownMeetingCount(sqlSession, hangoutNo);
 	}
 
 	
