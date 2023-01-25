@@ -250,6 +250,24 @@
                         </tr>
                     </table>
                 </div>
+                
+                <form action="" method="post" id="postForm">
+				<input type="hidden" name="lecNo" value="${ lecture.lecNo}">
+				<input type="hidden" name="filePath" value="${ lecture.lecFilename}">
+				</form>
+			<c:if test="${ loginUser.isAdmin eq 'Y' }">
+	            <div align="center">
+	                <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
+	                <a class="btn btn-primary" onclick="postFormSubmit(1);">수정하기</a>
+	            </div><br><br>
+            </c:if>
+	                <script>
+						function postFormSubmit(num){
+							if(num == 1){
+								$("#postForm").attr("action","updateForm.le").submit();
+							} 
+						}
+					</script>
                 <div class="class_regi">
                     <hr>
                     <a href="list.le">목록</a>

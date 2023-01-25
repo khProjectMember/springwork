@@ -31,9 +31,9 @@
         padding: 5% 10%;
         background:white;
     }
-    #enrollForm>table{width: 100%; border: 1px solid lightgray; 
+    #modify_Lecture>table{width: 100%; border: 1px solid lightgray; 
     background-color: rgb(247, 245, 245);}
-    #enrollForm>table *{ margin:3px; padding: 6px;}
+    #modify_Lecture>table *{ margin:3px; padding: 6px;}
 </style>
 </head>
 <body>
@@ -44,38 +44,40 @@
 			<div id="inner">
 				<div class="content2">
 					<div class="innerOuter">
-						<h2>강좌 등록</h2>
+						<h2>강좌수정</h2>
             <br>
 
-            <form id="enrollForm" method="post" action="lecinsert.le" enctype="multipart/form-data">
+            <form id="modify_Lecture" method="post" action="lecupdate.le" enctype="multipart/form-data">
+            	<input type="hidden" name=lecNo value="${l.lecNo }">
+            	 <%--<input type="hidden" name="lecJnum" value="${ lecture.lecJnum }"> --%>
                 <table align="center">
                     <tr>
                         <th><label for="title">강의명</label></th>
-                        <td><input class="form-control" name="lecName" required></td>
+                        <td><input class="form-control" name="lecName" value="${l.lecName }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의시작날짜</label></th>
-                        <td><input class="form-control" name="lecSdate" required></td>
+                        <td><input class="form-control" name="lecSdate" value="${l.lecSdate }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의종료날짜</label></th>
-                        <td><input class="form-control" name="lecEdate" required></td>
+                        <td><input class="form-control" name="lecEdate" value="${l.lecEdate }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의시작시간</label></th>
-                        <td><input class="form-control" name="lecStime" required></td>
+                        <td><input class="form-control" name="lecStime" value="${l.lecStime }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의종료시간</label></th>
-                        <td><input class="form-control" name="lecEtime" required></td>
+                        <td><input class="form-control" name="lecEtime" value="${l.lecEtime }" required></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의횟수</label></th>
-                        <td><input class="form-control" name="lecCount" required></td>
+                        <td><input class="form-control" name="lecCount" value="${l.lecCount }" required></td>
                     </tr>
                     <tr>
                         <th><label for="upfile">강의사진</label></th>
-                        <td><input type="file" class="form-control-file border" name="upfile"></td>
+                        <td><input type="file" class="form-control-file border" name="reupfile" value="${l.lecFilename }"></td>
                     </tr>
                     <tr>
                         <th><label for="title">강의대분류</label></th>
@@ -94,27 +96,16 @@
                     </tr>
                      <tr>
                         <th><label for="title">강의가격</label></th>
-                        <td><input class="form-control" name="lecPrice" required></td>
+                        <td><input class="form-control" name="lecPrice" value="${l.lecPrice }" required ></td>
                     </tr>
-                    
-                    <!--  <tr>
-                        <th><label for="title">강의평점</label></th>
-                        <td><input class="form-control" name="lecGrade" placeholder="평점" type="number" readonly ></td>
-                    </tr> -->
-                    
-                   <!-- <tr>
-                        <th><label for="title">접수인원</label></th>
-                        <td><input class="form-control" name="lecJnum" required></td>
-                    </tr>  -->
-                    
                      <tr>
                         <th><label for="title">수강인원</label></th>
-                        <td><input class="form-control" name="lecCnum" required></td>
+                        <td><input class="form-control" name="lecCnum" value="${l.lecCnum }" required></td>
                     </tr>
                     
                     <tr>
                    		<th><label for="title">강의설명</label></th>       
-                        <td><textarea class="form-control" name="lecInfo" rows="10" cols="50" style="resize:none" required ></textarea></th>
+                        <td><textarea class="form-control" name="lecInfo" rows="10" cols="50" style="resize:none" value="${lecture.lecInfo }"required ></textarea></th>
                     </tr>
                     <tr>
                         <th><label for="title">강사</label></th>
@@ -132,25 +123,14 @@
 						</c:forEach>
                         	 </select></td>
                     </tr>
-                   <!--  <tr>
-                        <th><label for="title">강의실</label></th>
-                        <td><select id="select4" name="locNo">
-                        		<option value="1">다목적강의반</option>
-                        		<option value="2">무궁화관</option>
-							    <option value="3">진달래관</option>
-							    <option value="4">개나리관</option>
-							    <option value="5">장미관</option>
-							    <option value="6">튤립관</option>
-							    <option value="7">들국화관</option>
-                        	 </select></td>
-                    </tr> -->
                 </table>
                 <br>
 
                 <div align="center">
-                    <button type="submit" class="btn btn-primary">등록하기</button>
+                    <button type="submit" class="btn btn-primary">수정하기</button>
                     <button type="reset" class="btn btn-danger">취소하기</button>
                 </div>
+                
             </form>
         </div>
 	</div>
