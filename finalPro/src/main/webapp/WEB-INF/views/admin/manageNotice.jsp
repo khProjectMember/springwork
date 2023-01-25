@@ -17,7 +17,7 @@
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지관리</title>
 <style>
   	 
     .content2{
@@ -31,8 +31,8 @@
         padding: 5% 5%;
         background:white;
     }
-   		#HangoutList{text-align: center;}
-        #HangoutList>tbody>tr:hover{cursor: pointer;}
+   		#ReviewList{text-align: center;}
+        #ReviewList>tbody>tr:hover{cursor: pointer;}
         #pagingArea{width:fit-content; margin: auto;}       
         #searchForm{
             width: 80%;
@@ -55,45 +55,95 @@
 			<div id="inner">
 				<div class="content2">
 					<div class="innerOuter">
-						<h2>강좌목록 관리</h2>
+						<h2>공지 목록</h2>
 						<br>
-
-						<table id="HangoutList" class="table table-hover" align="center">
+						
+						<table id="NoticeList" class="table table-hover" align="center">
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성날짜</th>
-									<th>모집현황</th>
-									<th>조회수</th>
+									<th>카테고리</th>
+                                    <th>제목</th>
+                                    <th>작성날짜</th>
+                                    <th>작성자</th>
+                                    <th></th>
+									
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="h" items="${ list }">
+								<c:forEach var="n" items="${ list }">
 									<tr>
-										<td class="hangoutNo">${ h.hangoutNo}</td>
-										<td>${h.hangoutTitle}</td>
-										<td>${h.m.memNickname }</td>
-										<td>${h.hangoutEdate}</td>
-										<td>${h.hangoutNowCount} / ${h.hangoutJoinCount}</td>
-										<td>${h.hangoutViewCount}</td>
+										<td class="nno">${ n.noticeNo}</td>
+										<c:choose>
+		                                    <c:when test="${ n.noticeCatg eq 0}">
+		                                    <td>공지사항</td>
+		                                    </c:when>
+		                                    <c:otherwise>
+		                                    <td>이벤트</td>
+		                                    </c:otherwise>
+	                                    </c:choose>
+										<td class="subject"><a href="detail.bo?noticeNo=${ n.noticeNo }">${ n.noticeTitle }</a></td>
+										<td>${n.edate}</td>
+										<td>${n.m.memNickname}</td>
+										<td><input name = "selectDelete" type = "checkbox" value = "${n.noticeNo }"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<br>
+						<input type = "button" value = "삭제" class = "btn btn-outline-danger" onclick="deleteValue();">
 						<!-- 상세페이지 -->
-						<script>
+					<!-- 	<script>
 							$(function() {
-								$("#HangoutList>tbody>tr").click(
+								$("#ReviewList>tbody>tr").click(
 										function() {
-											location.href = 'meetingDetail.bo?hangoutNo=1'
-													+ $(this).children(".hno")
+											location.href = 'reviewDetail.bo?rno='
+													+ $(this).children(".rno")
 															.text();
 										})
 							})
-						</script>
+						</script> -->
+						<script>
+		/* const trs = $(".review");
+		for(tr of trs) {
+			tr.addEventListener("click", function(){
+				console.log($(this).find(".boardId").html());
+				const boardId = $(this).find(".boardId").text();
+				const writer = $(this).find(".nickName").text();
+				const movieTitle = $(this).find(".movieTitle").text();
+				location.href = "${contextPath}/movieReviewDetail.re?boardId="+boardId+"&writer="+writer+"&movieTitle="+movieTitle;
+			});
+		} */
+		
+		function deleteValue() {
+			var deleteArr = new Array(); //삭제할 리뷰 리스트
+			var list = $("input[name='selectDelete']"); //체크된 리스트
+			//console.log(list);
+			for(var i = 0; i < list.length; i++) {
+				if(list[i].checked) {
+					deleteArr.push(list[i].value); //boardId 값 들어감
+					//console.log(deleteArr);
+				}
+			}
+			if(deleteArr.length == 0) {
+				alert('선택된 글이 없습니다.');
+			} else {
+				var msg = confirm("정말 삭제하시겠습니까?");
+				$.ajax({
+					url: "${contextPath}/spring/deleteNotice.ad",
+					type: 'POST',
+					data: {
+						deleteArr: deleteArr
+					},
+					success: function(data) {
+						alert("삭제되었습니다.");
+						history.go(0);
+					}
+				});
+			}
+		}
+	</script>
+	
 						<div id="pagingArea">
 							<ul class="pagination">
 								<c:choose>
@@ -103,13 +153,13 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="hlist.ad?cpage=${ pi.nowPage-1 }">Previous</a></li>
+											href="nlist.ad?cpage=${ pi.nowPage-1 }">Previous</a></li>
 									</c:otherwise>
 								</c:choose>
 								<c:forEach var="p" begin="${ pi.startPage }"
 									end="${ pi.endpage }">
 									<li class="page-item"><a class="page-link"
-										href="hlist.ad?cpage=${ p }">${ p }</a></li>
+										href="nlist.ad?cpage=${ p }">${ p }</a></li>
 								</c:forEach>
 								<c:choose>
 									<c:when test="${ pi.nowPage eq pi.maxPage }">
@@ -118,7 +168,7 @@
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="hlist.ad?cpage=${ pi.nowPage+1 }">Next</a></li>
+											href="nlist.ad?cpage=${ pi.nowPage+1 }">Next</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -129,8 +179,7 @@
 						<form id="searchForm" action="" method="Get" align="center">
 							<div class="select">
 								<select class="custom-select" name="condition">
-									<option value="writer">작성자</option>
-									<option value="title">제목</option>
+									<option value="name">카테고리</option>
 								</select>
 							</div>
 							<div class="text">

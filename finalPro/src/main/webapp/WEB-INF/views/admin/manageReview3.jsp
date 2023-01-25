@@ -206,7 +206,7 @@
 			} else {
 				var msg = confirm("정말 삭제하시겠습니까?");
 				$.ajax({
-					url: "${contextPath}/deleteMovieReview.ad",
+					url: "${contextPath}/deleteReview.ad",
 					type: 'POST',
 					data: {
 						deleteArr: deleteArr

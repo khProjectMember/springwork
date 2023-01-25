@@ -88,7 +88,7 @@
                         </div>
                         <div class="review_show">
                             <div class="review_count">
-                                <span>총 댓글 수 5</span>
+                                <span></span>
                             </div>
                             <div class="review_order">
                                 <ul>
@@ -126,7 +126,9 @@
     <script type="text/javascript">    
 	    $(function() {
 			selectReviewReplyList();
-			
+			reviewTotalCount();
+			setInterval(reviewTotalCount, 100);
+ 			
 			
 			$(document).on('click', '.revReplyDelete', function() {
 				
@@ -134,13 +136,11 @@
 				if(${loginUser.memNickname == '쿄쿄' }) {
 					$.ajax({
 						url:'revReplyDelete.bo',
-						data: { revNo: ${ review.revNo }},
+						data: { 								
+								revReplyNo: $('.revReplyNo').val()
+							},
 						success: function(result) {
-							if(result == "success") {
-								Swal.fire("댓글이 삭제 되었습니다.");
-								location.reload();	
-							
-							}
+							location.reload();
 						},
 						error: function() {
 							console.log("실패");	
@@ -242,7 +242,8 @@
     						  +				"<span>0</span>"
     						  +			"</div>"
     						  +		"</div>"
-    						  +	 "</div>";
+    						  +		"<input type='hidden' class= 'revReplyNo' value='"+list[i].revReplyNo+"'>"
+    						  +	 "</div>"; 
     				}
     				$('.review_main').html(value);
     			},
@@ -278,6 +279,19 @@
     		} else {
     			alert("댓글 작성 후 등록해주세요");
     		}
+    	}
+    	
+    	function reviewTotalCount() {
+    		$.ajax({
+    			url: 'reviewTotalCount.bo',
+    			data: {revNo: ${ review.revNo }},
+    			success: function(result) {
+    				$('.review_count>span').html("총 댓글 수 "+result);
+    			},
+    			error: function() {
+    				console.log("실패");
+    			}
+    		})
     	}
     		
     	

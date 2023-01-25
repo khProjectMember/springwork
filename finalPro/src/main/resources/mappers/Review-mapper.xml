@@ -138,7 +138,10 @@
 		where rev_no = #{revNo}
 	</update>
 	<delete id="deleteReviewReply">
-		delete from reviewreply where rev_no = #{revNo}
+		delete from reviewreply where revreply_no = #{revReplyNo}
 	</delete>
+	<select id="reviewTotalCount" resultType="_int">
+		select count(*) from reviewreply where rev_no = #{revNo}
+	</select>
 	
 </mapper>

@@ -27,6 +27,7 @@ public class Lecture{
 	private int lecGrade;
 	private int lecJnum;
 	private int lecCnum;
+	
 	private String lecMlist;
 	private int teaNo;
 	private int locNo;
