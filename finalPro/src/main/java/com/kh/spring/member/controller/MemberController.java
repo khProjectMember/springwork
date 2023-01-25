@@ -395,14 +395,15 @@ public class MemberController {
 	public String updateCarNumber(Member m, HttpSession session, Model model) {
 		int result = mService.updateCarNumber(m);
 		if(result > 0) {
-			Member updateM = mService.loginMember(m);
-			session.setAttribute("loginUser", updateM);
+			Member updateC = mService.loginMember(m);
+			session.setAttribute("loginUser", updateC);
 			System.out.println("차량번호 등록이 완료되었습니다.");
+			System.out.println(updateC.getMemCarno());
 			session.setAttribute("alertMsg", "차량번호 등록이 완료되었습니다.");
 			return "redirect:myPage.me"; 
 		} else {
 			model.addAttribute("errorMsg","차량번호 등록에 실패하였습니다. 다시한번 확인해주세요.");
-			return "redirect:myPage.me";			
+			return "redirect:myPage.me";
 		}
 	}
 	

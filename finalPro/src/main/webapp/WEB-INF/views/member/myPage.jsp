@@ -43,7 +43,7 @@
             display: flex;
         }
         .myInfoArea .leftArea{
-            margin-right: 300px;
+            margin-right: 100px;
         }
         .myInfoArea .leftArea dl dt span {
             font-size: 16px;
@@ -351,8 +351,9 @@
 	                            <p>
 	                            	<form action="updateCar.me">
 	                                <label for="" style="font-size: 16px;color: #222;text-align: left;padding: 11px 5px 10px 5px;height: 66px;font-weight: normal;">차량번호</label>
-	                                <input type="text" maxlength="20" id="" value="${loginUser.memCarno }">
-	                        		
+	                                
+	                                <input type="text" maxlength="20" id="memCarno" placeholder="※예시) [서울12가3456]" value="${loginUser.memCarno}">
+	                        		<input type="hidden" name="memId" id="memId" class="form-control" style="width:315px" value="${ loginUser.memId}" maxlength="12" readonly>
 	                                <label for="">차량번호 수집동의</label>
 	                                <span><input type="checkbox"></span>
 	                                <button type="submit" class="btn btnType04 btnBlack"><span>저장</span></button>

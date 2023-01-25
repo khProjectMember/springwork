@@ -52,7 +52,7 @@
                 <div class="header-top">
                     <div class="user-info">
                         <ul class="user">
-                         <li><a href="myWishList.wi">장바구니</a></li>
+                         <li><a href="myWishList.wi">찜목록</a></li>
                             <c:choose>
            					<c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
