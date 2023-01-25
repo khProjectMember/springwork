@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.kh.spring.board.model.service.ReviewService;
+import com.kh.spring.board.model.vo.ReplyRecommend;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.board.model.vo.ReviewReply;
 import com.kh.spring.board.model.vo.Reviewrecommend;
@@ -215,6 +216,16 @@ public class ReviewController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="newRlist.bo", produces="application/json; charset=utf-8")
+	public String newReviewReplyList(@RequestParam(value="revNo") int revNo, Model model) {
+		ArrayList<ReviewReply> list = rService.newReivewReplyList(revNo);
+		
+		return new Gson().toJson(list);
+	}
+	
+	
+	
+	@ResponseBody
 	@RequestMapping("rinsert.bo")
 	public String rinsert(ReviewReply rr) {
 		int result = rService.insertReviewReply(rr);
@@ -225,16 +236,17 @@ public class ReviewController {
 	
 	@ResponseBody
 	@RequestMapping("revReplyDelete.bo")
-	public String rdelete(int revReplyNo, HttpSession session) {
-		int result = rService.deleteReviewReply(revReplyNo);
+	public String rdelete(String UserId, int revReplyNo, HttpSession session) {
+		ReviewReply r = rService.selectRevReply(revReplyNo);
 		
-		if(result > 0) {
+		if(UserId.equals(r.getRevReplyWriter()) ) {
+			int result = rService.deleteReviewReply(revReplyNo);
 			session.setAttribute("alertMsg", "댓글이 삭제 되었습니다.");
 			return "success";
 		} else {
+			session.setAttribute("alertMsg", "작성자만 삭제 가능합니다.");
 			return "fail";
 		}
-		
 		
 	}
 	
@@ -242,6 +254,40 @@ public class ReviewController {
 	@RequestMapping("reviewTotalCount.bo")
 	public int reviewTotalCount(int revNo) {
 		int result = rService.reviewTotalCount(revNo);
+		
+		return result;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="replyRecommend.bo", produces="application/json; charset=utf-8")
+	public String replyRecommend(@RequestParam(value="revReplyNo") int revReplyNo, @RequestParam(value="memNo") int memNo, HttpSession session) {
+		ArrayList<ReplyRecommend> rrlist = rService.replyrecommendList(revReplyNo);
+		ArrayList<Integer> listInt = new ArrayList<Integer>();
+		
+		for(int i = 0; i < rrlist.size(); i ++) {
+			listInt.add(rrlist.get(i).getMemNo());
+		}
+		
+		
+		if(listInt.contains(memNo)) {
+			int result = rService.deleteReplyRecommend(revReplyNo, memNo);
+			int updateRecommendDelete = rService.updateReplyRecommendDelete(revReplyNo);
+			session.setAttribute("alertMsg", "추천 취소 되었습니다.");
+			return "redirect:reviewDatil.bo";
+		} else {
+			int result = rService.insertReplyRecommend(revReplyNo, memNo);
+			int updateRecommend = rService.updateReplyRecommend(revReplyNo);
+			session.setAttribute("alertMsg", "추천 되었습니다.");
+			return "redirect:reviewDetail.bo";
+		}
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("goodTotalCount.bo")
+	public int goodTotalCount(@RequestParam(value="revReplyNo") int revReplyNo) {
+		int result = rService.goodTotalCount(revReplyNo);
 		
 		return result;
 	}

@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -99,12 +101,12 @@ public class MeetingController {
 	}
 	
 	@RequestMapping("meetingjoin.bo")
-	public String insertJoinMeeting(@RequestParam(value="hangoutNo") int hangoutNo, @RequestParam(value="memNo") int memNo) {
+	public String insertJoinMeeting(@RequestParam(value="hangoutNo") int hangoutNo, @RequestParam(value="memNo") int memNo, HttpSession session) {
 		int result = mService.insertJoinMeeting(hangoutNo, memNo);
 		int updateNowCount = mService.updateMeetingCount(hangoutNo);
 		
 		if((result+updateNowCount) > 1) {
-			
+			session.setAttribute("alertMsg", "모임에 참여 되었습니다!");
 			return "redirect:meeting.bo";
 		} else {
 			return "board/errorPage";
@@ -112,12 +114,12 @@ public class MeetingController {
 	}
 	
 	@RequestMapping("meetingjoinOut.bo")
-	public String deleteJoinOutMeeting(@RequestParam(value="hangoutNo") int hangoutNo, @RequestParam(value="memNo") int memNo) {
+	public String deleteJoinOutMeeting(@RequestParam(value="hangoutNo") int hangoutNo, @RequestParam(value="memNo") int memNo,  HttpSession session) {
 		int result = mService.deleteJoinMeeting(hangoutNo, memNo);
 		int updateDownMeetingCount = mService.updateDownMeetingCount(hangoutNo);
 		
 		if((result+updateDownMeetingCount) > 1) {
-			
+			session.setAttribute("alertMsg", "모임에 탈퇴 하셨습니다!");
 			return "redirect:meeting.bo";
 		} else {
 			return "board/errorPage";

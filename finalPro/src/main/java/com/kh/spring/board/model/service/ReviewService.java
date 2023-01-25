@@ -2,6 +2,7 @@ package com.kh.spring.board.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.spring.board.model.vo.ReplyRecommend;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.board.model.vo.ReviewReply;
 import com.kh.spring.board.model.vo.ReviewReplyRe;
@@ -60,14 +61,31 @@ public interface ReviewService {
 	// 리플
 	
 	ArrayList<ReviewReply> reviewReplyList(int revNo);
+	ArrayList<ReviewReply> newReivewReplyList(int revNo);
+	ArrayList<ReviewReply> GoodReivewReplyList(int revNo);
 	ArrayList<ReviewReplyRe> replyReList(int reviewReplyNo);
-	
+	ReviewReply selectRevReply(int revReplyNo);
 	
 	int insertReviewReply(ReviewReply rr);
 	
 	int deleteReviewReply(int revReplyNo);
 	
 	int reviewTotalCount(int revNo);
+	
+	
+	// 리플 좋아요
+	
+	int insertReplyRecommend(int revReplyNo, int memNo);
+	int updateReplyRecommend(int revReplyNo);
+	
+	int deleteReplyRecommend(int revReplyNo, int memNo);
+	int updateReplyRecommendDelete(int revReplyNo);
+	
+	ArrayList<ReplyRecommend> replyrecommendList(int revReplyNo);
+	
+	
+	int goodTotalCount(int revReplyNo);
+	
 
 }
 
