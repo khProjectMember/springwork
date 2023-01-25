@@ -182,7 +182,6 @@
 
           <!-- 폼시작 -->
           <form method="post" action="insert.me" id="enrollForm" name="enrollForm">
-            
 
             <!-- 아이디 -->
             <div class="mb-3">
@@ -195,7 +194,7 @@
 
             <!--유효성 검사-->
             <div class="invalid-feedback">
-              이름을 입력해주세요.
+             	 이름을 입력해주세요.
             </div>
             
             <!-- 성명 -->
@@ -241,7 +240,7 @@
 
             <!--유효성 검사-->
             <div class="invalid-feedback">
-                이메일을 입력해주세요.
+                	이메일을 입력해주세요.
             </div>
             
             <!-- 우편번호 -->
@@ -253,7 +252,7 @@
 
             <!--유효성 검사-->
             <div class="invalid-feedback">
-              주소를 입력해주세요.
+              	주소를 입력해주세요.
             </div>
             
             <!-- 주소 -->
@@ -311,18 +310,11 @@
 
       <!--hidden 부분-->
       <input type="hidden" name="memStatus" value="Y">
-      <!--<input type="hidden" name="memCdate">-->
-      <!-- <input type="hidden" name="memDdate">-->
       <input type="hidden" name="isAdmin" value="N">
       <input type="hidden" name="memCarno" value="서울12가3456">
 
 
             <hr style="width:435px;">
-            <!-- <div class="custom-control custom-checkbox" style="margin-bottom: 20px;">
-              <input type="checkbox" class="custom-control-input" id="agreementCheckBox">
-              <label class="custom-control-label" id="agreementCheckBox">개인정보 수집 및 이용에 동의합니다.</label>
-            </div> -->
-            
   			
             <!-- 가입완료 버튼 -->
             <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color: #434950; border-color : #d9dcdf; width:438px;">가입 완료</button>

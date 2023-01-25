@@ -70,6 +70,23 @@ public class MemberController {
 		}	
 	}
 	*/
+	
+	//로그인 페이지
+	@RequestMapping("login.me")
+	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
+		Member loginUser = mService.loginMember(m);
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPw(), loginUser.getMemPw())) {
+			session.setAttribute("loginUser", loginUser); 
+			session.setAttribute("alertMsg", "성공적으로 로그인 되었습니다.");
+			mv.setViewName("redirect:/"); 		
+		} else {	
+			mv.addObject("errorMsg","비밀번호가 일치하지 않거나 탈퇴한 회원입니다. 다시 한번 확인해 주세요.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/*
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
@@ -85,6 +102,8 @@ public class MemberController {
 		}
 		return mv;
 	}
+	*/
+	
 	
 	
 	//로그아웃
