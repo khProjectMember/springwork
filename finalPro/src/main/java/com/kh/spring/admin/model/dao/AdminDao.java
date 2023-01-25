@@ -100,17 +100,30 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectNewReviewCount");
 	}
 	
-//	리뷰삭제
-	public int deleteReview_ad(SqlSessionTemplate sqlSession, String RevNo) {
-		return sqlSession.update("adminMapper.deleteReview_ad", RevNo);
+//	삭제
+	public int deleteReview_ad(SqlSessionTemplate sqlSession, String revNo) {
+		return sqlSession.delete("adminMapper.deleteReview_ad", revNo);
 	}
 	public int deleteNotice_ad(SqlSessionTemplate sqlSession, String noticeNo) {
-		return sqlSession.update("adminMapper.deleteNotice_ad", noticeNo);
+		return sqlSession.delete("adminMapper.deleteNotice_ad", noticeNo);
 	}
+	public int deleteMember_ad(SqlSessionTemplate sqlSession, String memNo) {
+		return sqlSession.update("adminMapper.deleteMember_ad", memNo);
+	}
+	public int deleteHangout_ad(SqlSessionTemplate sqlSession, String hangoutNo) {
+		return sqlSession.update("adminMapper.deleteHangout_ad", hangoutNo);
+	}
+	public int deleteTeacher_ad(SqlSessionTemplate sqlSession, String teaNo) {
+		return sqlSession.update("adminMapper.deleteTeacher_ad", teaNo);
+	}
+	
+//강의정보 내용 추가
 	public ArrayList<Teacher> selectTeachers(SqlSessionTemplate sqlSession, Teacher t) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectTeachers", t);
 	}
 	public ArrayList<LectureLocation> selectLocations(SqlSessionTemplate sqlSession, LectureLocation l) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectLocations", l);
 	}
+	
+	
 }

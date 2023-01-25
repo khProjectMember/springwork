@@ -70,6 +70,8 @@
 		order by loc_no 
 	</select>
 	
+	
+	
 
 	<!-- Teacher테이불 관리 -->
 	<insert id="insertTeacher">
@@ -80,6 +82,7 @@
   	<select id="selectTeacherList" resultMap="lectureMapper.Teacher">
 		select tea_no, tea_name, tea_age, TO_CHAR(tea_edate,'YY.MM.DD') as "tea_edate", tea_status
 			from teacher
+			where tea_status = 'Y'
 		order by tea_no desc
 	</select>
   
@@ -88,11 +91,17 @@
 			from teacher
 		where tea_status = 'Y'
 	</select>
+	<update id="deleteTeacher_ad">
+		update teacher
+		set tea_status='N'
+		where tea_no = #{teaNo}
+	</update>
 	
 	<!-- Member 테이블 관리 -->
 	<select id="selectMemberList" resultMap="memberMapper.memberResult">
 		select mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_birthday, TO_CHAR(mem_cdate,'YY.MM.DD') as "mem_cdate", mem_carno , mem_status
 			from member
+		where mem_status = 'Y'
 		order by mem_no desc
 	</select>
 	<select id="selectListCount_Member" resultType="_int">
@@ -100,12 +109,17 @@
 			from member
 		where mem_status = 'Y'
 	</select>
+	<update id="deleteMember_ad">
+		update member
+		set mem_status='N'
+		where mem_no = #{memNo}
+	</update>
 	
 	<!-- Hangout 테이블 관리 -->
 	<select id="selectHangoutList" resultMap="meetingMapper.resultMeeting">
 		select h.hangout_no, h.hangout_title, m.mem_nickname, h.hangout_joincount, h.hangout_nowcount, h.hangout_viewcount, TO_CHAR(h.hangout_edate,'YY.MM.DD') as "hangout_edate",h.hangout_status 
 			from hangout h, member m 
-			where h.mem_no = m.mem_no 
+			where h.mem_no = m.mem_no  and h.hangout_status = 'Y'
 		order by h.hangout_no desc
 	</select>
 	<select id="selectListCount_Hangout" resultType="_int">
@@ -113,6 +127,11 @@
 			from hangout
 		where hangout_status = 'Y'
 	</select>
+	<update id="deleteHangout_ad">
+		update hangout
+		set hangout_status='N'
+		where hangout_no = #{hangoutNo}
+	</update>
 	
 	<!-- Review 테이블 관리 -->
 	<select id="selectReviewList" resultMap="reviewMapper.resultReview">

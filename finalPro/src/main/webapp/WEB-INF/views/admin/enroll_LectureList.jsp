@@ -94,6 +94,9 @@
 							</tbody>
 						</table>
 						<br>
+						<div class="pagin_box_thi">
+                                <button class="text_box_button">강의추가</button>
+                            </div>
 						<!-- 상세페이지 -->
 						<script>
 							$(function() {
@@ -133,9 +136,6 @@
 									</c:otherwise>
 								</c:choose>
 							</ul>
-							<div class="pagin_box_thi">
-                                <button class="text_box_button">강의추가</button>
-                            </div>
 						</div>
 						<script type="text/javascript">
 					    	$('.text_box_button').click(function() {
