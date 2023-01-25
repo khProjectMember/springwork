@@ -1,6 +1,5 @@
 package com.kh.spring.board.model.vo;
 
-import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
@@ -14,11 +13,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ReviewReply {
+public class ReplyRecommend {
 	private int revReplyNo;
-	private String revReplyWriter;
-	private String revReplyContent;
-	private String revReplyDate;
-	private int revNo;
-	private int revReplyGcount;
+	private int memNo;
 }

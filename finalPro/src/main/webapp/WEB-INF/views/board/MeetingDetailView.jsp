@@ -158,10 +158,10 @@
     		$('.memNofrm').attr('value', ${ loginUser.memNo });
     		if( list.includes(${loginUser.memNo})) {
     			$('.modifyFrm').attr('action', 'meetingjoinOut.bo').submit();
-    			Swal.fire("모임 탈퇴 하셨습니다!");
+    			
     		} else {
     			$('.modifyFrm').attr('action', 'meetingjoin.bo').submit();
-    			Swal.fire("모임에 참여 되었습니다!");
+    			
     		}
     		
     		
