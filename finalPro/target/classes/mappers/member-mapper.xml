@@ -85,7 +85,7 @@
   
   <insert id="updateCarNumber" >
   	insert into member(mem_carno)
-  		values(#{memCarno})
+  		values( #{memCarno} )
   	  where mem_id = #{memId}
   </insert>
  

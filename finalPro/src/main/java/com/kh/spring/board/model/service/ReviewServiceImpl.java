@@ -161,9 +161,15 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int deleteReviewReply(int revNo) {
+	public int deleteReviewReply(int revReplyNo) {
 		// TODO Auto-generated method stub
-		return rDao.deleteReviewReply(sqlSession, revNo);
+		return rDao.deleteReviewReply(sqlSession, revReplyNo);
+	}
+
+	@Override
+	public int reviewTotalCount(int revNo) {
+		// TODO Auto-generated method stub
+		return rDao.reviewTotalCount(sqlSession, revNo);
 	}
 
 	
