@@ -67,6 +67,7 @@ public class AdminServiceImpl implements AdminService{
 		return aDao.insertTeacher(sqlSession, t);
 	}
 	
+	
 	//새로운 멤버조회
 	public ArrayList<Member> selectNewMember() {
 		return aDao.selectNewMember(sqlSession);
