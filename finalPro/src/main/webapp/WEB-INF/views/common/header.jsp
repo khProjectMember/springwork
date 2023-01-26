@@ -54,11 +54,7 @@
                             <c:choose>
            				    <c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
-                                <div style="position: relative; display:inline-block; width:70%">
-                                    <canvas id='canvas' width="650" height="400" style="position: absolute; left: 0px;">돋보기1</canvas>
-                                    <canvas id='hover' width="650" height="400" style="position: absolute; left: 0px; z-index: 20;">돋보기2</canvas>
-                                    <canvas id='preView' width="650" height="400" style="position: absolute; right: 0px; border-radius: 50%;">돋보기3</canvas>
-                                </div>
+           						<li><a href="javascript:zoomIn();">확대</a></li>
   			                    <li><a href="loginEnroll.me">찜목록</a></li>
 	                            <li><a href="loginEnroll.me">로그인</a></li>
 	                            <li><a href="enrollForm.me">회원가입</a></li>
