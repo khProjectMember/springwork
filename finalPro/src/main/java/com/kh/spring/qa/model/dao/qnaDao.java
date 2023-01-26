@@ -40,4 +40,12 @@ public class qnaDao {
 		return (ArrayList) sqlSession.selectList("qnaMapper.qnaReplyList", qnaNo);
 	}
 
+	public void updateQna(SqlSessionTemplate sqlSession, Qna q) {
+		 sqlSession.update("qnaMapper.updateQna", q);
+	}
+
+	public int deleteQna(SqlSessionTemplate sqlSession, Qna q) {
+		return sqlSession.delete("qnaMapper.deleteQna", q);
+	}
+
 }

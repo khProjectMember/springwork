@@ -89,15 +89,21 @@
                     
                     <div class="btnArea">
                         <div class="leftArea">
-                            <a href="#" class="btn btntype03 btnWhite">
+                            <a href="list.qa" class="btn btntype03 btnWhite" style="background: #fff;
+    						border: 1px solid #aaa;color: #222;height: 80px;   						
+    						line-height: 66px; font-size: 20px; min-width: 120px;">
                                 <span>목록</span>
                             </a>
                         </div>
                         <div class="rightArea">
-                            <a href="#" id="dCancel" class="btn btntype03 btnBlack">
+                            <a href="list.qa" id="dCancel" class="btn btntype03 btnBlack"style="background: #000;
+    						border: 1px solid #aaa;color: white;height: 80px;   						
+    						line-height: 66px; font-size: 20px; min-width: 120px;">
                                 <span>취소</span>
                             </a>
-                            <a href="javascript:qaFrm();" id="dInsert" class="btn btntype03 btnRed">
+                            <a href="javascript:qaFrm();" id="dInsert" class="btn btntype03 btnRed" style="background: #eb2d2f;
+    						border: 1px solid #aaa;color:white;height: 80px;   						
+    						line-height: 66px; font-size: 20px; min-width: 120px;">
                                 <span>등록</span>
                             </a>
                         </div>

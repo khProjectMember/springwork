@@ -134,6 +134,10 @@
 			          Kakao.Auth.setAccessToken(undefined)
 			        }
 			      }  
+			    
+	
+
+//onload end
 			</script>
             <div class="loginTip">
                 <dl>

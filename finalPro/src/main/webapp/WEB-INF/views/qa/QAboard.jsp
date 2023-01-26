@@ -11,7 +11,7 @@
 
     <!-- css -->    
 
-    <link rel="stylesheet" href="resources/css/service centerQA.css">
+    <link rel="stylesheet" href="resources/css/serviceBoard.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -40,9 +40,9 @@
                 <div class="content_fir">
                     <div class="nav_box">
                         <ul>
-                            <li><a href="#" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="list.jsp" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">고객센터</a></li>
-                            <li><a href="#">1:1문의</a></li>
+                            <li><a href="#">자주하는 문의</a></li>
                         </ul>                            
                     </div>                     
                 </div>              
@@ -53,7 +53,7 @@
         <div id="content" style="padding-top:96px;">
             <div class="inner">
                 <div class="bz">
-                    <h2 style="padding-left:15px; font-size:40px;">자주하는문의</h2>                       
+                    <h2 style="padding-left:210px; font-size:40px;">자주하는문의</h2>                       
                     <div class="container">
                         <div class="reco">
                             <form id="frm" name="frm" method="post" action="">
@@ -73,14 +73,14 @@
                                             <p class="informationculture" style="margin-top: 16px;
                                             line-height: 1.3em;
                                             color: #666;
-                                            font-size: 19px;">문화센터 대해 궁금한 사항은 아래 내용을 참고하시기
+                                            font-size: 19px;">문화센터 대한 궁금한 사항은 아래
                                             <br>
-                                             바랍니다.
+                                                                                                   내용을 참고하시기바랍니다.
                                              </p>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="call_center">
+                                        <a href="list.qa" class="call_center">
                                             <span class="img-icon">
                                                 <img src="resources/img/headset.png" alt="지점별 연락처 보기" style="display:inline-block; vertical-align:top;">
                                             </span>
@@ -92,7 +92,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="call_center">
+                                        <a href="sendQa.qa" class="call_center">
                                             <span class="img-icon">
                                                 <img src="resources/img/headset.png" alt="1:1문의" style="display:inline-block; vertical-align:top;">
                                             </span>
@@ -120,14 +120,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="search-panel search-bd-bottom">
+                        <div class="search-panel search-bd-bottom" style="margin-left:-420px;">
                         <ul class="col2" style="margin-right:-99px;">
-                                <li style="width:37%">
-                                    <input type="text" class="default-input" id="search_text" name="search_text" placeholder="검색어를 입력하세요" maxlength="50" value>
-                                </li>
-                                <li class="last">
-                                    <a href="#" class="btn btn-srch bg-c">검색</a>
-                                </li> 
+                                
                             </ul>
                         </div>
                         <div id="Accordion_wrap">          
@@ -167,20 +162,7 @@
                             </div>                                
                                 <div class="anw">                  
                                     <span class="ans-top">연회비, 입회비가 없습니다.</span><br/>                                        
-                                </div>
-                        <div id="Accordion_wrap">          
-                            <div class="que">
-                            <span>수업이 휴강되었을 때 보강이 이루어지나요?</span>                                    
-                            </div>                                
-                                <div class="anw">                  
-                                    <span class="ans-top">강사님의 개인사정 및 기타 사유로 인한 휴강의 경우 마지막주 또는 강사님과 수강생이</span><br/>
-                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서로 합의된 지정일에 보강일자를 선정하여 강좌를 진행합니다.&nbsp;</span><br/>
-                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단, 법정공휴일에 의한 휴강은 보강이 없으므로, 강의 일정을 꼭 확인해 주시고&nbsp;</span><br/>
-                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;단, 법정공휴일에 의한 휴강은 보강이 없으므로, 강의 일정을 꼭 확인해 주시고&nbsp;</span><br/>
-                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수강생 개인사정으로 인한 결석 등의 사유로 수강하지 못한 부분 또한&nbsp;</span><br/>
-                                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;별도의 보강이 이루어지지 않으므로 이점 양지해 주시기 바랍니다.&nbsp;</span>
-                                </div>
-                        </div>
+                                </div>                        
                         <div id="Accordion_wrap">          
                             <div class="que">
                             <span>인터넷 접수기간 종료 후, 강좌 개강 후에도 수강신청이 가능한가요?</span>                                    
@@ -376,7 +358,6 @@
 </div>
 
     <div class="all"></div>  
-    <jsp:include page="../common/footer.jsp" />
     
     <script>
     $(".que").click(function() {
@@ -460,5 +441,6 @@
         
        
     </script>
+  	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

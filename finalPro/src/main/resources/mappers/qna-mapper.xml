@@ -44,5 +44,12 @@
 		select qnareply_no, qnareply_writer, qnareply_content,qna_no
 		from qnareply
 		where qna_no = #{qnaNo}
-	</select>		
+	</select>
+	<update id="updateQna">
+		update qna set qna_title = #{qnaTitle}, qna_no = #{qnaNo}, qna_content = #{qnaContent}
+		where qna_no = #{qnaNo}
+	</update>
+	<delete id="deleteQna">
+		delete from qna where qna_no = #{qnaNo}
+	</delete>	
 </mapper>

@@ -10,7 +10,7 @@
     <title>樂受文化 악수문화센터</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="resources/css/service centerReply.css">
+    <link rel="stylesheet" href="resources/css/serviceReply.css">
 
 
 </head>
@@ -23,7 +23,7 @@
                 <div class="content_fir">
                     <div class="nav_box">
                         <ul>
-                            <li><a href="views/list.jsp" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="list" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">고객센터</a></li>
                             <li><a href="#">고객게시판</a></li>
                         </ul>                            
@@ -39,10 +39,10 @@
                             <li>
                                 · 자주하는문의에 없는 질문은 1:1문의를 해주시면 빠른 시일 안에 답변을 보내드리겠습니다.
                             </li>
-                            <a href="board.qa" class="btn btnBlack btnType04">
-                                    <span>자주하는 문의보기</span>
-                            </a>
                         </ul>
+                        <a href="board.qa" class="btn btnBlack btnType04">
+                        	<span style="background:#000; color:#fff;padding:8px;">자주하는 문의보기</span>
+                        </a>                        
                     </div>
                 </div>
                 <div class="basicDataTable mb30 inquiry">
@@ -105,7 +105,7 @@
                 </div>
                      <div class="btnArea">
                     <div class="rightArea">                        
-                            <button type="button" onclick="location.href='sendQa.qa'">문의하기</button>
+                            <button type="button" style="color:white; background:black; padding:13px;"onclick="location.href='sendQa.qa'">문의하기</button>
                     </div>
                 </div>
             </div>            

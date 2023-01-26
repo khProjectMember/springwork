@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.qa.model.dao.qnaDao;
 import com.kh.spring.qa.model.vo.Qna;
@@ -26,6 +27,13 @@ public class qnaServiceImpl implements qnaService {
 		// TODO Auto-generated method stub
 		return qDao.insertQna(sqlSession, q);
 	}
+	
+	@Override
+	public void updateQna(Qna qna) {
+		 qDao.updateQna(sqlSession, qna);
+	}
+	
+	
 
 	@Override
 	public int selectListCount() {
@@ -51,16 +59,13 @@ public class qnaServiceImpl implements qnaService {
 	}
 
 	@Override
-	public Qna selectqnaDetail(int qnaNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updatePost(Qna q) {
+		 qDao.updateQna(sqlSession, q);
 	}
 
 	@Override
-	public ArrayList<QnaReply> QnaReplyList(int qnaNo) {
+	public int deleteQna(Qna q) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
+		return qDao.deleteQna(sqlSession, q);
+	}	
 }
