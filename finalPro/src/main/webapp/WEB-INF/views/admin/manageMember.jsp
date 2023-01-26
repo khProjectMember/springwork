@@ -69,7 +69,6 @@
 									<th>생년월일</th>
 									<th>회원생성일자</th>
 									<th>차량번호</th>
-									<th>상태</th>
 									<th></th>
 									
 								</tr>
@@ -85,14 +84,15 @@
 										<td>${m.memBirthday}</td>
 										<td>${m.memCdate}</td>
 										<td>${m.memCarno}</td>
-										<td>${m.memStatus}</td>
 										<td><input name = "selectDelete" type = "checkbox" value = "${m.memNo }"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<br>
+						<c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
 						<input type = "button" value = "회원탈퇴" class = "btn btn-outline-danger" onclick="deleteValue();">
+						</c:if>
 						<!-- 상세페이지 -->
 						<!-- <script>
 							$(function() {

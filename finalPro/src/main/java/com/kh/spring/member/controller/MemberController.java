@@ -451,13 +451,6 @@ public class MemberController {
 	@RequestMapping("idCheck.me")
 	public String idCheck(String checkId) {
 		int count = mService.idCheck(checkId);
-		/*
-		if(count > 0) {
-			return "NNN";
-		} else {
-			return "YYY";
-		}
-		*/
 		return count > 0 ? "NNN" : "YYY";
 	}
 	

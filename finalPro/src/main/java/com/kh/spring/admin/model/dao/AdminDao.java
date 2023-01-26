@@ -20,9 +20,16 @@ public class AdminDao {
 	public int insertLecture(SqlSessionTemplate sqlSession, Lecture l) {
 		return sqlSession.insert("adminMapper.insertLecture",l);
 	}
+	public int updateLecture(SqlSessionTemplate sqlSession, Lecture l) {
+		return sqlSession.update("adminMapper.updateLecture",l);
+	}
 	public int insertTeacher(SqlSessionTemplate sqlSession, Teacher t) {
 		return sqlSession.insert("adminMapper.insertTeacher",t);
 	}
+	/*
+	 * public int selectLecture(SqlSessionTemplate sqlSession, Lecture l) { return
+	 * sqlSession.selectOne("adminMapper.selectLecture",l); }
+	 */
 	
 	
 	public int selectListCount_Lecture(SqlSessionTemplate sqlSession) {
@@ -116,6 +123,10 @@ public class AdminDao {
 	public int deleteTeacher_ad(SqlSessionTemplate sqlSession, String teaNo) {
 		return sqlSession.update("adminMapper.deleteTeacher_ad", teaNo);
 	}
+	public int deleteLecture_ad(SqlSessionTemplate sqlSession, String lecNo) {
+		return sqlSession.delete("adminMapper.deleteLecture_ad", lecNo);
+	}
+	
 	
 //강의정보 내용 추가
 	public ArrayList<Teacher> selectTeachers(SqlSessionTemplate sqlSession, Teacher t) {
@@ -124,6 +135,13 @@ public class AdminDao {
 	public ArrayList<LectureLocation> selectLocations(SqlSessionTemplate sqlSession, LectureLocation l) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectLocations", l);
 	}
+	public ArrayList<Lecture> selectLecture(SqlSessionTemplate sqlSession, Lecture l) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectLecture", l);
+	}
+	public Lecture selectLecture(SqlSessionTemplate sqlSession, Integer lecNo) {
+		return sqlSession.selectOne("adminMapper.selectLecture",lecNo);
+	}
+	
 	
 	
 }
