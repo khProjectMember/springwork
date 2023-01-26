@@ -19,7 +19,7 @@
                 <div class="content_fir">
                     <div class="nav_box">
                         <ul>
-                            <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="#" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">커뮤니티</a></li>
                             <li><a href="#">공지사항/이벤트</a></li>
                         </ul>
@@ -50,7 +50,7 @@
                                             </select>
                                         </td>
                                         <th scope="row">작성자</th>
-                                        <td><input type="text" placeholder="작성자 닉네임" class="nick_input" readonly></td>
+                                        <td><input type="text" placeholder="${ loginUser.memNickname }" class="nick_input" readonly></td>
                                     </tr>
                                     <tr class="th_textarea">
                                         <th scope="row">내용</th>
