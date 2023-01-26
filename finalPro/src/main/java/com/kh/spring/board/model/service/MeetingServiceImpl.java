@@ -36,9 +36,9 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 	
 	@Override
-	public int insertjoin(int hangoutNo) {
+	public int insertjoin(int hangoutNo, int memNo) {
 		// TODO Auto-generated method stub
-		return mDao.insertjoin(sqlSession, hangoutNo);
+		return mDao.insertjoin(sqlSession, hangoutNo, memNo);
 	}
 
 	@Override
