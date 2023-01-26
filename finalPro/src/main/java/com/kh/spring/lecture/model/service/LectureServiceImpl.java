@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.dao.LectureDao;
 import com.kh.spring.lecture.model.vo.Lecture;
@@ -26,9 +27,31 @@ public class LectureServiceImpl implements LectureService{
 		return lDao.lectureList(sqlSession, l);
 	}
 	
+	@Override
 	public Lecture lectureDetail(Integer lecNo) {
 		return lDao.lectureDetail(sqlSession, lecNo);
 	}
+	
+	@Override
+	public ArrayList<Lecture> mainOrdNew(Lecture l){
+		return lDao.mainOrdNew(sqlSession, l);
+	}
+	
+	@Override
+	public ArrayList<Lecture> mainOrdGrade(Lecture l) {
+		return lDao.mainOrdGrade(sqlSession, l);
+	}
+
+	@Override
+	public ArrayList<Notice> mainOrdNotice(Notice n) {
+		return lDao.mainOrdNotice(sqlSession, n);
+	}
+
+	@Override
+	public ArrayList<Notice> mainOrdEvent(Notice n) {
+		return lDao.mainOrdEvent(sqlSession, n);
+	}
+	
 	
 	
 	
