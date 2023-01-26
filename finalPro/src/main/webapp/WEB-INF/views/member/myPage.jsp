@@ -16,8 +16,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 		<!-- myPage탈퇴기능 modal창 관련 부트스트랩에서 제공하고 있는 스크립트 -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-			
-
+		<script src="resources/js/main3.js"></script>
     <style>
         .content_fir {width: 100%; display: flex; justify-content: flex-end;}
         .content_fir .nav_box {margin: 50px 0;}
@@ -134,6 +133,31 @@
         .memberExit {
             text-align: right;
         }
+        /*확대기능*/
+
+        /* 감싸는 div */
+        .wrap {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        /* 확대될 타겟이미지*/
+        .target {
+            display: block;
+            width: 100%;
+        }
+        /* 돋보기 */
+        .magnifier {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border-radius: 100%;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 0 3px 3px rgba(0, 0, 0, 0.25);
+            display: none;
+        }
+
+
     </style>
     <script>
  	// 닉네임 중복체크
@@ -168,8 +192,8 @@
 			
 		})
 	})
-    
-    
+	
+
     </script>
     </head>
 <body>
@@ -252,12 +276,11 @@
                         </div><!--rightArea-->
                     </div><!--myInfoArea-->
                 </div> <!-- class=inner1-->
-
                 <div class="inner2">
-                    <!--확대기능-->
                     <div class="title">
-                            <h3>회원정보</h3>
+                        <h3>회원정보</h3>
                     </div>
+
                     <form action="update.me" method="post" id="updateForm">
 	                    <div class="memberInfoTable">
 	                        <table style="border-spacing: 0;">
