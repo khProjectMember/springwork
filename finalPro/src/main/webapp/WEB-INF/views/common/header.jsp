@@ -30,7 +30,6 @@
 	
 	<!-- sweetalert 알림창 -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	
 </head>
 <body>
 	<!-- sweetalert 알림창 -->
@@ -53,11 +52,13 @@
                     <div class="user-info">
                         <ul class="user">
                             <c:choose>
-           					<c:when test="${ empty loginUser }">
+           				    <c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
-  			                     <li><a href="loginEnroll.me">찜목록</a></li>
+           						<li><a href="javascript:zoomIn();">확대</a></li>
+  			                    <li><a href="loginEnroll.me">찜목록</a></li>
 	                            <li><a href="loginEnroll.me">로그인</a></li>
 	                            <li><a href="enrollForm.me">회원가입</a></li>
+                                
 	                        </c:when>
 	                        <c:when test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
 	                        	<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
@@ -183,6 +184,20 @@
                 $(this).fadeOut(1);
             })
         })
-    </script>
+
+        // 확대 기능
+        var nowZoom=100;
+
+        function zoomIn(){
+            nowZoom = nowZoom +10;
+            if(nowZoom>=500) nowZoom = 500;
+            zooms();
+        }
+        function zooms(){
+            document.body.style.zoom=nowZoom + '%';
+        }
+
+        
+</script>
 </body>
 </html>

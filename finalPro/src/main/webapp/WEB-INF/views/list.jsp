@@ -9,8 +9,32 @@
 
 	<!-- css -->
 	<link rel="stylesheet" href="resources/css/main.css">
-    
-    
+    <link rel="stylesheet" href="resources/css/main33.css">
+    <style>
+    	/*확대기능*/
+
+        /* 감싸는 div */
+        .wrap {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        /* 확대될 타겟이미지*/
+        .target {
+            display: block;
+            width: 100%;
+        }
+        /* 돋보기 */
+        .magnifier {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border-radius: 100%;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 0 3px 3px rgba(0, 0, 0, 0.25);
+            display: none;
+        }
+    </style>
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
@@ -24,7 +48,7 @@
                         <div class="swiper-wrapper">
                           <!-- Slides -->
                           <div class="swiper-slide">
-                            <div class="backg" onclick="location.href='#'">                        
+                            <div class="backg" onclick="location.href='#'">        
                                 <img src="resources/img/swim.jpg" alt="수영">
                                 <div class="explan">
                                     <p>수강신청 안내</p>
@@ -107,13 +131,14 @@
                     <div class="container">
                         <div class="reco">
                             <ul class="reco_ul">
-                            
                             	<c:forEach var="l" items="${list2}" begin="0" end="5">
                                 <li>
                                     <a href="detail.le?lecNo=${l.lecNo}" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="${l.lecFilename}" alt="라떼아트">
-                                        </div>
+                                    
+                                    	<div class="img_box">
+	                                            <img src="${l.lecFilename}" alt="라떼아트"  >
+	                                        </div>
+	                                    
                                         <div class="img_info">
                                             <div class="info_detail">
                                                 <span>${l.lecName}</span>
