@@ -10,6 +10,7 @@
 	<!-- css -->
 	<link rel="stylesheet" href="resources/css/main.css">
     
+    
 </head>
 <body>
 	<jsp:include page="common/header.jsp" />
@@ -95,204 +96,68 @@
             </div>
         </div>
     </div>
-
+ 
     <div id="wrap">
         <div id="content">
+         <form method="post" action="main_ord.le">
             <div class="inner">
+          
                 <div class="content">
                     <h2>추천강좌</h2>
                     <div class="container">
                         <div class="reco">
                             <ul class="reco_ul">
+                            
+                            	<c:forEach var="l" items="${list2}" begin="0" end="5">
                                 <li>
-                                    <a href="detail.le?lecNo="${lecNo} class="over_mouse">
+                                    <a href="detail.le?lecNo=${l.lecNo}" class="over_mouse">
                                         <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
+                                            <img src="${l.lecFilename}" alt="라떼아트">
                                         </div>
                                         <div class="img_info">
                                             <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
+                                                <span>${l.lecName}</span>
+                                                <p>강사 : ${l.teacher.teaName} 강사</p>
+                                                <p>${l.lecStime}~${l.lecEtime}</p>
+                                                <p>${l.lecPrice}원</p>
                                             </div>                                            
                                         </div>
                                         <div class="img_title">
-                                            <p><바리스타 초급반></p>
+                                            <p><${l.lecName}></p>
                                         </div>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>                          
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> 
+                
                 <div class="content2">
                     <h2>최신강좌</h2>
                     <div class="container">
                         <div class="reco">
                             <ul class="reco_ul">
+                               <c:forEach var="l" items="${list1}" begin="0" end="4">
                                 <li>
-                                    <a href="#" class="over_mouse">
+                                    <a href="detail.le?lecNo=${l.lecNo}" class="over_mouse">
                                         <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
+                                            <img src="${l.lecFilename}" alt="라떼아트">
                                         </div>
                                         <div class="img_info">
                                             <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
+                                                <span>${l.lecName}</span>
+                                                <p>강사 : ${l.teacher.teaName} 강사</p>
+                                                <p>${l.lecStime}~${l.lecEtime}</p>
+                                                <p>${l.lecPrice}원</p>
                                             </div>                                            
                                         </div>
                                         <div class="img_title">
-                                            <p><바리스타 초급반></p>
+                                            <p><${l.lecName}></p>
                                         </div>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="over_mouse">
-                                        <div class="img_box">
-                                            <img src="resources/img/hands-filling-a-cup-of-coffee-with-milk.jpg" alt="라떼아트">
-                                        </div>
-                                        <div class="img_info">
-                                            <div class="info_detail">
-                                                <span>라떼아트 기초반</span>
-                                                <p>강사 : 고석우 강사</p>
-                                                <p>월, 수, 금 18:00~20:00</p>
-                                                <p>월 30,000원</p>
-                                            </div>        
-                                        </div>
-                                        <div class="img_title">
-                                            <p><바리스타 초급반></p>
-                                        </div>
-                                    </a>
-                                </li>                          
+                                </c:forEach>
                             </ul>
                         </div>
                     </div>
@@ -301,41 +166,40 @@
                     <div class="notice">
                         <h2>공지사항</h2>
                         <div class="notice_box">
+                       
                             <div class="notice_title">
-                                <ul>
-                                    <li><a href="#">제목</a></li>
-                                    <li><a href="#">제목</a></li>
-                                    <li><a href="#">제목</a></li>
-                                    <li><a href="#">제목</a></li>
+                                <ul> 
+                                	<c:forEach var="n" items="${list3}"  begin="0" end="4">
+                                    <li><a href="detail.bo?noticeNo=${n.noticeNo}">${n.noticeTitle}</a></li>
+                                     </c:forEach>
                                 </ul>
                             </div>
                             <div class="notice_date">
                                 <ul>
-                                    <li>2023-01-01</li>
-                                    <li>2023-01-01</li>
-                                    <li>2023-01-01</li>
-                                    <li>2023-01-01</li>
+                                <c:forEach var="n" items="${list3}"  begin="0" end="4">
+                                    <li>${n.edate}</li>
+                                     </c:forEach>
                                 </ul>
                             </div>
+                           
                         </div>
                     </div>
                     <div class="event">
                         <h2>이벤트</h2>
                         <div class="event_box">
+                          
                             <div class="event_title">
                                 <ul>
-                                    <li><a href="#">제목</a></li>
-                                    <li><a href="#">제목</a></li>
-                                    <li><a href="#">제목</a></li>
-                                    <li><a href="#">제목</a></li>
+                                 <c:forEach var="n" items="${list4}"  begin="1" end="5">
+                                    <li><a href="detail.bo?noticeNo=${n.noticeNo}">${n.noticeTitle}</a></li>
+                                     </c:forEach>
                                 </ul>
                             </div>
                             <div class="event_date">
                                 <ul>
-                                    <li>2023-01-01</li>
-                                    <li>2023-01-01</li>
-                                    <li>2023-01-01</li>
-                                    <li>2023-01-01</li>
+                                 <c:forEach var="n" items="${list4}"  begin="1" end="5">
+                                    <li>${n.edate}</li>
+                                     </c:forEach>
                                 </ul>
                             </div>
                         </div>
@@ -348,6 +212,7 @@
                     <li><a href="#"><img src="resources/img/icons8-쪽으로-48.png" alt="화살표 위로"></a></li>
                 </ul>
             </div>
+            </form>
         </div>
     </div>
 	
@@ -426,7 +291,7 @@
             // },
 
         });
-          
+   	 
     </script>
 </body>
 </html>

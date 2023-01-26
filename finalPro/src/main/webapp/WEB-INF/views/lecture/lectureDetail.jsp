@@ -57,6 +57,7 @@
     	        }
     	      }).done(function (data) {
     	        // 가맹점 서버 결제 API 성공시 로직
+    	    	  alert("결제가 성공적으로 수행되었습니다.")
     	      })
     	    } else {
     	      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
@@ -110,9 +111,6 @@
     			},
     			error : function(data,textStatus){
     				alert("에러가 발생했습니다,"+data);
-    			},
-    			complete : function(data, textStatus){
-    				alert("작업을 완료했습니다.")
     			}
     	});
     }
@@ -130,9 +128,6 @@
     			},
     			error : function(data,textStatus){
     				alert("에러가 발생했습니다,"+data);
-    			},
-    			complete : function(data, textStatus){
-    				alert("작업을 완료했습니다.")
     			}
     	});
     }
