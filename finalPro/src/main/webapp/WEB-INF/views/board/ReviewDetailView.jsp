@@ -170,7 +170,7 @@
        	}
 	    
 	    function revRecommDelete() {
-        	console.log("실행맨");
+        	console.log("실행");
 
         	$.ajax({
         		url : "reviewRecommendDelete.bo",
@@ -192,7 +192,7 @@
 	    
     	
     	function selectReviewReplyList() {
-    		console.log("되는건가요?tlqkf");
+    		console.log("되는건가요?");
     		$.ajax({
     			url: "rlist.bo",
     			data: {

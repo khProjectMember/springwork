@@ -208,11 +208,9 @@
     	}
     	
 		$('.search_btn').click(function() {
-			
+		
 			var selectData = $('.search_arr').serialize();
-			
 			console.log(selectData);
-			
 			$.ajax({
 				type : "post",
 				url : 'meetingsearch.bo',
