@@ -168,6 +168,8 @@
 			
 		})
 	})
+    
+    
     </script>
     </head>
 <body>
@@ -252,8 +254,9 @@
                 </div> <!-- class=inner1-->
 
                 <div class="inner2">
+                    <!--확대기능-->
                     <div class="title">
-                        <h3>회원정보</h3>
+                            <h3>회원정보</h3>
                     </div>
                     <form action="update.me" method="post" id="updateForm">
 	                    <div class="memberInfoTable">
