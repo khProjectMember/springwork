@@ -144,9 +144,6 @@
     			},
     			error : function(data,textStatus){
     				alert("에러가 발생했습니다,"+data);
-    			},
-    			complete : function(data, textStatus){
-    				alert("작업을 완료했습니다.")
     			}
     	});
     }
@@ -219,15 +216,14 @@
                     <div class="join_move">
                         <input type="hidden" name="lectureNo">
                         <input type="hidden" name="userNo">
-                        <!-- <input type="submit" value="신청하기">-->
-                        <button onClick="requestPay()">신청하기</button>
+                        <input type="submit" value="신청하기">
                     </div>
                 </form>
                 <div class="lecture_regi">
                     <hr>
                     <a href="list.le">강좌목록</a>
                     <a href="goHome.le">홈으로</a>
-                    <a href="applyList.le">신청목록</a>
+                    <a href="myApplyList.ap">신청목록</a>
                 </div>
             </div>
         </div>
