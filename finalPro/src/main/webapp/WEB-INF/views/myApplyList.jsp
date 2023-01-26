@@ -129,17 +129,19 @@
         <div id="content">
             <div class="inner">
                 <div class="lecture_util">
-                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
-                    <a href="list.le">강좌검색</a>
+                    <ul>
+                        <li><a href="goHome.le" class="util_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+						<li><a href="myApplyList.ap" class="util_a">수강신청</a></li>
+						<li><a href="list.le">강좌검색</a></li>
+                    </ul>
                 </div>
                 <div class="lecture_join">
                     <h1>신청 목록</h1>
                 </div>
-			                <form action="" method="post">
+			    <form action="" method="post" class="form_table">
                     <table class="join_form">
                         <tbody>
-                    		<tr>
+                    		<tr class="tr_th">
                                 <td width="15%">강좌구분</td>
                                 <td width="20%">강좌명</td>
                                 <td width="15%">강사정보</td>
@@ -162,24 +164,22 @@
                         <c:set var="applyNo" value="${myApplyList[cnt.count-1].applyNo}" />
                         <c:set var="lname" value="${lecture.lecName}"/>
 						<c:set var="lprice" value="${lecture.lecPrice}"/>
-                            <tr>
+                            <tr class="tr_info">
                                 <td>${lecture.lecBcatg}/${lecture.lecScatg }</td>  
                                 <td><a href="detail.le?lecNo=${lecture.lecNo }">${lecture.lecName }</td>
                                 <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>
                                 <td>수영장</td>
                                 <td>${lecture.lecPrice}</td>
                                 <td>대기중<br>대기인원 : 0명</td>
-                                <td><button onClick="requestPay()">결제</button><br><a href="javascript:delete_apply_lecs('${applyNo}');"> 
-					  				삭제</a></td>
+                                <td class="color_diff"><button onClick="requestPay()" class="pay_go">결제</button><br>
+                                    <a href="javascript:delete_apply_lecs('${applyNo}');">삭제</a></td>
                             </tr>
                             <c:set  var="totalLecsNum" value="${totalLecsNum+1 }" />
                             </c:forEach>
                             <tr>
                                 <td></td>
-                                <td width="15%">
-                                </td>
-                                <td width="15%">
-                                </td>
+                                <td width="15%"></td>
+                                <td width="15%"></td>
                                 <td width="15%"></td>
                                 <td width="10%"></td>
                                 <td width="15%">신청한 강좌</td>
@@ -189,17 +189,19 @@
                             </c:choose>
                         </tbody>
                     </table>
-                    <div class="join_move">
-                        <input type="hidden" name="lectureNo">
-                        <input type="hidden" name="userNo">
+                    <div class="btn_array">
+                        <div class="lecture_regi">
+                            <button type="button" onclick="location.href='list.le'">강좌목록</button>
+							<button type="button" onclick="location.href='myWishList.wi'">찜목록</button>
+                        </div>
+                        <div class="join_move">
+                            <input type="hidden" name="lectureNo">
+                            <input type="hidden" name="userNo">
+                        </div>
                     </div>
+                    
                 </form>
-                <div class="lecture_regi">
-                    <hr>
-                    <a href="list.le">강좌목록</a>
-                    <a href="goHome.le">홈으로</a>
-                    <a href="myWishList.wi">찜목록</a>
-                </div>
+                
             </div>
         </div>
     </div>

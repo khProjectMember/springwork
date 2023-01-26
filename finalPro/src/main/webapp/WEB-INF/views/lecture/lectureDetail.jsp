@@ -151,11 +151,16 @@
     <div id="wrap">
         <div id="content">
             <div class="inner">
-                <div class="class_util">
-                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
-                    <a href="list.le">강좌검색</a>
-                </div>
+                <div class="util_array">
+                    <div class="util_box">
+                        <ul>
+                            <li><a href="goHome.le" class="util_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="myApplyList.ap" class="util_a">수강신청</a></li>
+                            <li><a href="list.le">강좌검색</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>          
                 <div class="class_status">
                     <ul>
                         <li>접수중</li>
@@ -175,8 +180,13 @@
                 <div class="class_info">
                     <table class="info_table">
                         <tr>
-                            <td>
-                                <h1>${lecture.lecInfo }</h1>
+                            <td class="td_info_box">
+                                <div class="img_box_info">
+                                    <img src="${lecture.lecFilename}" alt="사진">
+                                </div>
+                                <div class="lec_box_info">
+                                    <p>${lecture.lecInfo} </p>
+                                </div>
                             </td>
                             <td class="class_info2">
                             <h1>등록정보</h1>
