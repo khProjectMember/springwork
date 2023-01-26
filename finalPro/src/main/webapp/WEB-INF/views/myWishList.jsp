@@ -155,17 +155,19 @@
         <div id="content">
             <div class="inner">
                 <div class="lecture_util">
-                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="myApplyList.ap">신청목록&emsp;|&emsp;</a>
-                    <a href="list.le">강좌검색</a>
+					<ul>
+						<li><a href="goHome.le" class="util_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+						<li><a href="myApplyList.ap" class="util_a">신청목록</a></li>
+						<li><a href="list.le">강좌검색</a></li>
+					</ul>
                 </div>
                 <div class="lecture_join">
                     <h1>찜목록</h1>
                 </div>
-			                <form action="" method="post">
+			    <form action="" method="post" class="form_table">
                     <table class="join_form">
                         <tbody>
-                    		<tr>
+                    		<tr class="tr_th">
                                 <td width="15%">강좌구분</td>
                                 <td width="20%">강좌명</td>
                                 <td width="15%">강사정보</td>
@@ -186,24 +188,22 @@
 				     <c:otherwise>
                       <c:forEach var="item" items="${ myLecsList }" varStatus="cnt">
                         <c:set var="wishNo" value="${myWishList[cnt.count-1].wishNo}" />
-                            <tr>
+                            <tr class="tr_info">
                                 <td>${item.lecBcatg}/${item.lecScatg }</td>  
                                 <td><a href="detail.le?lecNo=${item.lecNo }">${item.lecName }</td>
                                 <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>
                                 <td>수영장</td>
                                 <td>${item.lecPrice}</td>
                                 <td>대기중<br>대기인원 : 0명</td>
-                                <td> <a href="javascript:apply_lecs(${item.lecNo }, ${loginUser.memNo}, '${wishNo}')">신청</a><br><a href="javascript:delete_wish_lecs('${wishNo}');"> 
+                                <td class="color_diff"> <a href="javascript:apply_lecs(${item.lecNo }, ${loginUser.memNo}, '${wishNo}')">신청</a><br><a href="javascript:delete_wish_lecs('${wishNo}');"> 
 					  				삭제</a></td>
                             </tr>
                             <c:set  var="totalLecsNum" value="${totalLecsNum+1 }" />
                             </c:forEach>
                             <tr>
                                 <td></td>
-                                <td width="15%">
-                                </td>
-                                <td width="15%">
-                                </td>
+                                <td width="15%"></td>
+                                <td width="15%"></td>
                                 <td width="15%"></td>
                                 <td width="10%"></td>
                                 <td width="15%">찜한 강좌</td>
@@ -213,18 +213,19 @@
                             </c:choose>
                         </tbody>
                     </table>
-                    <div class="join_move">
-                        <input type="hidden" name="lectureNo">
-                        <input type="hidden" name="userNo">
-                        <input type="submit" value="신청하기">
-                    </div>
+					<div class="btn_array">
+						<div class="lecture_regi">
+							<button type="button" onclick="location.href='list.le'">강좌목록</button>
+							<button type="button" onclick="location.href='myApplyList.ap'">신청목록</button>
+                		</div>
+						<div class="join_move">
+							<input type="hidden" name="lectureNo">
+							<input type="hidden" name="userNo">
+							<button type="submit">신청하기</button>
+						</div>
+					</div>
                 </form>
-                <div class="lecture_regi">
-                    <hr>
-                    <a href="list.le">강좌목록</a>
-                    <a href="goHome.le">홈으로</a>
-                    <a href="myApplyList.ap">신청목록</a>
-                </div>
+                
             </div>
         </div>
     </div>
