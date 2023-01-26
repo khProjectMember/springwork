@@ -77,7 +77,7 @@
 		 from lecture l
 		 join teacher t 
 		 on (l.tea_no = t.tea_no)		 
-		 order by l.lec_grade asc
+		 order by l.lec_grade desc
 	</select>
 	<select id="mainOrdNotice" resultMap="noticeMapper.noticeResult">
 		select n.notice_no, n.notice_title, to_char(n.notice_edate, 'YYYY-MM-DD') as notice_edate  
