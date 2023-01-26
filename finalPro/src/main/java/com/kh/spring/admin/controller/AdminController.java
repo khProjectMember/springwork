@@ -176,6 +176,7 @@ public class AdminController {
 			model.addAttribute("Llist", Llist);
 		return "admin/enroll_Lecture";
 	}
+	
 	@RequestMapping("enrollForm.te")
 	public String enrollTeacherForm() {
 		return "admin/enroll_Teacher";
@@ -212,9 +213,6 @@ public class AdminController {
 			  l.setLecFilename(upfile.getOriginalFilename());
 			  l.setLecFilename("resources/uploadFiles/"+changeName); 
 		}
-		 
-		//넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로까지 있는 바뀐이름
-		//넘어온 파일이 없으면 : 제목, 작성자, 내용
 		int result = aService.insertLecture(l);
 		if(result > 0 ) {
 			session.setAttribute("alertMsg", "성공적으로 게시글이 등록되었습니다");
@@ -223,6 +221,42 @@ public class AdminController {
 			model.addAttribute("errorMsg","게시글 등록 실패");
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("lecupdate.le")
+	public String updateLecture(Lecture l, MultipartFile reupfile, HttpSession session, Model model) {
+		if(!reupfile.getOriginalFilename().equals("")) { 
+			if(l.getLecFilename() != null) {
+				new File(session.getServletContext().getRealPath(l.getLecFilename())).delete();
+			}
+			  String changeName = changeFilename(reupfile, session);
+			  l.setLecFilename(reupfile.getOriginalFilename());
+			  l.setLecFilename("resources/uploadFiles/"+changeName); 
+		}
+		 
+		//넘어온 파일이 있으면 : 제목, 작성자, 내용, 파일원본명, 파일저장경로까지 있는 바뀐이름
+		//넘어온 파일이 없으면 : 제목, 작성자, 내용
+		int result = aService.updateLecture(l);
+		System.out.println(result);
+		if(result > 0 ) {
+			session.setAttribute("alertMsg", "성공적으로 게시글이 수정되었습니다");
+			return "redirect:list2.le";
+		} else {
+			model.addAttribute("errorMsg","게시글 수정 실패");
+			return "common/errorPage";
+		}
+		
+		
+	}
+	@RequestMapping("updateForm.le")
+	public String modify_Lecture(Integer lecNo, Teacher t, LectureLocation l, Model model) {
+		ArrayList<Teacher> tlist = aService.selectTeachers(t);
+		ArrayList<LectureLocation> Llist = aService.selectLocations(l);
+		 
+		model.addAttribute("tlist", tlist);
+		model.addAttribute("Llist", Llist);
+		model.addAttribute("l", aService.selectLecture(lecNo));
+		return "admin/modify_Lecture";
 	}
 	
 	public String changeFilename(MultipartFile upfile, HttpSession session) {
@@ -278,5 +312,66 @@ public class AdminController {
 					}
 					
 				}
-	
+				//회원 선택 삭제
+				@RequestMapping("deleteMember.ad")
+				public String deleteMember_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+//					System.out.println(deleteArr);
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteMember_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:mlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+				//회원 선택 삭제
+				@RequestMapping("deleteHangout.ad")
+				public String deleteHangout_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteHangout_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:hlist.ad";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+
+				//강사 선택 삭제
+				@RequestMapping("deleteTeacher.ad")
+				public String deleteTeacher_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteTeacher_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:list.te";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
+				//강의 선택 삭제
+				@RequestMapping("deleteLecture.ad")
+				public String deleteLecture_ad(@RequestParam(value="deleteArr[]") List<String> deleteArr) {
+					int result = 0;
+					for(int i = 0; i < deleteArr.size(); i++) {
+						result = aService.deleteLecture_ad(deleteArr.get(i));
+					}
+					
+					if(result > 0) {
+						return "redirect:list2.le";
+					} else {
+						System.out.println("컨트롤러에서 실패");
+						return "";
+					}
+				}
 }

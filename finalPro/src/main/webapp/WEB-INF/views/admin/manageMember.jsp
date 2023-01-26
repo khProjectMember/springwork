@@ -69,7 +69,7 @@
 									<th>생년월일</th>
 									<th>회원생성일자</th>
 									<th>차량번호</th>
-									<th>상태</th>
+									<th></th>
 									
 								</tr>
 							</thead>
@@ -84,14 +84,17 @@
 										<td>${m.memBirthday}</td>
 										<td>${m.memCdate}</td>
 										<td>${m.memCarno}</td>
-										<td>${m.memStatus}</td>
+										<td><input name = "selectDelete" type = "checkbox" value = "${m.memNo }"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<br>
+						<c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
+						<input type = "button" value = "회원탈퇴" class = "btn btn-outline-danger" onclick="deleteValue();">
+						</c:if>
 						<!-- 상세페이지 -->
-						<script>
+						<!-- <script>
 							$(function() {
 								$("#MemberList>tbody>tr").click(
 										function() {
@@ -100,7 +103,38 @@
 															.text();
 										})
 							})
+						</script> -->
+						<script>
+								
+								function deleteValue() {
+									var deleteArr = new Array(); //삭제할  리스트
+									var list = $("input[name='selectDelete']"); //체크된 리스트
+									//console.log(list);
+									for(var i = 0; i < list.length; i++) {
+										if(list[i].checked) {
+											deleteArr.push(list[i].value); //boardId 값 들어감
+											//console.log(deleteArr);
+										}
+									}
+									if(deleteArr.length == 0) {
+										alert('선택된 글이 없습니다.');
+									} else {
+										var msg = confirm("정말  탈퇴시키시겠습니까?");
+										$.ajax({
+											url: "${contextPath}/spring/deleteMember.ad",
+											type: 'POST',
+											data: {
+												deleteArr: deleteArr
+											},
+											success: function(data) {
+												alert("탈퇴시켰습니다.");
+												history.go(0);
+											}
+										});
+									}
+								}
 						</script>
+							
 						<div id="pagingArea">
 							<ul class="pagination">
 								<c:choose>

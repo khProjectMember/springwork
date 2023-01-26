@@ -70,6 +70,23 @@ public class MemberController {
 		}	
 	}
 	*/
+	
+	//로그인 페이지
+	@RequestMapping("login.me")
+	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
+		Member loginUser = mService.loginMember(m);
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPw(), loginUser.getMemPw())) {
+			session.setAttribute("loginUser", loginUser); 
+			session.setAttribute("alertMsg", "성공적으로 로그인 되었습니다.");
+			mv.setViewName("redirect:/"); 		
+		} else {	
+			mv.addObject("errorMsg","비밀번호가 일치하지 않거나 탈퇴한 회원입니다. 다시 한번 확인해 주세요.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/*
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) {
 		
@@ -85,6 +102,8 @@ public class MemberController {
 		}
 		return mv;
 	}
+	*/
+	
 	
 	
 	//로그아웃
@@ -395,14 +414,15 @@ public class MemberController {
 	public String updateCarNumber(Member m, HttpSession session, Model model) {
 		int result = mService.updateCarNumber(m);
 		if(result > 0) {
-			Member updateM = mService.loginMember(m);
-			session.setAttribute("loginUser", updateM);
+			Member updateC = mService.loginMember(m);
+			session.setAttribute("loginUser", updateC);
 			System.out.println("차량번호 등록이 완료되었습니다.");
+			System.out.println(updateC.getMemCarno());
 			session.setAttribute("alertMsg", "차량번호 등록이 완료되었습니다.");
 			return "redirect:myPage.me"; 
 		} else {
 			model.addAttribute("errorMsg","차량번호 등록에 실패하였습니다. 다시한번 확인해주세요.");
-			return "redirect:myPage.me";			
+			return "redirect:myPage.me";
 		}
 	}
 	
@@ -431,13 +451,6 @@ public class MemberController {
 	@RequestMapping("idCheck.me")
 	public String idCheck(String checkId) {
 		int count = mService.idCheck(checkId);
-		/*
-		if(count > 0) {
-			return "NNN";
-		} else {
-			return "YYY";
-		}
-		*/
 		return count > 0 ? "NNN" : "YYY";
 	}
 	

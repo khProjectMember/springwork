@@ -20,9 +20,16 @@ public class AdminDao {
 	public int insertLecture(SqlSessionTemplate sqlSession, Lecture l) {
 		return sqlSession.insert("adminMapper.insertLecture",l);
 	}
+	public int updateLecture(SqlSessionTemplate sqlSession, Lecture l) {
+		return sqlSession.update("adminMapper.updateLecture",l);
+	}
 	public int insertTeacher(SqlSessionTemplate sqlSession, Teacher t) {
 		return sqlSession.insert("adminMapper.insertTeacher",t);
 	}
+	/*
+	 * public int selectLecture(SqlSessionTemplate sqlSession, Lecture l) { return
+	 * sqlSession.selectOne("adminMapper.selectLecture",l); }
+	 */
 	
 	
 	public int selectListCount_Lecture(SqlSessionTemplate sqlSession) {
@@ -100,17 +107,41 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectNewReviewCount");
 	}
 	
-//	리뷰삭제
-	public int deleteReview_ad(SqlSessionTemplate sqlSession, String RevNo) {
-		return sqlSession.update("adminMapper.deleteReview_ad", RevNo);
+//	삭제
+	public int deleteReview_ad(SqlSessionTemplate sqlSession, String revNo) {
+		return sqlSession.delete("adminMapper.deleteReview_ad", revNo);
 	}
 	public int deleteNotice_ad(SqlSessionTemplate sqlSession, String noticeNo) {
-		return sqlSession.update("adminMapper.deleteNotice_ad", noticeNo);
+		return sqlSession.delete("adminMapper.deleteNotice_ad", noticeNo);
 	}
+	public int deleteMember_ad(SqlSessionTemplate sqlSession, String memNo) {
+		return sqlSession.update("adminMapper.deleteMember_ad", memNo);
+	}
+	public int deleteHangout_ad(SqlSessionTemplate sqlSession, String hangoutNo) {
+		return sqlSession.update("adminMapper.deleteHangout_ad", hangoutNo);
+	}
+	public int deleteTeacher_ad(SqlSessionTemplate sqlSession, String teaNo) {
+		return sqlSession.update("adminMapper.deleteTeacher_ad", teaNo);
+	}
+	public int deleteLecture_ad(SqlSessionTemplate sqlSession, String lecNo) {
+		return sqlSession.delete("adminMapper.deleteLecture_ad", lecNo);
+	}
+	
+	
+//강의정보 내용 추가
 	public ArrayList<Teacher> selectTeachers(SqlSessionTemplate sqlSession, Teacher t) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectTeachers", t);
 	}
 	public ArrayList<LectureLocation> selectLocations(SqlSessionTemplate sqlSession, LectureLocation l) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectLocations", l);
 	}
+	public ArrayList<Lecture> selectLecture(SqlSessionTemplate sqlSession, Lecture l) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectLecture", l);
+	}
+	public Lecture selectLecture(SqlSessionTemplate sqlSession, Integer lecNo) {
+		return sqlSession.selectOne("adminMapper.selectLecture",lecNo);
+	}
+	
+	
+	
 }

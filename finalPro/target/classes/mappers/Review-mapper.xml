@@ -31,7 +31,13 @@
 		<result column="revreply_content" property="revReplyContent" />
 		<result column="revreply_date" property="revReplyDate" />
 		<result column="rev_no" property="revNo" />
+		<result column="revreply_gcount" property="revReplyGcount" />
 	</resultMap>
+	<resultMap type="Replyrecommend" id="ReplywRecommendReview">
+		<result column="revreply_no" property="revReplyNo" />
+		<result column="mem_no" property="memNo" />
+	</resultMap>
+	
 	<select id="reviewListCount" resultType="_int">
 		select count(*) 
 		from review
@@ -118,13 +124,13 @@
 		order by r.rev_no desc
 	</select>
 	<select id="reviewReplyList" resultMap="reviewReplyReview">
-		select revreply_no, revreply_writer, revreply_content, to_char(revreply_date, 'YYYY-MM-DD') as revreply_date, rev_no
+		select revreply_no, revreply_writer, revreply_content, to_char(revreply_date, 'YYYY-MM-DD') as revreply_date, rev_no, revreply_gcount
 		from reviewreply
 		where rev_no = #{revNo}
 	</select>
 	<insert id="insertReviewReply">
-		insert into reviewreply (revreply_no, revreply_writer, revreply_content, revreply_date, rev_no) 
-		values (SEQ_RRNO.NEXTVAL, #{revReplyWriter}, #{revReplyContent}, sysdate, #{revNo})
+		insert into reviewreply (revreply_no, revreply_writer, revreply_content, revreply_date, rev_no, revreply_gcount) 
+		values (SEQ_RRNO.NEXTVAL, #{revReplyWriter}, #{revReplyContent}, sysdate, #{revNo}, 0)
 		
 	</insert>
 	<select id="reviewRecommendRenum" resultMap="reviewRecommendReview" resultType="_int">
@@ -143,5 +149,34 @@
 	<select id="reviewTotalCount" resultType="_int">
 		select count(*) from reviewreply where rev_no = #{revNo}
 	</select>
+	<select id="selectRevReply" resultMap="reviewReplyReview">
+		select revreply_writer from reviewreply where revreply_no = #{revReplyNo}
+	</select>
+	<select id="newReviewReplyList" resultMap="reviewReplyReview">
+		select revreply_no, revreply_writer, revreply_content, to_char(revreply_date, 'YYYY-MM-DD') as revreply_date, rev_no
+		from reviewreply
+		where rev_no = #{revNo}
+		order by revreply_date desc;
+	</select>
+	<insert id="insertReplyRecommend" parameterType="hashmap">
+		insert into replyrecommend (revreply_no, mem_no) values (#{revReplyNo}, #{memNo})
+	</insert>
+	<update id="updateReplyRecommend">
+		update reviewreply set revreply_gcount = revreply_gcount + 1
+		where revreply_no = #{revReplyNo}
+	</update>
+	<select id="replyrecommendList" resultMap="ReplywRecommendReview" resultType="_int">
+		select mem_no from replyrecommend where revreply_no = #{revReplyNo}
+	</select>
 	
+	<delete id="deleteReplyRecommend">
+		delete from replyrecommend where revreply_no = #{revReplyNo} and mem_no = #{memNo}
+	</delete>
+	<update id="updateReplyRecommendDelete">
+		update reviewreply set revreply_gcount = revreply_gcount - 1
+		where revreply_no = #{revReplyNo}
+	</update>
+	<select id="goodTotalCount" resultType="_int">
+		select revreply_gcount from reviewreply where revreply_no = #{revReplyNo}
+	</select>
 </mapper>

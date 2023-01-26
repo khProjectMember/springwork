@@ -20,7 +20,7 @@
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script type="text/javascript">
-    var IMP = window.IMP; 
+    var IMP = window.IMP;
     IMP.init("imp67011510"); 
 
     var today = new Date();   
@@ -37,7 +37,7 @@
             pay_method : 'card',
             merchant_uid: "IMP"+makeMerchantUid, 
             name : '${lecture.lecName}',
-            amount : 500,
+            amount : '${lecture.lecPrice}',
             buyer_email : '${member.memEmail}',
             buyer_name : 'member.memName',
             buyer_tel : 'member.memPhone',
@@ -245,6 +245,24 @@
                         </tr>
                     </table>
                 </div>
+                
+                <form action="" method="post" id="postForm">
+				<input type="hidden" name="lecNo" value="${ lecture.lecNo}">
+				<input type="hidden" name="filePath" value="${ lecture.lecFilename}">
+				</form>
+			<c:if test="${ loginUser.isAdmin eq 'Y' }">
+	            <div align="center">
+	                <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
+	                <a class="btn btn-primary" onclick="postFormSubmit(1);">수정하기</a>
+	            </div><br><br>
+            </c:if>
+	                <script>
+						function postFormSubmit(num){
+							if(num == 1){
+								$("#postForm").attr("action","updateForm.le").submit();
+							} 
+						}
+					</script>
                 <div class="class_regi">
                     <hr>
                     <a href="list.le">목록</a>

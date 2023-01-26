@@ -90,12 +90,7 @@
                             <div class="review_count">
                                 <span></span>
                             </div>
-                            <div class="review_order">
-                                <ul>
-                                    <li><a href="">추천순</a></li>
-                                    <li><a href="">최신순</a></li>
-                                </ul>
-                            </div>
+                            
                             <div class="review_main">
                                 
                                 <div class="user_comment_add">
@@ -125,32 +120,10 @@
     <jsp:include page="../common/footer.jsp" />
     <script type="text/javascript">    
 	    $(function() {
-			selectReviewReplyList();
+			selectReviewReplyList();	
 			reviewTotalCount();
-			setInterval(reviewTotalCount, 100);
- 			
-			
-			$(document).on('click', '.revReplyDelete', function() {
-				
-				
-				if(${loginUser.memNickname == '쿄쿄' }) {
-					$.ajax({
-						url:'revReplyDelete.bo',
-						data: { 								
-								revReplyNo: $('.revReplyNo').val()
-							},
-						success: function(result) {
-							location.reload();
-						},
-						error: function() {
-							console.log("실패");	
-						}					
-					})	
-				} else {
-					Swal.fire("삭제 권한이 없습니다.");
-				}
-				
-			})
+			setInterval(reviewTotalCount, 1000);
+	
 		})
     	
     	$('.recommendNo').on('click', function() {
@@ -215,9 +188,11 @@
        		});
        	}
 	    
+	    
+	    
     	
     	function selectReviewReplyList() {
-    		console.log("되는건가요?");
+    		console.log("되는건가요?tlqkf");
     		$.ajax({
     			url: "rlist.bo",
     			data: {
@@ -229,7 +204,7 @@
     					value += "<div class='main_add'>"
     						  +		"<div class='user_nick'>"
     						  +			"<span>"+list[i].revReplyWriter+"</span>"
-    						  +			"<button class='revReplyDelete'><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
+    						  +			"<button onclick='revReplyDelete("+list[i].revReplyNo+");'><img src='resources/img/icons8-지우다-24.png' alt='삭제'></button>"
     						  +		"</div>"
     						  +		"<div class='user_content'>"
     						  +			"<p>"+list[i].revReplyContent+"</p>"
@@ -237,22 +212,22 @@
     						  +		"<div class='user_func'>"
     						  +			"<span>"+list[i].revReplyDate+"</span>"
     						  +			"<div class='user_good'>"
-    						  +				"<button onclick=''>답글</button>"
-    						  +				"<img src='resources/img/icons8-하트-50.png' alt='좋아요'>"
-    						  +				"<span>0</span>"
+    						  +				"<img src='resources/img/icons8-하트-50 (1).png' alt='좋아요' onclick='replyRecommend("+list[i].revReplyNo+");' >"
+    					 	  +				"<span>"+list[i].revReplyGcount+"</span>"
     						  +			"</div>"
     						  +		"</div>"
-    						  +		"<input type='hidden' class= 'revReplyNo' value='"+list[i].revReplyNo+"'>"
-    						  +	 "</div>"; 
+    						  +	 "</div>";
+    						  
     				}
     				$('.review_main').html(value);
+    				
     			},
     			error: function() {
     				console.log("실패");
     			}
     		})
     	}
-    	
+
     	$('.insertComment').on('click', function() {
     		addReply();
     	})
@@ -295,9 +270,84 @@
     	}
     		
     	
-    	
-    		
+    	/* 
+    	$(document).on('click', '.revReplyDelete', function() {
+			console.log($('.revReplyNo').val());
+			$.ajax({
+				url:'revReplyDelete.bo',
+				data: {
+						UserId : '${ loginUser.memNickname }',
+						revReplyNo: num
+					},
+				success: function(result) {
+					location.reload();
+				},
+				error: function() {
+					console.log("실패");	
+				}					
+			})
+				
+		
+		
+		})
+		
+	
+		$(document).on('click', '.replyGood', function() {
+			console.log($('.replyGood').val());
+		    	$.ajax({
+	        		url : "replyRecommend.bo",
+	        		data : {
+	        				revReplyNo: $('.replyGood').val(),
+	        				memNo: "${ loginUser.memNo }"
+	        	   		},
+	        		success: function(result) {
+	        			console.log("성공");		        			
+	            		location.reload();
+	        			        			
+	        		},
+	       			error: function() {
+	       				console.log("실패");
+	       				location.reload();
+	       			}
+	       		});
+		}) */
+		
+		function revReplyDelete(num) {
+    		$.ajax({
+				url:'revReplyDelete.bo',
+				data: {
+						UserId : '${ loginUser.memNickname }',
+						revReplyNo: num
+					},
+				success: function(result) {
+					location.reload();
+				},
+				error: function() {
+					console.log("실패");	
+				}					
+			})
+    	}
+		
+		
+		function replyRecommend(num) {
+    		$.ajax({
+        		url : "replyRecommend.bo",
+        		data : {
+        				revReplyNo: num,
+        				memNo: "${ loginUser.memNo }"
+        	   		},
+        		success: function(result) {
+        			console.log("성공");		        			
+            		location.reload();
+        			        			
+        		},
+       			error: function() {
+       				console.log("실패");
+       				location.reload();
+       			}
+       		});
+    	}
+
     </script>
-    
 </body>
 </html>

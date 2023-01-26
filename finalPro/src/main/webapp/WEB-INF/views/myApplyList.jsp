@@ -17,17 +17,21 @@
     <!-- css -->
     <link rel="stylesheet" href="resources/css/wishList.css">
 
-    <!-- js -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-
+    <!-- 결제 -->
+	<!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 	
-	<script>
-	var IMP = window.IMP; 
+	 <script type="text/javascript">
+    var IMP = window.IMP; 
     IMP.init("imp67011510"); 
 
     var today = new Date();   
@@ -43,8 +47,8 @@
             pg : 'html5_inicis',
             pay_method : 'card',
             merchant_uid: "IMP"+makeMerchantUid, 
-            name : 'lecture.lecName',
-            amount : 500,
+            name : '${lname}',
+            amount : '${lprice}',
             buyer_email : 'member.memEmail',
             buyer_name : 'member.memName',
             buyer_tel : 'member.memPhone',
@@ -148,22 +152,24 @@
 				    <c:when test="${ empty myApplyList }">
 					    <tr>
 					       <td colspan=8 class="fixed">
-					         <strong>장바구니에 상품이 없습니다.</strong>
+					         <strong>신청목록에 상품이 없습니다.</strong>
 					       </td>
 					     </tr>
 					 </c:when>
 					 
 				     <c:otherwise>
-                      <c:forEach var="item" items="${ myLecsList }" varStatus="cnt">
+                      <c:forEach var="lecture" items="${ myLecsList }" varStatus="cnt">
                         <c:set var="applyNo" value="${myApplyList[cnt.count-1].applyNo}" />
+                        <c:set var="lname" value="${lecture.lecName}"/>
+						<c:set var="lprice" value="${lecture.lecPrice}"/>
                             <tr>
-                                <td>${item.lecBcatg}/${item.lecScatg }</td>  
-                                <td><a href="detail.le?lecNo=${item.lecNo }">${item.lecName }</td>
+                                <td>${lecture.lecBcatg}/${lecture.lecScatg }</td>  
+                                <td><a href="detail.le?lecNo=${lecture.lecNo }">${lecture.lecName }</td>
                                 <td>홍길동<br><a href="" class="teacher_info">강사소개</a></td>
                                 <td>수영장</td>
-                                <td>${item.lecPrice}</td>
+                                <td>${lecture.lecPrice}</td>
                                 <td>대기중<br>대기인원 : 0명</td>
-                                <td><a href="javascript:delete_apply_lecs('${applyNo}');"> 
+                                <td><button onClick="requestPay()">결제</button><br><a href="javascript:delete_apply_lecs('${applyNo}');"> 
 					  				삭제</a></td>
                             </tr>
                             <c:set  var="totalLecsNum" value="${totalLecsNum+1 }" />
@@ -186,7 +192,6 @@
                     <div class="join_move">
                         <input type="hidden" name="lectureNo">
                         <input type="hidden" name="userNo">
-                        <button onClick="requestPay()">결제</button>
                     </div>
                 </form>
                 <div class="lecture_regi">
