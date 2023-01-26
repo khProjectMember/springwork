@@ -20,6 +20,14 @@
 .class_status ul li:first-child{background-color: #e12a29; color: #fff;}
 
 .class_name {margin-top: 50px;}
+.class_name table {border-collapse: collapse;}
+.btn_mine {cursor: pointer; width: 100%; height: 58px; background-color: #e12a29; color: #fff; font-size: 18px; border: none; font-weight: 600;}
+.btn_go {cursor: pointer; width: 100%; height: 58px; background-color: #000; color: #fff; font-size: 18px; border: none; font-weight: 600; }
+
+.class_info2 table tr td {font-size: 15px; font-weight: 500; color: #000;}
+.class_info2 table tr td a {color: #000; font-size: 16px;}
+.class_info2 table tr td a:hover {color: #666;}
+.class_info2 table tr td:first-child {font-size: 18px; font-weight: 600;}
 
 .td_info_box {display: flex; flex-direction: column;}
 .td_info_box .img_box_info {width: 100%; height: 50%;}
@@ -27,26 +35,22 @@
 .td_info_box .lec_box_info {width: 100%; height: 50%; margin-top: 20px;}
 .td_info_box .lec_box_info p {font-size: 20px; font-weight: 500;}
 
+.class_regi {margin-top: 50px; border-top: 1px solid #000; display: flex; justify-content: space-between;}
+.class_regi .regi_box {margin-top: 30px; }
+.class_regi .regi_box a {color: #000;}
+.class_regi .regi_box .regi_list {width: 120px; height: 60px; background-color: #fff; font-size: 15px; font-weight: 600; border: 0.1px solid #000; margin-right: 10px; cursor: pointer;}
+.class_regi .regi_box .nowpayBtn {width: 120px; height: 60px; background-color: rgba(255, 0, 0, 0.70); font-size: 15px; font-weight: 600; border: 0.1px solid #000; cursor: pointer;}
 
-.teacher_info{
-    background-color: #CBCACA;
-    border-radius: 10%;
-}
+
 
 .class_name table{
     width: 100%;
 }
-.class_name tr td:nth-child(2){
-    background-color: black;
-    text-align:center;
-}
+
 .class_name tr td:nth-child(2) a{
     color: white;
 }
-.class_name tr td:nth-child(3){
-    text-align:center;
-    background-color:red;
-}
+
 .class_name tr td:nth-child(3) a{
     color: white;
 }
@@ -91,23 +95,13 @@
     padding: 0;margin: 0;
     border-bottom: 1px solid gray;
 }
-.teacher_info{
-    padding: 3px;
-    border: 1px solid gray;
-    float: right;
-    margin-right: 20px;
-}
+
 
 .class_regi{
     width: 100%;
 }
 
-.class_regi a{
-    margin: 10px;
-    padding: 10px;
-    float: right;
-    color: white;
-}
+
 .class_regi a:nth-child(3){
     background-color: red;
 }
@@ -127,11 +121,5 @@
 .class_review{
     width: 100%;
     float: left;
-    margin-top: 30px;
-}
-.class_review h1{
-    float: left;
-}
-.class_review a{
-    float: right;
+    margin-top: 50px;
 }
