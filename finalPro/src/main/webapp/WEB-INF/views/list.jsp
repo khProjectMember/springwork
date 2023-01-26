@@ -190,14 +190,14 @@
                           
                             <div class="event_title">
                                 <ul>
-                                 <c:forEach var="n" items="${list4}"  begin="1" end="5">
+                                 <c:forEach var="n" items="${list4}"  begin="0" end="4">
                                     <li><a href="detail.bo?noticeNo=${n.noticeNo}">${n.noticeTitle}</a></li>
                                      </c:forEach>
                                 </ul>
                             </div>
                             <div class="event_date">
                                 <ul>
-                                 <c:forEach var="n" items="${list4}"  begin="1" end="5">
+                                 <c:forEach var="n" items="${list4}"  begin="0" end="4">
                                     <li>${n.edate}</li>
                                      </c:forEach>
                                 </ul>

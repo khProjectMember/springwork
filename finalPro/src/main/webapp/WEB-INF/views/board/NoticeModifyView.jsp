@@ -42,8 +42,8 @@
                                         <th scope="row">카테고리</th>
                                         <td>
                                             <select name="noticeCatg" id="">
-                                                <option value="공지사항">공지사항</option>
-                                                <option value="이벤트">이벤트</option>                                                
+                                                <option value="0">공지사항</option>
+                                                <option value="1">이벤트</option>                                                
                                             </select>
                                         </td>
                                         <th scope="row">작성자</th>
