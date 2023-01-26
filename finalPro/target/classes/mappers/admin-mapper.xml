@@ -5,14 +5,14 @@
 	<select id="selectNewMember" resultMap="memberMapper.memberResult">
 		select *
 		from member
-		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y'
+		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y' and is_admin = 'N'
 		order by mem_cdate desc
 	</select>
 	
 	<select id="selectNewMemberCount" resultType="_int">
 		select count(*)
 		from member
-		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y'
+		where to_char(mem_cdate, 'yyyymmdd')=to_char(sysdate, 'yyyymmdd') and mem_status='Y' and is_admin = 'N'
 	</select>
 	
 	<select id="selectNewReview" resultMap="reviewMapper.resultReview">
@@ -145,7 +145,7 @@
 	<select id="selectMemberList" resultMap="memberMapper.memberResult">
 		select mem_no, mem_name, mem_id, mem_nickname, mem_gender, mem_birthday, TO_CHAR(mem_cdate,'YY.MM.DD') as "mem_cdate", mem_carno , mem_status
 			from member
-		where mem_status = 'Y'
+		where mem_status = 'Y' and is_admin = 'N'
 		order by mem_no desc
 	</select>
 	<select id="selectListCount_Member" resultType="_int">
