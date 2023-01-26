@@ -21,7 +21,7 @@
                 <div class="content_fir">
                     <div class="nav_box">
                         <ul>
-                            <li><a href="#" class="nav_a"><img src="../img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="#" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">커뮤니티</a></li>
                             <li><a href="#">공지사항/이벤트</a></li>
                         </ul>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="modifybox">
                                     <button type="submit">작성</button>
-                                    <button type="reset" class="cancle">취소</button>                                           
+                                    <button type="reset" class="cancle">취소</button>        
                                 </div>
                             </div>
                         </form>
