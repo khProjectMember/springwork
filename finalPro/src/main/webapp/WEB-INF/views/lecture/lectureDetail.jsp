@@ -110,9 +110,6 @@
     			},
     			error : function(data,textStatus){
     				alert("에러가 발생했습니다,"+data);
-    			},
-    			complete : function(data, textStatus){
-    				alert("작업을 완료했습니다.")
     			}
     	});
     }
@@ -130,9 +127,6 @@
     			},
     			error : function(data,textStatus){
     				alert("에러가 발생했습니다,"+data);
-    			},
-    			complete : function(data, textStatus){
-    				alert("작업을 완료했습니다.")
     			}
     	});
     }
