@@ -32,8 +32,12 @@ public class MeetingDao {
 		return sqlSession.insert("meetingMapper.insertMeeting", m);
 	}
 	
-	public int insertjoin(SqlSessionTemplate sqlSession, int hangoutNo) {
-		return sqlSession.insert("meetingMapper.insertjoin", hangoutNo);
+	public int insertjoin(SqlSessionTemplate sqlSession, int hangoutNo, int memNo) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("hangoutNo", hangoutNo);
+		map.put("memNo", memNo);
+		
+		return sqlSession.insert("meetingMapper.insertjoin", map);
 	}
 	
 	public int incCount(SqlSessionTemplate sqlSession, int hangoutNo) {
