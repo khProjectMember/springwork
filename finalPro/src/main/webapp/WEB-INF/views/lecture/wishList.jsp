@@ -27,9 +27,11 @@
         <div id="content">
             <div class="inner">
                 <div class="lecture_util">
-                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
-                    <a href="list.le">강좌검색</a>
+                    <div class="lecture_util_box">
+                        <a href="goHome.le"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면">&emsp;|&emsp;</a>
+                        <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
+                        <a href="list.le">강좌검색</a>
+                    </div>
                 </div>
                 <div class="lecture_join">
                     <h1>찜목록</h1>
