@@ -56,7 +56,8 @@
 	</select>
 	
 	<select id="lectureDetail" resultMap="lectureResult">
-		select l.*, t.tea_name
+		select l.lec_no, l.lec_name, TO_CHAR(l.lec_sdate,'YY.MM.DD') as lec_sdate,TO_CHAR(l.lec_edate,'YY.MM.DD') as lec_edate,
+				 l.lec_stime, l.lec_etime, l.lec_count, l.lec_filename, l.lec_bcatg, l.lec_scatg, l.lec_price, l.lec_grade, l.lec_jnum, l.lec_cnum, t.tea_name
 		 from lecture l
 		 join teacher t 
 		 on (l.tea_no = t.tea_no) 
