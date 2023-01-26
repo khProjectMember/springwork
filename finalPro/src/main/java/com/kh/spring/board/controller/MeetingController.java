@@ -48,7 +48,7 @@ public class MeetingController {
 	public String insertMeeting(Meeting m) {
 		int result = mService.insertMeeting(m);
 		
-		int meetingNumber = mService.insertjoin(m.getHangoutNo());
+		int meetingNumber = mService.insertjoin(m.getHangoutNo(), m.getMemNo());
 		
 		if(result > 0) {
 			return "redirect:meeting.bo";
