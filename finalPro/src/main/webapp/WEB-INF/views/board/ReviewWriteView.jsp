@@ -77,7 +77,7 @@
                                             </div>
                                         </td>
                                         <th scope="row">작성자</th>
-                                        <td><input type="text" placeholder="작성자 닉네임" class="nick_input" readonly></td>
+                                        <td><input type="text" placeholder="${ loginUser.memNickname }" class="nick_input" readonly></td>
                                     </tr>
                                     <tr class="th_textarea">
                                         <th scope="row">내용</th>
