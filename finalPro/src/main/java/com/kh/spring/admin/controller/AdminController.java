@@ -84,7 +84,7 @@ public class AdminController {
 					/* String title = MovieInfo.getMovieInfo(r.getMovieId()).getMovieTitle(); */
 					JSONObject json = new JSONObject();
 					json.put("revNo", r.getRevNo());
-					json.put("revLecture", r.getRevLecture());
+					json.put("revLecture", r.getL().getLecName());
 					json.put("revStar", r.getRevStar());
 					json.put("revTitle", r.getRevTitle());
 					json.put("revDate", r.getRevDate()+"");
