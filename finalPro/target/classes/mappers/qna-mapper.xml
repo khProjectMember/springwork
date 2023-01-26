@@ -46,9 +46,10 @@
 		where qna_no = #{qnaNo}
 	</select>
 	<update id="updateQna">
-		update qna set qna_title = #{qnaTitle}, qna_no = #{qnaNo}, qna_content = #{qnaContent}
+		update qna set qna_no = #{qnaNo}, qna_title = #{qnaTitle},  qna_content = #{qnaContent}
 		where qna_no = #{qnaNo}
 	</update>
+	
 	<delete id="deleteQna">
 		delete from qna where qna_no = #{qnaNo}
 	</delete>	

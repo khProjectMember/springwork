@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/kh/spring/qa/controller/qnaController.java=UTF-8
+encoding//src/main/java/com/kh/spring/qa/model/service/qnaService.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/admin/manageHangout.jsp=UTF-8

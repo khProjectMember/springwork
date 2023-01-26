@@ -8,7 +8,7 @@ import com.kh.spring.qa.model.vo.Qna;
 public interface qnaService {
 	int insertQna(Qna q);
 	
-	//게시판 리스트 페이지
+	//寃뚯떆�뙋 由ъ뒪�듃 �럹�씠吏�
 	int selectListCount();
 
 	public ArrayList<Qna> qnaList(Qna q);
@@ -16,9 +16,9 @@ public interface qnaService {
 	/*
 	 * Qna selectqnaDetail(int qnaNo);
 	 */
-	public Qna QnaDetail(int qnaNo);
+	public Qna QnaDetail(Integer qnaNo);
 
-	<QnaReply> ArrayList<QnaReply> qnaReplyList(int qnaNo);
+	<QnaReply> ArrayList<QnaReply> qnaReplyList(Integer qnaNo);
 
 	/*
 	 * ArrayList<com.kh.spring.qa.model.vo.QnaReply> QnaReplyList(int qnaNo);
@@ -30,13 +30,29 @@ public interface qnaService {
 
 
 
-	void updatePost(Qna q);
+	
 
-	int deleteQna(Qna q);
+	void deleteQna(Qna q);
+
+	
+
+	void updatePostQna(Qna q);
+
+	Qna updatePost(Integer qnaNo);
+
+
+
+
+
+
+
+	
+
+	
 
 	
 	
-	// 리플
+	// 由ы뵆
 	
 
 }

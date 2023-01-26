@@ -29,8 +29,8 @@ public class qnaServiceImpl implements qnaService {
 	}
 	
 	@Override
-	public void updateQna(Qna qna) {
-		 qDao.updateQna(sqlSession, qna);
+	public void updateQna(Qna q) {
+		 qDao.updateQna(q);
 	}
 	
 	
@@ -47,25 +47,33 @@ public class qnaServiceImpl implements qnaService {
 	
 
 	@Override
-	public Qna QnaDetail(int qnaNo) {
+	public Qna QnaDetail(Integer qnaNo) {
 		// TODO Auto-generated method stub
 		return qDao.QnaDetail(sqlSession, qnaNo);
 	}
 
 	@Override
-	public ArrayList<QnaReply> qnaReplyList(int qnaNo) {
+	public ArrayList<QnaReply> qnaReplyList(Integer qnaNo) {
 		// TODO Auto-generated method stub
 		return (ArrayList<QnaReply>) qDao.qnaReplyList(sqlSession, qnaNo);
 	}
 
+
+
 	@Override
-	public void updatePost(Qna q) {
-		 qDao.updateQna(sqlSession, q);
+	public void deleteQna(Qna q) {
+		 qDao.deleteQna(sqlSession, q);
 	}
 
 	@Override
-	public int deleteQna(Qna q) {
+	public Qna updatePost(Integer qnaNo) {
 		// TODO Auto-generated method stub
-		return qDao.deleteQna(sqlSession, q);
-	}	
+		return null;
+	}
+
+	
+
+	
+
+	
 }

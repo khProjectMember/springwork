@@ -14,25 +14,25 @@
 <body>
 <jsp:include page="../common/header.jsp" />	
 		<div class="main" style="margin-top:55px;">
-		<form id="frm" method="POST" action="delete.bo">
+		<form id="frm" method="POST" action="updateQna.bo">
 			<table>
 				<ul>
 				<li>				
-					<label style="padding-left:500px;">글번호</label> <input type="text" name="qnaNo" value="${qna.qnaNo}" readonly="readonly">				
+					<label style="padding-left:500px;"><input type="hidden" name="qnaNo" value="${qna.qnaNo}"></label>			
 				</li>
 				<li>
-				<label style="padding-left:500px;">제목</label> <input type="text" name="qnaTitle" value="${qna.qnaTitle}" readonly="readonly">
+				<label style="padding-left:500px;">제목</label> <input type="text" name="qnaTitle" value="${qna.qnaTitle}">
 				</li>
 				<li>
 				<label style="padding-left:500px;">내용</label>
-				<textarea name=qnaContent rows="10" cols="70" readonly="readonly">${qna.qnaContent}</textarea>
+				<textarea name=qnaContent rows="10" cols="70">${qna.qnaContent}</textarea>
 				</li>
 				<div class="review_text" style="padding-left:955px;">
         			<div class="review_area">
             			<div class="home_btn" style="padding-10px;">
                     		<a href="list.qa" style="padding:10px; background:black; color:white; border:none; margin-right:5px;" >목록</button>
-                    		<a href="updateQna.bo" style="padding:10px; class="btn_re"; background:black; color:white; border:none;">수정</a>
-                			<a href="delete.bo" id="delete" style="padding:10px;color:white;background:red; border:none;">삭제</a>
+                			<a href="javascript:qaFrmno();" style="padding:10px; background:black; color:white; border:none; margin-right:5px;" >수정</button>
+                			<a href="delete.bo?qnaNo=${qna.qnaNo}" id="delete" style="padding:10px;color:white;background:red; border:none;">삭제</a>
                 		</div>
             		</div>
             	</div>
@@ -50,6 +50,8 @@
   function qaFrmno(){
 	  $('#frm').submit();
   }
+  
+  
   
 </script>
 <jsp:include page="../common/footer.jsp" />	

@@ -29,13 +29,13 @@ public class qnaController {
 	@Autowired
 	private qnaService qService;
 	
-	//자주하는 질문 페이
+	//�옄二쇳븯�뒗 吏덈Ц �럹�씠
 	@RequestMapping("board.qa")
 	public String boardqa() {
 		return "/qa/QAboard";
 	}
 	
-	//1:1문의하기 작성하는 페이지
+	//1:1臾몄쓽�븯湲� �옉�꽦�븯�뒗 �럹�씠吏�
 	@RequestMapping("sendQa.qa")
 	public String sendQa() {
 		return "/qa/QaWriteView";
@@ -59,7 +59,7 @@ public class qnaController {
 	}
 	
 	@RequestMapping("qnaDetail.bo")
-	public String qnaDetail(int qnaNo, Model model) {
+	public String qnaDetail(Integer qnaNo, Model model) {
 		Qna qna = qService.QnaDetail(qnaNo);
 				
 		model.addAttribute("qna", qna);
@@ -78,49 +78,51 @@ public class qnaController {
 	 * return new Gson().toJson(list); }
 	 */
 	
-	//수정페이지
-		@RequestMapping("updateQna.bo")
-		public String updateQa(Qna q) {
-			//session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			qService.updateQna(q);
-			return "/qa/QAModifyView";
-		}
-		//수정페이지	
+	
+	
+	//�닔�젙�럹�씠吏�
+		@RequestMapping(value="updateQna.bo") public String updateQa(Qna q,
+		    	  HttpSession session, HttpServletRequest request, HttpServletResponse
+				  response){ 
+			  	  session.setAttribute("alertMsg", "�꽦怨듭쟻�쑝濡� �닔�젙�릺�뿀�뒿�땲�떎."); 
+		    	  qService.updateQna(q);
+		    	  return "redirect:/list.qa"; 
+		  }			
 		
-		@RequestMapping(value = "updatePost.bo", method = RequestMethod.POST)
-		public String updatePost(HttpSession session, Qna q) {
-			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			qService.updatePost(q);
-			return "/qa/QAViewDetail";
-		}
 		
-		/*
-		//삭제페이지
-		@RequestMapping(value = "delete.bo", method = RequestMethod.GET)
-		public String deleteQna(HttpSession session, Qna q) {
-			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			qService.deleteQna(q);
-			String url="";
+		
+		
+			/*
+			 * @RequestMapping(value="updatePost.bo") public String updatePost(Integer
+			 * qnaNo, Model model) { Qna qna = qService.QnaDetail(qnaNo);
+			 * 
+			 * model.addAttribute("qna", qna);
+			 * 
+			 * return "redirect:/list.qa";
+			 * 
+			 * }
+			 */
+		
+		@RequestMapping(value="updatePost.bo") public String updatePostQna(Qna q,
+				HttpSession session, HttpServletRequest request, HttpServletResponse
+				  response){
+				session.setAttribute("alertMsg", "수정되었습니다");
+				
+		    	 
+				  qService.updatePostQna(q); 
+				  return "redirect:/list.qa"; 
+				  }			
 			
-			int result = qService.deleteQna(q);
-			
-			if(result > 0) {
-				url =  "qa/list.qa";
-			} else {
-				url = "common/errorPage";
-			}
-			return url;
-		}*/
 		
-		@RequestMapping(value="delete.bo")
-		public ModelAndView deleteQna(Qna q, HttpSession session,
-				                          HttpServletRequest request, HttpServletResponse response){
-			session.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			ModelAndView mav=new ModelAndView();
-			qService.deleteQna(q);
-			mav.setViewName("/qa/QaView");
-			return mav;
+		
+		
+		
+	    @RequestMapping(value="delete.bo") public String deleteQna(Qna q,
+	    	  HttpSession session, HttpServletRequest request, HttpServletResponse
+			  response){ 
+	    	  session.setAttribute("alertMsg", "�꽦怨듭쟻�쑝濡� �궘�젣�릺�뿀�뒿�땲�떎."); 
+			  qService.deleteQna(q); 
+			  return "redirect:/list.qa"; 
+			  }			
 		}
-		
-}
 

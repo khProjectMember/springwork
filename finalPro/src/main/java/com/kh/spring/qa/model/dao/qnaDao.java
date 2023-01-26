@@ -3,7 +3,9 @@ package com.kh.spring.qa.model.dao;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.common.model.vo.PageInfo;
@@ -12,6 +14,8 @@ import com.kh.spring.qa.model.vo.QnaReply;
 
 @Repository
 public class qnaDao {
+	@Autowired
+	private SqlSession sqlSession;
 	
 	public int insertQna(SqlSessionTemplate sqlSession, Qna q) {
 		return sqlSession.insert("qnaMapper.insertQna", q);
@@ -39,13 +43,22 @@ public class qnaDao {
 	public ArrayList<QnaReply> qnaReplyList(SqlSessionTemplate sqlSession, int qnaNo) {
 		return (ArrayList) sqlSession.selectList("qnaMapper.qnaReplyList", qnaNo);
 	}
-
-	public void updateQna(SqlSessionTemplate sqlSession, Qna q) {
-		 sqlSession.update("qnaMapper.updateQna", q);
+	/*
+	public int updateQna(SqlSessionTemplate sqlSession, Qna q) {
+		 return sqlSession.update("qnaMapper.updateQna", q);
+	}*/
+	public void updateQna(Qna q) {
+		sqlSession.update("qnaMapper.updateQna", q);
 	}
+	
 
 	public int deleteQna(SqlSessionTemplate sqlSession, Qna q) {
 		return sqlSession.delete("qnaMapper.deleteQna", q);
+	}
+
+	public int updatePost(SqlSessionTemplate sqlSession, Integer qnaNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("qnaMapper.updateQna", qnaNo);
 	}
 
 }
