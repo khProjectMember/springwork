@@ -171,10 +171,7 @@ public class MemberController {
 	//아이디 찾기
 	@RequestMapping("findMyId.me")
 	public String findMyId(Email email, Model model){
-		//		System.out.println(email.getMemEmail());
-		//		System.out.println(email.getMemName());
 		int check = mService.checkMember(email); //유효한 멤버인지 확인
-		//		System.out.println("체크값" + check);
 		if(check == 1) {
 			Map<String, Object> map = emailAuthService.getEmailAuth(email.getMemEmail());
 			String memId = mService.getMemId(email); //아이디 얻어옴
