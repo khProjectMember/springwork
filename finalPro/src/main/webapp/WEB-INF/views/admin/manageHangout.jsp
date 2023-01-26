@@ -74,7 +74,7 @@
 								<c:forEach var="h" items="${ list }">
 									<tr>
 										<td class="hangoutNo">${ h.hangoutNo}</td>
-										<td>${h.hangoutTitle}</td>
+										<td><a href="meetingDetail.bo?hangoutNo=${h.hangoutNo}">${h.hangoutTitle}</a></td>
 										<td>${h.m.memNickname }</td>
 										<td>${h.hangoutEdate}</td>
 										<td>${h.hangoutNowCount} / ${h.hangoutJoinCount}</td>
