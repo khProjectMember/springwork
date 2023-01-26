@@ -63,45 +63,6 @@ public class BoardController {
 	public String enroll() {
 		return "board/NoticeWriteView";
 	}
-	/*
-	@RequestMapping("insert.bo")
-	public String insertNotice(Notice n, MultipartFile upfile, HttpSession session, Model model) {
-		if(!upfile.getOriginalFilename().equals("")) {
-			String changeName = changeFilename(upfile, session);
-			n.setFilename(upfile.getOriginalFilename());
-			n.setChangename("resources/uploadFiles/"+ changeName);
-		}
-		int result = nService.insertNotice(n);
-		if(result > 0 ) {
-			session.setAttribute("alertMsg", "성공적으로 게시글이 등록되었습니다");
-			return "redirect:list.bo";
-		} else {
-			model.addAttribute("errorMsg","게시글 등록 실패");
-			return "common/errorPage";
-		}
-	}
-	
-	
-	
-	public String changeFilename(MultipartFile upfile, HttpSession session) {
-		String originName = upfile.getOriginalFilename();
-		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		int ranNum = (int)(Math.random() * 90000 + 10000 );
-		String ext = originName.substring(originName.lastIndexOf("."));
-		String changeName = currentTime + ranNum + ext;
-		
-		//업로드 시키고자 하는 폴더의 물리적인 경로 알아오기
-		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
-		
-		
-			try {
-				upfile.transferTo(new File(savePath + changeName));
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			} 
-		return changeName;
-	}
-	*/
 	
 	@ResponseBody
 	@RequestMapping(value="SummerNoteImageFile", produces="application/json; charset=utf-8")

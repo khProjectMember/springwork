@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.board.model.vo.ReplyRecommend;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.board.model.vo.ReviewReply;
 import com.kh.spring.board.model.vo.Reviewrecommend;
@@ -134,6 +135,44 @@ public class ReviewDao {
 		return sqlSession.selectOne("reviewMapper.reviewTotalCount", revNo);
 	}
 	
+	public ReviewReply selectRevReply(SqlSessionTemplate sqlSession, int revReplyNo) {
+		return sqlSession.selectOne("reviewMapper.selectRevReply", revReplyNo);
+	}
 	
+	public ArrayList<ReviewReply> newReviewReplyList(SqlSessionTemplate sqlSession, int revNo) {
+		return (ArrayList) sqlSession.selectList("reviewMapper.newReviewReplyList", revNo);
+	}
+	
+	public int insertReplyRecommend(SqlSessionTemplate sqlSession, int revReplyNo, int memNo) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("revReplyNo", revReplyNo);
+		map.put("memNo", memNo);
+		
+		return sqlSession.insert("reviewMapper.insertReplyRecommend", map);
+	}
+	
+	public int updateReplyRecommend(SqlSessionTemplate sqlSession, int revReplyNo) {
+		return sqlSession.update("reviewMapper.updateReplyRecommend", revReplyNo);
+	}
+	
+	public ArrayList<ReplyRecommend> replyrecommendList(SqlSessionTemplate sqlSession, int revReplyNo) {
+		return (ArrayList) sqlSession.selectList("reviewMapper.replyrecommendList", revReplyNo);
+	}
+	
+	public int deleteReplyRecommend(SqlSessionTemplate sqlSession, int revReplyNo, int memNo) {
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("revReplyNo", revReplyNo);
+		map.put("memNo", memNo);
+		
+		return sqlSession.delete("reviewMapper.deleteReplyRecommend", map);
+	}
+	 
+	public int updateReplyRecommendDelete(SqlSessionTemplate sqlSession, int revReplyNo) {
+		return sqlSession.update("reviewMapper.updateReplyRecommendDelete", revReplyNo);
+	}
+	
+	public int goodTotalCount(SqlSessionTemplate sqlSession, int revReplyNo) {
+		return sqlSession.selectOne("reviewMapper.goodTotalCount", revReplyNo);
+	}
 }
 

@@ -79,9 +79,16 @@ public class AdminServiceImpl implements AdminService{
 		return aDao.insertLecture(sqlSession, l);
 	}
 	@Override
+	public int updateLecture(Lecture l) {
+		return aDao.updateLecture(sqlSession, l);
+	}
+	@Override
 	public int insertTeacher(Teacher t) {
 		return aDao.insertTeacher(sqlSession, t);
 	}
+	
+	
+	 
 	
 	
 	//새로운 멤버조회
@@ -115,6 +122,29 @@ public class AdminServiceImpl implements AdminService{
 		return aDao.deleteNotice_ad(sqlSession, noticeNo);
 	}
 	@Override
+	public int deleteMember_ad(String memNo) {
+		return aDao.deleteMember_ad(sqlSession, memNo);
+	}
+	@Override
+	public int deleteHangout_ad(String hangoutNo) {
+		return aDao.deleteHangout_ad(sqlSession, hangoutNo);
+	}
+	@Override
+	public int deleteTeacher_ad(String teaNo) {
+		return aDao.deleteTeacher_ad(sqlSession, teaNo);
+	}
+	@Override
+	public int deleteLecture_ad(String lecNo) {
+		return aDao.deleteLecture_ad(sqlSession, lecNo);
+	}
+	
+	
+	
+	
+	
+	
+	//
+	@Override
 	public ArrayList<Teacher> selectTeachers(Teacher t) {
 		return aDao.selectTeachers(sqlSession, t);
 	}
@@ -122,5 +152,10 @@ public class AdminServiceImpl implements AdminService{
 	public ArrayList<LectureLocation> selectLocations(LectureLocation l) {
 		return aDao.selectLocations(sqlSession, l);
 	}
+	@Override
+	public Lecture selectLecture(Integer lecNo) {
+		return aDao.selectLecture(sqlSession, lecNo);
+	}
+	
 	
 }

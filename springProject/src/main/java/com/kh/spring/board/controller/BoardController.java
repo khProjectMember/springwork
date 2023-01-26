@@ -82,28 +82,7 @@ public class BoardController {
 	
 	@RequestMapping("insert.bo")
 	public String insertBoard(Board b, MultipartFile upfile, HttpSession session, Model model) {
-		// System.out.println(b);
-		// System.out.println(upfile);
-		// MultipartFile은 파일을 등록하지 않아도 객체가 생성이 됨. 다만 filename= 비어서 들어온다
-		
 		if(!upfile.getOriginalFilename().equals("")) {
-			/*
-			String originName = upfile.getOriginalFilename();
-			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			int ranNum = (int)(Math.random() * 90000 + 10000 );
-			String ext = originName.substring(originName.lastIndexOf("."));
-			String changeName = currentTime + ranNum + ext;
-			
-			//업로드 시키고자 하는 폴더의 물리적인 경로 알아오기
-			String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
-			
-			
-				try {
-					upfile.transferTo(new File(savePath + changeName));
-				} catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
-				} 
-			*/
 			String changeName = changeFilename(upfile, session);
 			b.setOriginName(upfile.getOriginalFilename());
 			b.setChangeName("resources/uploadFiles/"+ changeName);
@@ -120,7 +99,31 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
-	
+	@RequestMapping("update.bo")
+	public String updateBoard(Board b, MultipartFile reupfile, HttpSession session ,Model model) {
+		if( !reupfile.getOriginalFilename().equals("")) {
+			if(b.getOriginName() != null) {
+				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
+			}
+			String changeName = changeFilename(reupfile, session);
+			
+			b.setOriginName(reupfile.getOriginalFilename());
+			b.setChangeName("resources/uploadfiles" + changeName);
+		}
+		int result = bService.updateBoard(b);
+		if(result > 0) {
+			session.setAttribute("alert", "성공적으로 게시글이 수정되었습니다");
+			return "redirect:detail.bo?bno=" + b.getBoardNo();
+		} else {
+			model.addAttribute("errorMsg","게시글 수정 실패");
+			return "common/errorPage";
+		}
+	}
+	@RequestMapping("updateForm.bo")
+	public String updateForm(int bno, Model model) {
+		model.addAttribute("b",bService.selectBoard(bno));
+		return "board/boardUpdateForm";
+	}
 	public String changeFilename(MultipartFile upfile, HttpSession session) {
 			String originName = upfile.getOriginalFilename();
 			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -154,32 +157,8 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
-	@RequestMapping("updateForm.bo")
-	public String updateForm(int bno, Model model) {
-		model.addAttribute("b",bService.selectBoard(bno));
-		return "board/boardUpdateForm";
-	}
 	
-	@RequestMapping("update.bo")
-	public String updateBoard(Board b, MultipartFile reupfile, HttpSession session ,Model model) {
-		if( !reupfile.getOriginalFilename().equals("")) {
-			if(b.getOriginName() != null) {
-				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
-			}
-			String changeName = changeFilename(reupfile, session);
-			
-			b.setOriginName(reupfile.getOriginalFilename());
-			b.setChangeName("resources/uploadfiles" + changeName);
-		}
-		int result = bService.updateBoard(b);
-		if(result > 0) {
-			session.setAttribute("alert", "성공적으로 게시글이 수정되었습니다");
-			return "redirect:detail.bo?bno=" + b.getBoardNo();
-		} else {
-			model.addAttribute("errorMsg","게시글 수정 실패");
-			return "common/errorPage";
-		}
-	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="rlist.bo", produces="application/json; charset=utf-8")

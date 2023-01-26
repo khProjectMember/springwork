@@ -20,4 +20,5 @@ public class ReviewReply {
 	private String revReplyContent;
 	private String revReplyDate;
 	private int revNo;
+	private int revReplyGcount;
 }
