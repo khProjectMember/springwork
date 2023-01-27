@@ -22,7 +22,7 @@
                 <div class="content_fir">
                     <div class="nav_box">
                         <ul>
-                            <li><a href="#" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="views/list.jsp" class="nav_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
                             <li><a href="#" class="nav_a">고객센터</a></li>
                             <li><a href="#">1:1문의</a></li>
                         </ul>                            
@@ -41,13 +41,14 @@
                              </ul>
                         </div>
                     </div>
-                
+                 <form name="detailForm" method="post" action="insertQA.bo" class="insertFrm">
                     <div>
-                            <input type="radio" name="qnaStatus" value="0">공개</label>
-                            <input type="radio" name="qnaStatus" value="1">비공개</label>
+                            <input type="radio" name="qnaStatus"  value="1">공개</label>
+                            <input type="radio" name="qnaStatus"  value="0">비공개</label>              
+                           
                     </div>
                     <div class="basicDataTable aLeft" mb30>
-                        <form name="detailForm" method="post" action="insertQA.bo" class="insertFrm">
+                       
                             <table>                   
                                 <colgroup>
                                     <col style="width:12%;">
@@ -76,26 +77,32 @@
                                         <th scope="row">
                                             <label for="tit">내용</label>
                                         </th>
-                                        <td>
-                                        	 <textarea id="summernote" name="qnaContent" class="text_content"></textarea>
-                                           <!-- <textarea cols="150" rows="10" placeholder="간략히 써 주세요."></textarea> -->                                                                                     
+                                        <td colspan="3">
+                                           <textarea id="summernote" name="qnaContent" class="text_content"></textarea>                                                                                                                
                                         </td>                                    
                                     </tr>                                                                                                           
                                 </tbody>
                             </table>
                         </form>
                     </div>
+                    
                     <div class="btnArea">
                         <div class="leftArea">
-                            <a href="#" class="btn btntype03 btnWhite">
+                            <a href="list.qa" class="btn btntype03 btnWhite" style="background: #fff;
+    						border: 1px solid #aaa;color: #222;height: 80px;   						
+    						line-height: 66px; font-size: 20px; min-width: 120px;">
                                 <span>목록</span>
                             </a>
                         </div>
                         <div class="rightArea">
-                            <a href="#" id="dCancel" class="btn btntype03 btnBlack">
+                            <a href="list.qa" id="dCancel" class="btn btntype03 btnBlack"style="background: #000;
+    						border: 1px solid #aaa;color: white;height: 80px;   						
+    						line-height: 66px; font-size: 20px; min-width: 120px;">
                                 <span>취소</span>
                             </a>
-                            <a href="javascript:qaFrm();" id="dInsert" class="btn btntype03 btnRed">
+                            <a href="javascript:qaFrm();" id="dInsert" class="btn btntype03 btnRed" style="background: #eb2d2f;
+    						border: 1px solid #aaa;color:white;height: 80px;   						
+    						line-height: 66px; font-size: 20px; min-width: 120px;">
                                 <span>등록</span>
                             </a>
                         </div>
@@ -103,28 +110,6 @@
                 </div>            
             </div>
         </div>
-
-        <div id="wrap">
-            <div id="banner">
-                <div class="inner">
-                    <div class="banner">                                                          
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <div id="wrap">
-        <div id="content">           
-            <div class="quickmenu">
-                <ul>
-                    <li><a href="">문의</a></li>
-                    <li><a href="#"><img src="resources/img/icons8-쪽으로-48.png" alt="화살표 위로"></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>   
-
-    <div class="all"></div>
     <script>
     	function qaFrm() {
     		$('.insertFrm').submit();
@@ -204,71 +189,73 @@
           
         
         $('#summernote').summernote({
-	        width: 1350,
-        	height: 400,                 // 에디터 높이
-	        minHeight: 400,             // 최소 높이
-	        maxHeight: 400,             // 최대 높이
-	        focus: true,
-	        toolbar: [
-	            // 글꼴 설정
-	            ['fontname', ['fontname']],
-	            // 글자 크기 설정
-	            ['fontsize', ['fontsize']],
-	            // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-	            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-	            // 글자색
-	            ['color', ['forecolor','color']],
-	            // 표만들기
-	            ['table', ['table']],
-	            // 글머리 기호, 번호매기기, 문단정렬
-	            ['para', ['ul', 'ol', 'paragraph']],
-	            // 줄간격
-	            ['height', ['height']],
-	            // 그림첨부, 링크만들기, 동영상첨부
-	            ['insert',['picture','link','video']],
-	            // 코드보기, 확대해서보기, 도움말
-	            ['view', ['codeview','fullscreen', 'help']]
-	        ],
-	        fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-	        
-	        callbacks : { 
-	        	onImageUpload : function(files) {
-	        // 파일 업로드(다중업로드를 위해 반복문 사용)
+            height: 400,                 // 에디터 높이
+            minHeight: 400,             // 최소 높이
+            maxHeight: 400,             // 최대 높이
+            focus: true,
+            toolbar: [
+                // 글꼴 설정
+                ['fontname', ['fontname']],
+                // 글자 크기 설정
+                ['fontsize', ['fontsize']],
+                // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+                ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                // 글자색
+                ['color', ['forecolor','color']],
+                // 표만들기
+                ['table', ['table']],
+                // 글머리 기호, 번호매기기, 문단정렬
+                ['para', ['ul', 'ol', 'paragraph']],
+                // 줄간격
+                ['height', ['height']],
+                // 그림첨부, 링크만들기, 동영상첨부
+                ['insert',['picture','link','video']],
+                // 코드보기, 확대해서보기, 도움말
+                ['view', ['codeview','fullscreen', 'help']]
+            ],
+            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+            
+            callbacks : { 
+            	onImageUpload : function(files) {
+            // 파일 업로드(다중업로드를 위해 반복문 사용)
 	            	
 	            		console.log(files[0]);	            		
 	            		sendFile(files[0], this);
-	        	}
-	        	
-	        }
-	    });
-	    
-	    function sendFile(file, editor) {
-	    	var data = new FormData();
-	    	data.append("file", file);
-	    	console.log(file);
-	    	console.log(editor);
-	    	$.ajax({
-	    		data: data,
-	    		type:"POST",
-	    		url: "SummerNoteImageFile",
-	    		contentType: false,
-	    		processData: false,
-	    		success: function(data) {
-	    			console.log(data);
-	    			console.log(editor);
-	    			$(editor).summernote('insertImage', data.url);
-	    		},
-	    		error: function(e) {
-	    			console.log(e);
-	    		}
-	    	})
-	    };
+            	}
+            	
+            }
+        	
+        	
+      
+        });
+        
+		function sendFile(file, editor) {
+        	var data = new FormData();
+        	data.append("file", file);
+        	console.log(file);
+        	console.log(editor);
+        	$.ajax({
+        		data: data,
+        		type:"POST",
+        		url: "SummerNoteImageFile",
+        		contentType: false,
+        		processData: false,
+        		success: function(data) {
+        			console.log(data);
+        			console.log(editor);
+        			$(editor).summernote('insertImage', data.url);
+        		},
+        		error: function(e) {
+        			console.log(e);
+        		}
+        		
+        	})
+        }
 	
 	    $('.cancle').on('click', function() {
 	        $('#summernote').summernote('reset');
 	    });
     </script>
     <jsp:include page="../common/footer.jsp" />
-    
 </body>
 </html>

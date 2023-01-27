@@ -91,5 +91,6 @@
 		from notice n, member m 
 		where n.mem_no = m.mem_no and n.notice_catg = 1
 		order by notice_edate desc
+
 	</select>
 </mapper>

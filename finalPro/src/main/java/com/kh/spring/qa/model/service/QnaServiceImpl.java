@@ -7,7 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.qa.model.dao.QnaDao;
+
+import com.kh.spring.board.model.vo.Review;
+import com.kh.spring.common.model.vo.PageInfo;
+import com.kh.spring.qa.model.dao.qnaDao;
 import com.kh.spring.qa.model.vo.Qna;
+import com.kh.spring.qa.model.vo.QnaReply;
+
+import oracle.net.aso.q;
 
 @Service
 public class QnaServiceImpl implements QnaService {
@@ -22,10 +29,58 @@ public class QnaServiceImpl implements QnaService {
 		// TODO Auto-generated method stub
 		return qDao.insertQna(sqlSession, q);
 	}
+	
+	@Override
+	public void updateQna(Qna q) {
+		 qDao.updateQna(q);
+	}
+	
+	
 
 	@Override
 	public ArrayList<Qna> QnaList(Qna q) {
 		return null;
 	}
 
+
+	public int selectListCount() {
+		return qDao.selectListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Qna> qnaList(Qna q) {
+		return qDao.qnaList(sqlSession, q);
+	}
+	
+
+	@Override
+	public Qna QnaDetail(Integer qnaNo) {
+		// TODO Auto-generated method stub
+		return qDao.QnaDetail(sqlSession, qnaNo);
+	}
+
+	@Override
+	public ArrayList<QnaReply> qnaReplyList(Integer qnaNo) {
+		// TODO Auto-generated method stub
+		return (ArrayList<QnaReply>) qDao.qnaReplyList(sqlSession, qnaNo);
+	}
+
+
+
+	@Override
+	public void deleteQna(Qna q) {
+		 qDao.deleteQna(sqlSession, q);
+	}
+
+	@Override
+	public Qna updatePost(Integer qnaNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	
+
+	
 }
