@@ -55,6 +55,7 @@
            				    <c:when test="${ empty loginUser }">
            						<!-- 로그인 전 -->
            						<li><a href="javascript:zoomIn();">확대</a></li>
+           						<li><a href="javascript:zoomOut();">축소</a></li>
   			                    <li><a href="loginEnroll.me">찜목록</a></li>
 	                            <li><a href="loginEnroll.me">로그인</a></li>
 	                            <li><a href="enrollForm.me">회원가입</a></li>
@@ -67,6 +68,8 @@
 	                        </c:when>
             				<c:otherwise>
             					<!-- 로그인 후 -->
+            					<li><a href="javascript:zoomIn();">확대</a></li>
+            					<li><a href="javascript:zoomOut();">축소</a></li>
   			                     <li><a href="myWishList.wi">찜목록</a></li>
             					<li><a><strong>${ loginUser.memName }</strong>님 환영합니다</a></li>
 					                <li><a href="myPage.me">마이페이지</a></li>
@@ -109,7 +112,6 @@
                             <ul>
                                 <li><a href="list.le">강좌목록</a></li>
                                 <li><a href="myApplyList.ap">신청목록</a></li>
-                                <li><a href="">신청방법</a></li>
                             </ul>
                         </div>
                         <div class="nav_info">
@@ -195,6 +197,12 @@
         }
         function zooms(){
             document.body.style.zoom=nowZoom + '%';
+        }
+        
+        function zoomOut(){
+            nowZoom = nowZoom -10;
+            if(nowZoom<=70) nowZoom = 70;
+            zooms();
         }
 
         

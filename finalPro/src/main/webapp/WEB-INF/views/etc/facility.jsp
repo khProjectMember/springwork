@@ -86,10 +86,10 @@ https://templatemo.com/tm-564-plot-listing
                                 <div class="col-lg-12">
                                   <div class="listing-item">
                                     <div class="left-image">
-                                      <img src="resources/nak/assets/images/room01.jpg" alt="">
+                                      <img src="resources/nak/assets/images/lec1.jpg" alt="">
                                     </div>
                                     <div class="right-content align-self-center">
-                                      <h4>방_01</h4>
+                                      <h4>무궁화관</h4>
                                       <span class="price"> 내용 </span>
                                       <span class="info"> 위치<br></span>
                                     </div>
@@ -99,10 +99,10 @@ https://templatemo.com/tm-564-plot-listing
                                 <div class="col-lg-12">
                                   <div class="listing-item">
                                     <div class="left-image">
-                                      <img src="resources/nak/assets/images/room02.jpg" alt="">
+                                      <img src="resources/nak/assets/images/lec2.jpg" alt="">
                                     </div>
                                     <div class="right-content align-self-center">
-                                     <h4>방_02</h4>
+                                     <h4>진달래관</h4>
                                       <span class="price"> 내용 </span>
                                       <span class="info"> 위치<br></span>
                                     </div>
@@ -111,10 +111,10 @@ https://templatemo.com/tm-564-plot-listing
                                 <div class="col-lg-12">
                                   <div class="listing-item">
                                     <div class="left-image">
-                                      <img src="resources/nak/assets/images/room03.jpg" alt="">
+                                      <img src="resources/nak/assets/images/lec3.jpg" alt="">
                                     </div>
                                     <div class="right-content align-self-center">
-                                     <h4>방_03</h4>
+                                     <h4>개나리관</h4>
                                       <span class="price"> 내용 </span>
                                       <span class="info"> 위치<br></span>
                                     </div>
@@ -127,10 +127,22 @@ https://templatemo.com/tm-564-plot-listing
                                 <div class="col-lg-12">
                                   <div class="listing-item">
                                     <div class="left-image">
-                                      <img src="resources/nak/assets/images/room04.jpg" alt="">
+                                      <img src="resources/nak/assets/images/lec4.jpg" alt="">
                                     </div>
                                     <div class="right-content align-self-center">
-                                     <h4>방_04</h4>
+                                     <h4>다목적강의반</h4>
+                                      <span class="price">내용 </span>
+                                      <span class="info"> 위치 <br></span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-12">
+                                  <div class="listing-item">
+                                    <div class="left-image">
+                                     <img src="resources/nak/assets/images/lec5.jpg" alt="">
+                                    </div>
+                                    <div class="right-content align-self-center">
+                                     <h4>장미관</h4>
                                       <span class="price"> 내용 </span>
                                       <span class="info"> 위치<br></span>
                                     </div>
@@ -139,22 +151,10 @@ https://templatemo.com/tm-564-plot-listing
                                 <div class="col-lg-12">
                                   <div class="listing-item">
                                     <div class="left-image">
-                                     <img src="resources/nak/assets/images/room05.jpg" alt="">
+                                      <img src="resources/nak/assets/images/lec6.jpg" alt="">
                                     </div>
                                     <div class="right-content align-self-center">
-                                     <h4>방_05</h4>
-                                      <span class="price"> 내용 </span>
-                                      <span class="info"> 위치<br></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-12">
-                                  <div class="listing-item">
-                                    <div class="left-image">
-                                      <img src="resources/nak/assets/images/room06.jpg" alt="">
-                                    </div>
-                                    <div class="right-content align-self-center">
-                                     <h4>방_06</h4>
+                                     <h4>튤립관</h4>
                                       <span class="price"> 내용 </span>
                                       <span class="info"> 위치<br></span>
                                     </div>
@@ -169,43 +169,17 @@ https://templatemo.com/tm-564-plot-listing
                                 <div class="col-lg-12">
                                   <div class="listing-item">
                                     <div class="left-image">
-                                      <img src="resources/nak/assets/images/room07.jpg" alt="">
+                                      <img src="resources/nak/assets/images/lec7.png" alt="">
                                     </div>
                                      <div class="right-content align-self-center">
-                                     <h4>방_07</h4>
+                                     <h4>들국화관</h4>
                                       <span class="price"> 내용 </span>
                                       <span class="info"> 위치<br></span>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="col-lg-12">
-                                  <div class="listing-item">
-                                    <div class="left-image">
-                                      <img src="resources/nak/assets/images/room08.jpg" alt="">
-                                      <div class="hover-content">
-                                        <div class="main-white-button">
-                                        </div>
-                                      </div>
-                                    </div>
-                                     <div class="right-content align-self-center">
-                                     <h4>방_08</h4>
-                                      <span class="price"> 내용 </span>
-                                      <span class="info"> 위치<br></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-12">
-                                  <div class="listing-item">
-                                    <div class="left-image">
-                                      <img src="resources/nak/assets/images/room09.jpg" alt="">
-                                    </div>
-                                   <div class="right-content align-self-center">
-                                     <h4>방_09</h4>
-                                      <span class="price"> 내용 </span>
-                                      <span class="info"> 위치<br></span>
-                                    </div>
-                                  </div>
-                                </div>
+                             
+                              
                               </div>
                             </div>
                           </div>
@@ -425,6 +399,6 @@ https://templatemo.com/tm-564-plot-listing
   <script src="resources/nak/assets/js/animation.js"></script>
   <script src="resources/nak/assets/js/imagesloaded.js"></script>
   <script src="resources/nak/assets/js/custom.js"></script>
-	
+   
 </body>
 </html>

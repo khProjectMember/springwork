@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="qnaMapper">
+	<resultMap type="Qna" id="qnaResult">
+		<result column="qna_no" property="qnaNo" />
+		<result column="qna_title" property="qnaTitle" />
+		<result column="qna_content" property="qnaContent" />
+		<result column="qna_replystatus" property="qnaReplyStatus" />
+		<result column="qna_status" property="qnaStatus" />
+		<result column="mem_no" property="memNo" />
+		<result column="qna_email" property="qnaEmail" />	
+	</resultMap>
 	<insert id="insertQna">
 		insert into qna (qna_no, qna_title, qna_content, qna_replystatus, qna_status, mem_no, qna_email) 
-		values (SEQ_QNO.NEXTVAL, #{qnaTitle}, #{qnaContent}, DEFAULT,DEFAULT, 1, #{qnaEmail})
+		values (SEQ_QNO.NEXTVAL, #{qnaTitle}, #{qnaContent}, #{qnaReplyStatus},#{qnaStatus}, 1, #{qnaEmail})
 	</insert>
+	<select id="selectListCount" resultType="_int">
+		select count(*)
+		 from qna 
+	</select>	
+	<select id="qnaList" resultMap="qnaResult">
+		select qna_no, qna_title, qna_replystatus, qna_status
+		from qna		
+		order by qna_no asc
+	</select>
+	<select id="QnaDetail" resultMap="qnaResult">
+		select qna_no, qna_title, qna_content, qna_replystatus, qna_status, mem_no, qna_email
+		from qna
+		where qna_no = #{qnaNo}
+	</select>
+	<resultMap type="QnaReply" id="qnaReplyResult">
+		<result column="qnareply_no" property="qnaReplyNo" />
+		<result column="qnareply_catg" property="qnaReplyCatg" />
+		<result column="qnareply_writer" property="qnaReplyWriter" />
+		<result column="qnareply_content" property="qnaReplyContent" />
+		<result column="qnareply_date" property="qnaReplyDate" />
+		<result column="qna_no" property="qnaNo" />
+	</resultMap>
+	<insert id="insertQnaReply">
+		insert into qnareply (qnareply_no, qnareply_catg, qnareply_writer, qnareply_content, qnareply_date, qna_no) 
+		values (SEQ_QNO.NEXTVAL, #{qnaReplyCatg}, #{qnaReplyWriter}, #{qnaReplyContent},#{qnaReplyDate}, #{qnaNo})
+	</insert>
+	<select id="QnaReplyList" resultMap="qnaReplyResult">
+		select qnareply_no, qnareply_writer, qnareply_content,qna_no
+		from qnareply
+		where qna_no = #{qnaNo}
+	</select>
+	<update id="updateQna">
+		update qna set qna_no = #{qnaNo}, qna_title = #{qnaTitle},  qna_content = #{qnaContent}
+		where qna_no = #{qnaNo}
+	</update>
+	
+	<delete id="deleteQna">
+		delete from qna where qna_no = #{qnaNo}
+	</delete>	
+	<select id="qnalistfir" resultMap="qnaResult">
+		select * from qna order by qna_no desc
+	</select>
 </mapper>

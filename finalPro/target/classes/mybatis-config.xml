@@ -19,6 +19,7 @@
 		<typeAlias type="com.kh.spring.board.model.vo.ReviewReplyRe" alias="ReviewReplyRe" />
 		<typeAlias type="com.kh.spring.board.model.vo.Join" alias="Join" />
 		<typeAlias type="com.kh.spring.qa.model.vo.Qna" alias="Qna" />
+		<typeAlias type="com.kh.spring.qa.model.vo.QnaReply" alias="QnaReply" />
 		<typeAlias type="com.kh.spring.wish.model.vo.Wish" alias="wish" />
 		<typeAlias type="com.kh.spring.apply.model.vo.Apply" alias="Apply"/>		
 	</typeAliases>

@@ -88,23 +88,6 @@ body, input, textarea, select, button a {
 
 
 /* 콘텐츠 */
-
-/* 추천강좌 */
-.content {width: 100%; margin-top: 100px; display: flex; flex-direction: column;}
-.content h2 {font-size: 28px; height: 50px; margin-bottom: 50px;}
-.content .container {width: 100%; height: 450px;}
-.content .container .reco {width: 100%;}
-.content .container .reco .reco_ul {display: flex; flex-wrap: wrap; width: 100%;}
-.content .container .reco .reco_ul li {display: flex; flex-basis: 20%; width: 20%; position: relative; box-sizing: border-box; padding: 0 15px;}
-.content .container .reco .reco_ul li a {display: flex; position: relative; width: 100%; height: 350px; flex-direction: column;}
-.content .container .reco .reco_ul li a .img_box {position: relative;}
-.content .container .reco .reco_ul li a .img_box img {width: 100%; height: 300px;}
-.content .container .reco .reco_ul li a .img_info {display: none; position: absolute; background: rgba(0, 0, 0, 0.25); width: 100%; height: 300px;}
-.content .container .reco .reco_ul li a .img_info .info_detail {display: flex; flex-direction: column; margin: 10px 0 0 7px;}
-.content .container .reco .reco_ul li a .img_info .info_detail span {font-size: 18px; color: #f1f1f1; font-weight: 500; margin-bottom: 5px;}
-.content .container .reco .reco_ul li a .img_info .info_detail p {font-size: 14px; color: #f1f1f1; font-weight: 300;}
-.content .container .reco .reco_ul li a .img_title {display: flex; justify-content: center; align-items: center;}
-.content .container .reco .reco_ul li a .img_title p {color: #222; font-size: 15px; font-weight: 600;}
 .content_fir {width: 100%; display: flex; justify-content: flex-end;}
 .content_fir .nav_box {margin: 50px 0;}
 .content_fir .nav_box ul {display: flex;}
@@ -156,6 +139,12 @@ h2 {
 .btnBlack {
     background: #000;
 }
+.btnType04 {
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    min-width: 55px;
+}
 .notiBoxArea ul li {
     margin: 5px 0 0 0;
     position: relative;
@@ -163,134 +152,89 @@ h2 {
     color: #999;
     font-size: 18px;
 }
-.btnType04 {
-    height: 30px;
-    line-height: 30px;
-    font-size: 13px;
-    min-width: 55px;
-}
-.btn{
-    padding:19px 39px;
+
+.btn{   
     display:inline-block;
     vertical-align: middle;
     color: #fff;
     text-align: center;
 }
-.btnWhite {
-    background: #fff;
-    border: 1px solid #aaa;
-    color: #222;
-}
-.btnType03 {
-    height: 66px;
-    line-height: 66px;
-    font-size: 20px;
-    min-width: 120px;
-}
-.btnArea{
-    padding-top:30px;
+.btnWhite{
+    color:#222;
 }
 .btnArea .rightArea {
     float: right;
 }
-.btnArea .leftArea {
-    float: left;
-}
-.btnArea .leftArea a:first-child {
-    margin-left: 0;
+.btnType03{
+    font-size:20px;
+    line-height: 66px;
 }
 .mb30 {
     margin-bottom: 30px !important;
 }
-.btnRed {
-    background: #eb2d2f;
-}
-
 .basicDataTable {
     border-top: 1px solid #000;
     border-bottom: 1px solid #ccc;
-}
-.basicDataTable td{  
-        font-size: 15px;
-        color: #666;
-        text-align: center;
-        padding: 11px 5px 10px 5px;
-        border-bottom: 1px solid #e5e5e5;
-        height: 86px;
-}
-
-.basicDataTable.aLeft th {
-    font-size: 15px;
-}
-.basicDataTable.aLeft th{
-    text-align: center;
-    padding-left: 22px;
-    padding-right: 30px;
-    font-size: 16px;
-}
-.basicDataTable.aLeft td {
-    text-align: left;
-    padding-left: 52px;
-    padding-right: 30px;
-    font-size: 16px;
-}
-.basicDataTable th { 
-    color: #222;    
-    padding: 11px 5px 10px 5px;
-    border-bottom: 1px solid #e5e5e5;
-    background-color: #f4f4f4;
-    height: 66px;
-    font-weight: normal;    
-}
-label, button {
-    cursor: pointer;
-}
-input[type="text"] {
-    display: inline-block;
-    width: 100%;
-    height: 44px;
-    padding: 0 20px;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #222;
-    font-size: 15px;
-    line-height: 44px;
-}
-.selectWrap {
-    display: inline-block;
-    width: 100%;
-    vertical-align: middle;
-}
-.selectBox {
-    display: inline-block;   
-    height: 44px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border: 1px solid #ccc;
-    border-radius: 0;
-    background: #fff;
-    color: #222;
-    font-size: 13px;    
-    width:200%;
-}
-.basicDataTable .content textarea {
-    height: 300px;
-    width: 100%;
-    overflow-y: auto;
-    line-height: 1.6;
-    padding: 10px;
-}
-textarea {
-    border: 1px solid #ccc;   
-    color: #666;
+    
 }
 table {
-    width: 99%;
+    
     border-collapse: collapse;
     border-spacing: 0;
 }
-input, textarea, select {
-    font-family: 'Noto Sans KR',Helvetica,"Apple SD Gothic Neo",sans-serif;    font-weight: 400;    vertical-align: middle;}
+.basicDataTable table {
+    table-layout: fixed;
+    width: 100%;
+}
+.basicDataTable th {
+    
+    font-size: 16px;
+    color: #222;
+    text-align: center;
+    padding: 11px 5px 10px 5px;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f4f4f4;
+    height: 50px;
+    font-weight: normal;
+}
+table td.noData {
+    height: 277px;
+    font-size: 22px;
+    color: #222;
+}
+.basicDataTable td{
+    text-align:center;
+    padding:11px 5px 10px 5px;
+}
+
+/* 공지사항 / 이벤트 */
+.content3 {display: flex; width: 100%; height: 300px;}
+.content3 .notice {flex: 1; display: flex; flex-direction: column; padding-right: 10px;}
+.content3 .notice .notice_box {margin-top: 20px; width: 100%; height: 100%; border-top: 1px solid #8f8f8f; border-bottom: 1px solid #8f8f8f; display: flex;}
+.content3 .notice .notice_box .notice_title {flex: 8; }
+.content3 .notice .notice_box .notice_title ul {display: flex; flex-direction: column;}
+.content3 .notice .notice_box .notice_title ul li {padding: 5px 0 5px 5px;}
+.content3 .notice .notice_box .notice_title ul li:first-child {padding-top: 10px;}
+.content3 .notice .notice_box .notice_title ul li a {color: #222; font-size: 16px; font-weight: 400;} 
+.content3 .notice .notice_box .notice_date {flex: 2;}
+.content3 .notice .notice_box .notice_date ul {display: flex; flex-direction: column;}
+.content3 .notice .notice_box .notice_date ul li {text-align: center; padding: 5px 0 5px 0;}
+.content3 .notice .notice_box .notice_date ul li:first-child {padding-top: 10px;}
+.content3 .notice .notice_box .notice_date ul li a {color: #222; font-size: 16px; font-weight: 400;} 
+
+.content3 .event {flex: 1; display: flex; flex-direction: column; padding-left: 10px;}
+.content3 .event .event_box {margin-top: 20px; width: 100%; height: 100%; border-top: 1px solid #8f8f8f; border-bottom: 1px solid #8f8f8f; display: flex;}
+.content3 .event .event_box .event_title {flex: 8;}
+.content3 .event .event_box .event_title ul {display: flex; flex-direction: column;}
+.content3 .event .event_box .event_title ul li {padding: 5px 0 5px 5px;}
+.content3 .event .event_box .event_title ul li:first-child {padding-top: 10px;}
+.content3 .event .event_box .event_title ul li a {color: #222; font-size: 16px; font-weight: 400;}
+.content3 .event .event_box .event_date {flex: 2;}
+.content3 .event .event_box .event_date ul {display: flex; flex-direction: column;}
+.content3 .event .event_box .event_date ul li {text-align: center; padding: 5px 0 5px 0;}
+.content3 .event .event_box .event_date ul li:first-child {padding-top: 10px;}
+.content3 .event .event_box .event_date ul li a {color: #222; font-size: 16px; font-weight: 400;}
+
 /* 퀵메뉴 */
 #content .quickmenu {display: flex; border: 1px solid #a1a1a1; position: absolute; left: 20px; top : 0px;}
 #content .quickmenu ul {display: flex; flex-direction: column; width: 50px; align-items: center;}
@@ -326,13 +270,11 @@ input, textarea, select {
 
 
 
-
-
-
 @media only screen and (max-width: 1700px) {
     #header {width: 1700px;}
     #banner {width: 1700px;}
     #content {width: 1700px;}
     #footer {width: 1700px;}
+    
     .header .nav_bar {width: 1700px;}
 }
