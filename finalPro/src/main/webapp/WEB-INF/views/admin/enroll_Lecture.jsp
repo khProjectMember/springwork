@@ -44,7 +44,7 @@
 			<div id="inner">
 				<div class="content2">
 					<div class="innerOuter">
-						<h2>강좌목록 등록</h2>
+						<h2>강좌 등록</h2>
             <br>
 
             <form id="enrollForm" method="post" action="lecinsert.le" enctype="multipart/form-data">

@@ -65,7 +65,6 @@
 									<th>강사이름</th>
 									<th>나이</th>
 									<th>등록일자</th>
-									<th>상태</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -76,7 +75,6 @@
 										<td >${ t.teaName }</td>
 										<td>${ t.teaAge }</td>
 										<td>${ t.teaEdate}</td>
-										<td>${ t.teaStatus}</td>
 										<td><input name = "selectDelete" type = "checkbox" value = "${t.teaNo }"/></td>
 									</tr>
 								</c:forEach>
@@ -84,15 +82,19 @@
 						</table>
 						<br>
 						<div class="pagin_box_thi">
-                                <button class="text_box_button">강사등록</button>
-                                <button class="text_box_button" onclick="deleteValue();">강사삭제</button>
+                                
+                                <c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
+                                	<button class="text_box_button">강사등록</button>
+                                	<button class="text_box_button2" onclick="deleteValue();">강사삭제</button>
+	                        	</c:if>
+                                
                         </div>
 						<!-- 상세페이지 -->
 							
 						<script type="text/javascript">
 					    	$('.text_box_button').click(function() {
 					    		console.log("안눌려용");
-					    		location.href='enrollForm.le';
+					    		location.href='enrollForm.te';
 					    	})
 					    </script>
 					    <script>

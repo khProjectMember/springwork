@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.board.model.vo.Notice;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.lecture.model.vo.Lecture;
 import com.kh.spring.lecture.model.vo.Teacher;
@@ -20,9 +21,20 @@ public class LectureDao {
 		return (Lecture)sqlSession.selectOne("lectureMapper.lectureDetail", LecNo);
 	}
 	
-	
-	
-	
+	public ArrayList<Lecture> mainOrdNew(SqlSessionTemplate sqlSession, Lecture l){
+		return (ArrayList)sqlSession.selectList("lectureMapper.mainOrdNew",l);
+	}
+	public ArrayList<Lecture> mainOrdGrade(SqlSessionTemplate sqlSession, Lecture l){
+		return (ArrayList)sqlSession.selectList("lectureMapper.mainOrdGrade",l);
+	}
+
+	public ArrayList<Notice> mainOrdNotice(SqlSessionTemplate sqlSession, Notice n) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.mainOrdNotice",n);
+	}
+
+	public ArrayList<Notice> mainOrdEvent(SqlSessionTemplate sqlSession, Notice n) {
+		return (ArrayList)sqlSession.selectList("lectureMapper.mainOrdEvent",n);
+	}
 	
 	/*
 	public int selectListCount(SqlSessionTemplate sqlSession) {

@@ -57,6 +57,7 @@
     	        }
     	      }).done(function (data) {
     	        // 가맹점 서버 결제 API 성공시 로직
+    	    	  alert("결제가 성공적으로 수행되었습니다.")
     	      })
     	    } else {
     	      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
@@ -244,6 +245,24 @@
                         </tr>
                     </table>
                 </div>
+                
+                <form action="" method="post" id="postForm">
+				<input type="hidden" name="lecNo" value="${ lecture.lecNo}">
+				<input type="hidden" name="filePath" value="${ lecture.lecFilename}">
+				</form>
+			<c:if test="${ loginUser.isAdmin eq 'Y' }">
+	            <div align="center">
+	                <!---수정하기, 삭제하기 버튼은 이글이 본인 글일 경우만 보여져야됨 -->
+	                <a class="btn btn-primary" onclick="postFormSubmit(1);">수정하기</a>
+	            </div><br><br>
+            </c:if>
+	                <script>
+						function postFormSubmit(num){
+							if(num == 1){
+								$("#postForm").attr("action","updateForm.le").submit();
+							} 
+						}
+					</script>
                 <div class="class_regi">
                     <hr>
                     <a href="list.le">목록</a>

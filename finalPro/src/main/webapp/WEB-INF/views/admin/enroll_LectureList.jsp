@@ -72,14 +72,15 @@
 									<th>평점</th>
 									<th>인원현황</th>
 									<th>강의실</th>
+									<th></th>
 									
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="l" items="${ list }">
 									<tr>
-										<td class="lno">${ l.lecNo }</td>
-										<td>${l.lecName}</td>
+										<td class="lecNo">${ l.lecNo }</td>
+										<td><a href="detail.le?lecNo=${l.lecNo}">${l.lecName}</a></td>
 										<td>${l.teacher.teaName }</td>
 										<td>${l.lecSdate} ~ ${l.lecEdate}</td>
 										<td>${l.lecStime} ~ ${l.lecEtime}</td>
@@ -87,27 +88,71 @@
 										<td>${l.lecBcatg}  -${l.lecScatg}</td>
 										<td>${l.lecPrice}</td>
 										<td>${l.lecGrade}</td>
-										<td>여기에 접수인원 카운트/${l.lecCnum}</td>
+										<td> 카운트/${l.lecCnum}</td>
 										<td>${l.lectureLocation.locName}</td>
+										<td><input name = "selectDelete" type = "checkbox" value = "${l.lecNo }"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<br>
 						<div class="pagin_box_thi">
+							 <c:if test="${not empty loginUser and loginUser.isAdmin eq 'Y' }">
                                 <button class="text_box_button">강의추가</button>
+                                <button class="text_box_button2" onclick="deleteValue();">강의삭제</button>
+                               </c:if>
                             </div>
-						<!-- 상세페이지 -->
-						<script>
-							$(function() {
-								$("#LectureList>tbody>tr").click(
-										function() {
-											location.href = 'detail.le?lno='
-													+ $(this).children(".lno")
-															.text();
-										})
-							})
+                           
+                            <form method="post" class="postForm_le">
+						    	<input type="hidden" name="lecNo" value="${ l.lecNo }">
+						    	<input type="hidden" name="filePath" value="${ l.lecFilename}">
+						    </form>
+                       <script type="text/javascript">
+					    	$('.text_box_button').click(function() {
+					    		console.log("안눌려용");
+					    		location.href='enrollForm.le';
+					    	})
+					    	/* $('.text_box_button3').click(function() {
+					    		console.log("안눌려용");
+					    		location.href='updateForm.le';
+					    	}) */
+					    	function postFormSubmit(num){
+								if(num == 1){
+									$(".postForm_le").attr("action","updateForm.le").submit();
+								} 
+							}
+					    </script>
+					    <script>
+								
+								function deleteValue() {
+									var deleteArr = new Array(); //삭제할  리스트
+									var list = $("input[name='selectDelete']"); //체크된 리스트
+									//console.log(list);
+									for(var i = 0; i < list.length; i++) {
+										if(list[i].checked) {
+											deleteArr.push(list[i].value); //boardId 값 들어감
+											//console.log(deleteArr);
+										}
+									}
+									if(deleteArr.length == 0) {
+										alert('선택된 글이 없습니다.');
+									} else {
+										var msg = confirm("정말  탈퇴시키시겠습니까?");
+										$.ajax({
+											url: "${contextPath}/spring/deleteLecture.ad",
+											type: 'POST',
+											data: {
+												deleteArr: deleteArr
+											},
+											success: function(data) {
+												alert("탈퇴시켰습니다.");
+												history.go(0);
+											}
+										});
+									}
+								}
 						</script>
+						<!-- 상세페이지 -->
 						<div id="pagingArea">
 							<ul class="pagination">
 								<c:choose>
@@ -137,12 +182,7 @@
 								</c:choose>
 							</ul>
 						</div>
-						<script type="text/javascript">
-					    	$('.text_box_button').click(function() {
-					    		console.log("안눌려용");
-					    		location.href='enrollForm.le';
-					    	})
-					    </script>
+						
 						<br clear="both"> <br>
 
 						<form id="searchForm" action="" method="Get" align="center">
