@@ -18,7 +18,7 @@ body, input, textarea, select, button a {
 #wrap {width: 100%;}
 #header{width: 100%; height: 200px;}
 #banner {width: 100%; height: 500px;}
-#content {width: 100%; height: 1200px; position: relative;}
+#content {width: 100%; height: 250px; position: relative;}
 #footer{width: 100%; height: 300px; margin-top: 200px; background-color: #f1f1f1;}
 
 .inner {margin: 0 200px 0 200px; height: inherit;}
@@ -139,12 +139,6 @@ h2 {
 .btnBlack {
     background: #000;
 }
-.btnType04 {
-    height: 30px;
-    line-height: 30px;
-    font-size: 13px;
-    min-width: 55px;
-}
 .notiBoxArea ul li {
     margin: 5px 0 0 0;
     position: relative;
@@ -152,8 +146,14 @@ h2 {
     color: #999;
     font-size: 18px;
 }
-
-.btn{   
+.btnType04 {
+    height: 30px;
+    line-height: 30px;
+    font-size: 13px;
+    min-width: 55px;
+}
+.btn{
+    padding:0 30px;
     display:inline-block;
     vertical-align: middle;
     color: #fff;
@@ -175,16 +175,14 @@ h2 {
 .basicDataTable {
     border-top: 1px solid #000;
     border-bottom: 1px solid #ccc;
-    
 }
 table {
-    
+    width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
 }
 .basicDataTable table {
     table-layout: fixed;
-    width: 100%;
 }
 .basicDataTable th {
     
@@ -275,6 +273,5 @@ table td.noData {
     #banner {width: 1700px;}
     #content {width: 1700px;}
     #footer {width: 1700px;}
-    
     .header .nav_bar {width: 1700px;}
 }

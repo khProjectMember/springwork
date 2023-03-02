@@ -25,7 +25,7 @@
 				</li>
 				<li>
 				<label style="padding-left:500px;">내용</label>
-				<textarea name=qnaContent rows="10" cols="70">${qna.qnaContent}</textarea>
+				<p>${qna.qnaContent}</p>
 				</li>
 				<div class="review_text" style="padding-left:955px;">
         			<div class="review_area">

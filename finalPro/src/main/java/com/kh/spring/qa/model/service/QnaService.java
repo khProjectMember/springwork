@@ -22,7 +22,7 @@ public interface QnaService {
 	 */
 	public Qna QnaDetail(Integer qnaNo);
 
-	<QnaReply> ArrayList<QnaReply> qnaReplyList(Integer qnaNo);
+	
 
 	/*
 	 * ArrayList<com.kh.spring.qa.model.vo.QnaReply> QnaReplyList(int qnaNo);
@@ -33,19 +33,10 @@ public interface QnaService {
 	 */
 
 
-
+	public ArrayList<Qna> qnalistfir();
 	
 
-	void deleteQna(Qna q);
-
 	
-
-	void updatePostQna(Qna q);
-
-	Qna updatePost(Integer qnaNo);
-
-
-
 
 
 

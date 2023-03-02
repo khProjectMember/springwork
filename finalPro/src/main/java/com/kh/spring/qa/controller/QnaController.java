@@ -20,10 +20,9 @@ import com.kh.spring.qa.model.service.QnaService;
 import com.google.gson.Gson;
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.lecture.model.vo.Lecture;
-import com.kh.spring.qa.model.service.qnaService;
-import com.kh.spring.qa.model.service.qnaServiceImpl;
+
 import com.kh.spring.qa.model.vo.Qna;
-import com.kh.spring.qa.model.vo.QnaReply;
+
 
 
 @Controller
@@ -34,13 +33,13 @@ public class QnaController {
 	//�옄二쇳븯�뒗 吏덈Ц �럹�씠
 	@RequestMapping("board.qa")
 	public String boardqa() {
-		return "/qa/QAboard";
+		return "qa/QAboard";
 	}
 	
 	//1:1臾몄쓽�븯湲� �옉�꽦�븯�뒗 �럹�씠吏�
 	@RequestMapping("sendQa.qa")
 	public String sendQa() {
-		return "/qa/QaWriteView";
+		return "qa/QaWriteView";
 	}
 	
 	@RequestMapping("insertQA.bo")
@@ -54,23 +53,23 @@ public class QnaController {
 		}
 	}
 	
-	@RequestMapping("QA.bo")
-	public String QNAlist(Qna q, Model model) throws NullPointerException{
-		ArrayList<Qna> list = qService.QnaList(q);
+	@RequestMapping("qa.bo")
+	public String QNAlist(Model model) throws NullPointerException{
+		ArrayList<Qna> list = qService.qnalistfir();
 		model.addAttribute("list", list);
-		return "QA";
+		return "qa/QaView";
 	}	
 	
 	@RequestMapping("QAboard.bo")
 	public String QAboard() {
-		return "QAboard";
+		return "qa/QAboard";
 	}
 	
 	@RequestMapping("QAReply.bo")
 	public String QAReply() {
-		return "QAReply";
+		return "qa/QAReply";
 	}
-}
+
 
 	@RequestMapping("list.qa")
 	public String qnaList(Qna q, Model model) {
@@ -89,15 +88,7 @@ public class QnaController {
 	}
 
 	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="qlist.bo", produces="application/json; charset=utf-8")
-	 * public String qnaReplyList(@RequestParam(value="qnaNo") int qnaNo) {
-	 * ArrayList<QnaReply> list = qService.QnaReplyList(qnaNo);
-	 * 
-	 * return new Gson().toJson(list); }
-	 */
+	
 	
 	
 	
@@ -124,26 +115,6 @@ public class QnaController {
 			 * }
 			 */
 		
-		@RequestMapping(value="updatePost.bo") public String updatePostQna(Qna q,
-				HttpSession session, HttpServletRequest request, HttpServletResponse
-				  response){
-				session.setAttribute("alertMsg", "수정되었습니다");
-				
-		    	 
-				  qService.updatePostQna(q); 
-				  return "redirect:/list.qa"; 
-				  }			
-			
 		
-		
-		
-		
-	    @RequestMapping(value="delete.bo") public String deleteQna(Qna q,
-	    	  HttpSession session, HttpServletRequest request, HttpServletResponse
-			  response){ 
-	    	  session.setAttribute("alertMsg", "�꽦怨듭쟻�쑝濡� �궘�젣�릺�뿀�뒿�땲�떎."); 
-			  qService.deleteQna(q); 
-			  return "redirect:/list.qa"; 
-			  }			
-		}
+}
 

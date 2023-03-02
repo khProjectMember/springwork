@@ -41,7 +41,7 @@
                             </li>
                         </ul>
                         <a href="board.qa" class="btn btnBlack btnType04">
-                        	<span style="background:#000; color:#fff;padding:8px;">자주하는 문의보기</span>
+                        	<span>자주하는 문의보기</span>
                         </a>                        
                     </div>
                 </div>
@@ -49,10 +49,10 @@
                     <table>
                         <!-- <caption>1:1문의 목록</caption> -->
                             <colgroup>
-                                <col style="width:293px;">
-                                <col style="width:490px;">
-                                <col style="width:360px;">                          
-                                <col style="width:360px;">                                
+                                <col style="width:20%%;">
+                                <col style="width:auto;">
+                                <col style="width:20%;">                          
+                                <col style="width:20%;">                                
                             </colgroup>
                             <thead>
                                 <tr>
@@ -65,39 +65,39 @@
                             <tbody>
                                
 		                            <c:choose>
-                                	<c:when test="${ empty list }">
-                                	 <tr>
-                                		<td colspan="4">등록된 1:1 문의가 없습니다.</td>
-                                	  </tr>
-                                	</c:when>                                	
-                                	<c:otherwise>
-                                	<c:forEach var="l" items="${ list }">
-                                	<tr>
-	                                    <td>${l.qnaNo}</td>
-	                                    <td><a href="qnaDetail.bo?qnaNo=${l.qnaNo}">${l.qnaTitle}</a></td>
-	                                    <td>
-	                                    <c:choose>                                                                         	
-			                                <c:when test="${l.qnaReplyStatus == 1}">
-			      							답변완료
-			      							</c:when>
-			      							<c:when test="${l.qnaReplyStatus == 0}">
-			      							답변대기
-			      							</c:when>                                   
-									    </c:choose>
-									    </td>
-	                                    <td>
-	                                    <c:choose>                                                                         	
-			                                <c:when test="${l.qnaStatus == 1}">
-			      							공개
-			      							</c:when>
-			      							<c:when test="${l.qnaStatus == 0}">
-			      							비공개
-			      							</c:when>                                   
-									     </c:choose>
-	                                    </td>
-	                                </tr>	                               	
-	                                </c:forEach>
-                                	</c:otherwise>
+	                                	<c:when test="${ empty list }">
+	                                	 <tr>
+	                                		<td colspan="4">등록된 1:1 문의가 없습니다.</td>
+	                                	  </tr>
+	                                	</c:when>                                	
+	                                	<c:otherwise>
+		                                	<c:forEach var="l" items="${ list }">
+		                                	<tr>
+			                                    <td>${l.qnaNo}</td>
+			                                    <td><a href="qnaDetail.bo?qnaNo=${l.qnaNo}">${l.qnaTitle}</a></td>
+			                                    <td>
+			                                    <c:choose>                                                                         	
+					                                <c:when test="${l.qnaReplyStatus == 1}">
+					      							답변완료
+					      							</c:when>
+					      							<c:when test="${l.qnaReplyStatus == 0}">
+					      							답변대기
+					      							</c:when>                                   
+											    </c:choose>
+											    </td>
+			                                    <td>
+			                                    <c:choose>                                                                         	
+					                                <c:when test="${l.qnaStatus == 1}">
+					      							공개
+					      							</c:when>
+					      							<c:when test="${l.qnaStatus == 0}">
+					      							비공개
+					      							</c:when>                                   
+											     </c:choose>
+			                                    </td>
+			                                </tr>	                               	
+			                                </c:forEach>
+	                                	</c:otherwise>
 						          	</c:choose>						          
                                
                             </tbody>

@@ -3,7 +3,6 @@ package com.kh.spring.board.model.service;
 import java.util.ArrayList;
 
 import com.kh.spring.board.model.vo.ReplyRecommend;
-
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.board.model.vo.ReviewReply;
 import com.kh.spring.board.model.vo.ReviewReplyRe;
@@ -25,7 +24,6 @@ public interface ReviewService {
 	int incCount(int revNo);
 	Review selectReviewDetail(int revNo);
 	ArrayList<Reviewrecommend> reviewRecommendRenum(int revNo);
-	
 	
 	// 리뷰 수정
 	
@@ -88,8 +86,6 @@ public interface ReviewService {
 	
 	int goodTotalCount(int revReplyNo);
 	
-
-	ArrayList<ReviewReplyRe> replyReList(int reviewReplyNo);
 
 }
 

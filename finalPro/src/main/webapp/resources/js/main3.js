@@ -4,7 +4,7 @@ window.onload = function () {
 	var zoom = target.data('zoom');
 	
 	$(".wrap")
-		.on('mousemove', magnify)
+		.on('mousemover', magnify)
 		.prepend("<div class='magnifier'></div>")
 		.children('.magnifier').css({
 			"background": "url('" + target.attr("src") + "') no-repeat",

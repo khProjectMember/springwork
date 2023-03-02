@@ -10,9 +10,9 @@ import com.kh.spring.qa.model.dao.QnaDao;
 
 import com.kh.spring.board.model.vo.Review;
 import com.kh.spring.common.model.vo.PageInfo;
-import com.kh.spring.qa.model.dao.qnaDao;
+
 import com.kh.spring.qa.model.vo.Qna;
-import com.kh.spring.qa.model.vo.QnaReply;
+
 
 import oracle.net.aso.q;
 
@@ -60,23 +60,16 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public ArrayList<QnaReply> qnaReplyList(Integer qnaNo) {
+	public ArrayList<Qna> qnalistfir() {
 		// TODO Auto-generated method stub
-		return (ArrayList<QnaReply>) qDao.qnaReplyList(sqlSession, qnaNo);
+		return qDao.qnalistfir(sqlSession);
 	}
 
+	
 
+	
 
-	@Override
-	public void deleteQna(Qna q) {
-		 qDao.deleteQna(sqlSession, q);
-	}
-
-	@Override
-	public Qna updatePost(Integer qnaNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 

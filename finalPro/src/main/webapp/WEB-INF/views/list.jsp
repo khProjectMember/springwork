@@ -241,7 +241,7 @@
         </div>
     </div>
 	
-	
+	<jsp:include page="common/footer.jsp" />
 	<div class="all"></div>
     <script>
         // 검색 버튼 fade
@@ -318,6 +318,5 @@
         });
    	 
     </script>
-<jsp:include page="common/footer.jsp" />    
 </body>
 </html>

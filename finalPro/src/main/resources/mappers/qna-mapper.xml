@@ -53,4 +53,7 @@
 	<delete id="deleteQna">
 		delete from qna where qna_no = #{qnaNo}
 	</delete>	
+	<select id="qnalistfir" resultMap="qnaResult">
+		select * from qna order by qna_no desc
+	</select>
 </mapper>

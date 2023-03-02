@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.qa.model.vo.Qna;
-import com.kh.spring.qa.model.vo.QnaReply;
+
 
 @Repository
 public class QnaDao {
-public class qnaDao {
+
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -41,9 +41,7 @@ public class qnaDao {
 		return sqlSession.selectOne("qnaMapper.QnaDetail", qnaNo);
 	}
 	//Reply에대한 
-	public ArrayList<QnaReply> qnaReplyList(SqlSessionTemplate sqlSession, int qnaNo) {
-		return (ArrayList) sqlSession.selectList("qnaMapper.qnaReplyList", qnaNo);
-	}
+	
 	/*
 	public int updateQna(SqlSessionTemplate sqlSession, Qna q) {
 		 return sqlSession.update("qnaMapper.updateQna", q);
@@ -60,6 +58,10 @@ public class qnaDao {
 	public int updatePost(SqlSessionTemplate sqlSession, Integer qnaNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("qnaMapper.updateQna", qnaNo);
+	}
+	
+	public ArrayList<Qna> qnalistfir(SqlSessionTemplate sqlSession) {
+		return (ArrayList) sqlSession.selectList("qnaMapper.qnalistfir");
 	}
 
 }
