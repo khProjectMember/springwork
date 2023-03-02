@@ -16,7 +16,7 @@ public interface MeetingService {
 	// 모임 만들기
 	
 	int insertMeeting(Meeting m);
-	int insertjoin(int hangoutNo);
+	int insertjoin(int hangoutNo, int memNo);
 	
 	// 모임 조회
 	int incCount(int hangoutNo);

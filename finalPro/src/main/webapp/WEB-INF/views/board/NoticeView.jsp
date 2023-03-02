@@ -127,7 +127,9 @@
                                 </ul>
                             </div>
                             <div class="pagin_box_thi">
-                                <button class="text_box_button">게시글 작성</button>
+                            	<c:if test="${ not empty loginUser and (loginUser.memNo eq 1 )}">
+                                	<button class="text_box_button">게시글 작성</button>
+                                </c:if>
                             </div>
                         </div>
                     </div>

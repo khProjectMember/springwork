@@ -27,6 +27,9 @@ public class CommonController {
 	}
 	*/
 	
+	// 신청목록- 에러페이지로 이동
+	
+	
 	// 시설안내로 이동
 	@RequestMapping("facility.fa")
 	public String facility() {

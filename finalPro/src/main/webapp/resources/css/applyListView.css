@@ -1,4 +1,4 @@
-#content{width: 100%;height: auto;}
+#content{width: 100%; height: auto; margin-top: 100px;}
 
 .inner {margin: 0 400px 0 400px; height: inherit;}
 .inner hr{margin-top: 120px;}

@@ -134,7 +134,7 @@
     </script>
 
     <!-- css -->
-    <link rel="stylesheet" href="resources/css/lectureDetailView.css">
+    <link rel="stylesheet" href="resources/css/lectureDetail.css">
 
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -151,11 +151,16 @@
     <div id="wrap">
         <div id="content">
             <div class="inner">
-                <div class="class_util">
-                    <a href="goHome.le">홈으로&emsp;|&emsp;</a>
-                    <a href="applyForm.le">수강신청&emsp;|&emsp;</a>
-                    <a href="list.le">강좌검색</a>
-                </div>
+                <div class="util_array">
+                    <div class="util_box">
+                        <ul>
+                            <li><a href="goHome.le" class="util_a"><img src="resources/img/icons8-홈-페이지-25.png" alt="main화면"></a></li>
+                            <li><a href="myApplyList.ap" class="util_a">수강신청</a></li>
+                            <li><a href="list.le">강좌검색</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>          
                 <div class="class_status">
                     <ul>
                         <li>접수중</li>
@@ -167,80 +172,85 @@
                     <table>
                         <tr>
                             <td><h1>${lecture.lecName }</h1></td>
-                            <td rowspan="2"><a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a></td>
-                            <td rowspan="2"><a href="javascript:apply_lecs(${lecture.lecNo },${loginUser.memNo})">신청하기</a></td>
+                            <td rowspan="2"><button type="button" class="btn_mine" onclick="add_lecs(${lecture.lecNo }, ${loginUser.memNo})" >찜하기</button></td>
+                            <td rowspan="2"><button type="button" class="btn_go" onclick="apply_lecs(${lecture.lecNo },${loginUser.memNo})" >신청하기</button></td>
                         </tr>
                     </table>
                 </div>
                 <div class="class_info">
                     <table class="info_table">
                         <tr>
-                            <td>
-                                <h1>${lecture.lecInfo }</h1>
+                            <td class="td_info_box">
+                                <div class="img_box_info">
+                                    <img src="${lecture.lecFilename}" alt="사진">
+                                </div>
+                                <div class="lec_box_info">
+                                    <p>${lecture.lecInfo} </p>
+                                </div>
                             </td>
                             <td class="class_info2">
-                            <h1>등록정보</h1>
-                            <table>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>강좌정보</td>
-                                    <td>${ lecture.lecBcatg }/${lecture.lecScatg }</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>강사명</td>
-                                    <td>${lecture.teacher.teaName }&ensp;<a href="" class="teacher_info">강사소개</a></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>수강기간</td>
-                                    <td>${lecture.lecSdate} ~ ${lecture.lecEdate}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>접수인원</td>
-                                    <td>${lecture.lecJnum }/${lecture.lecCnum }</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>강의실</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>수강료</td>
-                                    <td>${lecture.lecPrice }</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>접수기간</td>
-                                    <td>${lecture.lecStime} ~ ${lecture.lecEtime}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td>강의시간</td>
-                                    <td>${lecture.lecStime} ~ ${lecture.lecEtime}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                </tr>
-                            </table>
+                                <h1>등록정보</h1>
+                                <table>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>강좌정보</td>
+                                        <td>${ lecture.lecBcatg }/${lecture.lecScatg }</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>강사명</td>
+                                        <td class="teacher_name_td"><a href="" class="teacher_info">${lecture.teacher.teaName }</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>수강기간</td>
+                                        <td>${lecture.lecSdate} ~ ${lecture.lecEdate}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>접수인원</td>
+                                        <td>${lecture.lecJnum } / ${lecture.lecCnum }</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>강의실</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>수강료</td>
+                                        <td>${lecture.lecPrice} 원</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>접수기간</td>
+                                        <td>${lecture.lecStime} ~ ${lecture.lecEtime}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>강의시간</td>
+                                        <td>${lecture.lecStime} ~ ${lecture.lecEtime}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                     </table>
@@ -264,16 +274,16 @@
 						}
 					</script>
                 <div class="class_regi">
-                    <hr>
-                    <a href="list.le">목록</a>
-                    <button onClick="requestPay()">결제</button>
-                    <a href="javascript:apply_lecs(${lecture.lecNo },${loginUser.memNo})">신청하기</a>
-                    <a href="javascript:add_lecs(${lecture.lecNo },${loginUser.memNo})">찜하기</a>
+                    <div class="regi_box">
+                        <a href=""><h1> 수강후기 보러가기👀 </h1></a>
+                        
+                    </div>
+                    <div class="regi_box">
+                        <button onclick="location.href='list.le'" class="regi_list">목록</button>    
+                        <button onClick="requestPay()" class="nowpayBtn">즉시결제</button>
+                    </div>
                 </div>
-                <div class="class_review">
-                    <h1>수강후기(0)</h1>
-                    <a href=""><br>수강후기 메뉴에서 더보기</a>
-                </div>
+                
             </div>
         </div>
     </div>

@@ -137,7 +137,7 @@
 									if(deleteArr.length == 0) {
 										alert('선택된 글이 없습니다.');
 									} else {
-										var msg = confirm("정말  탈퇴시키시겠습니까?");
+										var msg = confirm("정말  삭제하시겠습니까?");
 										$.ajax({
 											url: "${contextPath}/spring/deleteLecture.ad",
 											type: 'POST',
@@ -145,7 +145,7 @@
 												deleteArr: deleteArr
 											},
 											success: function(data) {
-												alert("탈퇴시켰습니다.");
+												alert("삭제했습니다.");
 												history.go(0);
 											}
 										});

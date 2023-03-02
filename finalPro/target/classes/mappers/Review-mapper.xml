@@ -38,6 +38,8 @@
 		<result column="mem_no" property="memNo" />
 	</resultMap>
 	
+
+	</resultMap>
 	<select id="reviewListCount" resultType="_int">
 		select count(*) 
 		from review
@@ -178,5 +180,9 @@
 	</update>
 	<select id="goodTotalCount" resultType="_int">
 		select revreply_gcount from reviewreply where revreply_no = #{revReplyNo}
+
+		select revreply_no, revreply_writer, revreply_content, to_char(revreply_date, 'YYYY-MM-DD') as revreply_date, rev_no
+		from reviewreply
+		where rev_no = #{revNo}
 	</select>
 </mapper>

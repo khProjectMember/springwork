@@ -106,6 +106,7 @@ public class ReviewDao {
 	public ArrayList<ReviewReply> reviewReplyList(SqlSessionTemplate sqlSession, int revNo) {
 		return (ArrayList) sqlSession.selectList("reviewMapper.reviewReplyList", revNo);
 	}
+
 	
 	public int insertReviewReply(SqlSessionTemplate sqlSession, ReviewReply rr) {
 		return sqlSession.insert("reviewMapper.insertReviewReply", rr);
@@ -174,5 +175,7 @@ public class ReviewDao {
 	public int goodTotalCount(SqlSessionTemplate sqlSession, int revReplyNo) {
 		return sqlSession.selectOne("reviewMapper.goodTotalCount", revReplyNo);
 	}
+
+
 }
 
