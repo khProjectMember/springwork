@@ -56,10 +56,6 @@
     <factorypathentry kind="EXTJAR" id="C:\JSP\lib\jaspic-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\JSP\lib\jsp-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\JSP\lib\servlet-api.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\JSP\lib\taglibs-standard-compat-1.2.5.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\JSP\lib\taglibs-standard-impl-1.2.5.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\JSP\lib\taglibs-standard-jstlel-1.2.5.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\JSP\lib\taglibs-standard-spec-1.2.5.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\JSP\lib\tomcat-api.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\JSP\lib\tomcat-coyote.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\JSP\lib\tomcat-dbcp.jar" enabled="true" runInBatchMode="false"/>
